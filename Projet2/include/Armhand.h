@@ -23,7 +23,7 @@ private :
 	void onGyroscopeData(myo::Myo *myo, uint64_t timestamp, const myo::Vector3< float > &gyro);
 	void onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose);
 	void onConnect(myo::Myo *myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion);
-	int previous_y;
+	float previous_y;
 	Field field;
 	myo::Pose currentPose;
 };

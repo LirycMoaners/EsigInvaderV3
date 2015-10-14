@@ -20,10 +20,10 @@ void Armhand::onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose)
 {
 	this->currentPose = pose;
 	if (pose != myo::Pose::fist) {
-		this->field.shoot(true)
+		this->field.getSpaceship().getWeapon().shoot(this->field.getSpaceship().getShape().getPosition());
 	}
 	else {
-		Field->shoot(false);
+		//this->field.shoot(false);
 		// Tell the Myo to stay unlocked only for a short period. This allows the Myo to stay unlocked while poses
 		// are being performed, but lock after inactivity.
 	}
@@ -32,16 +32,17 @@ void Armhand::onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose)
 void Armhand::onGyroscopeData(myo::Myo *myo, uint64_t timestamp, const myo::Vector3< float > &gyro) {
 	bool sens = true;
 	unsigned int delta;
-	if ((previous_y - gyro.y) < 0) {
+	/*float gyroVal = gyro.y;
+	if ((previous_y - gyroVal) < 0) {
 		sens = false;
-		delta = gyro.y - previous_y;
+		delta = gyroVal - previous_y;
 	}
 	else {
 		sens = true;
-		delta = previous_y - gyro.y;
+		delta = previous_y - gyroVal;
 
-	}	
-	this->field.getSpaceship().YMove(delta, sens);
+	}	*/
+	//this->field.getSpaceship().YMove(delta, sens);
 }
 
 void Armhand::onConnect(myo::Myo *myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion) {
