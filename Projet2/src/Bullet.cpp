@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "bullet.h"
+#include "../include/Bullet.h"
 
 Bullet::Bullet() : speed(0)
 {

@@ -1,4 +1,4 @@
-#include "spaceship.h"
+#include "../include/spaceship.h"
 
 Spaceship::Spaceship() : weapon(Weapon(1))
 {

@@ -1,7 +1,7 @@
 #ifndef BULLET_H_INCLUDED
 #define BULLET_H_INCLUDED
 
-#include <SFML/Graphics.hpp>
+#include <../include/SFML/Graphics.hpp>
 
 class Bullet
 {
