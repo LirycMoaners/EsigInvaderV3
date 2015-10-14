@@ -20,7 +20,7 @@ void Terrain::addBullet(Bullet b)
 void Terrain::collision(sf::RenderWindow &window)
 {
 	for (int i = 0; i < bullets.size(); i++)
-		if (bullets[i].getShape().getPosition().x + 100 > window.getSize().x)
+		if (bullets[i].getShape().getPosition().x > window.getSize().x)
 			bullets.erase(bullets.begin() + i);
 }
 

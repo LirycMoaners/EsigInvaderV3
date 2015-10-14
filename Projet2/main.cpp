@@ -11,7 +11,8 @@ Terrain terrain;
 #pragma endregion variables
 
 #pragma region prototypes
-void gestion_clavier();
+void deplacement();
+int tir(int compteur);
 #pragma endregion prototypes
 
 using namespace std;
@@ -23,7 +24,6 @@ int main()
 	
 	terrain = Terrain();
 
-	bool shoot = false;
 	int compteur = 1;
 
 	while (window.isOpen())
@@ -35,22 +35,8 @@ int main()
 				window.close();
 		}
 
- 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		{
-			if (framerate / compteur == terrain.getSpaceship().getWeapon().getRate())
-			{
-				vector<Bullet> b = terrain.getSpaceship().getWeapon().shoot(terrain.getSpaceship().getShape().getPosition());
-				for (int i = 0; i < b.size(); i++)
-					terrain.addBullet(b[i]);
-				compteur = 1;
-			}
-			else
-				compteur++;
-
-			shoot = true;
-		}
-
-		gestion_clavier();
+		compteur = tir(compteur);
+		deplacement();
 		terrain.collision(window);
 
 		window.clear();
@@ -66,7 +52,7 @@ int main()
 	return 0;
 }
 
-void gestion_clavier()
+void deplacement()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		terrain.getSpaceship().move(1);
@@ -76,4 +62,22 @@ void gestion_clavier()
 		terrain.getSpaceship().move(3);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		terrain.getSpaceship().move(4);
+}
+
+int tir(int compteur)
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		if (framerate / compteur == terrain.getSpaceship().getWeapon().getRate())
+		{
+			vector<Bullet> b = terrain.getSpaceship().getWeapon().shoot(terrain.getSpaceship().getShape().getPosition());
+			for (int i = 0; i < b.size(); i++)
+				terrain.addBullet(b[i]);
+			compteur = 1;
+		}
+		else
+			compteur++;
+	}
+
+	return compteur;
 }
