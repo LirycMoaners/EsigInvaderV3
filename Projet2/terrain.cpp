@@ -1,6 +1,6 @@
 #include "terrain.h"
 
-Terrain::Terrain() : spaceship(Spaceship()), bullets(NULL) {}
+Terrain::Terrain() : spaceship(Spaceship()), bullets(NULL), c(Control()) {}
 
 Spaceship &Terrain::getSpaceship()
 {
@@ -12,9 +12,16 @@ vector<Bullet> &Terrain::getBullets()
 	return bullets;
 }
 
-void Terrain::addBullet(Bullet b)
+void Terrain::addBullets(vector<Bullet> b)
 {
-	bullets.push_back(b);
+	for (int i = 0; i < b.size(); i++)
+		bullets.push_back(b[i]);
+}
+
+void Terrain::control()
+{
+	c.arrow(spaceship);
+	addBullets(c.space(spaceship));
 }
 
 void Terrain::collision(sf::RenderWindow &window)

@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="control.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="spaceship.cpp" />
@@ -132,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bullet.h" />
+    <ClInclude Include="control.h" />
     <ClInclude Include="spaceship.h" />
     <ClInclude Include="terrain.h" />
     <ClInclude Include="weapon.h" />
