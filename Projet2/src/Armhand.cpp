@@ -32,7 +32,7 @@ void Armhand::onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose)
 void Armhand::onGyroscopeData(myo::Myo *myo, uint64_t timestamp, const myo::Vector3< float > &gyro) {
 	bool sens = true;
 	unsigned int delta;
-	/*float gyroVal = gyro.y;
+	float gyroVal = gyro.y();
 	if ((previous_y - gyroVal) < 0) {
 		sens = false;
 		delta = gyroVal - previous_y;
@@ -41,7 +41,7 @@ void Armhand::onGyroscopeData(myo::Myo *myo, uint64_t timestamp, const myo::Vect
 		sens = true;
 		delta = previous_y - gyroVal;
 
-	}	*/
+	}
 	//this->field.getSpaceship().YMove(delta, sens);
 }
 
