@@ -23,7 +23,6 @@ int main()
 	window.setFramerateLimit(framerate);
 	
 	terrain = Terrain();
-
 	int compteur = 1;
 
 	while (window.isOpen())
