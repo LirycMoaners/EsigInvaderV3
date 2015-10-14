@@ -1,5 +1,5 @@
-#include "control.h"
-#include "terrain.h"
+#include "../include/Control.h"
+#include "../include/Field.h"
 
 Control::Control() : compteurSpace(1) {}
 

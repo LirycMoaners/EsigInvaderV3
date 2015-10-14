@@ -7,24 +7,17 @@
 
 #pragma region variables
 sf::RenderWindow window;
-int framerate = 60;
-Field terrain;
+Field field;
 #pragma endregion variables
-
-#pragma region prototypes
-void deplacement();
-int tir(int compteur);
-#pragma endregion prototypes
 
 using namespace std;
 
 int main()
 {
-	window.create(sf::VideoMode(800, 600), "SFML works!");
-	window.setFramerateLimit(framerate);
-	
-	terrain = Field();
-	int compteur = 1;
+	window.create(sf::VideoMode(800, 600), "EsigInvaders");
+	window.setFramerateLimit(60);
+
+	field = Field();
 
 	while (window.isOpen())
 	{
@@ -35,49 +28,18 @@ int main()
 				window.close();
 		}
 
-		compteur = tir(compteur);
-		deplacement();
-		terrain.collision(window);
+		field.control();
+		field.collision(window);
 
 		window.clear();
-		for (int i = 0; i < terrain.getBullets().size(); i++)
+		for (int i = 0; i < field.getBullets().size(); i++)
 		{
-			terrain.getBullets()[i].move();
-			window.draw(terrain.getBullets()[i].getShape());
+			field.getBullets()[i].move();
+			window.draw(field.getBullets()[i].getShape());
 		}
-		window.draw(terrain.getSpaceship().getShape());
+		window.draw(field.getSpaceship().getShape());
 		window.display();
 	}
 
 	return 0;
-}
-
-void deplacement()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		terrain.getSpaceship().move(1);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		terrain.getSpaceship().move(2);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		terrain.getSpaceship().move(3);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		terrain.getSpaceship().move(4);
-}
-
-int tir(int compteur)
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		if (framerate / compteur == terrain.getSpaceship().getWeapon().getRate())
-		{
-			vector<Bullet> b = terrain.getSpaceship().getWeapon().shoot(terrain.getSpaceship().getShape().getPosition());
-			for (int i = 0; i < b.size(); i++)
-				terrain.addBullet(b[i]);
-			compteur = 1;
-		}
-		else
-			compteur++;
-	}
-
-	return compteur;
 }

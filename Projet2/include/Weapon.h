@@ -2,7 +2,7 @@
 #define WEAPON_H_INCLUDED
 
 #include <iostream>
-#include "bullet.h"
+#include "../include/Bullet.h"
 
 using namespace std;
 class Weapon

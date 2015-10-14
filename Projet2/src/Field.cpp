@@ -1,6 +1,6 @@
 #include "../include/Field.h"
 
-Field::Field() : spaceship(Spaceship()), bullets(NULL) {}
+Field::Field() : spaceship(Spaceship()), bullets(NULL), c(Control()) {}
 
 Spaceship &Field::getSpaceship()
 {
@@ -12,9 +12,16 @@ vector<Bullet> &Field::getBullets()
 	return bullets;
 }
 
-void Field::addBullet(Bullet b)
+void Field::addBullets(vector<Bullet> b)
 {
-	bullets.push_back(b);
+	for (int i = 0; i < b.size(); i++)
+		bullets.push_back(b[i]);
+}
+
+void Field::control()
+{
+	c.arrow(spaceship);
+	addBullets(c.space(spaceship));
 }
 
 void Field::collision(sf::RenderWindow &window)

@@ -2,7 +2,7 @@
 #define CONTROL_H_INCLUDED
 
 #include <iostream>
-#include "spaceship.h"
+#include "../include/Spaceship.h"
 
 class Control
 {

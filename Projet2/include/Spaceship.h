@@ -1,7 +1,7 @@
 #ifndef SPACESHIP_H_INCLUDED
 #define SPACESHIP_H_INCLUDED
 
-#include "weapon.h"
+#include "../include/Weapon.h"
 
 class Spaceship
 {
