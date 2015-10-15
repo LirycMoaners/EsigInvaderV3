@@ -2,10 +2,10 @@
 #define TERRAIN_H_INCLUDED
 
 #include <iostream>
-#include "../include/Bullet.h"
-#include "../include/Spaceship.h"
-#include "../include/Control.h"
-#include "../include/Img.h"
+#include "Bullet.h"
+#include "Spaceship.h"
+#include "Keyboard.h"
+#include "Img.h"
 
 using namespace std;
 
@@ -15,7 +15,7 @@ class Field
 		Img img;
 		vector<Bullet> bullets;
 		Spaceship spaceship;
-		Control c;
+		Control *c;
 
 	public:
 		Field();

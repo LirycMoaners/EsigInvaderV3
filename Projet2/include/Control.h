@@ -2,18 +2,16 @@
 #define CONTROL_H_INCLUDED
 
 #include <iostream>
-#include "../include/Spaceship.h"
+#include "Spaceship.h"
 
 class Control
 {
-	private:
-		int compteurSpace;
-
-	public:
-		Control();
-		void arrow(Spaceship&);
-		vector<Bullet> space(sf::Texture&, Spaceship&);
-		~Control();
+public:
+	Control(){}
+	virtual ~Control(){}
+	virtual void move(Spaceship&) = 0;
+	virtual vector<Bullet> shoot(sf::Texture&, Spaceship&)= 0;
 };
 
 #endif
+

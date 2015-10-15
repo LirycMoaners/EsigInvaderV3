@@ -1,6 +1,6 @@
 #include "../include/Field.h"
 
-Field::Field() : bullets(NULL), c(Control())
+Field::Field() : bullets(NULL), c(new Keyboard())
 {
 	img = Img();
 	spaceship = Spaceship(img.getSpaceship_t());
@@ -25,8 +25,8 @@ void Field::addBullets(vector<Bullet> &b)
 
 void Field::control()
 {
-	vector<Bullet> b = c.space(img.getBullet_t(), spaceship);
-	c.arrow(spaceship);
+	vector<Bullet> b = c->shoot(img.getBullet_t(), spaceship);
+	c->move(spaceship);
 	
 	addBullets(b);
 }
@@ -43,5 +43,5 @@ Field::~Field()
 	bullets.~vector();
 	spaceship.~Spaceship();
 	img.~Img();
-	c.~Control();
+	c->~Control();
 }

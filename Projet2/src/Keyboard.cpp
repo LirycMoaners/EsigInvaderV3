@@ -1,9 +1,9 @@
-#include "../include/Control.h"
+#include "../include/Keyboard.h"
 #include "../include/Field.h"
 
-Control::Control() : compteurSpace(1) {}
+Keyboard::Keyboard() : compteurSpace(1) {}
 
-void Control::arrow(Spaceship &s)
+void Keyboard::move(Spaceship &s)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 	{
@@ -20,7 +20,7 @@ void Control::arrow(Spaceship &s)
 		s.move(0);
 }
 
-vector<Bullet> Control::space(sf::Texture &texture, Spaceship &s)
+vector<Bullet> Keyboard::shoot(sf::Texture &texture, Spaceship &s)
 {
 	vector<Bullet> b;
 
@@ -39,4 +39,4 @@ vector<Bullet> Control::space(sf::Texture &texture, Spaceship &s)
 	return b;
 }
 
-Control::~Control() {}
+Keyboard::~Keyboard() {}
