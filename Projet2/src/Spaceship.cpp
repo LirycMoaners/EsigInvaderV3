@@ -24,11 +24,19 @@ void Spaceship::move(int dir)
 	switch (dir)
 	{
 		case 1:
-			anim.y = 2;
+			if (anim.y != 2)
+			{
+				anim.x = 0;
+				anim.y = 2;
+			}
 			sprite.move(0, -5);
 			break;
 		case 2:
-			anim.y = 1;
+			if (anim.y != 1)
+			{
+				anim.x = 0;
+				anim.y = 1;
+			}
 			sprite.move(0, 5);
 			break;
 		case 3:
