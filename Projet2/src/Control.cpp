@@ -38,3 +38,5 @@ vector<Bullet> Control::space(sf::Texture &texture, Spaceship &s)
 
 	return b;
 }
+
+Control::~Control() {}

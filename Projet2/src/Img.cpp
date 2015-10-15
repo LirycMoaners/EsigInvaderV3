@@ -14,3 +14,5 @@ sf::Texture &Img::getBullet_t()
 {
 	return bullet_t;
 }
+
+Img::~Img() {}

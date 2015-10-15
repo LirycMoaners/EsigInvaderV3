@@ -12,6 +12,7 @@ class Img
 		Img();
 		sf::Texture &getSpaceship_t();
 		sf::Texture &getBullet_t();
+		~Img();
 };
 
 #endif

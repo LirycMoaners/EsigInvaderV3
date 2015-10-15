@@ -42,4 +42,6 @@ Field::~Field()
 {
 	bullets.~vector();
 	spaceship.~Spaceship();
+	img.~Img();
+	c.~Control();
 }

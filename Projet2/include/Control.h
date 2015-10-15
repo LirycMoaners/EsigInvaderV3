@@ -13,6 +13,7 @@ class Control
 		Control();
 		void arrow(Spaceship&);
 		vector<Bullet> space(sf::Texture&, Spaceship&);
+		~Control();
 };
 
 #endif
