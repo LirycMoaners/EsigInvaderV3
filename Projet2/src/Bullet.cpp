@@ -1,31 +1,42 @@
-#include <SFML/Graphics.hpp>
 #include "../include/Bullet.h"
 
-Bullet::Bullet() : speed(0)
+Bullet::Bullet() : speed(0), anim(0){}
+
+Bullet::Bullet(sf::Texture &t, sf::Vector2f pos, int spd) : speed(spd), anim(0)
 {
-	shape.setFillColor(sf::Color(250, 100, 50));
-	shape.setRadius(10);
-	shape.setPosition(0, 0);
+	sprite.setTexture(t);
+	sprite.setTextureRect(sf::IntRect(anim, 0, 49, 19));
+	sprite.setPosition(pos);
 }
 
-Bullet::Bullet(sf::Vector2f pos, int spd) : speed(spd)
+Bullet::Bullet(const Bullet &b)
 {
-	shape.setFillColor(sf::Color(250, 100, 50));
-	shape.setRadius(10);
-	shape.setPosition(pos);
+	anim = b.anim;
+	sprite = b.sprite;
+	speed = b.speed;
 }
 
-sf::CircleShape &Bullet::getShape()
+sf::Sprite &Bullet::getSprite()
 {
-	return shape;
+	return sprite;
 }
 
 void Bullet::move()
 {
-	shape.move(speed, 0);
+	sprite.move(speed, 0);
+}
+
+void Bullet::switchFps()
+{
+	if (anim > 3)
+		anim = 0;
+
+	sprite.setTextureRect(sf::IntRect(49 * anim, 0, 49, 19));
+
+	anim++;
 }
 
 Bullet::~Bullet()
 {
-	shape.~CircleShape();
+	
 }

@@ -21,12 +21,13 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CCCE26DA-39AF-46E2-B07F-A146F3D0FF62}</ProjectGuid>
     <RootNamespace>Projet2</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -38,7 +39,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -88,11 +89,12 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>./include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>.\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;myo64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;myo64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -130,21 +132,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Armhand.cpp" />
+    <ClCompile Include="src\Armband.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
-    <ClCompile Include="src\Control.cpp" />
+    <ClCompile Include="src\DataCollector.cpp" />
+    <ClCompile Include="src\Keyboard.cpp" />
+    <ClCompile Include="src\Img.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Spaceship.cpp" />
     <ClCompile Include="src\Field.cpp" />
     <ClCompile Include="src\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Armhand.h" />
+    <ClInclude Include="include\Armband.h" />
     <ClInclude Include="include\Bullet.h" />
     <ClInclude Include="include\Control.h" />
+    <ClInclude Include="include\DataCollector.h" />
+    <ClInclude Include="include\Keyboard.h" />
+    <ClInclude Include="include\Img.h" />
     <ClInclude Include="include\Spaceship.h" />
     <ClInclude Include="include\Field.h" />
     <ClInclude Include="include\Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\Cyril\Downloads\TestSFML\Release\res\img\background.jpg" />
+    <Image Include="ressources\bullet.png" />
+    <Image Include="ressources\spaceship.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

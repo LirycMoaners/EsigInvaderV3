@@ -1,6 +1,21 @@
 #include "../include/Field.h"
 
-Field::Field() : spaceship(Spaceship()), bullets(NULL), c(Control()) {}
+Field::Field(bool available) : bullets(NULL)
+{
+	img = Img();
+	if (available) {
+		c = new Armband();
+		if (!c->getStatus()) {
+			delete c;
+			c = new Keyboard();
+		}
+	}
+	else {
+		c = new Keyboard();
+	}
+	
+	spaceship = Spaceship(img.getSpaceship_t());
+}
 
 Spaceship &Field::getSpaceship()
 {
@@ -12,27 +27,41 @@ vector<Bullet> &Field::getBullets()
 	return bullets;
 }
 
-void Field::addBullets(vector<Bullet> b)
+void Field::addBullets(vector<Bullet> &b)
 {
-	for (int i = 0; i < b.size(); i++)
-		bullets.push_back(b[i]);
+	vector<Bullet> bullets = b;
+	for (int i = 0; i < bullets.size(); i++)
+		this->bullets.push_back(bullets[i]);
 }
 
 void Field::control()
 {
-	c.arrow(spaceship);
-	addBullets(c.space(spaceship));
+	vector<Bullet> b = c->shoot(img.getBullet_t(), spaceship);
+	c->move(spaceship);
+	c->runHub();
+	addBullets(b);
 }
 
 void Field::collision(sf::RenderWindow &window)
 {
 	for (int i = 0; i < bullets.size(); i++)
-		if (bullets[i].getShape().getPosition().x > window.getSize().x)
+		if (bullets[i].getSprite().getPosition().x > window.getSize().x)
 			bullets.erase(bullets.begin() + i);
+
+	if (spaceship.getSprite().getPosition().x < 0)
+		spaceship.getSprite().setPosition(0, spaceship.getSprite().getPosition().y);
+	else if (spaceship.getSprite().getPosition().x + spaceship.getSprite().getTextureRect().width > window.getSize().x)
+		spaceship.getSprite().setPosition(window.getSize().x - spaceship.getSprite().getTextureRect().width, spaceship.getSprite().getPosition().y);
+	
+	if (spaceship.getSprite().getPosition().y < 0)
+		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, 0);
+	else if (spaceship.getSprite().getPosition().y + spaceship.getSprite().getTextureRect().height > window.getSize().y)
+		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, window.getSize().y - spaceship.getSprite().getTextureRect().height);
 }
 
 Field::~Field()
 {
 	bullets.~vector();
 	spaceship.~Spaceship();
+	c->~Control();
 }
