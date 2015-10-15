@@ -14,6 +14,7 @@ class Field
 {
 	private:
 		Img img;
+		sf::Sprite background;
 		vector<Bullet> bullets;
 		Spaceship spaceship;
 		Control *c;

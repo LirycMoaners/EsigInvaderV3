@@ -154,6 +154,7 @@
     <ClInclude Include="include\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="C:\Users\Cyril\Downloads\TestSFML\Release\res\img\background.jpg" />
     <Image Include="ressources\bullet.png" />
     <Image Include="ressources\spaceship.png" />
   </ItemGroup>

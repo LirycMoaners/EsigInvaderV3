@@ -35,12 +35,18 @@ vector<Bullet> Keyboard::shoot(sf::Texture &texture, Spaceship &s)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		if (60 / compteurSpace == s.getWeapon().getRate())
+		if (compteurSpace == 60 / s.getWeapon().getRate())
 		{
 			vector<Bullet> bu = s.getWeapon().shoot(texture, s.getSprite());
 			compteurSpace = 1;
 			return bu;
 		}
+		else
+			compteurSpace++;
+	}
+	else{
+		if (compteurSpace == 60 / s.getWeapon().getRate())
+			compteurSpace = 60 / s.getWeapon().getRate();
 		else
 			compteurSpace++;
 	}
