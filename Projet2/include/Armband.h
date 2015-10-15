@@ -21,9 +21,11 @@ class Armband : public Control
 private:
 	int compteurSpace;
 	DataCollector * collector;
+	myo::Hub * hub;
 	bool status;
 public:
 	Armband();
+	void runHub();
 	void move(Spaceship&);
 	vector<Bullet> shoot(sf::Texture&, Spaceship&);
 	~Armband();

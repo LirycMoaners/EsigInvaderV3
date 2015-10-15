@@ -32,7 +32,7 @@ void Field::control()
 {
 	vector<Bullet> b = c->shoot(img.getBullet_t(), spaceship);
 	c->move(spaceship);
-	
+	c->runHub();
 	addBullets(b);
 }
 

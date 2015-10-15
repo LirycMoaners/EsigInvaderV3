@@ -7,6 +7,9 @@ bool Keyboard::getStatus() {
 	return false;
 }
 
+void Keyboard::runHub() {
+
+}
 
 void Keyboard::move(Spaceship &s)
 {
