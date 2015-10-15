@@ -23,12 +23,13 @@ void Keyboard::move(Spaceship &s)
 vector<Bullet> Keyboard::shoot(sf::Texture &texture, Spaceship &s)
 {
 	vector<Bullet> b;
+	sf::Vector2f pos;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		if (60 / compteurSpace == s.getWeapon().getRate())
 		{
-			vector<Bullet> bu = s.getWeapon().shoot(texture, s.getSprite().getPosition());
+			vector<Bullet> bu = s.getWeapon().shoot(texture, s.getSprite());
 			compteurSpace = 1;
 			return bu;
 		}
