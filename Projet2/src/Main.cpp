@@ -5,19 +5,18 @@
 #include "../include/Field.h"
 #pragma endregion includes
 
-#pragma region variables
-sf::RenderWindow window;
-Field field;
-#pragma endregion variables
-
 using namespace std;
 
 int main()
 {
+	sf::RenderWindow window;
+	sf::Clock clk;
+	int fpsCount = 0;
+	int fpsSwitch = 200;
+	Field field;
+
 	window.create(sf::VideoMode(800, 600), "EsigInvaders");
 	window.setFramerateLimit(60);
-
-	field = Field();
 
 	while (window.isOpen())
 	{
@@ -28,16 +27,28 @@ int main()
 				window.close();
 		}
 
-		field.control();
 		field.collision(window);
+		field.control();
+
+		if (fpsCount >= fpsSwitch)
+		{
+			field.getSpaceship().switchFps();
+			for (int i = 0; i < field.getBullets().size(); i++)
+			{
+				field.getBullets()[i].switchFps();
+			}
+			fpsCount = 0;
+		}
+		else
+			fpsCount += clk.restart().asMilliseconds();
 
 		window.clear();
 		for (int i = 0; i < field.getBullets().size(); i++)
 		{
 			field.getBullets()[i].move();
-			window.draw(field.getBullets()[i].getShape());
+			window.draw(field.getBullets()[i].getSprite());
 		}
-		window.draw(field.getSpaceship().getShape());
+		window.draw(field.getSpaceship().getSprite());
 		window.display();
 	}
 

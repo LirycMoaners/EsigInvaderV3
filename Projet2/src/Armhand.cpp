@@ -20,7 +20,7 @@ void Armhand::onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose)
 {
 	this->currentPose = pose;
 	if (pose != myo::Pose::fist) {
-		this->field.getSpaceship().getWeapon().shoot(this->field.getSpaceship().getShape().getPosition());
+//		this->field.getSpaceship().getWeapon().shoot(this->field.getSpaceship().getSprite().getPosition());
 	}
 	else {
 		//this->field.shoot(false);

@@ -5,17 +5,22 @@ Control::Control() : compteurSpace(1) {}
 
 void Control::arrow(Spaceship &s)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		s.move(1);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		s.move(2);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		s.move(3);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		s.move(4);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			s.move(1);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			s.move(2);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+			s.move(3);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			s.move(4);
+	}
+	else
+		s.move(0);
 }
 
-vector<Bullet> Control::space(Spaceship &s)
+vector<Bullet> Control::space(sf::Texture &texture, Spaceship &s)
 {
 	vector<Bullet> b;
 
@@ -23,8 +28,9 @@ vector<Bullet> Control::space(Spaceship &s)
 	{
 		if (60 / compteurSpace == s.getWeapon().getRate())
 		{
-			b = s.getWeapon().shoot(s.getShape().getPosition());
+			vector<Bullet> bu = s.getWeapon().shoot(texture, s.getSprite().getPosition());
 			compteurSpace = 1;
+			return bu;
 		}
 		else
 			compteurSpace++;

@@ -1,18 +1,20 @@
 #include "../include/spaceship.h"
 
-Spaceship::Spaceship() : weapon(Weapon(1))
+Spaceship::Spaceship() : anim(0, 0) {}
+
+Spaceship::Spaceship(sf::Texture &t) : anim(0,0), weapon(Weapon(5))
 {
-	shape.setFillColor(sf::Color(100, 250, 50));
-	shape.setRadius(50);
-	shape.setPosition(100, 100);
+	sprite.setTexture(t);
+	sprite.setTextureRect(sf::IntRect(anim.x, anim.y, 100, 94));
+	sprite.setPosition(100, 100);
 }
 
-sf::CircleShape &Spaceship::getShape()
+sf::Sprite &Spaceship::getSprite()
 {
-	return shape;
+	return sprite;
 }
 
-Weapon Spaceship::getWeapon()
+Weapon &Spaceship::getWeapon()
 {
 	return weapon;
 }
@@ -22,22 +24,41 @@ void Spaceship::move(int dir)
 	switch (dir)
 	{
 		case 1:
-			shape.move(0, -5);
+			anim.y = 2;
+			sprite.move(0, -5);
 			break;
 		case 2:
-			shape.move(0, 5);
+			anim.y = 1;
+			sprite.move(0, 5);
 			break;
 		case 3:
-			shape.move(-5, 0);
+			anim.y = 0;
+			sprite.move(-5, 0);
 			break;
 		case 4:
-			shape.move(5, 0);
+			anim.y = 0;
+			sprite.move(5, 0);
 			break;
-	}
+		default:
+			anim.y = 0;
+			break;
+	}	
+}
+
+void Spaceship::switchFps()
+{
+	if (anim.x > 3 && anim.y == 0)
+		anim.x = 0;
+
+	if (anim.x > 1 && anim.y != 0)
+		anim.x = 1;
+
+	sprite.setTextureRect(sf::IntRect(100 * anim.x, 94 * anim.y, 100, 94));
+
+	anim.x++;
 }
 
 Spaceship::~Spaceship()
 {
-	shape.~CircleShape();
 	weapon.~Weapon();
 }
