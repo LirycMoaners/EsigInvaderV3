@@ -33,8 +33,13 @@ Armband::Armband(){
 			// Hub::addListener() takes the address of any object whose class inherits from DeviceListener, and will cause
 			// Hub::run() to send events to all registered device listeners.
 			hub->addListener(collector);
-
-			this->status = true;
+			if (collector->getBattery())
+				this->status = true;
+			else {
+				this->status = false;
+				std::cout << "No enough battery" << endl;
+				std::cout << "Keyboard Mod Launch" << endl;
+			}
 		}
 
 
@@ -52,7 +57,7 @@ bool Armband::getStatus() {
 }
 
 void Armband::runHub() {
-	this->hub->run(1000 / 20);
+	this->hub->run(1000 /60);
 }
 
 vector<Bullet> Armband::shoot(sf::Texture&texture, Spaceship&s) {
@@ -74,6 +79,66 @@ vector<Bullet> Armband::shoot(sf::Texture&texture, Spaceship&s) {
 
 void Armband::move(Spaceship &s)
 {
+	myo::Vector3< float > gyro = this->collector->getGyro();
+	myo::Quaternion< float > orient = this->collector->getOrient();
+	float deltaX = 0;
+	float deltaY = 0;
+	int sensX,sensY;
+	cout << "GyroZ : " << gyro.z() << endl;
+	if ((this->previous_x - gyro.z())<0) {
+		deltaX = gyro.z() - previous_x;
+		cout << "Delta X" << deltaX << endl;
+		if (deltaX < 1) {
+			sensX = 0;
+		}
+		else {
+			sensX = 1;
+		}
+	}
+	else {
+		deltaX = previous_x - gyro.z();
+		cout << "Delta X" << deltaX << endl;
+		if (deltaX < 1) {
+			sensX = 0;
+		}
+		else {
+			sensX = 2;
+		}
+	}
+	
+	this->previous_x = gyro.x();
+	s.move(sensX);
+	if ((this->previous_y - gyro.y())<0) {
+		deltaY = gyro.y() - previous_y;
+		cout << "Delta Y" << deltaY << endl;
+		if (deltaY < 10) {
+			sensY = 0;
+		}
+		else {
+			sensY = 4;
+		}
+		
+	}
+	else {
+		deltaY = previous_y - gyro.y();
+		cout << "Delta Y" << deltaY << endl;
+		if (deltaY < 10) {
+			sensY = 0;
+		}
+		else {
+			sensY = 3;
+		}
+	}
+	s.move(sensY);
+	//this->previous_y = gyro.y();
+	/*if (deltaX > deltaY) {
+		s.move(sensX);
+	}
+	else {
+		s.move(sensY);
+	}*/
+	
+	//s.move(sensX, sensY);
 
 }
 Armband::~Armband()

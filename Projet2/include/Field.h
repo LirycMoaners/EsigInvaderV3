@@ -19,7 +19,7 @@ class Field
 		Control *c;
 
 	public:
-		Field();
+		Field(bool available);
 		Spaceship &getSpaceship();
 		vector<Bullet> &getBullets();
 		void addBullets(vector<Bullet>&);

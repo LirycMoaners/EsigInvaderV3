@@ -23,6 +23,8 @@ private:
 	DataCollector * collector;
 	myo::Hub * hub;
 	bool status;
+	int previous_x;
+	int previous_y;
 public:
 	Armband();
 	void runHub();

@@ -16,6 +16,7 @@ class Spaceship
 		sf::Sprite &getSprite();
 		Weapon &getWeapon();
 		void move(int);
+		void move(int previous_x, int previous_y);
 		void switchFps();
 		~Spaceship();
 };
