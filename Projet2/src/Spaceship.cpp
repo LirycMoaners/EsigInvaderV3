@@ -23,8 +23,9 @@ void Spaceship::move(int dir)
 {
 	switch (dir)
 	{
-	case 0 :
-		break;
+		case 0:
+			anim.y = 0;
+			break;
 		case 1:
 			if (anim.y != 2)
 			{
@@ -49,65 +50,8 @@ void Spaceship::move(int dir)
 			anim.y = 0;
 			sprite.move(5, 0);
 			break;
-		default:
-			anim.y = 0;
-			break;
 	}	
 }
-
-void Spaceship::move(int sensX, int sensY)
-{
-
-	cout << "sensX :" << sensX << endl << "sensY : " << sensY << endl;
-	if (sensX == 3 && sensY == 1) {
-
-	}
-	else if(sensX == 3 && sensY == 2){
-
-	}
-	if (sensX == 4 && sensY == 1) {
-
-	}
-	else if (sensX == 4 && sensY == 2) {
-
-	}
-	else if (sensX == 0 && sensY == 1) {
-		anim.y = 2;
-		sprite.move(0, -5);
-	}
-	else if (sensX == 0 && sensY == 2) {
-		anim.y = 1;
-		sprite.move(0, 5);
-	}
-	else if (sensX == 3 && sensY == 0) {
-		anim.y = 0;
-		sprite.move(-5, 0);
-	}
-	else if (sensX == 4 && sensY == 0) {
-		anim.y = 0;
-		sprite.move(5, 0);
-	}
-
-	/*switch (dir)
-	{
-	case 1:
-		
-		break;
-	case 2:
-		
-		break;
-	case 3:
-		
-		break;
-	case 4:
-		
-		break;
-	default:
-		anim.y = 0;
-		break;
-	}*/
-}
-
 
 void Spaceship::switchFps()
 {

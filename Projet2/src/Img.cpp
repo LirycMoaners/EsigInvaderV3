@@ -4,7 +4,7 @@ Img::Img()
 {
 	spaceship_t.loadFromFile("ressources/spaceship.png");
 	bullet_t.loadFromFile("ressources/bullet.png");
-	background_t.loadFromFile("ressources/background.png");
+	background_t.loadFromFile("ressources/background.jpg");
 }
 
 sf::Texture &Img::getSpaceship_t()

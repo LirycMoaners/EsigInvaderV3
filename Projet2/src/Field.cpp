@@ -47,12 +47,21 @@ void Field::collision(sf::RenderWindow &window)
 	for (int i = 0; i < bullets.size(); i++)
 		if (bullets[i].getSprite().getPosition().x > window.getSize().x)
 			bullets.erase(bullets.begin() + i);
+
+	if (spaceship.getSprite().getPosition().x < 0)
+		spaceship.getSprite().setPosition(0, spaceship.getSprite().getPosition().y);
+	else if (spaceship.getSprite().getPosition().x + spaceship.getSprite().getTextureRect().width > window.getSize().x)
+		spaceship.getSprite().setPosition(window.getSize().x - spaceship.getSprite().getTextureRect().width, spaceship.getSprite().getPosition().y);
+	
+	if (spaceship.getSprite().getPosition().y < 0)
+		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, 0);
+	else if (spaceship.getSprite().getPosition().y + spaceship.getSprite().getTextureRect().height > window.getSize().y)
+		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, window.getSize().y - spaceship.getSprite().getTextureRect().height);
 }
 
 Field::~Field()
 {
 	bullets.~vector();
 	spaceship.~Spaceship();
-	img.~Img();
 	c->~Control();
 }

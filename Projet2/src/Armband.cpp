@@ -42,6 +42,8 @@ Armband::Armband(){
 			}
 		}
 
+		pos_z = 0;
+		pos_y = 0;
 
 	}
 	catch (const std::exception& e) {
@@ -80,67 +82,39 @@ vector<Bullet> Armband::shoot(sf::Texture&texture, Spaceship&s) {
 void Armband::move(Spaceship &s)
 {
 	myo::Vector3< float > gyro = this->collector->getGyro();
-	myo::Quaternion< float > orient = this->collector->getOrient();
-	float deltaX = 0;
-	float deltaY = 0;
-	int sensX,sensY;
-	cout << "GyroZ : " << gyro.z() << endl;
-	if ((this->previous_x - gyro.z())<0) {
-		deltaX = gyro.z() - previous_x;
-		cout << "Delta X" << deltaX << endl;
-		if (deltaX < 1) {
-			sensX = 0;
-		}
-		else {
-			sensX = 1;
-		}
-	}
-	else {
-		deltaX = previous_x - gyro.z();
-		cout << "Delta X" << deltaX << endl;
-		if (deltaX < 1) {
-			sensX = 0;
-		}
-		else {
-			sensX = 2;
-		}
-	}
-	
-	this->previous_x = gyro.x();
-	s.move(sensX);
-	if ((this->previous_y - gyro.y())<0) {
-		deltaY = gyro.y() - previous_y;
-		cout << "Delta Y" << deltaY << endl;
-		if (deltaY < 10) {
-			sensY = 0;
-		}
-		else {
-			sensY = 4;
-		}
-		
-	}
-	else {
-		deltaY = previous_y - gyro.y();
-		cout << "Delta Y" << deltaY << endl;
-		if (deltaY < 10) {
-			sensY = 0;
-		}
-		else {
-			sensY = 3;
-		}
-	}
-	s.move(sensY);
-	//this->previous_y = gyro.y();
-	/*if (deltaX > deltaY) {
-		s.move(sensX);
-	}
-	else {
-		s.move(sensY);
-	}*/
-	
-	//s.move(sensX, sensY);
 
+	this->pos_z += gyro.z();
+	this->pos_y += gyro.y();
+
+	int capDetect = 300;
+	int capLimit = 900;
+
+	if (pos_z >= capLimit)
+		pos_z = capLimit;
+	else if (pos_z <= -capLimit)
+		pos_z = -capLimit;
+
+	if (pos_y >= capLimit)
+		pos_y = capLimit;
+	else if (pos_y <= -capLimit)
+		pos_y = -capLimit;
+
+	if (pos_z > capDetect || pos_z < -capDetect || pos_y > capDetect || pos_y < -capDetect)
+	{
+		if (pos_z > capDetect)
+			s.move(3);
+		else if (pos_z < -capDetect)
+			s.move(4);
+
+		if (pos_y > capDetect)
+			s.move(1);
+		else if (pos_y < -capDetect)
+			s.move(2);
+	}
+	else
+		s.move(0);
 }
+
 Armband::~Armband()
 {
 }
