@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "Spaceship.h"
 #include "Keyboard.h"
+#include "Armband.h"
 #include "Img.h"
 
 using namespace std;
@@ -19,7 +20,7 @@ class Field
 		Control *c;
 
 	public:
-		Field();
+		Field(bool available);
 		Spaceship &getSpaceship();
 		vector<Bullet> &getBullets();
 		void addBullets(vector<Bullet>&);

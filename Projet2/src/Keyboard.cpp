@@ -3,6 +3,14 @@
 
 Keyboard::Keyboard() : compteurSpace(1) {}
 
+bool Keyboard::getStatus() {
+	return false;
+}
+
+void Keyboard::runHub() {
+
+}
+
 void Keyboard::move(Spaceship &s)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))

@@ -1,8 +1,19 @@
 #include "../include/Field.h"
 
-Field::Field() : bullets(NULL), c(new Keyboard())
+Field::Field(bool available) : bullets(NULL)
 {
 	img = Img();
+	if (available) {
+		c = new Armband();
+		if (!c->getStatus()) {
+			delete c;
+			c = new Keyboard();
+		}
+	}
+	else {
+		c = new Keyboard();
+	}
+	
 	spaceship = Spaceship(img.getSpaceship_t());
 }
 
@@ -27,7 +38,7 @@ void Field::control()
 {
 	vector<Bullet> b = c->shoot(img.getBullet_t(), spaceship);
 	c->move(spaceship);
-	
+	c->runHub();
 	addBullets(b);
 }
 
