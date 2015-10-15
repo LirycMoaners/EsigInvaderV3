@@ -2,16 +2,26 @@
 
 
 
-Armhand::Armhand(int previous_value, Field &field)
+Armhand::Armhand(int previous_value_x,int previous_value_y, Field &field)
 {
-	this->previous_y = previous_value;
+	this->previous_y = previous_value_x;
+	this->previous_y = previous_value_y;
 	this->field = field;
 }
 
+Armhand::Armhand()
+{
+	
+}
 
 Armhand::~Armhand()
 {
 
+}
+
+Field & Armhand::getField()
+{
+	return field;
 }
 
 // onPose() is called whenever the Myo detects that the person wearing it has changed their pose, for example,
@@ -42,6 +52,9 @@ void Armhand::onGyroscopeData(myo::Myo *myo, uint64_t timestamp, const myo::Vect
 		delta = previous_y - gyroVal;
 
 	}
+
+
+
 	//this->field.getSpaceship().YMove(delta, sens);
 }
 

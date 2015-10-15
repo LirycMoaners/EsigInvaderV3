@@ -1,6 +1,15 @@
 #include "../include/Field.h"
 
 Field::Field() : spaceship(Spaceship()), bullets(NULL), c(Control()) {}
+Field::Field(bool mode) {
+	if(mode)
+	{
+		c = Control();
+	}
+	spaceship = Spaceship();
+	bullets = vector<Bullet>();
+} 
+
 
 Spaceship &Field::getSpaceship()
 {
@@ -23,7 +32,6 @@ void Field::control()
 	c.arrow(spaceship);
 	addBullets(c.space(spaceship));
 }
-
 void Field::collision(sf::RenderWindow &window)
 {
 	for (int i = 0; i < bullets.size(); i++)

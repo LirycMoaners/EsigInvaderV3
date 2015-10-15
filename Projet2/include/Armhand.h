@@ -11,17 +11,20 @@
 #include <time.h>
 #include <direct.h>
 #include "Field.h"
-#include ".\myo\myo.hpp"
+#include "myo\myo.hpp"
 
-class Armhand
+class Armhand : public myo::DeviceListener
 {
 public:
-	Armhand(int previous_value, Field &field);
+	Armhand();
+	Armhand(int previous_value_x,int previous_value_y, Field &field);
 	~Armhand();
-	void end();
-private : 
+	Field & getField();
 	void onGyroscopeData(myo::Myo *myo, uint64_t timestamp, const myo::Vector3< float > &gyro);
 	void onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose);
+private : 
+	
+	
 	void onConnect(myo::Myo *myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion);
 	float previous_y;
 	Field field;

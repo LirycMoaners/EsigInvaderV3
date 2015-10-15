@@ -5,6 +5,7 @@
 #include "../include/Bullet.h"
 #include "../include/Spaceship.h"
 #include "../include/Control.h"
+#include "../include/Armhand.h"
 
 using namespace std;
 
@@ -14,9 +15,9 @@ class Field
 		vector<Bullet> bullets;
 		Spaceship spaceship;
 		Control c;
-
 	public:
 		Field();
+		Field(bool mode);
 		Spaceship &getSpaceship();
 		vector<Bullet> &getBullets();
 		void addBullets(vector<Bullet>);
