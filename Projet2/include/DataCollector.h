@@ -24,7 +24,7 @@ public:
 	void onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose);
 private : 
 	
-	Control c = new Armhand();
+	//Control c = new Armhand();
 	void onConnect(myo::Myo *myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion);
 	float previous_y;
 	Field field;
