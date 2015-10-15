@@ -6,14 +6,17 @@
 class Spaceship
 {
 	private:
-		sf::CircleShape shape;
+		sf::Sprite sprite;
+		sf::Vector2i anim;
 		Weapon weapon;
 
 	public:
 		Spaceship();
-		sf::CircleShape &getShape();
-		Weapon getWeapon();
+		Spaceship(sf::Texture&);
+		sf::Sprite &getSprite();
+		Weapon &getWeapon();
 		void move(int);
+		void switchFps();
 		~Spaceship();
 };
 

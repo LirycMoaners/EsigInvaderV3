@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include "../include/Bullet.h"
+#include "../include/Img.h"
+
 
 using namespace std;
 class Weapon
@@ -15,7 +17,7 @@ class Weapon
 		Weapon();
 		Weapon(int);
 		int getRate();
-		vector<Bullet> shoot(sf::Vector2f);
+		vector<Bullet> shoot(sf::Texture&, sf::Vector2f);
 		void setLvl(int);
 		~Weapon();
 };

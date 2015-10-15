@@ -1,15 +1,10 @@
 #include "../include/Field.h"
 
-Field::Field() : spaceship(Spaceship()), bullets(NULL), c(Control()) {}
-Field::Field(bool mode) {
-	if(mode)
-	{
-		c = Control();
-	}
-	spaceship = Spaceship();
-	bullets = vector<Bullet>();
-} 
-
+Field::Field() : bullets(NULL), c(Control())
+{
+	img = Img();
+	spaceship = Spaceship(img.getSpaceship_t());
+}
 
 Spaceship &Field::getSpaceship()
 {
@@ -21,21 +16,25 @@ vector<Bullet> &Field::getBullets()
 	return bullets;
 }
 
-void Field::addBullets(vector<Bullet> b)
+void Field::addBullets(vector<Bullet> &b)
 {
-	for (int i = 0; i < b.size(); i++)
-		bullets.push_back(b[i]);
+	vector<Bullet> bullets = b;
+	for (int i = 0; i < bullets.size(); i++)
+		this->bullets.push_back(bullets[i]);
 }
 
 void Field::control()
 {
+	vector<Bullet> b = c.space(img.getBullet_t(), spaceship);
 	c.arrow(spaceship);
-	addBullets(c.space(spaceship));
+	
+	addBullets(b);
 }
+
 void Field::collision(sf::RenderWindow &window)
 {
 	for (int i = 0; i < bullets.size(); i++)
-		if (bullets[i].getShape().getPosition().x > window.getSize().x)
+		if (bullets[i].getSprite().getPosition().x > window.getSize().x)
 			bullets.erase(bullets.begin() + i);
 }
 
@@ -43,4 +42,6 @@ Field::~Field()
 {
 	bullets.~vector();
 	spaceship.~Spaceship();
+	img.~Img();
+	c.~Control();
 }

@@ -15,12 +15,12 @@ int Weapon::getRate()
 	return rate;
 }
 
-vector<Bullet> Weapon::shoot(sf::Vector2f pos)
+vector<Bullet> Weapon::shoot(sf::Texture &texture, sf::Vector2f pos)
 {
 	vector<Bullet> b;
 	
 	for (int i = 1; i <= bulletQty; i++)
-		b.push_back(Bullet(sf::Vector2f(pos.x + 50, pos.y + 100*i / (bulletQty + 1)), 10));
+		b.push_back(Bullet(texture, sf::Vector2f(pos.x + 50, pos.y + 100*i / (bulletQty + 1)), 10));
 
 	return b;
 }

@@ -12,7 +12,8 @@ class Control
 	public:
 		Control();
 		void arrow(Spaceship&);
-		vector<Bullet> space(Spaceship&);
+		vector<Bullet> space(sf::Texture&, Spaceship&);
+		~Control();
 };
 
 #endif

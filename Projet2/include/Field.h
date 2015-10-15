@@ -5,22 +5,23 @@
 #include "../include/Bullet.h"
 #include "../include/Spaceship.h"
 #include "../include/Control.h"
-#include "../include/Armhand.h"
+#include "../include/Img.h"
 
 using namespace std;
 
 class Field
 {
 	private:
+		Img img;
 		vector<Bullet> bullets;
 		Spaceship spaceship;
 		Control c;
+
 	public:
 		Field();
-		Field(bool mode);
 		Spaceship &getSpaceship();
 		vector<Bullet> &getBullets();
-		void addBullets(vector<Bullet>);
+		void addBullets(vector<Bullet>&);
 		void control();
 		void collision(sf::RenderWindow&);
 		~Field();
