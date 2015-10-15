@@ -1,8 +1,13 @@
 #include "../include/Field.h"
 
-Field::Field() : bullets(NULL), c(new Keyboard())
+Field::Field() : bullets(NULL)
 {
 	img = Img();
+	c = new Armband();
+	if (!c->getStatus()) {
+		delete c;
+		c = new Keyboard();
+	}
 	spaceship = Spaceship(img.getSpaceship_t());
 }
 

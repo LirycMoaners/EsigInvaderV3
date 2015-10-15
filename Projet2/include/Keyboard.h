@@ -12,6 +12,7 @@ class Keyboard : public Control
 
 	public:
 		Keyboard();
+		bool getStatus();
 		void move(Spaceship&);
 		vector<Bullet> shoot(sf::Texture&, Spaceship&);
 		~Keyboard();

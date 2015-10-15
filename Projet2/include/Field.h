@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "Spaceship.h"
 #include "Keyboard.h"
+#include "Armband.h"
 #include "Img.h"
 
 using namespace std;
