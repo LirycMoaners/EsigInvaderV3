@@ -2,8 +2,8 @@
 #define WEAPON_H_INCLUDED
 
 #include <iostream>
-#include "../include/Bullet.h"
-#include "../include/Img.h"
+#include "Bullet.h"
+#include "Img.h"
 
 
 using namespace std;
@@ -13,11 +13,12 @@ class Weapon
 		int level;
 		int bulletQty;
 		int rate;
+		int speed;
 	public:
 		Weapon();
 		Weapon(int);
 		int getRate();
-		vector<Bullet> shoot(sf::Texture&, sf::Vector2f);
+		vector<Bullet> shoot(sf::Texture&, sf::Sprite);
 		void setLvl(int);
 		~Weapon();
 };
