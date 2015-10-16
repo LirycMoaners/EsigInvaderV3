@@ -5,14 +5,16 @@
 #include <../include/SFML/Graphics.hpp>
 #include "../include/myo/libmyo.h"
 #include "../include/Field.h"
+#include "../include/Windows.h"
+#include "../include/GameWindows.h"
 #pragma endregion includes
 
 using namespace std;
 std::string exec(const char* cmd);
 int main()
 {
-	sf::RenderWindow window;
-	sf::Clock clk;
+	//sf::RenderWindow window;
+	//sf::Clock clk;
 	int fpsCount = 0;
 	int fpsSwitch = 200;
 	bool available = false;
@@ -25,7 +27,12 @@ int main()
 	else {
 		cout << "No Myo Connect.exe found" << endl;
 	}
-	Field field = Field(available);
+	string title = "EsigInvaders";
+	GameWindows game(800, 600, title,available);
+	//game.endInit();
+	game.runWindows();
+
+	/*Field field = Field(available);
 	
 	
 	window.create(sf::VideoMode(800, 600), "EsigInvaders");
@@ -70,8 +77,7 @@ int main()
 		}
 		//cout << "enemi 0 :" << field.getEnemies()[0].getShape().getPosition().x << endl;
 		window.display();
-	}
-
+	}*/
 	return 0;
 }
 

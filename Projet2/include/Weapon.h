@@ -18,7 +18,7 @@ class Weapon
 		Weapon();
 		Weapon(int);
 		int getRate();
-		vector<Bullet> shoot(sf::Texture&, sf::Sprite);
+		vector<Bullet*> shoot(sf::Texture&, sf::Sprite);
 		void setLvl(int);
 		~Weapon();
 };

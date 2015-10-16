@@ -16,7 +16,7 @@ class Field
 	private:
 		Img img;
 		sf::Sprite background;
-		vector<Bullet> bullets;
+		vector<Bullet*> bullets;
 		Spaceship spaceship;
 		Control *c;
 		sf::Clock timer;
@@ -24,10 +24,10 @@ class Field
 
 	public:
 		Field(bool available);
+		Field();
 		Spaceship &getSpaceship();
-		vector<Bullet> &getBullets();
-		vector<Enemy> &getEnemies();
-		void addBullets(vector<Bullet>&);
+		vector<Bullet*> &getBullets();
+		void addBullets(vector<Bullet*>&);
 		void control();
 		void addEnemies();
 		void collision(sf::RenderWindow&);

@@ -136,12 +136,15 @@
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\DataCollector.cpp" />
     <ClCompile Include="src\Enemy.cpp" />
+    <ClCompile Include="src\GameWindows.cpp" />
     <ClCompile Include="src\Keyboard.cpp" />
     <ClCompile Include="src\Img.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\Spaceship.cpp" />
     <ClCompile Include="src\Field.cpp" />
     <ClCompile Include="src\Weapon.cpp" />
+    <ClCompile Include="src\Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Armband.h" />
@@ -149,11 +152,14 @@
     <ClInclude Include="include\Control.h" />
     <ClInclude Include="include\DataCollector.h" />
     <ClInclude Include="include\Enemy.h" />
+    <ClInclude Include="include\GameWindows.h" />
     <ClInclude Include="include\Keyboard.h" />
     <ClInclude Include="include\Img.h" />
+    <ClInclude Include="include\MainMenu.h" />
     <ClInclude Include="include\Spaceship.h" />
     <ClInclude Include="include\Field.h" />
     <ClInclude Include="include\Weapon.h" />
+    <ClInclude Include="include\Windows.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\Cyril\Downloads\TestSFML\Release\res\img\background.jpg" />
