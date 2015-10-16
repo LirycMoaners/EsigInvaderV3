@@ -20,17 +20,18 @@ class Field
 		Spaceship spaceship;
 		Control *c;
 		sf::Clock timer;
-		vector<Enemy> enemies;
+		vector<Enemy*> enemies;
 
 	public:
 		Field(bool available);
 		Field();
 		Spaceship &getSpaceship();
 		vector<Bullet*> &getBullets();
+		vector<Enemy*> getEnemies();
 		void addBullets(vector<Bullet*>&);
 		void control();
 		void addEnemies();
-		void collision(sf::RenderWindow&);
+		void collision(sf::RenderWindow*);
 		void enemyCollideSpaceShip();
 		void bulletCollideEnemy();
 		void removeBullet(int i);

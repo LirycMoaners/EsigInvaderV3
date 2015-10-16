@@ -50,6 +50,13 @@ void GameWindows::runWindows() {
 			this->window->draw(field->getBullets().at(i)->getSprite());
 		}
 		this->window->draw(field->getSpaceship().getSprite());
+
+		for (int i = 0; i < field->getEnemies().size(); i++)
+		{
+			field->getEnemies().at(i)->move();
+			window->draw((field->getEnemies().at(i))->getShape());
+		}
+
 		this->window->display();
 	}
 }
