@@ -17,7 +17,7 @@ Field::Field(bool available) : bullets(NULL)
 	else {
 		c = new Keyboard();
 	}
-	//c = new Keyboard();
+	
 	spaceship = Spaceship(img.getSpaceship_t());
 }
 
@@ -26,14 +26,14 @@ Spaceship &Field::getSpaceship()
 	return spaceship;
 }
 
-vector<Bullet*> &Field::getBullets()
+vector<Bullet> &Field::getBullets()
 {
 	return bullets;
 }
 
-void Field::addBullets(vector<Bullet *> &b)
+void Field::addBullets(vector<Bullet> &b)
 {
-	vector<Bullet*> bullets = b;
+	vector<Bullet> bullets = b;
 	for (int i = 0; i < bullets.size(); i++)
 		this->bullets.push_back(bullets[i]);
 }
@@ -41,21 +41,22 @@ void Field::addBullets(vector<Bullet *> &b)
 void Field::control()
 {
 	if (c != NULL) {
-		vector<Bullet*> b = c->shoot(img.getBullet_t(), spaceship);
+		/*vector<Bullet> b = c->shoot(img.getBullet_t(), spaceship);
 		c->move(spaceship);
 		c->runHub();
-		addBullets(b);
-	}	
+		addBullets(b);*/
+	}
+	else {
+
+	}
+	
 }
 
 void Field::collision(sf::RenderWindow* window)
 {
 	for (int i = 0; i < bullets.size(); i++)
-		if (bullets.at(i)->getSprite().getPosition().x > window->getSize().x) {
-			delete bullets.at(i);
+		if (bullets[i].getSprite().getPosition().x > window->getSize().x)
 			bullets.erase(bullets.begin() + i);
-		}
-			
 
 	if (spaceship.getSprite().getPosition().x < 0)
 		spaceship.getSprite().setPosition(0, spaceship.getSprite().getPosition().y);
@@ -70,5 +71,7 @@ void Field::collision(sf::RenderWindow* window)
 
 Field::~Field()
 {
-	delete c;
+	bullets.~vector();
+	spaceship.~Spaceship();
+	c->~Control();
 }

@@ -38,5 +38,5 @@ void Bullet::switchFps()
 
 Bullet::~Bullet()
 {
-	
+	std::cout << "Destructeur Bullet call" << std::endl;
 }

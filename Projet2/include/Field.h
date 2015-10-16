@@ -15,17 +15,18 @@ class Field
 	private:
 		Img img;
 		sf::Sprite background;
-		vector<Bullet> bullets;
+		vector<Bullet*> bullets;
 		Spaceship spaceship;
 		Control *c;
 
 	public:
 		Field(bool available);
+		Field();
 		Spaceship &getSpaceship();
-		vector<Bullet> &getBullets();
-		void addBullets(vector<Bullet>&);
+		vector<Bullet*> &getBullets();
+		void addBullets(vector<Bullet*>&);
 		void control();
-		void collision(sf::RenderWindow&);
+		void collision(sf::RenderWindow*);
 		~Field();
 };
 
