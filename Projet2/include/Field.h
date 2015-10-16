@@ -7,6 +7,7 @@
 #include "Keyboard.h"
 #include "Armband.h"
 #include "Img.h"
+#include "Enemy.h"
 
 using namespace std;
 
@@ -18,14 +19,21 @@ class Field
 		vector<Bullet> bullets;
 		Spaceship spaceship;
 		Control *c;
+		sf::Clock timer;
+		vector<Enemy> enemies;
 
 	public:
 		Field(bool available);
 		Spaceship &getSpaceship();
 		vector<Bullet> &getBullets();
+		vector<Enemy> &getEnemies();
 		void addBullets(vector<Bullet>&);
 		void control();
+		void addEnemies();
 		void collision(sf::RenderWindow&);
+		void enemyCollideSpaceShip();
+		void bulletCollideEnemy();
+		void removeBullet(int i);
 		~Field();
 };
 

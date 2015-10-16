@@ -35,7 +35,7 @@ vector<Bullet> Keyboard::shoot(sf::Texture &texture, Spaceship &s)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		if (compteurSpace == 60 / s.getWeapon().getRate())
+		if (compteurSpace == 60 / s.getWeapon().getRate()) 
 		{
 			vector<Bullet> bu = s.getWeapon().shoot(texture, s.getSprite());
 			compteurSpace = 1;

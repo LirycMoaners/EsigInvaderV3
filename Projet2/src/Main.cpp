@@ -62,6 +62,13 @@ int main()
 			window.draw(field.getBullets()[i].getSprite());
 		}
 		window.draw(field.getSpaceship().getSprite());
+
+		for (int i = 0; i < field.getEnemies().size(); i++)
+		{
+			field.getEnemies()[i].move();
+			window.draw((field.getEnemies()[i]).getShape());
+		}
+		//cout << "enemi 0 :" << field.getEnemies()[0].getShape().getPosition().x << endl;
 		window.display();
 	}
 

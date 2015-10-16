@@ -1,10 +1,13 @@
 #include "Img.h"
 
+
 Img::Img()
 {
 	spaceship_t.loadFromFile("ressources/spaceship.png");
 	bullet_t.loadFromFile("ressources/bullet.png");
 	background_t.loadFromFile("ressources/background.jpg");
+	enemy_t.loadFromFile("ressources/enemy.png");
+
 }
 
 sf::Texture &Img::getSpaceship_t()
@@ -20,5 +23,8 @@ sf::Texture &Img::getBackground_t()
 {
 	return background_t;
 }
-
+sf::Texture &Img::getEnemy_t() 
+{
+	return enemy_t;
+}
 Img::~Img() {}
