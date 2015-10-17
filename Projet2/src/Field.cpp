@@ -43,7 +43,7 @@ void Field::addBullets(vector<Bullet *> &b)
 }
 
 void Field::removeBullet(int i) {
-	delete &bullets[i];
+	delete bullets.at(i);
 	bullets.erase(bullets.begin() + i);
 }
 
@@ -121,7 +121,7 @@ void Field::bulletCollideEnemy()
 							|| (bullets.at(j)->getSprite().getPosition().y + bullets.at(j)->getSprite().getTextureRect().height>enemies.at(i)->getShape().getPosition().y && bullets.at(j)->getSprite().getPosition().y + bullets.at(j)->getSprite().getTextureRect().height < enemies.at(i)->getShape().getPosition().y + enemies.at(i)->getShape().getTextureRect().height))
 						{//TODO implement collision with a player here
 							cout << "dead!!!!" << endl;
-							//removeBullet(j);
+							removeBullet(j);
 							delete enemies.at(i);
 							enemies.erase(enemies.begin() + i);
 							break;
