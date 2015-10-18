@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+	<Levels>
+		<Level id="0">
+			<NbEnemy>15</NbEnemy>		
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>5</SpeedEnemyFire>
+		</Level>
+
+		<Level id="1">
+			<NbEnemy>20</NbEnemy>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>5</SpeedEnemyFire>
+		</Level>
+		
+		<Level id="2">
+			<NbEnemy>20</NbEnemy>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>10</SpeedEnemyFire>
+		</Level>
+		
+		<Level id="3">
+			<NbEnemy>20</NbEnemy>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>15</SpeedEnemyFire>
+		</Level>
+		
+		<Level id="4">
+			<NbEnemy>20</NbEnemy>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>20</SpeedEnemyFire>
+		</Level>
+		
+		<Level id="5">
+			<NbEnemy>20</NbEnemy>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>25</SpeedEnemyFire>
+		</Level>
+		
+		<Level id="6">
+			<NbEnemy>25</NbEnemy>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>35</SpeedEnemyFire>
+		</Level>
+		
+		<Level id="7">
+			<NbEnemy>35</NbEnemy>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>50</SpeedEnemyFire>
+		
+		</Level>
+		
+		<Level id="8">
+			<NbEnemy>35</NbEnemy>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>70</SpeedEnemyFire>
+		</Level>
+		
+		
+		<Level id="9">
+			<NbEnemy>35</NbEnemy>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>75</SpeedEnemyFire>
+		
+		</Level>
+		
+		
+		<Level id="10">
+			<NbEnemy>35</NbEnemy>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+			<SpeedEnemyFire>100</SpeedEnemyFire>
+		</Level>
+	</Levels>
+	<Enemies>
+		<Enemy id="0">
+			<Life>100</Life>
+			<Dommage>10</Dommage>
+		</Enemy>
+		<Enemy id="1">
+			<Life>200</Life>
+			<Dommage>50</Dommage>
+		</Enemy>
+		<Enemy id="2">
+			<Life>400</Life>
+			<Dommage>100</Dommage>
+		</Enemy>
+		<Enemy id="3">
+			<Life>800</Life>
+			<Dommage>200</Dommage>
+		</Enemy>
+		<Enemy id="4">
+			<Life>1600</Life>
+			<Dommage>400</Dommage>
+		</Enemy>
+		<Enemy id="5">
+			<Life>3200</Life>
+			<Dommage>700</Dommage>
+		</Enemy>
+		<Enemy id="6">
+			<Life>4000</Life>
+			<Dommage>1500</Dommage>
+		</Enemy>
+		<Enemy id="7">
+			<Life>5000</Life>
+			<Dommage>1800</Dommage>
+		</Enemy>
+		<Enemy id="8">
+			<Life>6000</Life>
+			<Dommage>2000</Dommage>
+		</Enemy>
+		<Enemy id="9">
+			<Life>7000</Life>
+			<Dommage>2500</Dommage>
+		</Enemy>
+		<Enemy id="10">
+			<Life>7000</Life>
+			<Dommage>3000</Dommage>
+		</Enemy>
+	</Enemies>
+	<Bosses>
+		<Boss id="0">
+			<Life>1000</Life>
+			<Dommage>25</Dommage>
+		</Boss>
+		<Boss id="1">
+			<Life>2000</Life>
+			<Dommage>100</Dommage>
+		</Boss>
+		<Boss id="2">
+			<Life>3000</Life>
+			<Dommage>150</Dommage>
+		</Boss>
+		<Boss id="3">
+			<Life>4000</Life>
+			<Dommage>450</Dommage>
+		</Boss>
+		<Boss id="4">
+			<Life>5000</Life>
+			<Dommage>800</Dommage>
+		</Boss>
+		<Boss id="5">
+			<Life>6000</Life>
+			<Dommage>1200</Dommage>
+		</Boss>
+		<Boss id="6">
+			<Life>7000</Life>
+			<Dommage>2400</Dommage>
+		</Boss>
+		<Boss id="7">
+			<Life>8000</Life>
+			<Dommage>4800</Dommage>
+		</Boss>
+		<Boss id="8">
+			<Life>9000</Life>
+			<Dommage>6000</Dommage>
+		
+		</Boss>
+		<Boss id="9">
+			<Life>10000</Life>
+			<Dommage>8000</Dommage>
+		</Boss>
+		<Boss id="10">
+			<Life>25000</Life>
+			<Dommage>15000</Dommage>
+		</Boss>
+	</Bosses>
+</Configuration>

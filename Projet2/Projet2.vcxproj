@@ -133,12 +133,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Armband.cpp" />
+    <ClCompile Include="src\Boss.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\DataCollector.cpp" />
     <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\GameWindows.cpp" />
     <ClCompile Include="src\Keyboard.cpp" />
     <ClCompile Include="src\Img.cpp" />
+    <ClCompile Include="src\Level.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\Spaceship.cpp" />
@@ -149,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Armband.h" />
+    <ClInclude Include="include\Boss.h" />
     <ClInclude Include="include\Bullet.h" />
     <ClInclude Include="include\Control.h" />
     <ClInclude Include="include\DataCollector.h" />
@@ -156,6 +159,7 @@
     <ClInclude Include="include\GameWindows.h" />
     <ClInclude Include="include\Keyboard.h" />
     <ClInclude Include="include\Img.h" />
+    <ClInclude Include="include\Level.h" />
     <ClInclude Include="include\MainMenu.h" />
     <ClInclude Include="include\Spaceship.h" />
     <ClInclude Include="include\Field.h" />

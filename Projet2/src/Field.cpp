@@ -17,7 +17,6 @@ Field::Field(bool available) : bullets(NULL)
 	else {
 		c = new Keyboard();
 	}
-	//c = new Keyboard();
 	spaceship = Spaceship(img.getSpaceship_t());
 }
 
@@ -101,7 +100,7 @@ void Field::enemyCollideSpaceShip()
 		if (enemies.at(i)->getShape().getPosition().x <= spaceship.getSprite().getPosition().x+ spaceship.getSprite().getTextureRect().width)
 			if (spaceship.getSprite().getPosition().y>enemies.at(i)->getShape().getPosition().y&&spaceship.getSprite().getPosition().y<enemies.at(i)->getShape().getPosition().y + enemies.at(i)->getShape().getTextureRect().height
 				|| (spaceship.getSprite().getPosition().y + spaceship.getSprite().getTextureRect().height>enemies.at(i)->getShape().getPosition().y && spaceship.getSprite().getPosition().y + spaceship.getSprite().getTextureRect().height < enemies.at(i)->getShape().getPosition().y + enemies.at(i)->getShape().getTextureRect().height))
-			{//TODO implement collision with a player here
+			{
 				cout << "dead!!!!" << endl;
 				enemies.at(i)->~Enemy();
 				enemies.erase(enemies.begin() + i);
@@ -119,7 +118,7 @@ void Field::bulletCollideEnemy()
 					if (enemies.at(i)->getShape().getPosition().x <= bullets.at(j)->getSprite().getPosition().x + bullets.at(j)->getSprite().getTextureRect().width)
 						if (bullets.at(j)->getSprite().getPosition().y>enemies.at(i)->getShape().getPosition().y&&bullets.at(j)->getSprite().getPosition().y<enemies.at(i)->getShape().getPosition().y + enemies.at(i)->getShape().getTextureRect().height
 							|| (bullets.at(j)->getSprite().getPosition().y + bullets.at(j)->getSprite().getTextureRect().height>enemies.at(i)->getShape().getPosition().y && bullets.at(j)->getSprite().getPosition().y + bullets.at(j)->getSprite().getTextureRect().height < enemies.at(i)->getShape().getPosition().y + enemies.at(i)->getShape().getTextureRect().height))
-						{//TODO implement collision with a player here
+						{
 							cout << "dead!!!!" << endl;
 							removeBullet(j);
 							delete enemies.at(i);
@@ -127,7 +126,6 @@ void Field::bulletCollideEnemy()
 							break;
 						}
 				}
-				//j--;
 			}
 }
 Field::~Field()

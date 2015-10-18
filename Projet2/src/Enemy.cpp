@@ -39,3 +39,13 @@ Enemy::~Enemy()
 {
 	std::cout << "Enemy died." << std::endl;
 }
+
+void Enemy::setHealth(int health) {
+	this->health = health;
+}
+void Enemy::setDommage(int dommage) {
+	this->dommage = dommage;
+}
+int Enemy::getDommage() {
+	return this->dommage;
+}
