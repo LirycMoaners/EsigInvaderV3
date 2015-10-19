@@ -27,6 +27,8 @@ Enemy::~Enemy()
 	std::cout << "Enemy died." << std::endl;
 }
 
+Weapon& Enemy::getWeapon() { return weapon; }
+
 int Enemy::getDommage() {
 	return this->dommage;
 }
