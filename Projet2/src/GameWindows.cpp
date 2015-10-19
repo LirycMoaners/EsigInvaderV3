@@ -73,7 +73,7 @@ GameWindows::GameWindows(int w, int h, string name, bool available) : Windows(w,
 }
 
 void GameWindows::runWindows() {
-	while (this->window->isOpen())
+	while (this->window->isOpen() && this->field->getSpaceship()->isAlive())
 	{
 		sf::Event event;
 		while (this->window->pollEvent(event))

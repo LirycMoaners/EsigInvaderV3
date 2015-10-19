@@ -24,6 +24,10 @@ vector<Bullet*> Weapon::shoot(sf::Texture &texture, sf::Sprite s)
 
 	return b;
 }
+int Weapon::getDommage() {
+	return this->dommage;
+}
+
 
 void Weapon::setLvl(int lvl)
 {
@@ -35,26 +39,31 @@ void Weapon::setLvl(int lvl)
 			bulletQty = 1;
 			rate = 3;
 			speed = 10;
+			dommage = 50;
 			break;
 		case 2:
 			bulletQty = 2;
 			rate = 3;
 			speed = 12;
+			dommage = 100;
 			break;
 		case 3:
 			bulletQty = 2;
 			rate = 5;
 			speed = 14;
+			dommage = 200;
 			break;
 		case 4:
 			bulletQty = 4;
 			rate = 5;
 			speed = 16;
+			dommage = 400;
 			break;
 		case 5:
 			bulletQty = 5;
 			rate = 6;
 			speed = 20;
+			dommage = 500;
 			break;
 	}
 }

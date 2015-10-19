@@ -6,7 +6,7 @@ class SpaceObject
 {
 	protected:
 		sf::Sprite sprite;
-		unsigned int health;
+		int health;
 		int speed;
 
 	public:
@@ -18,5 +18,7 @@ class SpaceObject
 
 		int getHealth();
 		int getSpeed();
+		void takeDommage(int dommage);
+		bool isAlive();
 };
 

@@ -15,6 +15,7 @@ class Weapon
 		int rate;
 		int speed;
 		bool enemyWeapon;
+		int dommage;
 
 	public:
 		Weapon();
@@ -22,5 +23,6 @@ class Weapon
 		int getRate();
 		vector<Bullet*> shoot(sf::Texture&, sf::Sprite);
 		void setLvl(int);
+		int getDommage();
 		~Weapon();
 };
