@@ -68,8 +68,13 @@ void GameWindows::loadData(Img* img) {
 GameWindows::GameWindows(int w, int h, string name, bool available) : Windows(w, h, name,available) {
 	Img* img = new Img();
 	this->loadData(img);
-	this->field = new Field(available,img);
-	Level * l = this->levels.at(0);
+	if (difficulty < levels.size())
+		this->field = new Field(available,img,levels.at(difficulty));
+}
+void GameWindows::levelUp() 
+{ 
+	if(difficulty < levels.size() - 1)
+		difficulty++; 
 }
 
 void GameWindows::runWindows() {

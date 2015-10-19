@@ -8,6 +8,7 @@
 #include "Img.h"
 #include "Enemy.h"
 #include "Global.h"
+#include "Level.h"
 
 using namespace std;
 
@@ -18,12 +19,14 @@ class Field
 		sf::Clock timer;
 		sf::Sprite background;
 		Spaceship* spaceship;
+		int compteurEnemies;
+		Level* level;
 		Control *c;
 		vector<Bullet*> bullets;
 		vector<Enemy*> enemies;
 
 	public:
-		Field(bool available, Img* img);
+		Field(bool available, Img* img,Level* l);
 		//Field();
 		Spaceship *getSpaceship();
 		vector<Bullet*> &getBullets();

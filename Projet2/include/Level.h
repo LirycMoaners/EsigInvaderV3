@@ -6,31 +6,23 @@
 using namespace std;
 class Level
 {
-public:
-	Level(int nb, int speed, TypeEnemy * type, Boss * boss,string url);
-	Level(int, int, string);
-	void setNbEnemy(int);
-	void setHealthEnemy(int);
-	void setSpeedEnemyFire(int);
-	void setDommageEnemy(int);
-	void setBoss(Boss *);
-	void setUrlImage(string);
+	public:
+		Level(int nb, int speed, TypeEnemy * type, Boss * boss,string url);
 
-	int getNbEnemy();
-	int getHealthEnemy();
-	int getSpeedEnemyFire();
-	int getDommageEnemy();
-	Boss * setBoss();
-	string getUrlImage();
+		int getNbEnemy();
+		int getSpeedEnemyFire();
+		TypeEnemy* getEnemyType();
+		Boss * setBoss();
+		string getUrlImage();
 
-	~Level();
-private : 
-	int nbEnemy;
-	int healthEnemy;
-	int speedEnemyFire;
-	int dommageEnemy;
-	Boss * boss;
-	string urlImage;
-	TypeEnemy * type;
+		~Level();
+	private : 
+		int nbEnemy;
+		int healthEnemy;
+		int speedEnemyFire;
+		int dommageEnemy;
+		Boss * boss;
+		string urlImage;
+		TypeEnemy * type;
 };
 

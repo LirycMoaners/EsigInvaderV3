@@ -11,18 +11,20 @@ using namespace tinyxml2;
 
 class GameWindows : public Windows
 {
-public: 
-	GameWindows(int w, int h, string name,bool available);
-	void runWindows();
+	public: 
+		GameWindows(int w, int h, string name,bool available);
+		void runWindows();
 	
-protected : 
+	protected : 
 
 
-private :
-	void loadData(Img*);
-	bool avalaible;
-	Field * field;
-	vector<Level *> levels;
+	private :
+		int difficulty = 0;
+		void loadData(Img*);
+		void levelUp();
+		bool avalaible;
+		Field * field;
+		vector<Level *> levels;
 	
 };
 

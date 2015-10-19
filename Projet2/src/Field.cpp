@@ -1,7 +1,7 @@
 #include "../include/Field.h"
 
 extern int WINDOW_WIDTH;
-Field::Field(bool available, Img* img) : bullets(NULL)
+Field::Field(bool available, Img* img,Level* l) : bullets(NULL)
 {
 	this->img = img;
 	if (available) {
@@ -15,6 +15,8 @@ Field::Field(bool available, Img* img) : bullets(NULL)
 		c = new Keyboard();
 	}
 	spaceship = new Spaceship(img->getSpaceship_t());
+	this->level = l;
+	this->compteurEnemies = level->getNbEnemy();
 }
 
 Spaceship *Field::getSpaceship()
@@ -55,15 +57,17 @@ void Field::control()
 }
 void Field::addEnemies()
 {
-	if (timer.getElapsedTime().asSeconds() >=2 || enemies.size() == 0)
+	if ((timer.getElapsedTime().asSeconds() >= 2 || enemies.size() == 0) && compteurEnemies > 0)
 	{
-		Enemy *enemy = new Enemy(WINDOW_WIDTH, 1 + (int)((float)rand() / 32767 * (WINDOW_HEIGHT)- img->getEnemy_t().getSize().y), img->getEnemy_t());
+		Enemy *enemy = new Enemy(WINDOW_WIDTH, 1 + (int)((float)rand() / 32767 * (WINDOW_HEIGHT)-img->getEnemy_t().getSize().y), img->getEnemy_t());
 		this->enemies.push_back(enemy);
 		timer.restart();
 
 		for (int i = 0; i < enemies.size(); i++)
 			addBullets(enemies.at(i)->getWeapon().shoot(img->getBullet_t(), enemies.at(i)->getSprite()));
 	}
+	else if (compteurEnemies == 0)
+		cout << "Boss is comming" << endl;
 }
 
 void Field::collision(sf::RenderWindow *window)
@@ -143,6 +147,7 @@ void Field::bulletCollideEnemy()
 					removeBullet(j);
 					if (!(enemies.at(i)->isAlive())) {
 						delete enemies.at(i);
+						compteurEnemies--;
 						enemies.erase(enemies.begin() + i);
 					}
 					break;
