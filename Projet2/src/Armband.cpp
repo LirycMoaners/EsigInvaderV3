@@ -70,7 +70,6 @@ vector<Bullet*> Armband::shoot(sf::Texture&texture, Spaceship&s) {
 	
 	// If we do the fist sign or the fingerSpread, the program consider that we want to shoot
 	if (pose == myo::Pose::fist || pose == myo::Pose::fingersSpread) {
-
 		if (60 / compteurSpace == s.getWeapon().getRate())
 		{
 			vector<Bullet*> bu = s.getWeapon().shoot(texture, s.getSprite());

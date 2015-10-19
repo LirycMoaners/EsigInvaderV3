@@ -2,7 +2,7 @@
 using namespace tinyxml2;
 void GameWindows::loadData() {
 	XMLDocument doc;
-	XMLError e = doc.LoadFile("conf.xml");
+	XMLError e = doc.LoadFile("conf/conf.xml");
 	if (e == XML_NO_ERROR) {
 		XMLNode * root = doc.RootElement();
 		XMLElement * elementLevels = root->FirstChildElement("Levels");
@@ -39,13 +39,13 @@ void GameWindows::loadData() {
 					XMLElement * elementLifeBoss = elementBoss->FirstChildElement("Life");
 					XMLElement * elementDommageBoss = elementBoss->FirstChildElement("Dommage");
 					if (elementLifeBoss != NULL) {
-						lifeBoss = atoi(elementLife->GetText());
+						lifeBoss = atoi(elementLifeBoss->GetText());
 					}
 					if (elementDommageBoss != NULL) {
-						dommageBoss = atoi(elementDommage->GetText());
+						dommageBoss = atoi(elementDommageBoss->GetText());
 					}
-					Boss b(lifeBoss, dommageBoss);
-					Level l(nb, life, speed, dommage, b, url);
+					Boss * b = new Boss(lifeBoss, dommageBoss);
+					Level * l = new Level(nb, life, speed, dommage, b, url);
 					this->levels.push_back(l);
 					elementLevel = elementLevel->NextSiblingElement("Level");
 					elementEnemy = elementEnemy->NextSiblingElement("Enemy");
@@ -54,6 +54,8 @@ void GameWindows::loadData() {
 			} while (elementLevel != NULL && elementEnemy != NULL && elementBoss != NULL);
 		}
 		cout <<"Nb Level Loaded : " <<this->levels.size() << endl;
+		
+		//cout << "Nb Level Loaded : " << << endl;
 	}
 	
 }
@@ -61,6 +63,7 @@ void GameWindows::loadData() {
 GameWindows::GameWindows(int w, int h, string name, bool available) : Windows(w, h, name,available) {
 	this->loadData();
 	this->field = new Field(available);
+	Level * l = this->levels.at(0);
 	
 	
 }

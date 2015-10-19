@@ -21,7 +21,7 @@ private :
 	void loadData();
 	bool avalaible;
 	Field * field;
-	vector<Level> levels;
+	vector<Level *> levels;
 	
 };
 
