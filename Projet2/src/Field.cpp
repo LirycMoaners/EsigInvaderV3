@@ -138,41 +138,33 @@ void Field::bulletCollideEnemy()
 					|| bulletPos.x + bulletSize.x < enemyPos.x
 					|| bulletPos.x >(enemyPos.x + enemySize.x)))
 				{
-					if (enemies.at(i)->getSprite().getPosition().x <= bullets.at(j)->getSprite().getPosition().x + bullets.at(j)->getSprite().getTextureRect().width)
-						if (bullets.at(j)->getSprite().getPosition().y>enemies.at(i)->getSprite().getPosition().y
-							&&bullets.at(j)->getSprite().getPosition().y<(enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getTextureRect().height)
-							|| ((bullets.at(j)->getSprite().getPosition().y + bullets.at(j)->getSprite().getTextureRect().height>enemies.at(i)->getSprite().getPosition().y)
-								&& (bullets.at(j)->getSprite().getPosition().y + bullets.at(j)->getSprite().getTextureRect().height < enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getTextureRect().height)))
-						{
-							enemies.at(i)->takeDommage(this->spaceship->getWeapon().getDommage());
-							cout << "dead!!!!" << endl;
-							removeBullet(j);
-							if (!(enemies.at(i)->isAlive())) {
-								delete enemies.at(i);
-								enemies.erase(enemies.begin() + i);
-							}
-							break;
-						}
-				}
-
-				//Collide ennemies bullets with player
-				else
-				{
-					if (!(bulletPos.y > (spaceshipPos.y + spaceshipSize.y)
-						|| (bulletPos.y + bulletSize.y) < spaceshipPos.y
-						|| bulletPos.x > (spaceshipPos.x + spaceshipSize.x)
-						|| (bulletPos.x + bulletSize.x) < spaceshipPos.x))
-					{
-						spaceship->takeDommage(enemies.at(i)->getWeapon().getDommage());
-						cout << "Player life: " << spaceship->getHealth() << endl;
-						removeBullet(j);
-						break;
+					enemies.at(i)->takeDommage(this->spaceship->getWeapon().getDommage());
+					cout << "dead!!!!" << endl;
+					removeBullet(j);
+					if (!(enemies.at(i)->isAlive())) {
+						delete enemies.at(i);
+						enemies.erase(enemies.begin() + i);
 					}
+					break;
+				}
+			}
+				//Collide ennemies bullets with player
+			else
+			{
+				if (!(bulletPos.y > (spaceshipPos.y + spaceshipSize.y)
+					|| (bulletPos.y + bulletSize.y) < spaceshipPos.y
+					|| bulletPos.x > (spaceshipPos.x + spaceshipSize.x)
+					|| (bulletPos.x + bulletSize.x) < spaceshipPos.x))
+				{
+					spaceship->takeDommage(enemies.at(i)->getWeapon().getDommage());
+					cout << "Player life: " << spaceship->getHealth() << endl;
+					removeBullet(j);
+					break;
 				}
 			}
 		}
 	}
-}
+} 
 Field::~Field()
 {
 	delete spaceship;
