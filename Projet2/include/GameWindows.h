@@ -13,10 +13,15 @@ class GameWindows : public Windows
 public: 
 	GameWindows(int w, int h, string name,bool available);
 	void runWindows();
-	void loadData();
+	
+protected : 
+
+
 private :
+	void loadData();
 	bool avalaible;
 	Field * field;
 	vector<Level> levels;
+	
 };
 

@@ -29,7 +29,7 @@ vector<Bullet*> &Field::getBullets()
 {
 	return bullets;
 }
-vector<Enemy*> Field::getEnemies()
+vector<Enemy*> & Field::getEnemies()
 {
 	return this->enemies;
 }

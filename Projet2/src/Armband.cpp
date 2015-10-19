@@ -65,8 +65,6 @@ void Armband::runHub() {
 vector<Bullet*> Armband::shoot(sf::Texture&texture, Spaceship&s) {
 	myo::Pose pose = this->collector->getPose();
 	if (pose == myo::Pose::fist || pose == myo::Pose::fingersSpread) {
-
-		
 		if (60 / compteurSpace == s.getWeapon().getRate())
 		{
 			vector<Bullet*> bu = s.getWeapon().shoot(texture, s.getSprite());

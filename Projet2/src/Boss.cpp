@@ -13,4 +13,5 @@ Boss::Boss(int life, int dommage)
 
 Boss::~Boss()
 {
+	std::cout << "Call Destructor boss" << std::endl;
 }

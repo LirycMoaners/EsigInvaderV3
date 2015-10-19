@@ -46,7 +46,6 @@ void GameWindows::loadData() {
 					}
 					Boss b(lifeBoss, dommageBoss);
 					Level l(nb, life, speed, dommage, b, url);
-
 					this->levels.push_back(l);
 					elementLevel = elementLevel->NextSiblingElement("Level");
 					elementEnemy = elementEnemy->NextSiblingElement("Enemy");
@@ -60,7 +59,7 @@ void GameWindows::loadData() {
 }
 
 GameWindows::GameWindows(int w, int h, string name, bool available) : Windows(w, h, name,available) {
-	loadData();
+	this->loadData();
 	this->field = new Field(available);
 	
 	
