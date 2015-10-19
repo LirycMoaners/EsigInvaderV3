@@ -17,5 +17,3 @@ class Keyboard : public Control
 		vector<Bullet*> shoot(sf::Texture&, Spaceship*);
 		~Keyboard();
 };
-
-#endif

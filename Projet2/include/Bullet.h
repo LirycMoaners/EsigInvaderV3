@@ -21,5 +21,3 @@ class Bullet
 		void switchFps();
 		~Bullet();
 };
-
-#endif

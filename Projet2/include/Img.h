@@ -17,5 +17,3 @@ class Img
 		sf::Texture &getEnemy_t();
 		~Img();
 };
-
-#endif

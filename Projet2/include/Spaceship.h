@@ -18,5 +18,3 @@ class Spaceship: public SpaceObject
 		void switchFps();
 		~Spaceship();
 };
-
-#endif

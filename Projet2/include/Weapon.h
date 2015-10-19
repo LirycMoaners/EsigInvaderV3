@@ -24,5 +24,3 @@ class Weapon
 		void setLvl(int);
 		~Weapon();
 };
-
-#endif

@@ -37,5 +37,3 @@ class Field
 		void removeBullet(int i);
 		~Field();
 };
-
-#endif

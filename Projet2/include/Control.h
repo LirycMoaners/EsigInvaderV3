@@ -14,5 +14,4 @@ public:
 	virtual vector<Bullet*> shoot(sf::Texture&, Spaceship*) = 0;
 };
 
-#endif
 
