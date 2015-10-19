@@ -4,8 +4,14 @@ Enemy::Enemy(float startX, float startY, sf::Texture& texture):SpaceObject(textu
 {
 	this->sprite.setPosition(startX, startY);
 	//this->shape.setTextureRect(sf::IntRect(0, 0, 100, 94));
-
-	moveDown = true;
+	int result = rand() % 2;
+	if (result) {
+		moveDown = false;
+	}
+	else {
+		moveDown = true;
+	}
+	
 }
 
 void Enemy::move()

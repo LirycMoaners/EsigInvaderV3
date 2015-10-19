@@ -11,6 +11,7 @@
 #include <time.h>
 #include <direct.h>
 #include "myo\myo.hpp"
+#include "Global.h"
 
 class DataCollector : public myo::DeviceListener
 {

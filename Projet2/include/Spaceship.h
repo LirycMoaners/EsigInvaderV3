@@ -1,9 +1,8 @@
-#ifndef SPACESHIP_H_INCLUDED
-#define SPACESHIP_H_INCLUDED
+#pragma once
 
-#include "../include/Weapon.h"
-#include "../include/SpaceObject.h"
-
+#include "Weapon.h"
+#include "SpaceObject.h"
+#include "Global.h"
 class Spaceship: public SpaceObject
 {
 	private:

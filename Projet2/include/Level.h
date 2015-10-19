@@ -2,6 +2,7 @@
 #include<string>
 #include "Boss.h"
 #include "TypeEnemy.h"
+#include "Global.h"
 using namespace std;
 class Level
 {

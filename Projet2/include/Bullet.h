@@ -1,7 +1,7 @@
-#ifndef BULLET_H_INCLUDED
-#define BULLET_H_INCLUDED
+#pragma once
 
 #include <iostream>
+#include "Global.h"
 #include <SFML/Graphics.hpp>
 
 class Bullet

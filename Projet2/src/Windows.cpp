@@ -8,7 +8,7 @@ Windows::Windows(int width, int height, string nameWindows, bool available)
 	this->setHeight(height);
 	this->setTitle(nameWindows);
 	this->window = new sf::RenderWindow();
-	sf::VideoMode video(1024, 800);
+	sf::VideoMode video(width, height);
 	this->window->create(video, nameWindows);
 	this->window->setFramerateLimit(60);
 }

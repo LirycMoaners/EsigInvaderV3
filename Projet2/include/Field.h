@@ -1,5 +1,4 @@
-#ifndef TERRAIN_H_INCLUDED
-#define TERRAIN_H_INCLUDED
+#pragma once
 
 #include <iostream>
 #include "Bullet.h"
@@ -8,6 +7,7 @@
 #include "Armband.h"
 #include "Img.h"
 #include "Enemy.h"
+#include "Global.h"
 
 using namespace std;
 

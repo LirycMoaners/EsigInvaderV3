@@ -1,9 +1,9 @@
-#ifndef WEAPON_H_INCLUDED
-#define WEAPON_H_INCLUDED
+#pragma once
 
 #include <iostream>
 #include "Bullet.h"
 #include "Img.h"
+#include "Global.h"
 
 
 using namespace std;

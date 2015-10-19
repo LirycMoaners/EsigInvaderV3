@@ -1,9 +1,9 @@
-#ifndef KEYBOARD_H_INCLUDED
-#define KEYBOARD_H_INCLUDED
+#pragma once
 
 #include <iostream>
 #include "Spaceship.h"
 #include "Control.h"
+#include "Global.h"
 
 class Keyboard : public Control
 {

@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemy.h"
+#include "Global.h"
 class Boss : public Enemy
 {
 	public:

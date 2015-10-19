@@ -13,8 +13,8 @@ using namespace std;
 std::string exec(const char* cmd);
 int main()
 {
-	int fpsCount = 0;
-	int fpsSwitch = 200;
+
+	srand(time(NULL));
 	bool available = false;
 	string value = exec("tasklist /FI \"imagename eq Myo Connect.exe\" /svc");
 	if (value.find("Myo Connect.exe") != -1) {
