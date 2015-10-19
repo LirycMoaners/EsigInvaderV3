@@ -1,5 +1,6 @@
 #include "../include/Field.h"
 
+extern int WINDOW_WIDTH;
 Field::Field(bool available, Img* img) : bullets(NULL)
 {
 	this->img = img;
@@ -56,7 +57,7 @@ void Field::addEnemies()
 {
 	if (timer.getElapsedTime().asSeconds() >=2 || enemies.size() == 0)
 	{
-		Enemy *enemy = new Enemy(805, 1 + (int)((float)rand() / 32767 * (500)), img->getEnemy_t());
+		Enemy *enemy = new Enemy(WINDOW_WIDTH, 1 + (int)((float)rand() / 32767 * (WINDOW_HEIGHT)- img->getEnemy_t().getSize().y), img->getEnemy_t());
 		this->enemies.push_back(enemy);
 		timer.restart();
 	}

@@ -1,7 +1,10 @@
 #include "..\include\Enemy.h"
-
+extern int WINDOW_HEIGHT;
 Enemy::Enemy(float startX, float startY, sf::Texture& texture):SpaceObject(texture,5,3),weapon(Weapon())
 {
+	if (startY < 0) {
+		startY = 0;
+	}
 	this->sprite.setPosition(startX, startY);
 	//this->shape.setTextureRect(sf::IntRect(0, 0, 100, 94));
 	int result = rand() % 2;
@@ -19,7 +22,7 @@ void Enemy::move()
 	sprite.move(-speed, 0);
 
 	//Change direction when enemy it the border of the window
-	if (sprite.getPosition().y < 0 || (sprite.getPosition().y + sprite.getTextureRect().height) > 768)
+	if (sprite.getPosition().y < 0 || (sprite.getPosition().y + sprite.getTextureRect().height) > WINDOW_HEIGHT)
 		moveDown = !moveDown;
 
 	if (moveDown)

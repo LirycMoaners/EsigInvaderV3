@@ -12,13 +12,16 @@
 
 using namespace std;
 std::string exec(const char* cmd);
+
+extern int WINDOW_WIDTH = 800;
+extern int WINDOW_HEIGHT = 600;
+
 int main()
 {
 
 	srand(time(NULL));
 	//Windows size
-	WINDOW_WIDTH = 800;
-	WINDOW_HEIGHT = 600;
+	
 
 	bool available = false;
 	string value = exec("tasklist /FI \"imagename eq Myo Connect.exe\" /svc");
