@@ -13,7 +13,6 @@ public:
 	void setTitle(string);
 	virtual void endInit() = 0;
 	virtual void runWindows() = 0;
-
 private : 
 	
 	

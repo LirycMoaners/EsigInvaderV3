@@ -13,8 +13,6 @@ class GameWindows : public Windows
 public: 
 	GameWindows(int w, int h, string name,bool available);
 	void runWindows();
-	void endInit();
-	void setAvalaible(bool);
 	void loadData();
 private :
 	bool avalaible;
