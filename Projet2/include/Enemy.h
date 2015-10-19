@@ -3,7 +3,7 @@
 #include "SpaceObject.h"
 #include<iostream>
 
-class Enemy : public SpaceObject
+class Enemy
 {
 	private:
 		sf::Sprite shape;

@@ -17,12 +17,7 @@ class Field
 		Img img;
 		sf::Clock timer;
 		sf::Sprite background;
-<<<<<<< HEAD
-		vector<Bullet*> bullets;
 		Spaceship* spaceship;
-=======
-		Spaceship spaceship;
->>>>>>> ecf890acfa31a8ae2623c310c6fdb7375f76b235
 		Control *c;
 		vector<Bullet*> bullets;
 		vector<Enemy*> enemies;

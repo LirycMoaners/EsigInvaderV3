@@ -13,27 +13,16 @@ void Keyboard::runHub() {
 
 void Keyboard::move(Spaceship *s)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 	{
-<<<<<<< .merge_file_a16084
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-			s->move(1);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-			s->move(2);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-			s->move(3);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-			s->move(4);
-=======
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-			s.move(1);
+			s->move(1);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			s.move(2);
+			s->move(2);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-			s.move(3);
+			s->move(3);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			s.move(4);
->>>>>>> .merge_file_a02116
+			s->move(4);
 	}
 	else
 		s->move(0);

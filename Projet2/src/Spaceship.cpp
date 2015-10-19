@@ -2,11 +2,7 @@
 
 //Spaceship::Spaceship() : anim(0, 0) {}
 
-<<<<<<< HEAD
 Spaceship::Spaceship(sf::Texture &t) : anim(0,0), weapon(Weapon()),SpaceObject(t,1000,5)
-=======
-Spaceship::Spaceship(sf::Texture &t) : anim(0,0), weapon(Weapon(5))
->>>>>>> ecf890acfa31a8ae2623c310c6fdb7375f76b235
 {
 	sprite.setTexture(t);
 	sprite.setTextureRect(sf::IntRect(anim.x, anim.y, 100, 94));
