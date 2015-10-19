@@ -147,6 +147,7 @@
     <ClCompile Include="src\Spaceship.cpp" />
     <ClCompile Include="src\Field.cpp" />
     <ClCompile Include="src\tinyxml2.cpp" />
+    <ClCompile Include="src\TypeEnemy.cpp" />
     <ClCompile Include="src\Weapon.cpp" />
     <ClCompile Include="src\Windows.cpp" />
   </ItemGroup>
@@ -166,6 +167,7 @@
     <ClInclude Include="include\Spaceship.h" />
     <ClInclude Include="include\Field.h" />
     <ClInclude Include="include\tinyxml2.h" />
+    <ClInclude Include="include\TypeEnemy.h" />
     <ClInclude Include="include\Weapon.h" />
     <ClInclude Include="include\Windows.h" />
   </ItemGroup>

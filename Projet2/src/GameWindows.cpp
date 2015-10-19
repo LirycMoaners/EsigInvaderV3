@@ -2,7 +2,7 @@
 using namespace tinyxml2;
 void GameWindows::loadData() {
 	XMLDocument doc;
-	XMLError e = doc.LoadFile("conf.xml");
+	XMLError e = doc.LoadFile("conf/conf.xml");
 	if (e == XML_NO_ERROR) {
 		XMLNode * root = doc.RootElement();
 		XMLElement * elementLevels = root->FirstChildElement("Levels");
@@ -13,70 +13,63 @@ void GameWindows::loadData() {
 			XMLElement * elementEnemy = elementEnemies->FirstChildElement("Enemy");
 			XMLElement * elementBoss = elementBosses->FirstChildElement("Boss");
 			do {
-				XMLElement * elementNbEnemy = elementLevel->FirstChildElement("NbEnemy");
-				XMLElement * elementUrl = elementLevel->FirstChildElement("UrlImageBackground");
-				XMLElement * elementSpeed = elementLevel->FirstChildElement("SpeedEnemyFire");
-				int nb;
-				string url;
-				int speed;
-				int life;
-				int dommage;
-				int lifeBoss;
-				int dommageBoss;
-				if (elementNbEnemy != NULL) {
-					nb = atoi(elementNbEnemy->GetText());
+				if (elementLevel != NULL && elementEnemy != NULL && elementBoss != NULL) {
+					XMLElement * elementNbEnemy = elementLevel->FirstChildElement("NbEnemy");
+					XMLElement * elementUrl = elementLevel->FirstChildElement("UrlImageBackground");
+					XMLElement * elementSpeed = elementLevel->FirstChildElement("SpeedEnemyFire");
+					int nb = 0,speed = 0, life = 0, dommage = 0, sizeEscouad  = 0,lifeBoss = 0,dommageBoss =0;
+					string url;
+					if (elementNbEnemy != NULL) {
+						nb = atoi(elementNbEnemy->GetText());
+					}
+					if (elementUrl != NULL) {
+						url = elementUrl->GetText();
+					}
+					if (elementSpeed != NULL) {
+						speed = atoi(elementSpeed->GetText());
+					}
+					XMLElement * elementLife = elementEnemy->FirstChildElement("Life");
+					XMLElement * elementDommage = elementEnemy->FirstChildElement("Dommage");
+					XMLElement * elementSizeEscouade = elementEnemy->FirstChildElement("SizeEscouade");
+					if (elementLife != NULL) {
+						life = atoi(elementLife->GetText());
+					}
+					if (elementDommage != NULL) {
+						dommage = atoi(elementDommage->GetText());
+					}
+					if (elementSizeEscouade != NULL) {
+						sizeEscouad = atoi(elementSizeEscouade->GetText());
+					}
+					XMLElement * elementLifeBoss = elementBoss->FirstChildElement("Life");
+					XMLElement * elementDommageBoss = elementBoss->FirstChildElement("Dommage");
+					if (elementLifeBoss != NULL) {
+						lifeBoss = atoi(elementLifeBoss->GetText());
+					}
+					if (elementDommageBoss != NULL) {
+						dommageBoss = atoi(elementDommageBoss->GetText());
+					}
+					Boss * b = new Boss(lifeBoss, dommageBoss);
+					TypeEnemy * type = new TypeEnemy(life, dommage, sizeEscouad);
+					Level * l = new Level(nb, speed, type, b, url);
+					this->levels.push_back(l);
+					elementLevel = elementLevel->NextSiblingElement("Level");
+					elementEnemy = elementEnemy->NextSiblingElement("Enemy");
+					elementBoss = elementBoss->NextSiblingElement("Boss");
 				}
-				if (elementUrl != NULL) {
-					url = elementUrl->GetText();
-				}
-				if (elementSpeed != NULL) {
-					speed = atoi(elementSpeed->GetText());
-				}
-				XMLElement * elementLife = elementEnemy->FirstChildElement("Life");
-				XMLElement * elementDommage = elementEnemy->FirstChildElement("Dommage");
-				if (elementLife != NULL) {
-					life = atoi(elementLife->GetText());
-				}
-				if (elementDommage != NULL) {
-					dommage = atoi(elementDommage->GetText());
-				}
-
-				XMLElement * elementLifeBoss = elementBoss->FirstChildElement("Life");
-				XMLElement * elementDommageBoss = elementBoss->FirstChildElement("Dommage");
-				if (elementLifeBoss != NULL) {
-					lifeBoss = atoi(elementLife->GetText());
-				}
-				if (elementDommageBoss != NULL) {
-					dommageBoss = atoi(elementDommage->GetText());
-				}
-				Boss b(lifeBoss, dommageBoss);
-				Level l(nb, life, speed, dommage, b, url);
-
-				this->levels.push_back(l);
-				elementLevel = elementLevel->NextSiblingElement("Level");
-				elementEnemy = elementEnemy->NextSiblingElement("Enemy");
-				elementBoss = elementBoss->NextSiblingElement("Boss");
 			} while (elementLevel != NULL && elementEnemy != NULL && elementBoss != NULL);
 		}
-		cout << this->levels.size() << endl;
+		cout <<"Nb Level Loaded : " <<this->levels.size() << endl;
+		
+		//cout << "Nb Level Loaded : " << << endl;
 	}
 	
 }
 
-void GameWindows::setAvalaible(bool avai) {
-	this->avalaible = avai;
-	this->field = new Field(this->avalaible);
-}
-
 GameWindows::GameWindows(int w, int h, string name, bool available) : Windows(w, h, name,available) {
-	loadData();
+	this->loadData();
 	this->field = new Field(available);
+	Level * l = this->levels.at(0);
 	
-	
-}
-
-void GameWindows::endInit() {
-	//this->window->create(sf::VideoMode(1024, 800), this->title);
 	
 }
 

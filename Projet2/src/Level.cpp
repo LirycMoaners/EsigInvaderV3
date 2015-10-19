@@ -4,15 +4,14 @@ Level::Level(int nb, int speed, string url) {
 	this->nbEnemy = nb;
 	this->speedEnemyFire = speed;
 	this->urlImage = url;
-	this->boss = Boss();
+	this->boss = new Boss();
 }
 
-Level::Level(int nb, int health, int speed, int dommage, Boss boss, string url)
+Level::Level(int nb, int speed, TypeEnemy *type, Boss * boss, string url)
 {
 	this->nbEnemy = nb;
-	this->healthEnemy = health;
 	this->speedEnemyFire = speed;
-	this->dommageEnemy = dommage;
+	this->type = type;
 	this->boss = boss;
 	this->urlImage = url;
 }
@@ -29,7 +28,7 @@ void Level::setSpeedEnemyFire(int speedFire) {
 void Level::setDommageEnemy(int dommage) {
 	this->dommageEnemy = dommage;
 }
-void Level::setBoss(Boss b) {
+void Level::setBoss(Boss * b) {
 	this->boss = b;
 }
 void Level::setUrlImage(string url) {
@@ -48,7 +47,7 @@ int Level::getSpeedEnemyFire() {
 int Level::getDommageEnemy() {
 	return this->dommageEnemy;
 }
-Boss & Level::setBoss() {
+Boss *  Level::setBoss() {
 	return this->boss;
 }
 string Level::getUrlImage() {

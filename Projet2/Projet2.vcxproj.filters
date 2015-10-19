@@ -63,7 +63,11 @@
     <ClCompile Include="src\Boss.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+<<<<<<< .merge_file_a11984
     <ClCompile Include="src\SpaceObject.cpp">
+=======
+    <ClCompile Include="src\TypeEnemy.cpp">
+>>>>>>> .merge_file_a09396
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,7 +120,11 @@
     <ClInclude Include="include\Boss.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+<<<<<<< .merge_file_a11984
     <ClInclude Include="include\SpaceObject.h">
+=======
+    <ClInclude Include="include\TypeEnemy.h">
+>>>>>>> .merge_file_a09396
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

@@ -75,46 +75,57 @@
 		<Enemy id="0">
 			<Life>100</Life>
 			<Dommage>10</Dommage>
+			<SizeEscouade>1</SizeEscouade>
 		</Enemy>
 		<Enemy id="1">
 			<Life>200</Life>
 			<Dommage>50</Dommage>
+			<SizeEscouade>2</SizeEscouade>
 		</Enemy>
 		<Enemy id="2">
 			<Life>400</Life>
 			<Dommage>100</Dommage>
+			<SizeEscouade>3</SizeEscouade>
 		</Enemy>
 		<Enemy id="3">
 			<Life>800</Life>
 			<Dommage>200</Dommage>
+			<SizeEscouade>4</SizeEscouade>
 		</Enemy>
 		<Enemy id="4">
 			<Life>1600</Life>
 			<Dommage>400</Dommage>
+			<SizeEscouade>5</SizeEscouade>
 		</Enemy>
 		<Enemy id="5">
 			<Life>3200</Life>
 			<Dommage>700</Dommage>
+			<SizeEscouade>6</SizeEscouade>
 		</Enemy>
 		<Enemy id="6">
 			<Life>4000</Life>
 			<Dommage>1500</Dommage>
+			<SizeEscouade>7</SizeEscouade>
 		</Enemy>
 		<Enemy id="7">
 			<Life>5000</Life>
 			<Dommage>1800</Dommage>
+			<SizeEscouade>8</SizeEscouade>
 		</Enemy>
 		<Enemy id="8">
 			<Life>6000</Life>
 			<Dommage>2000</Dommage>
+			<SizeEscouade>9</SizeEscouade>
 		</Enemy>
 		<Enemy id="9">
 			<Life>7000</Life>
 			<Dommage>2500</Dommage>
+			<SizeEscouade>10</SizeEscouade>
 		</Enemy>
 		<Enemy id="10">
 			<Life>7000</Life>
 			<Dommage>3000</Dommage>
+			<SizeEscouade>11</SizeEscouade>
 		</Enemy>
 	</Enemies>
 	<Bosses>

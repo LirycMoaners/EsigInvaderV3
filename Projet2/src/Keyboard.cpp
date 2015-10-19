@@ -15,6 +15,7 @@ void Keyboard::move(Spaceship *s)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 	{
+<<<<<<< .merge_file_a16084
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 			s->move(1);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -23,6 +24,16 @@ void Keyboard::move(Spaceship *s)
 			s->move(3);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 			s->move(4);
+=======
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+			s.move(1);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			s.move(2);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+			s.move(3);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			s.move(4);
+>>>>>>> .merge_file_a02116
 	}
 	else
 		s->move(0);

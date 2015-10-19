@@ -15,11 +15,16 @@ class Field
 {
 	private:
 		Img img;
+		sf::Clock timer;
 		sf::Sprite background;
+<<<<<<< HEAD
 		vector<Bullet*> bullets;
 		Spaceship* spaceship;
+=======
+		Spaceship spaceship;
+>>>>>>> ecf890acfa31a8ae2623c310c6fdb7375f76b235
 		Control *c;
-		sf::Clock timer;
+		vector<Bullet*> bullets;
 		vector<Enemy*> enemies;
 
 	public:
@@ -27,7 +32,7 @@ class Field
 		//Field();
 		Spaceship *getSpaceship();
 		vector<Bullet*> &getBullets();
-		vector<Enemy*> getEnemies();
+		vector<Enemy*> &getEnemies();
 		void addBullets(vector<Bullet*>&);
 		void control();
 		void addEnemies();
