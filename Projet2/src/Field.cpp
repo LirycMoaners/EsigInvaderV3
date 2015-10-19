@@ -61,7 +61,7 @@ void Field::addEnemies()
 {
 	if (timer.getElapsedTime().asSeconds() >=2 || enemies.size() == 0)
 	{
-		Enemy *enemy = new Enemy(805, 1 + (int)((float)rand() / 32767 * (500)), img.getEnemy_t());
+		Enemy *enemy = new Enemy(810, 1 + (int)((float)rand() / 32767 * (500)), img.getEnemy_t());
 		this->enemies.push_back(enemy);
 		timer.restart();
 	}
