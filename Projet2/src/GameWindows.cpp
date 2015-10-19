@@ -1,4 +1,6 @@
 #include "..\include\GameWindows.h"
+#include "MainMenu.h"
+
 using namespace tinyxml2;
 void GameWindows::loadData(Img* img) {
 	XMLDocument doc;
@@ -63,7 +65,7 @@ void GameWindows::loadData(Img* img) {
 		//cout << "Nb Level Loaded : " << << endl;
 	}
 	
-#include "MainMenu.h"
+
 
 }
 
@@ -80,9 +82,7 @@ void GameWindows::levelUp()
 }
 
 void GameWindows::play()
-void GameWindows::runWindows() {
-	while (this->window->isOpen() && this->field->getSpaceship()->isAlive())
-	{
+{
 		field->collision(window);
 		field->control();
 
@@ -115,45 +115,47 @@ void GameWindows::runWindows() {
 
 void GameWindows::runWindows() {
 	MainMenu menu(window->getSize().x, window->getSize().y);
+
 	while (this->window->isOpen())
 	{
-		
 		sf::Event event;
 		while (this->window->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				this->window->close();
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-					menu.moveUp();
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+				menu.moveUp();
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-					menu.moveDown();
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+				menu.moveDown();
 
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-					switch (menu.GetPressedItem())
-					{
-					case 0:
-						std::cout << "Play button has been pressed" << std::endl;						
-						menu.isMenuSelected = true;
-						break;
-					case 1:
-						std::cout << "Option button has been pressed" << std::endl;
-						break;
-					case 2:
-						window->close();
-						break;
-					}
-			}
-
-		
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+				switch (menu.GetPressedItem())
+				{
+				case 0:
+					std::cout << "Wait while loading the game" << std::endl;
+					menu.isMenuSelected = true;
+					break;
+				case 1:
+					std::cout << "Manage Options" << std::endl;
+					break;
+				case 2:
+					window->close();
+					break;
+				}
+		}
 
 		window->clear();
-		if(!menu.isMenuSelected)
+		if (!menu.isMenuSelected)
 			menu.drawMenu(window);
 		else
+			if(this->field->getSpaceship()->isAlive())
 			play();
 
 		this->window->display();
+
 	}
+
+	
 }
