@@ -1,6 +1,6 @@
 #include "..\include\Enemy.h"
 extern int WINDOW_HEIGHT;
-Enemy::Enemy(float startX, float startY, sf::Texture& texture):SpaceObject(texture,500,3),weapon(Weapon())
+Enemy::Enemy(float startX, float startY, sf::Texture& texture):SpaceObject(texture,5,3),weapon(Weapon(true))
 {
 	if (startY < 0) {
 		startY = 0;

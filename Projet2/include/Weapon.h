@@ -18,8 +18,8 @@ class Weapon
 		int dommage;
 
 	public:
-		Weapon();
-		Weapon(int);
+		Weapon(bool enemy = false);
+		Weapon(int, bool enemy = false);
 		int getRate();
 		vector<Bullet*> shoot(sf::Texture&, sf::Sprite);
 		void setLvl(int);

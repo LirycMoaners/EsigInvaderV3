@@ -60,8 +60,10 @@ void Field::addEnemies()
 		Enemy *enemy = new Enemy(WINDOW_WIDTH, 1 + (int)((float)rand() / 32767 * (WINDOW_HEIGHT)- img->getEnemy_t().getSize().y), img->getEnemy_t());
 		this->enemies.push_back(enemy);
 		timer.restart();
-	}
 
+		for (int i = 0; i < enemies.size(); i++)
+			addBullets(enemies.at(i)->getWeapon().shoot(img->getBullet_t(), enemies.at(i)->getSprite()));
+	}
 }
 
 void Field::collision(sf::RenderWindow *window)
@@ -91,18 +93,23 @@ void Field::collision(sf::RenderWindow *window)
 
 void Field::enemyCollideSpaceShip()
 {
+	sf::Vector2f spaceshipPos = spaceship->getSprite().getPosition();
+	sf::Vector2f spaceshipSize = sf::Vector2f(spaceship->getSprite().getTextureRect().width, spaceship->getSprite().getTextureRect().height);
+
 	for (int i = 0; i < enemies.size(); i++)
 	{
-		if (enemies.at(i)->getSprite().getPosition().x <0)
+		sf::Vector2f enemyPos = enemies.at(i)->getSprite().getPosition();
+		sf::Vector2f enemySize = sf::Vector2f(enemies.at(i)->getSprite().getTextureRect().width, enemies.at(i)->getSprite().getTextureRect().height);
+
+		if (enemyPos.x <0)
 			enemies.erase(enemies.begin() + i);
-		if (enemies.at(i)->getSprite().getPosition().x <= spaceship->getSprite().getPosition().x+ spaceship->getSprite().getTextureRect().width)
-			if (spaceship->getSprite().getPosition().y>enemies.at(i)->getSprite().getPosition().y&&spaceship->getSprite().getPosition().y<enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getTextureRect().height
-				|| (spaceship->getSprite().getPosition().y + spaceship->getSprite().getTextureRect().height>enemies.at(i)->getSprite().getPosition().y && spaceship->getSprite().getPosition().y + spaceship->getSprite().getTextureRect().height < enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getTextureRect().height))
-			{
+		else if(!(enemyPos.y >(spaceshipPos.y + spaceshipSize.y) 
+			|| (enemyPos.y + enemySize.y) < spaceshipPos.y 
+			|| enemyPos.x > (spaceshipPos.x + spaceshipSize.x) 
+			|| (enemyPos.x + enemySize.x) < spaceshipPos.x))
+		{
 				spaceship->takeDommage(enemies.at(i)->getHealth());
-				
-				cout << "dead!!!!" << endl;
-				enemies.at(i)->~Enemy();
+				delete enemies.at(i);
 				enemies.erase(enemies.begin() + i);
 
 			}
@@ -110,30 +117,54 @@ void Field::enemyCollideSpaceShip()
 }
 void Field::bulletCollideEnemy()
 {
+	sf::Vector2f spaceshipPos = spaceship->getSprite().getPosition();
+	sf::Vector2f spaceshipSize = sf::Vector2f(spaceship->getSprite().getTextureRect().width, spaceship->getSprite().getTextureRect().height);
+
 	int i = 0;
 	for (int j = 0; j < bullets.size();j++)
+	{
+		sf::Vector2f bulletPos = bullets.at(j)->getSprite().getPosition();
+		sf::Vector2f bulletSize = sf::Vector2f(bullets.at(j)->getSprite().getTextureRect().width, bullets.at(j)->getSprite().getTextureRect().height);
+		for (int i = 0; i < enemies.size(); i++)
+		{
+			sf::Vector2f enemyPos = enemies.at(i)->getSprite().getPosition();
+			sf::Vector2f enemySize = sf::Vector2f(enemies.at(i)->getSprite().getTextureRect().width, enemies.at(i)->getSprite().getTextureRect().height);
+			
+			//Collide player's bullets with enemy
+			if (!bullets.at(j)->isEnemyBullet())
 			{
-				for (int i = 0; i < enemies.size(); i++)
+				if (!(bulletPos.y < enemyPos.y 
+					|| bulletPos.y >(enemyPos.y + enemySize.y) 
+					|| bulletPos.x + bulletSize.x < enemyPos.x 
+					|| bulletPos.x >(enemyPos.x + enemySize.x)))
 				{
-					if (enemies.at(i)->getSprite().getPosition().x <= bullets.at(j)->getSprite().getPosition().x + bullets.at(j)->getSprite().getTextureRect().width)
-						if (bullets.at(j)->getSprite().getPosition().y>enemies.at(i)->getSprite().getPosition().y
-							&&bullets.at(j)->getSprite().getPosition().y<(enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getTextureRect().height)
-							|| ((bullets.at(j)->getSprite().getPosition().y + bullets.at(j)->getSprite().getTextureRect().height>enemies.at(i)->getSprite().getPosition().y) 
-							&& (bullets.at(j)->getSprite().getPosition().y + bullets.at(j)->getSprite().getTextureRect().height < enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getTextureRect().height)))
-						{
-							enemies.at(i)->takeDommage(this->spaceship->getWeapon().getDommage());
-							cout << "dead!!!!" << endl;
-							removeBullet(j);
-							cout << "LIFE ENEMI : " << enemies.at(i)->getHealth() << endl;
-							cout << "LIFE ENEMI : " << !enemies.at(i)->isAlive() << endl;
-							if (!(enemies.at(i)->isAlive())) {
-								delete enemies.at(i);
-								enemies.erase(enemies.begin() + i);
-							}
-							break;
+						enemies.at(i)->takeDommage(this->spaceship->getWeapon().getDommage());
+						cout << "dead!!!!" << endl;
+						removeBullet(j);
+						if (!(enemies.at(i)->isAlive())) {
+							delete enemies.at(i);
+							enemies.erase(enemies.begin() + i);
 						}
-				}
+						break;
+					}
 			}
+
+			//Collide ennemies bullets with player
+			else
+			{
+				if (!(bulletPos.y >(spaceshipPos.y + spaceshipSize.y) 
+					|| (bulletPos.y + bulletSize.y) < spaceshipPos.y
+					|| bulletPos.x > (spaceshipPos.x + spaceshipSize.x)
+					|| (bulletPos.x + bulletSize.x) < spaceshipPos.x))
+					{
+						spaceship->takeDommage(enemies.at(i)->getWeapon().getDommage());
+						cout << "Player life: " << spaceship->getHealth() << endl;
+						removeBullet(j);
+						break;
+					}
+			}
+		}
+	}
 }
 Field::~Field()
 {

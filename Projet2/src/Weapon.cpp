@@ -1,13 +1,15 @@
 #include "../include/weapon.h"
 
-Weapon::Weapon()
+Weapon::Weapon(bool enemy)
 {
 	setLvl(1);
+	enemyWeapon = enemy; //Weapon owner by an enemy or not
 }
 
-Weapon::Weapon(int lvl)
+Weapon::Weapon(int lvl,bool enemy)
 {
 	setLvl(lvl);
+	enemyWeapon = enemy; //Weapon owner by an enemy or not 
 }
 
 int Weapon::getRate()
