@@ -19,6 +19,7 @@ int main()
 	//Windows size
 	WINDOW_WIDTH = 800;
 	WINDOW_HEIGHT = 600;
+
 	bool available = false;
 	string value = exec("tasklist /FI \"imagename eq Myo Connect.exe\" /svc");
 	if (value.find("Myo Connect.exe") != -1) {
@@ -30,7 +31,7 @@ int main()
 		cout << "No Myo Connect.exe found" << endl;
 	}
 	string title = "EsigInvaders";
-	GameWindows game(800, 600, title,available);
+	GameWindows game(WINDOW_WIDTH, WINDOW_HEIGHT, title,available);
 	game.runWindows();
 	return 0;
 }
