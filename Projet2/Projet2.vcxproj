@@ -159,6 +159,7 @@
     <ClInclude Include="include\DataCollector.h" />
     <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\GameWindows.h" />
+    <ClInclude Include="include\Global.h" />
     <ClInclude Include="include\Keyboard.h" />
     <ClInclude Include="include\Img.h" />
     <ClInclude Include="include\Level.h" />

@@ -13,6 +13,7 @@
 #include <direct.h>
 #include "myo/myo.hpp"
 #include "DataCollector.h"
+#include "Global.h"
 
 
 

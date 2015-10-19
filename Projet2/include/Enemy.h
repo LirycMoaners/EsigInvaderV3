@@ -3,6 +3,7 @@
 #include "SpaceObject.h"
 #include "Weapon.h"
 #include<iostream>
+#include "Global.h"
 
 class Enemy : public SpaceObject
 {
