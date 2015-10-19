@@ -41,12 +41,13 @@ Armband::Armband(){
 				std::cout << "Keyboard Mod Launch" << endl;
 			}
 		}
-
+		// Pos z and y init 
 		pos_z = 0;
 		pos_y = 0;
 
 	}
 	catch (const std::exception& e) {
+		// Case no MYO device detected
 		this->status = false;
 		std::cerr << "Error: " << e.what() << std::endl;
 		std::cerr << "Press enter to continue.";
@@ -59,12 +60,17 @@ bool Armband::getStatus() {
 }
 
 void Armband::runHub() {
+	// Defined what is the frequency of acquisition of data from MY ^^ (60 per sec) 
 	this->hub->run(1000 /60);
 }
 
 vector<Bullet*> Armband::shoot(sf::Texture&texture, Spaceship&s) {
+	// Call the Shoot method
 	myo::Pose pose = this->collector->getPose();
+	
+	// If we do the fist sign or the fingerSpread, the program consider that we want to shoot
 	if (pose == myo::Pose::fist || pose == myo::Pose::fingersSpread) {
+
 		if (60 / compteurSpace == s.getWeapon().getRate())
 		{
 			vector<Bullet*> bu = s.getWeapon().shoot(texture, s.getSprite());
