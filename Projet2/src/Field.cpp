@@ -124,8 +124,6 @@ void Field::bulletCollideEnemy()
 							enemies.at(i)->takeDommage(this->spaceship->getWeapon().getDommage());
 							cout << "dead!!!!" << endl;
 							removeBullet(j);
-							cout << "LIFE ENEMI : " << enemies.at(i)->getHealth() << endl;
-							cout << "LIFE ENEMI : " << !enemies.at(i)->isAlive() << endl;
 							if (!(enemies.at(i)->isAlive())) {
 								delete enemies.at(i);
 								enemies.erase(enemies.begin() + i);
