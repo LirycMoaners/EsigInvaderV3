@@ -18,6 +18,7 @@ class Bullet
 		Bullet(const Bullet&);
 		sf::Sprite &getSprite();
 		void move();
+		bool isEnemyBullet();
 		void switchFps();
 		~Bullet();
 };
