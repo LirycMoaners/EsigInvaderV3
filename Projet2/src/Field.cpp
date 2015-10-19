@@ -1,8 +1,8 @@
 #include "../include/Field.h"
 
-Field::Field() {
+/*Field::Field() {
 
-}
+}*/
 
 Field::Field(bool available) : bullets(NULL)
 {
@@ -17,10 +17,10 @@ Field::Field(bool available) : bullets(NULL)
 	else {
 		c = new Keyboard();
 	}
-	spaceship = Spaceship(img.getSpaceship_t());
+	spaceship = new Spaceship(img.getSpaceship_t());
 }
 
-Spaceship &Field::getSpaceship()
+Spaceship *Field::getSpaceship()
 {
 	return spaceship;
 }
@@ -76,15 +76,15 @@ void Field::collision(sf::RenderWindow *window)
 		}
 			
 
-	if (spaceship.getSprite().getPosition().x < 0)
-		spaceship.getSprite().setPosition(0, spaceship.getSprite().getPosition().y);
-	else if (spaceship.getSprite().getPosition().x + spaceship.getSprite().getTextureRect().width > window->getSize().x)
-		spaceship.getSprite().setPosition(window->getSize().x - spaceship.getSprite().getTextureRect().width, spaceship.getSprite().getPosition().y);
+	if (spaceship->getSprite().getPosition().x < 0)
+		spaceship->getSprite().setPosition(0, spaceship->getSprite().getPosition().y);
+	else if (spaceship->getSprite().getPosition().x + spaceship->getSprite().getTextureRect().width > window->getSize().x)
+		spaceship->getSprite().setPosition(window->getSize().x - spaceship->getSprite().getTextureRect().width, spaceship->getSprite().getPosition().y);
 	
-	if (spaceship.getSprite().getPosition().y < 0)
-		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, 0);
-	else if (spaceship.getSprite().getPosition().y + spaceship.getSprite().getTextureRect().height > window->getSize().y)
-		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, window->getSize().y - spaceship.getSprite().getTextureRect().height);
+	if (spaceship->getSprite().getPosition().y < 0)
+		spaceship->getSprite().setPosition(spaceship->getSprite().getPosition().x, 0);
+	else if (spaceship->getSprite().getPosition().y + spaceship->getSprite().getTextureRect().height > window->getSize().y)
+		spaceship->getSprite().setPosition(spaceship->getSprite().getPosition().x, window->getSize().y - spaceship->getSprite().getTextureRect().height);
 		
 	enemyCollideSpaceShip();
 	bulletCollideEnemy();
@@ -97,9 +97,9 @@ void Field::enemyCollideSpaceShip()
 	{
 		if (enemies.at(i)->getShape().getPosition().x <0)
 			enemies.erase(enemies.begin() + i);
-		if (enemies.at(i)->getShape().getPosition().x <= spaceship.getSprite().getPosition().x+ spaceship.getSprite().getTextureRect().width)
-			if (spaceship.getSprite().getPosition().y>enemies.at(i)->getShape().getPosition().y&&spaceship.getSprite().getPosition().y<enemies.at(i)->getShape().getPosition().y + enemies.at(i)->getShape().getTextureRect().height
-				|| (spaceship.getSprite().getPosition().y + spaceship.getSprite().getTextureRect().height>enemies.at(i)->getShape().getPosition().y && spaceship.getSprite().getPosition().y + spaceship.getSprite().getTextureRect().height < enemies.at(i)->getShape().getPosition().y + enemies.at(i)->getShape().getTextureRect().height))
+		if (enemies.at(i)->getShape().getPosition().x <= spaceship->getSprite().getPosition().x+ spaceship->getSprite().getTextureRect().width)
+			if (spaceship->getSprite().getPosition().y>enemies.at(i)->getShape().getPosition().y&&spaceship->getSprite().getPosition().y<enemies.at(i)->getShape().getPosition().y + enemies.at(i)->getShape().getTextureRect().height
+				|| (spaceship->getSprite().getPosition().y + spaceship->getSprite().getTextureRect().height>enemies.at(i)->getShape().getPosition().y && spaceship->getSprite().getPosition().y + spaceship->getSprite().getTextureRect().height < enemies.at(i)->getShape().getPosition().y + enemies.at(i)->getShape().getTextureRect().height))
 			{
 				cout << "dead!!!!" << endl;
 				enemies.at(i)->~Enemy();
@@ -130,5 +130,6 @@ void Field::bulletCollideEnemy()
 }
 Field::~Field()
 {
+	delete spaceship;
 	delete c;
 }

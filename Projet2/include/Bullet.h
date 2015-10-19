@@ -2,7 +2,7 @@
 #define BULLET_H_INCLUDED
 
 #include <iostream>
-#include <../include/SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 class Bullet
 {

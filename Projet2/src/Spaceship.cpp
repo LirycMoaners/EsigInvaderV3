@@ -1,8 +1,8 @@
 #include "../include/spaceship.h"
 
-Spaceship::Spaceship() : anim(0, 0) {}
+//Spaceship::Spaceship() : anim(0, 0) {}
 
-Spaceship::Spaceship(sf::Texture &t) : anim(0,0), weapon(Weapon())
+Spaceship::Spaceship(sf::Texture &t) : anim(0,0), weapon(Weapon()),SpaceObject(t,1000,5)
 {
 	sprite.setTexture(t);
 	sprite.setTextureRect(sf::IntRect(anim.x, anim.y, 100, 94));
@@ -32,7 +32,7 @@ void Spaceship::move(int dir)
 				anim.x = 0;
 				anim.y = 2;
 			}
-			sprite.move(0, -5);
+			sprite.move(0, -speed);
 			break;
 		case 2:
 			if (anim.y != 1)
@@ -40,15 +40,15 @@ void Spaceship::move(int dir)
 				anim.x = 0;
 				anim.y = 1;
 			}
-			sprite.move(0, 5);
+			sprite.move(0, speed);
 			break;
 		case 3:
 			anim.y = 0;
-			sprite.move(-5, 0);
+			sprite.move(-speed, 0);
 			break;
 		case 4:
 			anim.y = 0;
-			sprite.move(5, 0);
+			sprite.move(speed, 0);
 			break;
 	}	
 }

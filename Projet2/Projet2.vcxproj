@@ -39,7 +39,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -143,6 +143,7 @@
     <ClCompile Include="src\Level.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
+    <ClCompile Include="src\SpaceObject.cpp" />
     <ClCompile Include="src\Spaceship.cpp" />
     <ClCompile Include="src\Field.cpp" />
     <ClCompile Include="src\tinyxml2.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="include\Img.h" />
     <ClInclude Include="include\Level.h" />
     <ClInclude Include="include\MainMenu.h" />
+    <ClInclude Include="include\SpaceObject.h" />
     <ClInclude Include="include\Spaceship.h" />
     <ClInclude Include="include\Field.h" />
     <ClInclude Include="include\tinyxml2.h" />

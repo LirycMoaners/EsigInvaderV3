@@ -11,33 +11,33 @@ void Keyboard::runHub() {
 
 }
 
-void Keyboard::move(Spaceship &s)
+void Keyboard::move(Spaceship *s)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-			s.move(1);
+			s->move(1);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-			s.move(2);
+			s->move(2);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-			s.move(3);
+			s->move(3);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-			s.move(4);
+			s->move(4);
 	}
 	else
-		s.move(0);
+		s->move(0);
 }
 
-vector<Bullet*> Keyboard::shoot(sf::Texture &texture, Spaceship &s)
+vector<Bullet*> Keyboard::shoot(sf::Texture &texture, Spaceship *s)
 {
 	vector<Bullet*> b;
 	sf::Vector2f pos;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		if (compteurSpace == 60 / s.getWeapon().getRate()) 
+		if (compteurSpace == 60 / s->getWeapon().getRate()) 
 		{
-			vector<Bullet*> bu = s.getWeapon().shoot(texture, s.getSprite());
+			vector<Bullet*> bu = s->getWeapon().shoot(texture, s->getSprite());
 			compteurSpace = 1;
 			return bu;
 		}
@@ -45,8 +45,8 @@ vector<Bullet*> Keyboard::shoot(sf::Texture &texture, Spaceship &s)
 			compteurSpace++;
 	}
 	else{
-		if (compteurSpace == 60 / s.getWeapon().getRate())
-			compteurSpace = 60 / s.getWeapon().getRate();
+		if (compteurSpace == 60 / s->getWeapon().getRate())
+			compteurSpace = 60 / s->getWeapon().getRate();
 		else
 			compteurSpace++;
 	}

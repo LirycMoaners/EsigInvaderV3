@@ -2,8 +2,9 @@
 #define SPACESHIP_H_INCLUDED
 
 #include "../include/Weapon.h"
+#include "../include/SpaceObject.h"
 
-class Spaceship
+class Spaceship: public SpaceObject
 {
 	private:
 		sf::Sprite sprite;
@@ -11,7 +12,7 @@ class Spaceship
 		Weapon weapon;
 
 	public:
-		Spaceship();
+		//Spaceship();
 		Spaceship(sf::Texture&);
 		sf::Sprite &getSprite();
 		Weapon &getWeapon();

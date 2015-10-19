@@ -17,15 +17,15 @@ class Field
 		Img img;
 		sf::Sprite background;
 		vector<Bullet*> bullets;
-		Spaceship spaceship;
+		Spaceship* spaceship;
 		Control *c;
 		sf::Clock timer;
 		vector<Enemy*> enemies;
 
 	public:
 		Field(bool available);
-		Field();
-		Spaceship &getSpaceship();
+		//Field();
+		Spaceship *getSpaceship();
 		vector<Bullet*> &getBullets();
 		vector<Enemy*> getEnemies();
 		void addBullets(vector<Bullet*>&);
