@@ -1,11 +1,12 @@
 #pragma once
 #include<string>
 #include "Boss.h"
+#include "TypeEnemy.h"
 using namespace std;
 class Level
 {
 public:
-	Level(int nb, int health, int speed, int dommage, Boss * boss,string url);
+	Level(int nb, int speed, TypeEnemy * type, Boss * boss,string url);
 	Level(int, int, string);
 	void setNbEnemy(int);
 	void setHealthEnemy(int);
@@ -29,5 +30,6 @@ private :
 	int dommageEnemy;
 	Boss * boss;
 	string urlImage;
+	TypeEnemy * type;
 };
 

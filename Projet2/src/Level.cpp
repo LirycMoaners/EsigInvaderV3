@@ -7,12 +7,11 @@ Level::Level(int nb, int speed, string url) {
 	this->boss = new Boss();
 }
 
-Level::Level(int nb, int health, int speed, int dommage, Boss * boss, string url)
+Level::Level(int nb, int speed, TypeEnemy *type, Boss * boss, string url)
 {
 	this->nbEnemy = nb;
-	this->healthEnemy = health;
 	this->speedEnemyFire = speed;
-	this->dommageEnemy = dommage;
+	this->type = type;
 	this->boss = boss;
 	this->urlImage = url;
 }

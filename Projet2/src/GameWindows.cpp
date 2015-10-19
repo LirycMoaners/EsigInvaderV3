@@ -17,7 +17,7 @@ void GameWindows::loadData() {
 					XMLElement * elementNbEnemy = elementLevel->FirstChildElement("NbEnemy");
 					XMLElement * elementUrl = elementLevel->FirstChildElement("UrlImageBackground");
 					XMLElement * elementSpeed = elementLevel->FirstChildElement("SpeedEnemyFire");
-					int nb = 0, life = 0,speed = 0,dommage = 0,lifeBoss = 0,dommageBoss =0;
+					int nb = 0,speed = 0, life = 0, dommage = 0, sizeEscouad  = 0,lifeBoss = 0,dommageBoss =0;
 					string url;
 					if (elementNbEnemy != NULL) {
 						nb = atoi(elementNbEnemy->GetText());
@@ -30,11 +30,15 @@ void GameWindows::loadData() {
 					}
 					XMLElement * elementLife = elementEnemy->FirstChildElement("Life");
 					XMLElement * elementDommage = elementEnemy->FirstChildElement("Dommage");
+					XMLElement * elementSizeEscouade = elementEnemy->FirstChildElement("SizeEscouade");
 					if (elementLife != NULL) {
 						life = atoi(elementLife->GetText());
 					}
 					if (elementDommage != NULL) {
 						dommage = atoi(elementDommage->GetText());
+					}
+					if (elementSizeEscouade != NULL) {
+						sizeEscouad = atoi(elementSizeEscouade->GetText());
 					}
 					XMLElement * elementLifeBoss = elementBoss->FirstChildElement("Life");
 					XMLElement * elementDommageBoss = elementBoss->FirstChildElement("Dommage");
@@ -45,7 +49,8 @@ void GameWindows::loadData() {
 						dommageBoss = atoi(elementDommageBoss->GetText());
 					}
 					Boss * b = new Boss(lifeBoss, dommageBoss);
-					Level * l = new Level(nb, life, speed, dommage, b, url);
+					TypeEnemy * type = new TypeEnemy(life, dommage, sizeEscouad);
+					Level * l = new Level(nb, speed, type, b, url);
 					this->levels.push_back(l);
 					elementLevel = elementLevel->NextSiblingElement("Level");
 					elementEnemy = elementEnemy->NextSiblingElement("Enemy");
