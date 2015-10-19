@@ -1,7 +1,5 @@
 #include "../include/spaceship.h"
 
-//Spaceship::Spaceship() : anim(0, 0) {}
-
 Spaceship::Spaceship(sf::Texture &t) : anim(0,0), weapon(Weapon()),SpaceObject(t,1000,5)
 {
 	sprite.setTexture(t);

@@ -13,7 +13,7 @@ class SpaceObject
 		~SpaceObject();
 
 		sf::Sprite &getSprite();
-		virtual void move(int) = 0;
+		virtual void move() {};
 
 		int getHealth();
 		int getSpeed();

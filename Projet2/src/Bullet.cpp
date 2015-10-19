@@ -2,11 +2,12 @@
 
 Bullet::Bullet() : speed(0), anim(0){}
 
-Bullet::Bullet(sf::Texture &t, sf::Vector2f pos, int spd) : speed(spd), anim(0)
+Bullet::Bullet(sf::Texture &t, sf::Vector2f pos, int spd,bool enemy) : speed(spd), anim(0)
 {
 	sprite.setTexture(t);
 	sprite.setTextureRect(sf::IntRect(anim, 0, 49, 19));
 	sprite.setPosition(pos);
+	enemyBullet = enemy;
 }
 
 Bullet::Bullet(const Bullet &b)

@@ -1,6 +1,6 @@
 #include "..\include\GameWindows.h"
 using namespace tinyxml2;
-void GameWindows::loadData() {
+void GameWindows::loadData(Img* img) {
 	XMLDocument doc;
 	XMLError e = doc.LoadFile("conf/conf.xml");
 	if (e == XML_NO_ERROR) {
@@ -48,7 +48,7 @@ void GameWindows::loadData() {
 					if (elementDommageBoss != NULL) {
 						dommageBoss = atoi(elementDommageBoss->GetText());
 					}
-					Boss * b = new Boss(lifeBoss, dommageBoss);
+					Boss * b = new Boss(lifeBoss, dommageBoss, img->getEnemy_t());
 					TypeEnemy * type = new TypeEnemy(life, dommage, sizeEscouad);
 					Level * l = new Level(nb, speed, type, b, url);
 					this->levels.push_back(l);
@@ -66,11 +66,10 @@ void GameWindows::loadData() {
 }
 
 GameWindows::GameWindows(int w, int h, string name, bool available) : Windows(w, h, name,available) {
-	this->loadData();
-	this->field = new Field(available);
+	Img* img = new Img();
+	this->loadData(img);
+	this->field = new Field(available,img);
 	Level * l = this->levels.at(0);
-	
-	
 }
 
 void GameWindows::runWindows() {
@@ -109,7 +108,7 @@ void GameWindows::runWindows() {
 		for (int i = 0; i < field->getEnemies().size(); i++)
 		{
 			field->getEnemies().at(i)->move();
-			window->draw((field->getEnemies().at(i))->getShape());
+			window->draw((field->getEnemies().at(i))->getSprite());
 		}
 
 		this->window->display();

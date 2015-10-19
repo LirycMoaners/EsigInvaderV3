@@ -18,7 +18,7 @@ protected :
 
 
 private :
-	void loadData();
+	void loadData(Img*);
 	bool avalaible;
 	Field * field;
 	vector<Level *> levels;

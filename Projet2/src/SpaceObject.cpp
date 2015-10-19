@@ -1,12 +1,9 @@
 #include "..\include\SpaceObject.h"
 
-
-
 SpaceObject::SpaceObject(sf::Texture &t,int health, int speed)
 {
 	//Create graphical object
 	sprite.setTexture(t);
-	sprite.setPosition(100, 100);
 
 	//Set properties values
 	this->health = health;

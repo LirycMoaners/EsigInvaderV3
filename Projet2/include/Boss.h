@@ -2,10 +2,9 @@
 #include "Enemy.h"
 class Boss : public Enemy
 {
-public:
-	Boss(int life, int dommage);
-
-	Boss();
-	~Boss();
+	public:
+		Boss(int life, int dommage, sf::Texture&);
+		~Boss();
+		void move();
 };
 

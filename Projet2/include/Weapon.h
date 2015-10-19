@@ -14,6 +14,8 @@ class Weapon
 		int bulletQty;
 		int rate;
 		int speed;
+		bool enemyWeapon;
+
 	public:
 		Weapon();
 		Weapon(int);

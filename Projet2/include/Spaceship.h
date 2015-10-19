@@ -12,7 +12,6 @@ class Spaceship: public SpaceObject
 		Weapon weapon;
 
 	public:
-		//Spaceship();
 		Spaceship(sf::Texture&);
 		sf::Sprite &getSprite();
 		Weapon &getWeapon();

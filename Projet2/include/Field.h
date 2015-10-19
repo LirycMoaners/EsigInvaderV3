@@ -14,7 +14,7 @@ using namespace std;
 class Field
 {
 	private:
-		Img img;
+		Img* img;
 		sf::Clock timer;
 		sf::Sprite background;
 		Spaceship* spaceship;
@@ -23,7 +23,7 @@ class Field
 		vector<Enemy*> enemies;
 
 	public:
-		Field(bool available);
+		Field(bool available, Img* img);
 		//Field();
 		Spaceship *getSpaceship();
 		vector<Bullet*> &getBullets();

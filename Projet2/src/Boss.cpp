@@ -1,15 +1,12 @@
 #include "..\include\Boss.h"
 
-Boss::Boss() {
-
-}
-
-Boss::Boss(int life, int dommage)
+Boss::Boss(int life, int dommage, sf::Texture& texture) : Enemy(5,5,texture)
 {
 	this->health = life;
 	this->dommage = dommage;
 }
 
+void Boss::move(){}
 
 Boss::~Boss()
 {

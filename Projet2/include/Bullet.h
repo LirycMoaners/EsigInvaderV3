@@ -10,10 +10,11 @@ class Bullet
 		sf::Sprite sprite;
 		int anim;
 		int speed;
+		bool enemyBullet = false;
 
 	public:
 		Bullet();
-		Bullet(sf::Texture&, sf::Vector2f, int);
+		Bullet(sf::Texture&, sf::Vector2f, int, bool enemy);
 		Bullet(const Bullet&);
 		sf::Sprite &getSprite();
 		void move();
