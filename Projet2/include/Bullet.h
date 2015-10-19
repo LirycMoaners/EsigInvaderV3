@@ -1,8 +1,8 @@
-#ifndef BULLET_H_INCLUDED
-#define BULLET_H_INCLUDED
+#pragma once
 
 #include <iostream>
-#include <../include/SFML/Graphics.hpp>
+#include "Global.h"
+#include <SFML/Graphics.hpp>
 
 class Bullet
 {
@@ -10,15 +10,15 @@ class Bullet
 		sf::Sprite sprite;
 		int anim;
 		int speed;
+		bool enemyBullet = false;
 
 	public:
 		Bullet();
-		Bullet(sf::Texture&, sf::Vector2f, int);
+		Bullet(sf::Texture&, sf::Vector2f, int, bool enemy);
 		Bullet(const Bullet&);
 		sf::Sprite &getSprite();
 		void move();
+		bool isEnemyBullet();
 		void switchFps();
 		~Bullet();
 };
-
-#endif

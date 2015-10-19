@@ -13,6 +13,7 @@
 #include <direct.h>
 #include "myo/myo.hpp"
 #include "DataCollector.h"
+#include "Global.h"
 
 
 
@@ -28,8 +29,8 @@ private:
 public:
 	Armband();
 	void runHub();
-	void move(Spaceship&);
-	vector<Bullet*> shoot(sf::Texture&, Spaceship&);
+	void move(Spaceship*);
+	vector<Bullet*> shoot(sf::Texture&, Spaceship*);
 	~Armband();
 	bool getStatus();
 };

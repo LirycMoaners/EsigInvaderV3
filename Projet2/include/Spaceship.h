@@ -1,9 +1,9 @@
-#ifndef SPACESHIP_H_INCLUDED
-#define SPACESHIP_H_INCLUDED
+#pragma once
 
-#include "../include/Weapon.h"
-
-class Spaceship
+#include "Weapon.h"
+#include "SpaceObject.h"
+#include "Global.h"
+class Spaceship: public SpaceObject
 {
 	private:
 		sf::Sprite sprite;
@@ -11,7 +11,6 @@ class Spaceship
 		Weapon weapon;
 
 	public:
-		Spaceship();
 		Spaceship(sf::Texture&);
 		sf::Sprite &getSprite();
 		Weapon &getWeapon();
@@ -19,5 +18,3 @@ class Spaceship
 		void switchFps();
 		~Spaceship();
 };
-
-#endif

@@ -41,12 +41,13 @@ Armband::Armband(){
 				std::cout << "Keyboard Mod Launch" << endl;
 			}
 		}
-
+		// Pos z and y init 
 		pos_z = 0;
 		pos_y = 0;
 
 	}
 	catch (const std::exception& e) {
+		// Case no MYO device detected
 		this->status = false;
 		std::cerr << "Error: " << e.what() << std::endl;
 		std::cerr << "Press enter to continue.";
@@ -59,17 +60,20 @@ bool Armband::getStatus() {
 }
 
 void Armband::runHub() {
+	// Defined what is the frequency of acquisition of data from MY ^^ (60 per sec) 
 	this->hub->run(1000 /60);
 }
 
-vector<Bullet*> Armband::shoot(sf::Texture&texture, Spaceship&s) {
+vector<Bullet*> Armband::shoot(sf::Texture&texture, Spaceship*s) {
+	// Call the Shoot method
 	myo::Pose pose = this->collector->getPose();
+	
+	// If we do the fist sign or the fingerSpread, the program consider that we want to shoot
 	if (pose == myo::Pose::fist || pose == myo::Pose::fingersSpread) {
-
 		
-		if (60 / compteurSpace == s.getWeapon().getRate())
+		if (60 / compteurSpace == s->getWeapon().getRate())
 		{
-			vector<Bullet*> bu = s.getWeapon().shoot(texture, s.getSprite());
+			vector<Bullet*> bu = s->getWeapon().shoot(texture, s->getSprite());
 			compteurSpace = 1;
 			return bu;
 		}
@@ -79,7 +83,7 @@ vector<Bullet*> Armband::shoot(sf::Texture&texture, Spaceship&s) {
 }
 
 
-void Armband::move(Spaceship &s)
+void Armband::move(Spaceship *s)
 {
 	myo::Vector3< float > gyro = this->collector->getGyro();
 
@@ -102,17 +106,17 @@ void Armband::move(Spaceship &s)
 	if (pos_z > capDetect || pos_z < -capDetect || pos_y > capDetect || pos_y < -capDetect)
 	{
 		if (pos_z > capDetect)
-			s.move(3);
+			s->move(3);
 		else if (pos_z < -capDetect)
-			s.move(4);
+			s->move(4);
 
 		if (pos_y > capDetect)
-			s.move(1);
+			s->move(1);
 		else if (pos_y < -capDetect)
-			s.move(2);
+			s->move(2);
 	}
 	else
-		s.move(0);
+		s->move(0);
 }
 
 Armband::~Armband()

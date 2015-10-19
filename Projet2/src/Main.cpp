@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
+#include "../include/Global.h"
 #include <../include/SFML/Graphics.hpp>
 #include "../include/myo/libmyo.h"
 #include "../include/Field.h"
@@ -11,10 +12,14 @@
 
 using namespace std;
 std::string exec(const char* cmd);
+
+extern int WINDOW_WIDTH = 800;
+extern int WINDOW_HEIGHT = 600;
+
 int main()
 {
-	int fpsCount = 0;
-	int fpsSwitch = 200;
+	srand(time(NULL));	
+
 	bool available = false;
 	string value = exec("tasklist /FI \"imagename eq Myo Connect.exe\" /svc");
 	if (value.find("Myo Connect.exe") != -1) {
@@ -26,7 +31,7 @@ int main()
 		cout << "No Myo Connect.exe found" << endl;
 	}
 	string title = "EsigInvaders";
-	GameWindows game(800, 600, title,available);
+	GameWindows game(WINDOW_WIDTH, WINDOW_HEIGHT, title,available);
 	game.runWindows();
 	return 0;
 }

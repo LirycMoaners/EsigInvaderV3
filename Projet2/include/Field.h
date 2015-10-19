@@ -1,5 +1,4 @@
-#ifndef TERRAIN_H_INCLUDED
-#define TERRAIN_H_INCLUDED
+#pragma once
 
 #include <iostream>
 #include "Bullet.h"
@@ -8,26 +7,30 @@
 #include "Armband.h"
 #include "Img.h"
 #include "Enemy.h"
+#include "Global.h"
+#include "Level.h"
 
 using namespace std;
 
 class Field
 {
 	private:
-		Img img;
-		sf::Sprite background;
-		vector<Bullet*> bullets;
-		Spaceship spaceship;
-		Control *c;
+		Img* img;
 		sf::Clock timer;
+		sf::Sprite background;
+		Spaceship* spaceship;
+		int compteurEnemies;
+		Level* level;
+		Control *c;
+		vector<Bullet*> bullets;
 		vector<Enemy*> enemies;
 
 	public:
-		Field(bool available);
-		Field();
-		Spaceship &getSpaceship();
+		Field(bool available, Img* img,Level* l);
+		//Field();
+		Spaceship *getSpaceship();
 		vector<Bullet*> &getBullets();
-		vector<Enemy*> getEnemies();
+		vector<Enemy*> &getEnemies();
 		void addBullets(vector<Bullet*>&);
 		void control();
 		void addEnemies();
@@ -37,5 +40,3 @@ class Field
 		void removeBullet(int i);
 		~Field();
 };
-
-#endif

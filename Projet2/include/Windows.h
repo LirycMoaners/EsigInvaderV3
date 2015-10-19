@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "Global.h"
 using namespace std;
 class Windows
 {
@@ -11,9 +12,7 @@ public:
 	void setWidth(int);
 	void setHeight(int);
 	void setTitle(string);
-	virtual void endInit() = 0;
 	virtual void runWindows() = 0;
-
 private : 
 	
 	

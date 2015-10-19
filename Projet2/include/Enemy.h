@@ -1,22 +1,23 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "SpaceObject.h"
+#include "Weapon.h"
 #include<iostream>
+#include "Global.h"
 
-class Enemy
+class Enemy : public SpaceObject
 {
-private:
-	sf::Sprite shape;
-	int health;
-	float speed;
-public:
-	Enemy();
-	Enemy(float, float, sf::Texture&);
-	sf::Sprite getShape();
-	int getHealth();
-	float getSpeed();
-	void setSpeed(float);
-	void move();
+	protected:
+		int dommage;
+		bool moveDown;
+		Weapon weapon;
 
-	~Enemy();
+	public:
+		Enemy(float, float, sf::Texture&);
+		int getDommage();
+		Weapon &getWeapon();
+		void move();
+
+		~Enemy();
 };
 

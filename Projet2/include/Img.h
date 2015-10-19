@@ -1,8 +1,7 @@
-#ifndef IMG_H_INCLUDED
-#define IMG_H_INCLUDED
+#pragma once
 
-#include <../include/SFML/Graphics.hpp>
-
+#include <SFML/Graphics.hpp>
+#include "Global.h"
 class Img
 {
 	private:
@@ -18,5 +17,3 @@ class Img
 		sf::Texture &getEnemy_t();
 		~Img();
 };
-
-#endif

@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #define MAX_NUMBER_OF_ITEM 3
 
+#include "Global.h"
 class MainMenu
 {
 public:
