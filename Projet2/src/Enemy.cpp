@@ -17,6 +17,10 @@ Enemy::Enemy(float startX, float startY, sf::Texture& texture):SpaceObject(textu
 	
 }
 
+bool Enemy::getType() {
+	return this->boss;
+}
+
 void Enemy::move()
 {
 	sprite.move(-speed, 0);

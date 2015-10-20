@@ -4,6 +4,7 @@ Boss::Boss(int life, int dommage, sf::Texture& texture) : Enemy(5,5,texture)
 {
 	this->health = life;
 	this->dommage = dommage;
+	this->boss = true;
 }
 
 void Boss::move(){
@@ -21,6 +22,8 @@ void Boss::move(){
 }
 
 void Boss::setPosition(float x, float y) {
+	if (y < 0)
+		y = 0;
 	this->sprite.setPosition(x, y);
 	int result = rand() % 2;
 	if (result) {

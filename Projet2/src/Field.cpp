@@ -68,8 +68,9 @@ void Field::addEnemies()
 			addBullets(enemies.at(i)->getWeapon().shoot(img->getBullet_t(), enemies.at(i)->getSprite()));
 	}
 	else if (compteurEnemies == 0) {
-		cout << "Boss is comming" << endl;
+		
 		if (!BossPop) {
+			cout << "Boss is comming" << endl;
 			Boss * boss = new Boss(level->getBoss()->getHealth(), level->getBoss()->getDommage(), img->getBoss_t());
 			boss->setPosition(WINDOW_WIDTH, 1 + (int)((float)rand() / 32767 * (WINDOW_HEIGHT)-img->getBoss_t().getSize().y));
 			this->enemies.push_back(boss);
@@ -123,9 +124,18 @@ void Field::enemyCollideSpaceShip()
 			|| enemyPos.x > (spaceshipPos.x + spaceshipSize.x) 
 			|| (enemyPos.x + enemySize.x) < spaceshipPos.x))
 		{
-				spaceship->takeDommage(enemies.at(i)->getHealth());
+			spaceship->takeDommage(enemies.at(i)->getHealth());
+			if (!enemies.at(i)->getType()) {
+				
 				delete enemies.at(i);
 				enemies.erase(enemies.begin() + i);
+			}
+			else {
+				cout << "Collide with the boss TODO" << endl;
+			}
+					
+				
+				
 
 			}
 	}
@@ -154,12 +164,14 @@ void Field::bulletCollideEnemy()
 					|| bulletPos.x >(enemyPos.x + enemySize.x)))
 				{
 					enemies.at(i)->takeDommage(this->spaceship->getWeapon().getDommage());
-							cout << "dead!!!!" << endl;
-							removeBullet(j);
+					removeBullet(j);
 					if (!(enemies.at(i)->isAlive())) {
-							delete enemies.at(i);
+						delete enemies.at(i);
 						compteurEnemies--;
-							enemies.erase(enemies.begin() + i);
+						enemies.erase(enemies.begin() + i);
+					}
+					else {
+						cout <<"Life Enemy : "<< enemies.at(i)->getHealth() << endl;
 					}
 					break;
 				}

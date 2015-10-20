@@ -11,13 +11,14 @@ class Enemy : public SpaceObject
 		int dommage;
 		bool moveDown;
 		Weapon weapon;
+		bool boss = false;
 
 	public:
 		Enemy(float, float, sf::Texture&);
 		int getDommage();
 		Weapon &getWeapon();
 		void move();
-
+		bool getType();
 		~Enemy();
 };
 
