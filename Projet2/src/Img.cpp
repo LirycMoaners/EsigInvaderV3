@@ -7,7 +7,6 @@ Img::Img()
 	bullet_t.loadFromFile("ressources/bullet.png");
 	background_t.loadFromFile("ressources/background.jpg");
 	enemy_t.loadFromFile("ressources/enemy.png");
-
 }
 
 sf::Texture &Img::getSpaceship_t()
@@ -27,4 +26,14 @@ sf::Texture &Img::getEnemy_t()
 {
 	return enemy_t;
 }
+
+sf::Texture &Img::getBoss_t()
+{
+	return boss_t;
+}
+
+void Img::setBoss_t(string name) {
+	boss_t.loadFromFile(name.c_str());
+}
+
 Img::~Img() {}

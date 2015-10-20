@@ -132,47 +132,57 @@
 		<Boss id="0">
 			<Life>1000</Life>
 			<Dommage>25</Dommage>
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 		<Boss id="1">
 			<Life>2000</Life>
 			<Dommage>100</Dommage>
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 		<Boss id="2">
 			<Life>3000</Life>
 			<Dommage>150</Dommage>
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 		<Boss id="3">
 			<Life>4000</Life>
 			<Dommage>450</Dommage>
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 		<Boss id="4">
 			<Life>5000</Life>
 			<Dommage>800</Dommage>
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 		<Boss id="5">
 			<Life>6000</Life>
 			<Dommage>1200</Dommage>
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 		<Boss id="6">
 			<Life>7000</Life>
 			<Dommage>2400</Dommage>
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 		<Boss id="7">
 			<Life>8000</Life>
 			<Dommage>4800</Dommage>
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 		<Boss id="8">
 			<Life>9000</Life>
 			<Dommage>6000</Dommage>
-		
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 		<Boss id="9">
 			<Life>10000</Life>
 			<Dommage>8000</Dommage>
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 		<Boss id="10">
 			<Life>25000</Life>
 			<Dommage>15000</Dommage>
+			<UrlImage>ressources/Boss.png</UrlImage>
 		</Boss>
 	</Bosses>
 </Configuration>

@@ -19,7 +19,6 @@ extern int WINDOW_HEIGHT = 600;
 int main()
 {
 	srand(time(NULL));	
-
 	bool available = false;
 	string value = exec("tasklist /FI \"imagename eq Myo Connect.exe\" /svc");
 	if (value.find("Myo Connect.exe") != -1) {

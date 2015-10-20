@@ -20,7 +20,7 @@ void GameWindows::loadData(Img* img) {
 					XMLElement * elementUrl = elementLevel->FirstChildElement("UrlImageBackground");
 					XMLElement * elementSpeed = elementLevel->FirstChildElement("SpeedEnemyFire");
 					int nb = 0,speed = 0, life = 0, dommage = 0, sizeEscouad  = 0,lifeBoss = 0,dommageBoss =0;
-					string url;
+					string url, urlboss;
 					if (elementNbEnemy != NULL) {
 						nb = atoi(elementNbEnemy->GetText());
 					}
@@ -44,15 +44,19 @@ void GameWindows::loadData(Img* img) {
 					}
 					XMLElement * elementLifeBoss = elementBoss->FirstChildElement("Life");
 					XMLElement * elementDommageBoss = elementBoss->FirstChildElement("Dommage");
+					XMLElement * elementUrlBoss = elementBoss->FirstChildElement("UrlImage");
 					if (elementLifeBoss != NULL) {
 						lifeBoss = atoi(elementLifeBoss->GetText());
 					}
 					if (elementDommageBoss != NULL) {
 						dommageBoss = atoi(elementDommageBoss->GetText());
 					}
+					if (elementUrlBoss != NULL) {
+						urlboss = elementUrlBoss->GetText();
+					}
 					Boss * b = new Boss(lifeBoss, dommageBoss, img->getEnemy_t());
 					TypeEnemy * type = new TypeEnemy(life, dommage, sizeEscouad);
-					Level * l = new Level(nb, speed, type, b, url);
+					Level * l = new Level(nb, speed, type, b, url,urlboss);
 					this->levels.push_back(l);
 					elementLevel = elementLevel->NextSiblingElement("Level");
 					elementEnemy = elementEnemy->NextSiblingElement("Enemy");
@@ -61,12 +65,7 @@ void GameWindows::loadData(Img* img) {
 			} while (elementLevel != NULL && elementEnemy != NULL && elementBoss != NULL);
 		}
 		cout <<"Nb Level Loaded : " <<this->levels.size() << endl;
-		
-		//cout << "Nb Level Loaded : " << << endl;
 	}
-	
-
-
 }
 
 GameWindows::GameWindows(int w, int h, string name, bool available) : Windows(w, h, name,available) {
@@ -85,7 +84,6 @@ void GameWindows::play()
 {
 		field->collision(window);
 		field->control();
-
 		if (fpsCount >= fpsSwitch)
 		{
 			field->getSpaceship()->switchFps();

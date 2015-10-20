@@ -9,6 +9,7 @@
 #include "Enemy.h"
 #include "Global.h"
 #include "Level.h"
+#include "Boss.h"
 
 using namespace std;
 
@@ -24,7 +25,7 @@ class Field
 		Control *c;
 		vector<Bullet*> bullets;
 		vector<Enemy*> enemies;
-
+		bool BossPop = false;
 	public:
 		Field(bool available, Img* img,Level* l);
 		//Field();

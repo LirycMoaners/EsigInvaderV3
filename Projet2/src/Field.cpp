@@ -16,6 +16,7 @@ Field::Field(bool available, Img* img,Level* l) : bullets(NULL)
 	}
 	spaceship = new Spaceship(img->getSpaceship_t());
 	this->level = l;
+	this->img->setBoss_t(level->getUrlImageBoss());
 	this->compteurEnemies = level->getNbEnemy();
 }
 
@@ -65,9 +66,19 @@ void Field::addEnemies()
 
 		for (int i = 0; i < enemies.size(); i++)
 			addBullets(enemies.at(i)->getWeapon().shoot(img->getBullet_t(), enemies.at(i)->getSprite()));
-}
-	else if (compteurEnemies == 0)
+	}
+	else if (compteurEnemies == 0) {
 		cout << "Boss is comming" << endl;
+		if (!BossPop) {
+			Boss * boss = new Boss(level->getBoss()->getHealth(), level->getBoss()->getDommage(), img->getBoss_t());
+			boss->setPosition(WINDOW_WIDTH, 1 + (int)((float)rand() / 32767 * (WINDOW_HEIGHT)-img->getBoss_t().getSize().y));
+			this->enemies.push_back(boss);
+			timer.restart();
+			BossPop = true;
+		}
+	}
+		
+	
 }
 
 void Field::collision(sf::RenderWindow *window)
@@ -165,10 +176,10 @@ void Field::bulletCollideEnemy()
 					cout << "Player life: " << spaceship->getHealth() << endl;
 					removeBullet(j);
 							break;
-						}
 				}
-		}
 			}
+		}
+	}
 }
 Field::~Field()
 {

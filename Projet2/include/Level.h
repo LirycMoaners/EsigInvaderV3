@@ -7,14 +7,14 @@ using namespace std;
 class Level
 {
 	public:
-		Level(int nb, int speed, TypeEnemy * type, Boss * boss,string url);
+		Level(int nb, int speed, TypeEnemy * type, Boss * boss,string url, string urlBoss);
 
 		int getNbEnemy();
 		int getSpeedEnemyFire();
 		TypeEnemy* getEnemyType();
-		Boss * setBoss();
+		Boss * getBoss();
 		string getUrlImage();
-
+		string getUrlImageBoss();
 		~Level();
 	private : 
 		int nbEnemy;
@@ -23,6 +23,7 @@ class Level
 		int dommageEnemy;
 		Boss * boss;
 		string urlImage;
+		string urlBoss;
 		TypeEnemy * type;
 };
 

@@ -7,5 +7,6 @@ class Boss : public Enemy
 		Boss(int life, int dommage, sf::Texture&);
 		~Boss();
 		void move();
+		void setPosition(float,float);
 };
 
