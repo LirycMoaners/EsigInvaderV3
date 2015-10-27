@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+	<Levels>
+		<Level id="0">
+			<NbPatern>15</NbPatern>		
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+		<Level id="1">
+			<NbPatern>20</NbPatern>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+		<Level id="2">
+			<NbPatern>20</NbPatern>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+		<Level id="3">
+			<NbPatern>20</NbPatern>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+		<Level id="4">
+			<NbPatern>20</NbPatern>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+		<Level id="5">
+			<NbPatern>20</NbPatern>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+		<Level id="6">
+			<NbPatern>25</NbPatern>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+		<Level id="7">
+			<NbPatern>35</NbPatern>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+		<Level id="8">
+			<NbPatern>35</NbPatern>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+		<Level id="9">
+			<NbPatern>35</NbPatern>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+		<Level id="10">
+			<NbPatern>35</NbPatern>
+			<UrlImageBackground>ressources/</UrlImageBackground>
+		</Level>
+	</Levels>
+</Configuration>

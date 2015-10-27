@@ -7,22 +7,12 @@ using namespace std;
 class Level
 {
 	public:
-		Level(int nb, int speed, TypeEnemy * type, Boss * boss,string url, string urlBoss);
-		int getNbEnemy();
-		int getSpeedEnemyFire();
-		TypeEnemy* getEnemyType();
-		Boss * getBoss();
+		Level(int nbPatern,string url);
+		int getNbPatern();
 		string getUrlImage();
-		string getUrlImageBoss();
 		~Level();
 	private : 
-		int nbEnemy;
-		int healthEnemy;
-		int speedEnemyFire;
-		int dommageEnemy;
-		Boss * boss;
+		int nbPatern;
 		string urlImage;
-		string urlBoss;
-		TypeEnemy * type;
 };
 

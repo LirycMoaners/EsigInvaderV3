@@ -10,8 +10,6 @@ Patern::Patern(tinyxml2::XMLDocument &docPat, int id) : time(0)
 	bool read = false;
 	tinyxml2::XMLHandle hdl(&docPat);
 	patern = hdl.FirstChildElement().FirstChildElement().ToElement();
-	//patern = hdl.FirstChildElement().FirstChildElement().Element();
-	
 	while (read == false && patern){
 		if (patern->Attribute("id") == to_string(id))
 		{

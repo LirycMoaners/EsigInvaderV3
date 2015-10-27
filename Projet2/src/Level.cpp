@@ -1,30 +1,13 @@
 #include "..\include\Level.h"
 
-Level::Level(int nb, int speed, TypeEnemy *type, Boss * boss, string url, string urlBoss)
+Level::Level(int nb, string background )
 {
-	this->nbEnemy = nb;
-	this->speedEnemyFire = speed;
-	this->type = type;
-	this->boss = boss;
-	this->urlImage = url;
-	this->urlBoss = urlBoss;
+	this->nbPatern = nb;
+	this->urlImage = background;
 }
 
-string Level::getUrlImageBoss() {
-	return this->urlBoss;
-}
-
-int Level::getNbEnemy() {
-	return this->nbEnemy;
-}
-TypeEnemy* Level::getEnemyType() {
-	return this->type;
-}
-int Level::getSpeedEnemyFire() {
-	return this->speedEnemyFire;
-}
-Boss *  Level::getBoss() {
-	return this->boss;
+int Level::getNbPatern() {
+	return this->nbPatern;
 }
 string Level::getUrlImage() {
 	return urlImage;

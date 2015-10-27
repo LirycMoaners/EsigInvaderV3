@@ -2,11 +2,11 @@
 
 
 
-TypeEnemy::TypeEnemy(int life, int	dommage, int sizeEscouade)
+TypeEnemy::TypeEnemy(int life, int	dommage, int speedFire)
 {
 	this->life = life;
 	this->dommage = dommage;
-	this->sizeEscouade = sizeEscouade;
+	this->speedFire = speedFire;
 }
 
 
@@ -21,6 +21,6 @@ int TypeEnemy::getLife() {
 int TypeEnemy::getDommage() {
 	return this->dommage;
 }
-int TypeEnemy::getSizeEscouade() {
-	return this->sizeEscouade;
+int TypeEnemy::getSpeedFire() {
+	return this->speedFire;
 }

@@ -9,6 +9,7 @@
 #include "Patern.h"
 #include "Img.h"
 #include "tinyxml2.h"
+#include "Level.h"
 
 using namespace std;
 
@@ -24,6 +25,9 @@ class Game
 		vector<Laser*> lasers;
 		tinyxml2::XMLDocument XMLPatern;
 		vector<Patern> patern;
+		vector<Level*> levelList;
+		vector<TypeEnemy*> typeList;
+		vector<Boss*> bossList;
 		int curPatern;
 
 	public:
@@ -36,6 +40,7 @@ class Game
 		vector<Enemy*> &getEnemies();
 		vector<Laser*> &getLasers();
 		void runGame();
+		void loadingConfiguration();
 		void addRockets(vector<Rocket*>&);
 		void addLasers(vector<Laser*>&);
 		void addEnemies(vector<Enemy*>&);

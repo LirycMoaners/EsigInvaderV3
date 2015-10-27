@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+	<Enemies>
+		<Enemy id="0">
+			<Life>100</Life>
+			<Dommage>10</Dommage>
+			<SpeedEnemyFire>1</SpeedEnemyFire>
+		</Enemy>
+		<Enemy id="1">
+			<Life>200</Life>
+			<Dommage>50</Dommage>
+			<SpeedEnemyFire>2</SpeedEnemyFire>
+		</Enemy>
+		<Enemy id="2">
+			<Life>400</Life>
+			<Dommage>100</Dommage>
+			<SpeedEnemyFire>3</SpeedEnemyFire>
+		</Enemy>
+		<Enemy id="3">
+			<Life>800</Life>
+			<Dommage>200</Dommage>
+			<SpeedEnemyFire>4</SpeedEnemyFire>
+		</Enemy>
+		<Enemy id="4">
+			<Life>1600</Life>
+			<Dommage>400</Dommage>
+			<SpeedEnemyFire>5</SpeedEnemyFire>
+		</Enemy>
+		<Enemy id="5">
+			<Life>3200</Life>
+			<Dommage>700</Dommage>
+			<SpeedEnemyFire>6</SpeedEnemyFire>
+		</Enemy>
+		<Enemy id="6">
+			<Life>4000</Life>
+			<Dommage>1500</Dommage>
+			<SpeedEnemyFire>7</SpeedEnemyFire>
+		</Enemy>
+		<Enemy id="7">
+			<Life>5000</Life>
+			<Dommage>1800</Dommage>
+			<SpeedEnemyFire>8</SpeedEnemyFire>
+		</Enemy>
+		<Enemy id="8">
+			<Life>6000</Life>
+			<Dommage>2000</Dommage>
+			<SpeedEnemyFire>9</SpeedEnemyFire>
+		</Enemy>
+		<Enemy id="9">
+			<Life>7000</Life>
+			<Dommage>2500</Dommage>
+			<SpeedEnemyFire>10</SpeedEnemyFire>
+		</Enemy>
+		<Enemy id="10">
+			<Life>7000</Life>
+			<Dommage>3000</Dommage>
+			<SpeedEnemyFire>11</SpeedEnemyFire>
+		</Enemy>
+	</Enemies>
+</Configuration>

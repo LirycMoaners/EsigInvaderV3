@@ -21,9 +21,87 @@ Game::Game(sf::RenderWindow &window) : c(new Armband()), window(&window), rocket
 	
 	spaceship = Spaceship(img->getSpaceship_t());
 
-	XMLPatern.LoadFile("ressources/patern.xml");
-	patern = { Patern(XMLPatern, 1), Patern(XMLPatern, 2), Patern(XMLPatern, 3) };
+	XMLPatern.LoadFile("conf/patern.xml");
+	if (XMLPatern.ErrorID() == 0)
+		patern = { Patern(XMLPatern, 1), Patern(XMLPatern, 2), Patern(XMLPatern, 3) };
+	else
+		window.close();
+
+	loadingConfiguration();
+	std::cout <<"List level" <<levelList.size() << endl;
+	std::cout <<"List type" <<  typeList.size() << endl;
+	std::cout <<"list boss" <<bossList.size() << endl;
 }
+
+void Game::loadingConfiguration() {
+	tinyxml2::XMLDocument xmlLevel;
+	xmlLevel.LoadFile("conf/conflevel.xml");
+	
+	if (xmlLevel.ErrorID() == 0) {
+		bool read = false;
+		tinyxml2::XMLNode * node = xmlLevel.RootElement();
+		tinyxml2::XMLElement * levelResult = node->FirstChildElement("Levels")->FirstChildElement("Level");
+		cout << "Passage ici" << endl;
+			while (levelResult != NULL) {
+				cout << "Passage ici" << endl;
+				int nbPattern;
+				string background;
+				nbPattern = stoi(levelResult->FirstChildElement("NbPatern")->GetText());
+				background = levelResult->FirstChildElement("UrlImageBackground")->GetText();
+				levelList.push_back(new Level(nbPattern, background));
+				levelResult = levelResult->NextSiblingElement("Level");
+		}
+	}
+	else {
+		std::cout << "Error searching lvl" << std::endl;
+		window->close();
+	}
+	tinyxml2::XMLDocument xmlEnemy;
+	xmlEnemy.LoadFile("conf/confenemy.xml");
+	if (xmlEnemy.ErrorID() == 0) {
+		bool read = false;
+		tinyxml2::XMLNode * nodeEnemy = xmlEnemy.RootElement();
+		tinyxml2::XMLElement * levelEnemy = nodeEnemy->FirstChildElement("Enemies")->FirstChildElement("Enemy");
+		while (levelEnemy) {
+			int life;
+			int dommage;
+			int speedEnemyFire;
+			life = stoi(levelEnemy->FirstChildElement("Life")->GetText());
+			dommage = stoi(levelEnemy->FirstChildElement("Dommage")->GetText());
+			speedEnemyFire = stoi(levelEnemy->FirstChildElement("SpeedEnemyFire")->GetText());
+			typeList.push_back(new TypeEnemy(life, dommage, speedEnemyFire));
+			levelEnemy = levelEnemy->NextSiblingElement("Enemy");
+		}
+	}
+	else {
+		std::cout << "Error searching enemies" << std::endl;
+		window->close();
+	}
+
+	tinyxml2::XMLDocument xmlboss;
+	xmlboss.LoadFile("conf/confboss.xml");
+	if (xmlboss.ErrorID() == 0) {
+		bool read = false;
+		tinyxml2::XMLNode * nodeEnemy = xmlboss.RootElement();
+		tinyxml2::XMLElement * levelBoss = nodeEnemy->FirstChildElement("Bosses")->FirstChildElement("Boss");
+		while (levelBoss) {
+			int life;
+			int dommage;
+			int speedEnemyFire;
+			life = stoi(levelBoss->FirstChildElement("Life")->GetText());
+			dommage = stoi(levelBoss->FirstChildElement("Dommage")->GetText());
+			speedEnemyFire = stoi(levelBoss->FirstChildElement("SpeedEnemyFire")->GetText());
+			bossList.push_back(new Boss(life, dommage, speedEnemyFire,img->getBoss_t(),sf::Vector2f(25,25)));
+			levelBoss = levelBoss->NextSiblingElement("Boss");
+		}
+	}
+	else {
+		std::cout << "Error searching enemies" << std::endl;
+		window->close();
+	}
+
+}
+
 
 void Game::runGame()
 {
@@ -217,10 +295,10 @@ Game::~Game()
 		delete enemies.at(i);
 	}
 	enemies.~vector();
-	for (int i = 0; i < patern.size(); i++)
+	/*for (int i = 0; i < patern.size(); i++)
 	{
-		delete &patern.at(i);
-	}
+		delete patern.at(i);
+	}*/
 	patern.~vector();
 	spaceship.~Spaceship();
 	c->~Control();

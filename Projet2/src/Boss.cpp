@@ -1,10 +1,11 @@
 #include "..\include\Boss.h"
 
-Boss::Boss(int life, int dommage, sf::Texture& texture, sf::Vector2f pos) : Enemy(texture, pos)
+Boss::Boss(int life, int dommage, int speed,sf::Texture& texture, sf::Vector2f pos) : Enemy(texture, pos)
 {
 	this->health = life;
 	this->dommage = dommage;
 	this->boss = true;
+	this->speed = speed;
 }
 
 void Boss::move(){
