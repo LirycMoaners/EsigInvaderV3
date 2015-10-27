@@ -2,7 +2,7 @@
 
 #include "Weapon.h"
 #include "SpaceObject.h"
-#include "Global.h"
+
 class Spaceship: public SpaceObject
 {
 	private:
@@ -12,6 +12,7 @@ class Spaceship: public SpaceObject
 
 	public:
 		Spaceship(sf::Texture&);
+		Spaceship();
 		sf::Sprite &getSprite();
 		Weapon &getWeapon();
 		void move(int);

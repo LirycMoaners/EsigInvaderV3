@@ -1,10 +1,10 @@
 #pragma once
 #include "Enemy.h"
-#include "Global.h"
+
 class Boss : public Enemy
 {
 	public:
-		Boss(int life, int dommage, sf::Texture&);
+		Boss(int life, int dommage, sf::Texture&, sf::Vector2f);
 		~Boss();
 		void move();
 		void setPosition(float,float);

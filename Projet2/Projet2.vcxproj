@@ -137,17 +137,19 @@
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\DataCollector.cpp" />
     <ClCompile Include="src\Enemy.cpp" />
-    <ClCompile Include="src\GameWindows.cpp" />
+    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Keyboard.cpp" />
     <ClCompile Include="src\Img.cpp" />
+    <ClCompile Include="src\Laser.cpp" />
     <ClCompile Include="src\Level.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\MainMenu.cpp" />
+    <ClCompile Include="src\Menu.cpp" />
+    <ClCompile Include="src\Mouse.cpp" />
+    <ClCompile Include="src\Patern.cpp" />
+    <ClCompile Include="src\Rocket.cpp" />
     <ClCompile Include="src\SpaceObject.cpp" />
     <ClCompile Include="src\Spaceship.cpp" />
-    <ClCompile Include="src\Field.cpp" />
     <ClCompile Include="src\tinyxml2.cpp" />
-    <ClCompile Include="src\TypeEnemy.cpp" />
     <ClCompile Include="src\Weapon.cpp" />
     <ClCompile Include="src\Windows.cpp" />
   </ItemGroup>
@@ -158,24 +160,30 @@
     <ClInclude Include="include\Control.h" />
     <ClInclude Include="include\DataCollector.h" />
     <ClInclude Include="include\Enemy.h" />
-    <ClInclude Include="include\GameWindows.h" />
-    <ClInclude Include="include\Global.h" />
+    <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\Keyboard.h" />
     <ClInclude Include="include\Img.h" />
+    <ClInclude Include="include\Laser.h" />
     <ClInclude Include="include\Level.h" />
-    <ClInclude Include="include\MainMenu.h" />
+    <ClInclude Include="include\Menu.h" />
+    <ClInclude Include="include\Mouse.h" />
+    <ClInclude Include="include\Patern.h" />
+    <ClInclude Include="include\Rocket.h" />
     <ClInclude Include="include\SpaceObject.h" />
     <ClInclude Include="include\Spaceship.h" />
-    <ClInclude Include="include\Field.h" />
     <ClInclude Include="include\tinyxml2.h" />
-    <ClInclude Include="include\TypeEnemy.h" />
     <ClInclude Include="include\Weapon.h" />
     <ClInclude Include="include\Windows.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\Cyril\Downloads\TestSFML\Release\res\img\background.jpg" />
     <Image Include="ressources\bullet.png" />
+    <Image Include="ressources\enemy.png" />
+    <Image Include="ressources\laser.png" />
     <Image Include="ressources\spaceship.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="ressources\patern.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

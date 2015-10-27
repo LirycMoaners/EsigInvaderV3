@@ -1,31 +1,26 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "Global.h"
+
 using namespace std;
 class Windows
 {
-public:
-	Windows();
-	Windows(int width, int height, string nameWindows, bool available);
-	~Windows();
-	void setWidth(int);
-	void setHeight(int);
-	void setTitle(string);
-	virtual void runWindows() = 0;
-private : 
-	
-	
-	
+	public:
+		Windows();
+		Windows(int width, int height, string nameWindows);
+		~Windows();
+		void setWidth(int);
+		void setHeight(int);
+		void setTitle(string);
+		virtual void runWindows() = 0;
 
-protected:
-	int width;
-	int height;
-	string title;
-	sf::RenderWindow * window;
-	sf::Clock clk;
-	int fpsCount = 0;
-	int fpsSwitch = 200;
-	bool available;
+	protected:
+		int width;
+		int height;
+		string title;
+		sf::RenderWindow *window;
+		//sf::Clock clk;
+		//int fpsCount = 0;
+		//int fpsSwitch = 200;
 };
 

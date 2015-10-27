@@ -1,22 +1,30 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "SpaceObject.h"
-#include "Weapon.h"
-#include<iostream>
-#include "Global.h"
+#include <iostream>
+#include "Laser.h"
 
 class Enemy : public SpaceObject
 {
 	protected:
 		int dommage;
 		bool moveDown;
-		Weapon weapon;
+		sf::Vector2i anim;
+		int speed = 10;
+		int laserQty;
+		int rate;
+		int laserSpeed;
+		int compteurEnemy;
 		bool boss = false;
 
 	public:
-		Enemy(float, float, sf::Texture&);
+		//Enemy(float, float, sf::Texture&);
+		Enemy(sf::Texture&, sf::Vector2f);
+		Enemy(sf::Texture&, sf::Vector2f, int, int);
 		int getDommage();
-		Weapon &getWeapon();
+		void switchFps();
+		vector<Laser*> shoot(sf::Texture&);
+		void setLvl(int);
 		void move();
 		bool getType();
 		~Enemy();

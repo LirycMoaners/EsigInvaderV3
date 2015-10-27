@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Spaceship.h"
 #include "Control.h"
-#include "Global.h"
 
 class Keyboard : public Control
 {
@@ -13,7 +12,8 @@ class Keyboard : public Control
 		Keyboard();
 		bool getStatus();
 		void runHub();
-		void move(Spaceship*);
-		vector<Bullet*> shoot(sf::Texture&, Spaceship*);
+		void move(Spaceship&);
+		vector<Rocket*> shoot(sf::Texture&, Spaceship&);
+		bool quit();
 		~Keyboard();
 };

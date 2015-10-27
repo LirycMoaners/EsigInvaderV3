@@ -2,13 +2,12 @@
 #include<string>
 #include "Boss.h"
 #include "TypeEnemy.h"
-#include "Global.h"
+
 using namespace std;
 class Level
 {
 	public:
 		Level(int nb, int speed, TypeEnemy * type, Boss * boss,string url, string urlBoss);
-
 		int getNbEnemy();
 		int getSpeedEnemyFire();
 		TypeEnemy* getEnemyType();

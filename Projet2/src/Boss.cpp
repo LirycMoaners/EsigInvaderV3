@@ -1,6 +1,6 @@
 #include "..\include\Boss.h"
 
-Boss::Boss(int life, int dommage, sf::Texture& texture) : Enemy(5,5,texture)
+Boss::Boss(int life, int dommage, sf::Texture& texture, sf::Vector2f pos) : Enemy(texture, pos)
 {
 	this->health = life;
 	this->dommage = dommage;
@@ -8,17 +8,16 @@ Boss::Boss(int life, int dommage, sf::Texture& texture) : Enemy(5,5,texture)
 }
 
 void Boss::move(){
-
 	sprite.move(-speed, 0);
 
 	//Change direction when enemy it the border of the window
-	if (sprite.getPosition().y < 0 || (sprite.getPosition().y + sprite.getTextureRect().height) > WINDOW_HEIGHT)
+	/*if (sprite.getPosition().y < 0 || (sprite.getPosition().y + sprite.getTextureRect().height) > WINDOW_HEIGHT)
 		moveDown = !moveDown;
 
 	if (moveDown)
 		sprite.move(0, speed);
 	else
-		sprite.move(0, -speed);
+		sprite.move(0, -speed);*/
 }
 
 void Boss::setPosition(float x, float y) {
@@ -32,7 +31,6 @@ void Boss::setPosition(float x, float y) {
 	else {
 		moveDown = true;
 	}
-
 }
 
 Boss::~Boss()

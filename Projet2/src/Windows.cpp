@@ -2,7 +2,7 @@
 
 
 
-Windows::Windows(int width, int height, string nameWindows, bool available)
+Windows::Windows(int width, int height, string nameWindows)
 {
 	this->setWidth(width);
 	this->setHeight(height);
@@ -34,5 +34,5 @@ void Windows::setHeight(int h) {
 
 Windows::~Windows()
 {
-
+	window->~RenderWindow();
 }

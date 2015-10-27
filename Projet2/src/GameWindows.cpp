@@ -57,7 +57,7 @@ void GameWindows::loadData(Img* img) {
 					Boss * b = new Boss(lifeBoss, dommageBoss, img->getEnemy_t());
 					TypeEnemy * type = new TypeEnemy(life, dommage, sizeEscouad);
 					Level * l = new Level(nb, speed, type, b, url,urlboss);
-					this->levels.push_back(l);
+ 					this->levels.push_back(l);
 					elementLevel = elementLevel->NextSiblingElement("Level");
 					elementEnemy = elementEnemy->NextSiblingElement("Enemy");
 					elementBoss = elementBoss->NextSiblingElement("Boss");

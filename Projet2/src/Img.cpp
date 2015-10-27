@@ -3,21 +3,25 @@
 
 Img::Img()
 {
-	spaceship_t.loadFromFile("ressources/spaceship.png");
-	bullet_t.loadFromFile("ressources/bullet.png");
 	background_t.loadFromFile("ressources/background.jpg");
+	spaceship_t.loadFromFile("ressources/spaceship.png");
+	rocket_t.loadFromFile("ressources/rocket.png");
 	enemy_t.loadFromFile("ressources/enemy.png");
+	laser_t.loadFromFile("ressources/laser.png");
 }
 
 sf::Texture &Img::getSpaceship_t()
 {
 	return spaceship_t;
 }
-sf::Texture &Img::getBullet_t()
+sf::Texture &Img::getRocket_t()
 {
-	return bullet_t;
+	return rocket_t;
 }
-
+sf::Texture &Img::getLaser_t()
+{
+	return laser_t;
+}
 sf::Texture &Img::getBackground_t()
 {
 	return background_t;

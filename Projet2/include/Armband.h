@@ -13,9 +13,8 @@
 #include <direct.h>
 #include "myo/myo.hpp"
 #include "DataCollector.h"
-#include "Global.h"
-
-
+#include "Laser.h"
+#include "Rocket.h"
 
 class Armband : public Control
 {
@@ -29,9 +28,12 @@ private:
 public:
 	Armband();
 	void runHub();
-	void move(Spaceship*);
-	vector<Bullet*> shoot(sf::Texture&, Spaceship*);
+	void move(Spaceship&);
+	vector<Rocket*> shoot(sf::Texture&, Spaceship&);
+	string exec(const char*);
 	~Armband();
 	bool getStatus();
+	bool quit();
 };
+
 

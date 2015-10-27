@@ -1,6 +1,5 @@
 #pragma once
 #include "SFML/Graphics.hpp"
-#include "Global.h"
 
 class SpaceObject
 {
@@ -10,6 +9,7 @@ class SpaceObject
 		int speed;
 
 	public:
+		SpaceObject();
 		SpaceObject(sf::Texture &t,int,int);
 		~SpaceObject();
 

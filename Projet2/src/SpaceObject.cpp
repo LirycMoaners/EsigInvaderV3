@@ -3,13 +3,13 @@
 SpaceObject::SpaceObject(sf::Texture &t,int health, int speed)
 {
 	//Create graphical object
-	sprite.setTexture(t);
+	this->sprite.setTexture(t);
 
 	//Set properties values
 	this->health = health;
 	this->speed = speed;
 }
-
+SpaceObject::SpaceObject() {}
 void SpaceObject::takeDommage(int dommage) {
 	this->health -= dommage;
 }
