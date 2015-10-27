@@ -21,16 +21,25 @@ Game::Game(sf::RenderWindow &window) : c(new Armband()), window(&window), rocket
 	
 	spaceship = Spaceship(img->getSpaceship_t());
 
+	loadingConfiguration();
+	std::cout << "List level" << levelList.size() << endl;
+	std::cout << "List type" << typeList.size() << endl;
+	std::cout << "list boss" << bossList.size() << endl;
+
+
 	XMLPatern.LoadFile("conf/patern.xml");
+	tinyxml2::XMLNode * node = XMLPatern.RootElement();
+	if (node != NULL) {
+		nbPaternAvailable = stoi(node->FirstChildElement("NbPaternAvailable")->GetText());
+	}
 	if (XMLPatern.ErrorID() == 0)
-		patern = { Patern(XMLPatern, 1), Patern(XMLPatern, 2), Patern(XMLPatern, 3) };
+		for (int i = 0; i < levelList.at(curLevel)->getNbPatern(); i++) {
+			patern.push_back(Patern(XMLPatern, (rand() % 3)));
+		}
 	else
 		window.close();
 
-	loadingConfiguration();
-	std::cout <<"List level" <<levelList.size() << endl;
-	std::cout <<"List type" <<  typeList.size() << endl;
-	std::cout <<"list boss" <<bossList.size() << endl;
+	
 }
 
 void Game::loadingConfiguration() {

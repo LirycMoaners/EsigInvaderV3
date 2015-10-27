@@ -29,6 +29,8 @@ class Game
 		vector<TypeEnemy*> typeList;
 		vector<Boss*> bossList;
 		int curPatern;
+		int nbPaternAvailable;
+		int curLevel = 0;
 
 	public:
 		Control *c;

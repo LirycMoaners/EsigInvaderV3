@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-	/*srand(time(NULL));	
+	/*;	
 	bool available = false;
 	string value = exec("tasklist /FI \"imagename eq Myo Connect.exe\" /svc");
 	if (value.find("Myo Connect.exe") != -1) {
@@ -18,7 +18,7 @@ int main()
 	string title = "EsigInvaders";
 	GameWindows game(WINDOW_WIDTH, WINDOW_HEIGHT, title,available);
 	game.runWindows();*/
-
+	srand(time(NULL));
 	Menu menu = Menu(1024,700,"EsigInvader");
 	menu.runWindows();
 

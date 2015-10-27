@@ -1,5 +1,6 @@
 <?xml version = "1.0" encoding="UTF-8" standalone="yes" ?>
 <paterns>
+	<NbPaternAvailable>3</NbPaternAvailable>
 	<patern id = "1" typeEnemy = "1" lvlEnemy = "1" duree = "1000">
 		<lignes>
 			<ligne>
