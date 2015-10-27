@@ -2,7 +2,7 @@
 
 Weapon::Weapon(bool enemy)
 {
-	setLvl(1);
+	setLvl(5);
 	enemyWeapon = enemy; //Weapon owner by an enemy or not
 }
 

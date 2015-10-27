@@ -29,13 +29,16 @@ Game::Game(sf::RenderWindow &window) : c(new Armband()), window(&window), rocket
 
 	XMLPatern.LoadFile("conf/patern.xml");
 	tinyxml2::XMLNode * node = XMLPatern.RootElement();
-	if (node != NULL) {
-		nbPaternAvailable = stoi(node->FirstChildElement("NbPaternAvailable")->GetText());
-	}
-	if (XMLPatern.ErrorID() == 0)
-		for (int i = 0; i < levelList.at(curLevel)->getNbPatern(); i++) {
-			patern.push_back(Patern(XMLPatern, (rand() % 3)));
+	
+	if (XMLPatern.ErrorID() == 0) {
+		if (node != NULL) {
+			nbPaternAvailable = stoi(node->FirstChildElement("NbPaternAvailable")->GetText());
+			for (int i = 0; i < levelList.at(curLevel)->getNbPatern(); i++) {
+				int number = rand() % nbPaternAvailable + 1;
+				patern.push_back(Patern(XMLPatern, number));
+			}
 		}
+	}
 	else
 		window.close();
 
