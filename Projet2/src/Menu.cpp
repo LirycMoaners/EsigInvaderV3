@@ -7,11 +7,21 @@ Menu::Menu(int width, int height, string title) : Windows(width, height, title)
 	sf::Vector2f buttonSize(300, 49);
 
 	//Menu buttons
+
+	// Création du bouton Start Game
+
+	// Définition de la police
 	startText.setFont(arial);
+	// Définition de la taille
 	startText.setCharacterSize(25);
+	// Définition de la chaine de caractère
 	startText.setString("Start Game");
+	// Définition de la couleur
 	startText.setColor(sf::Color::Blue);
+	// Définition de la position
 	startText.setPosition(WINDOW_WIDTH / 2 - startText.getGlobalBounds().width / 2, 400);
+	
+	// Définition du rectangle autour du texte
 	buttonStart.setFillColor(sf::Color::Transparent);
 	buttonStart.setOutlineColor(sf::Color::Blue);
 	buttonStart.setOutlineThickness(2);
@@ -19,11 +29,17 @@ Menu::Menu(int width, int height, string title) : Windows(width, height, title)
 		startText.getPosition().y - (buttonSize.y - startText.getLocalBounds().height) / 3));
 	buttonStart.setSize(buttonSize);
 
+	// Définition de la police
 	quitText.setFont(arial);
+	// Définition de la taille
 	quitText.setCharacterSize(25);
+	// Définition de la chaine de caractère
 	quitText.setString("Quit Game");
+	// Définition de la couleur 
 	quitText.setColor(sf::Color::Blue);
+	// Définition de la position 
 	quitText.setPosition(WINDOW_WIDTH / 2 - quitText.getGlobalBounds().width / 2, 500);
+	// Définition du rectangle autour du texte
 	buttonQuit.setFillColor(sf::Color::Transparent);
 	buttonQuit.setOutlineColor(sf::Color::Blue);
 	buttonQuit.setOutlineThickness(2);

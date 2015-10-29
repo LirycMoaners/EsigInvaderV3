@@ -2,7 +2,7 @@
 
 Weapon::Weapon(bool enemy)
 {
-	setLvl(5);
+	setLvl(1);
 	enemyWeapon = enemy; //Weapon owner by an enemy or not
 }
 
@@ -22,7 +22,8 @@ vector<Rocket*> Weapon::shoot(sf::Texture &texture, sf::Sprite s)
 	vector<Rocket*> b;
 	
 	for (int i = 1; i <= rocketQty; i++)
-		b.push_back(new Rocket(texture, sf::Vector2f(s.getGlobalBounds().left, s.getGlobalBounds().top - 25 + 97 * i / (rocketQty + 1) - texture.getSize().y / 2), speed));
+		//b.push_back(new Rocket(texture, sf::Vector2f(s.getGlobalBounds().left, s.getGlobalBounds().top - 25 + 97 * i / (rocketQty + 1) - texture.getSize().y / 2), speed));
+		b.push_back(new Rocket(texture, sf::Vector2f(s.getPosition().x, s.getPosition().y + s.getTextureRect().height * i / (rocketQty + 1) - texture.getSize().y / 2), speed));
 
 	return b;
 }

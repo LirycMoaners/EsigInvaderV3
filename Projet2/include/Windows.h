@@ -19,8 +19,5 @@ class Windows
 		int height;
 		string title;
 		sf::RenderWindow *window;
-		//sf::Clock clk;
-		//int fpsCount = 0;
-		//int fpsSwitch = 200;
 };
 
