@@ -10,17 +10,19 @@ Patern::Patern(tinyxml2::XMLDocument &docPat, int id) : time(0)
 	bool read = false;
 	tinyxml2::XMLHandle hdl(&docPat);
 	patern = hdl.FirstChildElement().FirstChildElement("patern").ToElement();
-	while (read == false && patern){
-		if (patern->Attribute("id") == to_string(id))
-		{
-			typeEnemy = stoi(patern->Attribute("typeEnemy"));
-			lvlEnemy = stoi(patern->Attribute("lvlEnemy"));
-			duree = stoi(patern->Attribute("duree"));
-			patern = patern->FirstChildElement();
-			read = true;
+	if (patern != NULL) {
+		while (read == false && patern) {
+			if (patern->Attribute("id") == to_string(id))
+			{
+				typeEnemy = stoi(patern->Attribute("typeEnemy"));
+				lvlEnemy = stoi(patern->Attribute("lvlEnemy"));
+				duree = stoi(patern->Attribute("duree"));
+				patern = patern->FirstChildElement();
+				read = true;
+			}
+			else
+				patern = patern->NextSiblingElement();
 		}
-		else
-			patern = patern->NextSiblingElement();
 	}
 }
 

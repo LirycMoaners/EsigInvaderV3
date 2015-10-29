@@ -6,9 +6,9 @@ Game::Game(sf::RenderWindow &window) : c(new Armband()), window(&window), rocket
 {
 	if (c->getStatus() == false)
 		c = new Keyboard();
-
+	// Chargement de la texture pour les textes 
 	arial.loadFromFile("ressources/arial.ttf");
-
+	// Chargement de l'objets permettant le chargement des images
 	img = new Img();
 
 	//Create graphical object for the background
@@ -20,95 +20,105 @@ Game::Game(sf::RenderWindow &window) : c(new Armband()), window(&window), rocket
 	background.setPosition(0, 0);
 	
 	spaceship = Spaceship(img->getSpaceship_t());
-
+	// Chargement des différents fichiers de configuration
 	loadingConfiguration();
-	std::cout << "List level" << levelList.size() << endl;
-	std::cout << "List type" << typeList.size() << endl;
-	std::cout << "list boss" << bossList.size() << endl;
 
-
+	// Chargement des différents partern 
 	XMLPatern.LoadFile("conf/patern.xml");
+	// Récupération du noeud root
 	tinyxml2::XMLNode * node = XMLPatern.RootElement();
 	
 	if (XMLPatern.ErrorID() == 0) {
 		if (node != NULL) {
+			// Récupération du nombre de patern
 			nbPaternAvailable = stoi(node->FirstChildElement("NbPaternAvailable")->GetText());
+			// Génération en fonction du nombre de patern disponible une liste aléatoire de patern d'ennemi
 			for (int i = 0; i < levelList.at(curLevel)->getNbPatern(); i++) {
 				int number = rand() % nbPaternAvailable + 1;
 				patern.push_back(Patern(XMLPatern, number));
 			}
 		}
 	}
-	else
+	else {
+		// SI une erreur on ferme le programe
 		window.close();
-
+		std::cerr << "Failed to open the file patern.xml in conf's folder. Error ID : " << XMLPatern.ErrorID() << endl;
+	}
 	
 }
 
 void Game::loadingConfiguration() {
 	tinyxml2::XMLDocument xmlLevel;
+	// Chargement de la configuration des niveaux
 	xmlLevel.LoadFile("conf/conflevel.xml");
-	
 	if (xmlLevel.ErrorID() == 0) {
 		bool read = false;
 		tinyxml2::XMLNode * node = xmlLevel.RootElement();
+		// Récupération de la première balise Level
 		tinyxml2::XMLElement * levelResult = node->FirstChildElement("Levels")->FirstChildElement("Level");
-		cout << "Passage ici" << endl;
 			while (levelResult != NULL) {
-				cout << "Passage ici" << endl;
 				int nbPattern;
 				string background;
+				// Récupération du Nb de patern permettant le niveau
 				nbPattern = stoi(levelResult->FirstChildElement("NbPatern")->GetText());
 				background = levelResult->FirstChildElement("UrlImageBackground")->GetText();
 				levelList.push_back(new Level(nbPattern, background));
+				// Passage à la balise Level Suivante
 				levelResult = levelResult->NextSiblingElement("Level");
 		}
 	}
 	else {
 		std::cout << "Error searching lvl" << std::endl;
+		std::cerr << "Failed to open the file conflevel.xml in conf's folder. Error ID : " << xmlLevel.ErrorID() << endl;
 		window->close();
 	}
+
+	// Chargement de la configuration des ennemies
 	tinyxml2::XMLDocument xmlEnemy;
 	xmlEnemy.LoadFile("conf/confenemy.xml");
 	if (xmlEnemy.ErrorID() == 0) {
 		bool read = false;
 		tinyxml2::XMLNode * nodeEnemy = xmlEnemy.RootElement();
+		// Récupération de la première balise Enemy disponible;
 		tinyxml2::XMLElement * levelEnemy = nodeEnemy->FirstChildElement("Enemies")->FirstChildElement("Enemy");
 		while (levelEnemy) {
-			int life;
-			int dommage;
-			int speedEnemyFire;
-			life = stoi(levelEnemy->FirstChildElement("Life")->GetText());
-			dommage = stoi(levelEnemy->FirstChildElement("Dommage")->GetText());
-			speedEnemyFire = stoi(levelEnemy->FirstChildElement("SpeedEnemyFire")->GetText());
+			// Récupération et conversion des champs 
+			int life = stoi(levelEnemy->FirstChildElement("Life")->GetText());
+			int dommage = stoi(levelEnemy->FirstChildElement("Dommage")->GetText());
+			int speedEnemyFire = stoi(levelEnemy->FirstChildElement("SpeedEnemyFire")->GetText());
+			// Ajout du type d'ennemi dans la liste
 			typeList.push_back(new TypeEnemy(life, dommage, speedEnemyFire));
+			// Passage à la balise suivante
 			levelEnemy = levelEnemy->NextSiblingElement("Enemy");
 		}
 	}
 	else {
 		std::cout << "Error searching enemies" << std::endl;
+		std::cerr << "Failed to open the file confenemy.xml in conf's folder. Error ID : " << xmlEnemy.ErrorID() << endl;
 		window->close();
 	}
-
+	// Chargement de la configuration des boss 
 	tinyxml2::XMLDocument xmlboss;
 	xmlboss.LoadFile("conf/confboss.xml");
 	if (xmlboss.ErrorID() == 0) {
 		bool read = false;
 		tinyxml2::XMLNode * nodeEnemy = xmlboss.RootElement();
+		// Positionnement de l'element à la première balise Boss disponible;
 		tinyxml2::XMLElement * levelBoss = nodeEnemy->FirstChildElement("Bosses")->FirstChildElement("Boss");
 		while (levelBoss) {
-			int life;
-			int dommage;
-			int speedEnemyFire;
-			life = stoi(levelBoss->FirstChildElement("Life")->GetText());
-			dommage = stoi(levelBoss->FirstChildElement("Dommage")->GetText());
-			speedEnemyFire = stoi(levelBoss->FirstChildElement("SpeedEnemyFire")->GetText());
+			// Récupération de tout les champs disponible
+			int life = stoi(levelBoss->FirstChildElement("Life")->GetText());
+			int dommage = stoi(levelBoss->FirstChildElement("Dommage")->GetText());
+			int speedEnemyFire = stoi(levelBoss->FirstChildElement("SpeedEnemyFire")->GetText());
+			// Ajout d'un nouveau boss à la liste 
 			bossList.push_back(new Boss(life, dommage, speedEnemyFire,img->getBoss_t(),sf::Vector2f(25,25)));
+			// Passage à la balise suivante
 			levelBoss = levelBoss->NextSiblingElement("Boss");
 		}
 	}
 	else {
 		std::cout << "Error searching enemies" << std::endl;
+		std::cerr << "Failed to open the file confboss.xml in conf's folder. Error ID : " << xmlboss.ErrorID() << endl;
 		window->close();
 	}
 
