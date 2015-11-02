@@ -8,7 +8,8 @@ Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Textur
 	this->laserSpeed = LaserSpeed;
 	this->speed = speed;
 	this->rate = rate;
-
+	
+	sprite.setPosition(sprite.getPosition().x - sprite.getGlobalBounds().width - 100, sprite.getPosition().y);
 	sprite.setTextureRect(sf::IntRect(rand() % 4 * 131, 0, 131, 189));
 }
 void Boss::move(){

@@ -199,7 +199,7 @@ void Game::addBoss() {
 	
 	//Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Texture& texture, sf::Vector2f pos)
 	TypeEnemy * type = res.getConfigXML()->getBossList().at(curLevel);
-	sf::Vector2f pos(window->getSize().x - res.getImg()->getBoss_t().getSize().x, window->getSize().y / 2);
+	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
 	this->boss = new Boss(type->getLife(), type->getDommage(), type->getLaserSpeed(), type->getSpeed(), type->getRate(), res.getImg()->getBoss_t(),pos);
 }
 
