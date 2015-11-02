@@ -18,6 +18,72 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Armband.cpp" />
+    <ClCompile Include="src\Boss.cpp" />
+    <ClCompile Include="src\Bullet.cpp" />
+    <ClCompile Include="src\ConfigXml.cpp" />
+    <ClCompile Include="src\DataCollector.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Hub.cpp" />
+    <ClCompile Include="src\Keyboard.cpp" />
+    <ClCompile Include="src\Img.cpp" />
+    <ClCompile Include="src\Laser.cpp" />
+    <ClCompile Include="src\Level.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Menu.cpp" />
+    <ClCompile Include="src\Mouse.cpp" />
+    <ClCompile Include="src\Patern.cpp" />
+    <ClCompile Include="src\Resources.cpp" />
+    <ClCompile Include="src\Rocket.cpp" />
+    <ClCompile Include="src\SpaceObject.cpp" />
+    <ClCompile Include="src\Spaceship.cpp" />
+    <ClCompile Include="src\tinyxml2.cpp" />
+    <ClCompile Include="src\TypeEnemy.cpp" />
+    <ClCompile Include="src\Weapon.cpp" />
+    <ClCompile Include="src\Windows.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Armband.h" />
+    <ClInclude Include="include\Boss.h" />
+    <ClInclude Include="include\Bullet.h" />
+    <ClInclude Include="include\ConfigXml.h" />
+    <ClInclude Include="include\Control.h" />
+    <ClInclude Include="include\DataCollector.h" />
+    <ClInclude Include="include\Enemy.h" />
+    <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\Hub.h" />
+    <ClInclude Include="include\Keyboard.h" />
+    <ClInclude Include="include\Img.h" />
+    <ClInclude Include="include\Laser.h" />
+    <ClInclude Include="include\Level.h" />
+    <ClInclude Include="include\Menu.h" />
+    <ClInclude Include="include\Mouse.h" />
+    <ClInclude Include="include\Patern.h" />
+    <ClInclude Include="include\Resources.h" />
+    <ClInclude Include="include\Rocket.h" />
+    <ClInclude Include="include\SpaceObject.h" />
+    <ClInclude Include="include\Spaceship.h" />
+    <ClInclude Include="include\tinyxml2.h" />
+    <ClInclude Include="include\TypeEnemy.h" />
+    <ClInclude Include="include\Weapon.h" />
+    <ClInclude Include="include\Windows.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ressources\background.jpg" />
+    <Image Include="ressources\bonus_malus.png" />
+    <Image Include="ressources\boss.png" />
+    <Image Include="ressources\bullet.png" />
+    <Image Include="ressources\enemy.png" />
+    <Image Include="ressources\explosion.png" />
+    <Image Include="ressources\home.png" />
+    <Image Include="ressources\laser.png" />
+    <Image Include="ressources\spaceship.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="ressources\patern.xml" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CCCE26DA-39AF-46E2-B07F-A146F3D0FF62}</ProjectGuid>
     <RootNamespace>Projet2</RootNamespace>
@@ -27,7 +93,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -131,62 +197,6 @@
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;myo64.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Armband.cpp" />
-    <ClCompile Include="src\Boss.cpp" />
-    <ClCompile Include="src\Bullet.cpp" />
-    <ClCompile Include="src\DataCollector.cpp" />
-    <ClCompile Include="src\Enemy.cpp" />
-    <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\Keyboard.cpp" />
-    <ClCompile Include="src\Img.cpp" />
-    <ClCompile Include="src\Laser.cpp" />
-    <ClCompile Include="src\Level.cpp" />
-    <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\Menu.cpp" />
-    <ClCompile Include="src\Mouse.cpp" />
-    <ClCompile Include="src\Patern.cpp" />
-    <ClCompile Include="src\Rocket.cpp" />
-    <ClCompile Include="src\SpaceObject.cpp" />
-    <ClCompile Include="src\Spaceship.cpp" />
-    <ClCompile Include="src\tinyxml2.cpp" />
-    <ClCompile Include="src\TypeEnemy.cpp" />
-    <ClCompile Include="src\Weapon.cpp" />
-    <ClCompile Include="src\Windows.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\Armband.h" />
-    <ClInclude Include="include\Boss.h" />
-    <ClInclude Include="include\Bullet.h" />
-    <ClInclude Include="include\Control.h" />
-    <ClInclude Include="include\DataCollector.h" />
-    <ClInclude Include="include\Enemy.h" />
-    <ClInclude Include="include\Game.h" />
-    <ClInclude Include="include\Keyboard.h" />
-    <ClInclude Include="include\Img.h" />
-    <ClInclude Include="include\Laser.h" />
-    <ClInclude Include="include\Level.h" />
-    <ClInclude Include="include\Menu.h" />
-    <ClInclude Include="include\Mouse.h" />
-    <ClInclude Include="include\Patern.h" />
-    <ClInclude Include="include\Rocket.h" />
-    <ClInclude Include="include\SpaceObject.h" />
-    <ClInclude Include="include\Spaceship.h" />
-    <ClInclude Include="include\tinyxml2.h" />
-    <ClInclude Include="include\TypeEnemy.h" />
-    <ClInclude Include="include\Weapon.h" />
-    <ClInclude Include="include\Windows.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="C:\Users\Cyril\Downloads\TestSFML\Release\res\img\background.jpg" />
-    <Image Include="ressources\bullet.png" />
-    <Image Include="ressources\enemy.png" />
-    <Image Include="ressources\laser.png" />
-    <Image Include="ressources\spaceship.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xml Include="ressources\patern.xml" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

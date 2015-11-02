@@ -16,10 +16,8 @@ class Bullet
 	public:
 		//Bullet()
 		Bullet();
-		///Bullet(sf::Texture&, sf::Vector2f, int, bool enemy);
-		//Bullet(sf::Texture&, sf::Vector2f, int,int)
-		Bullet(sf::Texture&, sf::Vector2f, int,int);
-		//Bullet(const Bullet&)
+		//Bullet(sf::Texture&, sf::Vector2f, int, bool enemy);
+		Bullet(sf::Texture&, int,int,sf::Sprite, int,int, float = 1);
 		Bullet(const Bullet&);
 
 		sf::Sprite &getSprite();

@@ -1,11 +1,11 @@
 #include "Menu.h"
 #include "Mouse.h"
 
-Menu::Menu(int width, int height, string title) : Windows(width, height, title)
+Menu::Menu(int width, int height, string title, Resources &res) : Windows(width, height, title)
 {
 	arial.loadFromFile("ressources/arial.ttf");
 	sf::Vector2f buttonSize(300, 49);
-
+	this->res = res;
 	//Menu buttons
 
 	// Création du bouton Start Game
@@ -72,7 +72,7 @@ void Menu::runWindows()
 
 			//Button clicked
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				Game(*window).runGame();
+				Game(*window,res).runGame();
 		}
 		else
 		{

@@ -7,9 +7,7 @@ class Rocket : public Bullet
 	public:
 		//Rocket()
 		Rocket();
-		//Rocket(sf::Texture&, sf::Vector2f, int, int)
-		Rocket(sf::Texture&, sf::Vector2f, int, int);
-		// selectionne les images par rapport au movement
+		Rocket(sf::Texture&,int,int, sf::Sprite, int, int);
 		void switchFps();
 		~Rocket();
 };

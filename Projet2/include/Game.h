@@ -10,6 +10,7 @@
 #include "Img.h"
 #include "tinyxml2.h"
 #include "Level.h"
+#include "Resources.h"
 
 
 
@@ -38,9 +39,7 @@ class Game
 		/*
 			Configuration XML 			
 		*/
-		vector<Level*> levelList;
-		vector<TypeEnemy*> typeList;
-		vector<Boss*> bossList;
+		Resources res;
 		Boss * boss;
 		int curPatern;
 		int nbPaternAvailable = 0;
@@ -51,7 +50,7 @@ class Game
 		Control *c;
 		sf::RenderWindow *window;
 		Game();
-		Game(sf::RenderWindow&);
+		Game(sf::RenderWindow&, Resources & res);
 		Spaceship &getSpaceship();
 		vector<Rocket*> &getRockets();
 		vector<Enemy*> &getEnemies();

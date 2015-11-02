@@ -8,6 +8,8 @@ Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Textur
 	this->laserSpeed = LaserSpeed;
 	this->speed = speed;
 	this->rate = rate;
+
+	sprite.setTextureRect(sf::IntRect(rand() % 4 * 131, 0, 131, 189));
 }
 void Boss::move(){
 	sprite.move(-speed, 0);
@@ -49,7 +51,7 @@ vector<Laser*> Boss::shoot(sf::Texture &texture)
 	if (compteurEnemy == 60 / rate)
 	{
 		for (int i = 1; i <= laserQty; i++)
-			l.push_back(new Laser(texture, sf::Vector2f(sprite.getPosition().x, sprite.getPosition().y + sprite.getTextureRect().height * i / (laserQty + 1) - texture.getSize().y / 12), laserSpeed));
+			l.push_back(new Laser(texture, i, laserQty, sprite, laserSpeed,this->dommage));
 
 		compteurEnemy = 1;
 		return l;

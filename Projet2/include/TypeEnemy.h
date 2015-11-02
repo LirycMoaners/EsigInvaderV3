@@ -5,14 +5,14 @@
 class TypeEnemy
 {
 public:
-	//TypeEnemy(int life, int	dommage,int speedFire, int speed)
-	TypeEnemy(int life, int	dommage,int speedFire, int speed);
+	TypeEnemy(int life, int	dommage,int speedFire, int speed, int rate);
 	~TypeEnemy();
 
 	int getLife();
 	int getDommage();
-	int getSpeedFire();
-
+	int getLaserSpeed();
+	int getSpeed();
+	int getRate();
 private : 
 	//la vitesse de déplacement de l'ennemi
 	int speed;
@@ -20,8 +20,7 @@ private :
 	int life;
 	//Niveau de dégât
 	int dommage;
-	//la fréquence de tire de l'ennemi
-	int speedFire;
-
+	int LaserSpeed;
+	int rate;
 };
 
