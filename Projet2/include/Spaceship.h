@@ -13,7 +13,9 @@ class Spaceship: public SpaceObject
 		Weapon weapon;
 
 	public:
+		//Spaceship(sf::Texture&)
 		Spaceship(sf::Texture&);
+		//Spaceship()
 		Spaceship();
 
 		Weapon &getWeapon();
@@ -24,7 +26,7 @@ class Spaceship: public SpaceObject
 		///</summary>
 		void move(int);
 
-		// selectionne les images par rapport au movement
+		//Selectionne les images par rapport au movement
 		void switchFps();
 		~Spaceship();
 };

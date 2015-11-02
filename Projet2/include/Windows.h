@@ -6,7 +6,9 @@
 class Windows
 {
 	public:
+		//Windows()
 		Windows();
+		//Windows(int width, int height, std::string nameWindows)
 		Windows(int width, int height, std::string nameWindows);
 		~Windows();
 		void setWidth(int);

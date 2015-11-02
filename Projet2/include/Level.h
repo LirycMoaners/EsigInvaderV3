@@ -3,16 +3,19 @@
 #include "Boss.h"
 #include "TypeEnemy.h"
 
-using namespace std;
+
 class Level
 {
 	public:
-		Level(int nbPatern,string url);
+		//Level(int nbPatern,string url)
+		Level(int nbPatern,std::string url);
 		int getNbPatern();
-		string getUrlImage();
+		std::string getUrlImage();
 		~Level();
 	private : 
+		//Définit le nombre de patterns de déplacement des ennemis
 		int nbPatern;
-		string urlImage;
+		//Définit l'url de l'image
+		std::string urlImage;
 };
 

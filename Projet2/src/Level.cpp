@@ -1,5 +1,6 @@
 #include "..\include\Level.h"
 
+using namespace std;
 Level::Level(int nb, string background )
 {
 	this->nbPatern = nb;

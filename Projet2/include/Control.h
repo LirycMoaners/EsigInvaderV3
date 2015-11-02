@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Spaceship.h"
 
+//TODO Commenter cette classe
 class Control
 {
 public:
