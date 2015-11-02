@@ -160,6 +160,18 @@
     <Image Include="ressources\laser.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="ressources\explosion.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ressources\boss.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ressources\bonus_malus.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ressources\home.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="ressources\patern.xml">

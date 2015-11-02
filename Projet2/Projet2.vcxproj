@@ -179,8 +179,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\Cyril\Downloads\TestSFML\Release\res\img\background.jpg" />
+    <Image Include="ressources\bonus_malus.png" />
+    <Image Include="ressources\boss.png" />
     <Image Include="ressources\bullet.png" />
     <Image Include="ressources\enemy.png" />
+    <Image Include="ressources\explosion.png" />
+    <Image Include="ressources\home.png" />
     <Image Include="ressources\laser.png" />
     <Image Include="ressources\spaceship.png" />
   </ItemGroup>
