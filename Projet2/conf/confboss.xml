@@ -4,57 +4,89 @@
 		<Boss id="0">
 			<Life>1000</Life>
 			<Dommage>25</Dommage>
-			<SpeedEnemyFire>5</SpeedEnemyFire>
+			<Speed>4</Speed>
+			<LaserSpeed>5</LaserSpeed>
+			<Rate>60</Rate>
 		</Boss>
 		<Boss id="1">
 			<Life>2000</Life>
 			<Dommage>100</Dommage>
-			<SpeedEnemyFire>10</SpeedEnemyFire>
+			<Speed>5</Speed>
+			<LaserSpeed>10</LaserSpeed>
+			<Rate>1</Rate>
+		
 		</Boss>
 		<Boss id="2">
 			<Life>3000</Life>
 			<Dommage>150</Dommage>
-			<SpeedEnemyFire>15</SpeedEnemyFire>
+			<Speed>6</Speed>
+			<LaserSpeed>15</LaserSpeed>
+			<Rate>1</Rate>
+		
 		</Boss>
 		<Boss id="3">
 			<Life>4000</Life>
 			<Dommage>450</Dommage>
-			<SpeedEnemyFire>20</SpeedEnemyFire>
+			<Speed>7</Speed>
+			<LaserSpeed>20</LaserSpeed>
+			<Rate>1</Rate>
+		
 		</Boss>
 		<Boss id="4">
 			<Life>5000</Life>
 			<Dommage>800</Dommage>
-			<SpeedEnemyFire>25</SpeedEnemyFire>
+			<Speed>8</Speed>
+			<LaserSpeed>25</LaserSpeed>
+			<Rate>1</Rate>
+		
 		</Boss>
 		<Boss id="5">
 			<Life>6000</Life>
 			<Dommage>1200</Dommage>
-			<SpeedEnemyFire>30</SpeedEnemyFire>
+			<Speed>9</Speed>
+			<LaserSpeed>30</LaserSpeed>
+			<Rate>1</Rate>
+		
 		</Boss>
 		<Boss id="6">
 			<Life>7000</Life>
 			<Dommage>2400</Dommage>
-			<SpeedEnemyFire>35</SpeedEnemyFire>
+			<Speed>10</Speed>
+			<LaserSpeed>35</LaserSpeed>
+			<Rate>1</Rate>
+		
 		</Boss>
 		<Boss id="7">
 			<Life>8000</Life>
 			<Dommage>4800</Dommage>
-			<SpeedEnemyFire>40</SpeedEnemyFire>
+			<Speed>11</Speed>
+			<LaserSpeed>40</LaserSpeed>
+			<Rate>1</Rate>
+		
 		</Boss>
 		<Boss id="8">
 			<Life>9000</Life>
 			<Dommage>6000</Dommage>
-			<SpeedEnemyFire>45</SpeedEnemyFire>
+			<Speed>12</Speed>
+			<LaserSpeed>45</LaserSpeed>
+			<Rate>1</Rate>
+		
 		</Boss>
 		<Boss id="9">
 			<Life>10000</Life>
 			<Dommage>8000</Dommage>
-			<SpeedEnemyFire>50</SpeedEnemyFire>
+			<Speed>12</Speed>
+			<LaserSpeed>50</LaserSpeed>
+			<Rate>1</Rate>
+		
 		</Boss>
 		<Boss id="10">
 			<Life>25000</Life>
 			<Dommage>15000</Dommage>
-			<SpeedEnemyFire>100</SpeedEnemyFire>
+			<Speed>13</Speed>
+			<LaserSpeed>100</LaserSpeed>
+			<Rate>1</Rate>
+		
 		</Boss>
 	</Bosses>
 </Configuration>

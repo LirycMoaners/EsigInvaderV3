@@ -10,7 +10,9 @@ SpaceObject::SpaceObject(sf::Texture &t,int health, int speed)
 	this->speed = speed;
 }
 SpaceObject::SpaceObject() {}
+
 void SpaceObject::takeDommage(int dommage) {
+	std::cout << "Object health: " << health << std::endl;
 	this->health -= dommage;
 }
 bool SpaceObject::isAlive() {

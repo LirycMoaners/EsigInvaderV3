@@ -5,7 +5,7 @@
 class TypeEnemy
 {
 public:
-	TypeEnemy(int life, int	dommage,int speedFire);
+	TypeEnemy(int life, int	dommage,int speedFire, int speed);
 	~TypeEnemy();
 
 	int getLife();
@@ -13,6 +13,7 @@ public:
 	int getSpeedFire();
 
 private : 
+	int speed;
 	//la vie de l'énémie
 	int life;
 	int dommage;

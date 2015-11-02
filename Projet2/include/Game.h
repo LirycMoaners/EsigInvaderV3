@@ -25,12 +25,18 @@ class Game
 		vector<Laser*> lasers;
 		tinyxml2::XMLDocument XMLPatern;
 		vector<Patern> patern;
+
+		/*
+			Configuration XML 			
+		*/
 		vector<Level*> levelList;
 		vector<TypeEnemy*> typeList;
 		vector<Boss*> bossList;
+		Boss * boss;
 		int curPatern;
-		int nbPaternAvailable;
+		int nbPaternAvailable = 0;
 		int curLevel = 0;
+		bool popBoss = false;
 
 	public:
 		Control *c;
@@ -46,6 +52,7 @@ class Game
 		void addRockets(vector<Rocket*>&);
 		void addLasers(vector<Laser*>&);
 		void addEnemies(vector<Enemy*>&);
+		void addBoss();
 		void control();
 		void moveBackground();
 		void collision();
