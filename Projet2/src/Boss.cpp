@@ -49,7 +49,7 @@ vector<Laser*> Boss::shoot(sf::Texture &texture)
 	if (compteurEnemy == 60 / rate)
 	{
 		for (int i = 1; i <= laserQty; i++)
-			l.push_back(new Laser(texture, sf::Vector2f(sprite.getPosition().x, sprite.getPosition().y + sprite.getTextureRect().height * i / (laserQty + 1) - texture.getSize().y / 12), laserSpeed));
+			l.push_back(new Laser(texture, sf::Vector2f(sprite.getPosition().x, sprite.getPosition().y + sprite.getTextureRect().height * i / (laserQty + 1) - texture.getSize().y / 12), laserSpeed,this->dommage));
 
 		compteurEnemy = 1;
 		return l;
