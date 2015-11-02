@@ -6,7 +6,7 @@ class Rocket : public Bullet
 {
 	public:
 		Rocket();
-		Rocket(sf::Texture&, sf::Vector2f, int, int);
+		Rocket(sf::Texture&,int,int, sf::Sprite, int, int);
 		void switchFps();
 		~Rocket();
 };

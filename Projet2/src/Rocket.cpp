@@ -2,10 +2,7 @@
 
 Rocket::Rocket() : Bullet() {};
 
-Rocket::Rocket(sf::Texture &t, sf::Vector2f pos, int spd, int dommage) : Bullet(t, pos, spd, dommage)
-{
-	sprite.setScale(0.8, 0.8);
-}
+Rocket::Rocket(sf::Texture &t, int idRocket, int nbRocket, sf::Sprite sp, int spd, int dommage) : Bullet(t, idRocket, nbRocket, sp, spd, dommage, 0.6) {}
 
 void Rocket::switchFps()
 {

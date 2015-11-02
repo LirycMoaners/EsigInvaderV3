@@ -7,6 +7,7 @@ Spaceship::Spaceship(sf::Texture &t) : anim(0,0), weapon(Weapon()),SpaceObject(t
 {
 	sprite.setTexture(t);
 	sprite.setTextureRect(sf::IntRect(anim.x, anim.y, 100, 94));
+	sprite.setScale(sf::Vector2f(0.6, 0.6));
 	sprite.setPosition(100, 100);
 }
 
