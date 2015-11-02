@@ -10,10 +10,6 @@ Spaceship::Spaceship(sf::Texture &t) : anim(0,0), weapon(Weapon()),SpaceObject(t
 	sprite.setPosition(100, 100);
 }
 
-sf::Sprite &Spaceship::getSprite()
-{
-	return sprite;
-}
 
 Weapon &Spaceship::getWeapon()
 {

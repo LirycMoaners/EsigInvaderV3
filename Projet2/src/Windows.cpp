@@ -1,6 +1,7 @@
 #include "..\include\Windows.h"
 
 
+using namespace std;
 
 Windows::Windows(int width, int height, string nameWindows)
 {
