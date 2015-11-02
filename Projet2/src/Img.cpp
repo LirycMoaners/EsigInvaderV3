@@ -8,6 +8,7 @@ Img::Img()
 	rocket_t.loadFromFile("ressources/rocket.png");
 	enemy_t.loadFromFile("ressources/enemy.png");
 	laser_t.loadFromFile("ressources/laser.png");
+	boss_t.loadFromFile("ressources/Boss.png");
 }
 
 sf::Texture &Img::getSpaceship_t()

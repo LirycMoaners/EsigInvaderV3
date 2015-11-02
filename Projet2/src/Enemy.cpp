@@ -29,13 +29,14 @@ void Enemy::switchFps()
 	anim.y++;
 }
 
-Enemy::Enemy(sf::Texture &t, sf::Vector2f pos) : SpaceObject(t, 5, 3), anim(0, 0)
+Enemy::Enemy(sf::Texture &t, sf::Vector2f pos) : SpaceObject(t, 5, 3), anim(1 - 1, 0), compteurEnemy(1)
 {
 	if (anim.x < 2)
 		sprite.setTextureRect(sf::IntRect(anim.x * 100, anim.y, 100, 94));
 	else
 		sprite.setTextureRect(sf::IntRect(86 + anim.x * 57, anim.y, 57, 94));
 	sprite.setPosition(pos);
+	setLvl(1);
 }
 
 Enemy::Enemy(sf::Texture &t, sf::Vector2f pos, int lvl = 1, int type = 1) : SpaceObject(t, 5, 3), anim(type - 1, 0), compteurEnemy(1)
@@ -45,8 +46,8 @@ Enemy::Enemy(sf::Texture &t, sf::Vector2f pos, int lvl = 1, int type = 1) : Spac
 	else
 		sprite.setTextureRect(sf::IntRect(86 + anim.x * 57, anim.y, 57, 94));
 	sprite.setPosition(pos);
-
 	setLvl(lvl);
+	
 }
 
 bool Enemy::getType() {

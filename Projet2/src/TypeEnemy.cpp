@@ -2,11 +2,12 @@
 
 
 
-TypeEnemy::TypeEnemy(int life, int	dommage, int speedFire)
+TypeEnemy::TypeEnemy(int life, int	dommage, int speedFire, int speed)
 {
 	this->life = life;
 	this->dommage = dommage;
 	this->speedFire = speedFire;
+	this->speed = speed;
 }
 
 

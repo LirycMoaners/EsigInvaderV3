@@ -2,7 +2,7 @@
 <Configuration>
 	<Levels>
 		<Level id="0">
-			<NbPatern>15</NbPatern>		
+			<NbPatern>1</NbPatern>		
 			<UrlImageBackground>ressources/</UrlImageBackground>
 		</Level>
 		<Level id="1">

@@ -31,7 +31,15 @@ Game::Game(sf::RenderWindow &window) : c(new Armband()), window(&window), rocket
 	if (XMLPatern.ErrorID() == 0) {
 		if (node != NULL) {
 			// Récupération du nombre de patern
-			nbPaternAvailable = stoi(node->FirstChildElement("NbPaternAvailable")->GetText());
+			//nbPaternAvailable = stoi(node->FirstChildElement("NbPaternAvailable")->GetText());
+			tinyxml2::XMLElement * pattern = node->FirstChildElement("patern");
+			do {
+				if (pattern != NULL) {
+					nbPaternAvailable += 1;
+					pattern = pattern->NextSiblingElement("patern");
+				}
+			} while (pattern != NULL);
+			std::cout << "NB pattern available : " << nbPaternAvailable << endl;
 			// Génération en fonction du nombre de patern disponible une liste aléatoire de patern d'ennemi
 			for (int i = 0; i < levelList.at(curLevel)->getNbPatern(); i++) {
 				int number = rand() % nbPaternAvailable + 1;
@@ -85,9 +93,11 @@ void Game::loadingConfiguration() {
 			// Récupération et conversion des champs 
 			int life = stoi(levelEnemy->FirstChildElement("Life")->GetText());
 			int dommage = stoi(levelEnemy->FirstChildElement("Dommage")->GetText());
-			int speedEnemyFire = stoi(levelEnemy->FirstChildElement("SpeedEnemyFire")->GetText());
+			int speedEnemyFire = stoi(levelEnemy->FirstChildElement("LaserSpeed")->GetText());
+			int speed = stoi(levelEnemy->FirstChildElement("Speed")->GetText());
+			int rate = stoi(levelEnemy->FirstChildElement("Rate")->GetText());
 			// Ajout du type d'ennemi dans la liste
-			typeList.push_back(new TypeEnemy(life, dommage, speedEnemyFire));
+			typeList.push_back(new TypeEnemy(life, dommage, speedEnemyFire, speed));
 			// Passage à la balise suivante
 			levelEnemy = levelEnemy->NextSiblingElement("Enemy");
 		}
@@ -109,9 +119,12 @@ void Game::loadingConfiguration() {
 			// Récupération de tout les champs disponible
 			int life = stoi(levelBoss->FirstChildElement("Life")->GetText());
 			int dommage = stoi(levelBoss->FirstChildElement("Dommage")->GetText());
-			int speedEnemyFire = stoi(levelBoss->FirstChildElement("SpeedEnemyFire")->GetText());
+			int speedEnemyFire = stoi(levelBoss->FirstChildElement("LaserSpeed")->GetText());
+			int speed = stoi(levelBoss->FirstChildElement("Speed")->GetText());
+			int rate = stoi(levelBoss->FirstChildElement("Rate")->GetText());
 			// Ajout d'un nouveau boss à la liste 
-			bossList.push_back(new Boss(life, dommage, speedEnemyFire,img->getBoss_t(),sf::Vector2f(25,25)));
+			sf::Vector2f pos(window->getSize().x - img->getBoss_t().getSize().x, window->getSize().y/2);
+			bossList.push_back(new Boss(life, dommage, speed,speedEnemyFire,rate,img->getBoss_t(), pos));
 			// Passage à la balise suivante
 			levelBoss = levelBoss->NextSiblingElement("Boss");
 		}
@@ -160,14 +173,20 @@ void Game::runGame()
 			curPatern += patern[curPatern].next();
 		}
 
-		if ((curPatern == patern.size() && enemies.size() == 0) || c->quit())
+		if ((curPatern == patern.size() && enemies.size() == 0) && !popBoss) {
+			addBoss();
+			popBoss = true;
+		}
+		if (c->quit())
 		{
 			endGame = true;
 		}
 
 		for (int i = 0; i < enemies.size(); i++)
 			addLasers(enemies.at(i)->shoot(img->getLaser_t()));
-
+		if (popBoss) {
+			addLasers(this->boss->shoot(img->getLaser_t()));
+		}
 		if (fpsCount >= fpsSwitch)
 		{
 			getSpaceship().switchFps();
@@ -204,6 +223,11 @@ void Game::runGame()
 		{
 			getEnemies().at(i)->move();
 			window->draw(getEnemies().at(i)->getSprite());
+		}
+
+		if ((curPatern == patern.size() && enemies.size() == 0)) {
+			this->boss->move(getSpaceship().getSprite());
+			window->draw(boss->getSprite());
 		}
 		window->draw(getSpaceship().getSprite());
 		window->display();
@@ -248,6 +272,11 @@ void Game::addEnemies(vector<Enemy*> &e)
 {
 	for (int i = 0; i < e.size(); i++)
 		this->enemies.push_back(e[i]);
+}
+
+void Game::addBoss() {
+	
+	this->boss = bossList.at(curLevel);
 }
 
 void Game::addLasers(vector<Laser*> &l)
