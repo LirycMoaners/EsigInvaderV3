@@ -8,14 +8,18 @@ class Menu : public Windows
 	private:
 		const int WINDOW_HEIGHT = 700; //Height of the game window
 		const int WINDOW_WIDTH = 1024; //Width of the game window
-		
+		//La police du texte
 		sf::Font arial;
+		//Définit le texte affiché sur l'écran en fonction du contexte quitter ou commencer
 		sf::Text startText, quitText;
+		//Définit le bouton correspondant au texte précédent
 		sf::RectangleShape buttonQuit, buttonStart;
 
 	public:
+		//Menu(int width, int height, string title)
 		Menu(int width, int height, string title);
 		~Menu();
+		//Lance la fênetre de menu
 		void runWindows();
 };
 

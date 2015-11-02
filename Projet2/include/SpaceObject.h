@@ -15,7 +15,9 @@ class SpaceObject
 		int speed;
 		
 	public:
+		//SpaceObject()
 		SpaceObject();
+		//SpaceObject(sf::Texture &t,int,int)
 		SpaceObject(sf::Texture &t,int,int);
 		~SpaceObject();
 

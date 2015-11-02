@@ -1,6 +1,7 @@
 #include "Patern.h"
 #include <string>
 
+using namespace std;
 Patern::Patern()
 {
 }

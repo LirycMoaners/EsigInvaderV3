@@ -1,5 +1,7 @@
 #include "../include/Game.h"
 
+using namespace std;
+
 Game::Game() : window(), c(&Keyboard()), spaceship(Spaceship(img->getSpaceship_t())) {}
 
 Game::Game(sf::RenderWindow &window) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)

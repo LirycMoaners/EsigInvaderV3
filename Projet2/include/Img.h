@@ -2,10 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
-using namespace std;
+
 class Img
 {
-	private:
+	// définition des textures
+	private: 
 		sf::Texture spaceship_t;
 		sf::Texture rocket_t;
 		sf::Texture laser_t;

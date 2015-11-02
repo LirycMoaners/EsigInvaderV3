@@ -23,7 +23,9 @@ class Weapon
 		int dommage;
 
 	public:
+		//Weapon(bool enemy = false)
 		Weapon(bool enemy = false);
+		//Weapon(int, bool enemy = false)
 		Weapon(int, bool enemy = false);
 		int getRate();
 

@@ -16,6 +16,7 @@
 #include "Laser.h"
 #include "Rocket.h"
 
+//TODO commenter cette classe
 class Armband : public Control
 {
 private:

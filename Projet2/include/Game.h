@@ -11,19 +11,28 @@
 #include "tinyxml2.h"
 #include "Level.h"
 
-using namespace std;
+
 
 class Game
 {
 	private:
+		//Donne accès aux objets graphiques du programme
 		Img *img;
+		//Police
 		sf::Font arial;
+		//Graphical object for the background
 		sf::RectangleShape background;
+		//Instance du player
 		Spaceship spaceship;
+		//Liste de rocket
 		vector<Rocket*> rockets;
+		//Liste d'ennemi
 		vector<Enemy*> enemies;
+		//Liste de lasers
 		vector<Laser*> lasers;
+		//Fichier xml contenant les patterns
 		tinyxml2::XMLDocument XMLPatern;
+		//Définit la liste de patterns du jeu
 		vector<Patern> patern;
 
 		/*
@@ -47,14 +56,23 @@ class Game
 		vector<Rocket*> &getRockets();
 		vector<Enemy*> &getEnemies();
 		vector<Laser*> &getLasers();
+		//Lancer le jeu
 		void runGame();
+		//Charge le fichier configuration et configure le jeu
 		void loadingConfiguration();
+		//Ajoute des rockets
 		void addRockets(vector<Rocket*>&);
+		//Ajoute les lasers
 		void addLasers(vector<Laser*>&);
+		//Ajoute des ennemis
 		void addEnemies(vector<Enemy*>&);
+		//Ajoute le boss de la partie
 		void addBoss();
+		//Instacie l'environnement du player
 		void control();
+		//Gère le mouvement du background
 		void moveBackground();
+		//collision
 		void collision();
 		~Game();
 };

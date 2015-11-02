@@ -29,11 +29,11 @@ void DataCollector::onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose)
 	this->currentPose = pose;
 }
 
-myo::Pose DataCollector::getPose() {
+myo::Pose DataCollector::getPose(){
 	return currentPose;
 }
 
-myo::Vector3< float > & DataCollector::getGyro() {
+myo::Vector3< float > & DataCollector::getGyro(){
 	return gyro;
 }
 
@@ -44,7 +44,7 @@ void DataCollector::onGyroscopeData(myo::Myo *myo, uint64_t timestamp, const myo
 void DataCollector::onOrientationData(myo::Myo *myo, uint64_t timestamp, const myo::Quaternion< float > &rotation) {
 	this->orien = rotation;
 }
-myo::Quaternion< float > & DataCollector::getOrient() {
+myo::Quaternion< float > & DataCollector::getOrient(){
 	return this->orien;
 }
 
