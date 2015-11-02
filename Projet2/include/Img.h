@@ -12,6 +12,7 @@ class Img
 		sf::Texture background_t;
 		sf::Texture enemy_t;
 		sf::Texture boss_t;
+		sf::Texture home_t;
 	public:
 		Img();
 		sf::Texture &getSpaceship_t();
@@ -20,6 +21,7 @@ class Img
 		sf::Texture &getBackground_t();
 		sf::Texture &getEnemy_t();
 		sf::Texture &getBoss_t();
+		sf::Texture &getHome_t();
 		void setBoss_t(string name);
 		~Img();
 };

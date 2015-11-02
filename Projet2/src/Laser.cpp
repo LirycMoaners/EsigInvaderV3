@@ -2,7 +2,7 @@
 
 Laser::Laser() : Bullet() {};
 
-Laser::Laser(sf::Texture &t, sf::Vector2f pos, int spd) : Bullet(t, pos, -spd)
+Laser::Laser(sf::Texture &t, sf::Vector2f pos, int spd, int dommage) : Bullet(t, pos, -spd, dommage)
 {
 	Bullet::sprite.setTextureRect(sf::IntRect(0, anim, 31, 11));
 }
