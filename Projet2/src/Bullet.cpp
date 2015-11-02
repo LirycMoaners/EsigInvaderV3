@@ -2,7 +2,7 @@
 
 Bullet::Bullet() : speed(0), anim(0){}
 
-Bullet::Bullet(sf::Texture &t, sf::Vector2f pos, int spd) : speed(spd), anim(0)
+Bullet::Bullet(sf::Texture &t, sf::Vector2f pos, int spd, int dommage) : speed(spd), anim(0), dommage(dommage)
 {
 	sprite.setTexture(t);
 	sprite.setTextureRect(sf::IntRect(anim, 0, 49, 19));
@@ -49,4 +49,9 @@ void Bullet::switchFps()
 Bullet::~Bullet()
 {
 	std::cout << "Destructeur Bullet call" << std::endl;
+}
+
+int Bullet::getDommages()
+{
+	return this->dommage;
 }
