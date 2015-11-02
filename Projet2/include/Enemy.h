@@ -8,6 +8,7 @@ class Enemy : public SpaceObject
 {
 	protected:
 		int dommage;
+		int life;
 		bool moveDown;
 		sf::Vector2i anim;
 		int speed = 10;

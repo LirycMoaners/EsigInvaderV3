@@ -1,5 +1,6 @@
 #include "../include/weapon.h"
 
+using namespace std;
 Weapon::Weapon(bool enemy)
 {
 	setLvl(1);
