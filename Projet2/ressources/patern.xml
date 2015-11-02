@@ -1,0 +1,52 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes" ?>
+<paterns>
+	<NbPaternAvailable>3</NbPaternAvailable>
+	<patern id = "1" typeEnemy = "1" lvlEnemy = "1" duree = "1000">
+		<lignes>
+			<ligne>
+				<temps>0</temps>
+				<position>0001000</position>
+			</ligne>
+			<ligne>
+				<temps>100</temps>
+				<position>0010100</position>
+			</ligne>
+			<ligne>
+				<temps>200</temps>
+				<position>0100010</position>
+			</ligne>
+			<ligne>
+				<temps>300</temps>
+				<position>1000001</position>
+			</ligne>
+		</lignes>
+	</patern>
+	<patern id = "2" typeEnemy = "2" lvlEnemy = "2" duree = "1000">
+		<lignes>
+			<ligne>
+				<temps>0</temps>
+				<position>1111111</position>
+			</ligne>
+		</lignes>
+	</patern>
+	<patern id = "3" typeEnemy = "3" lvlEnemy = "3" duree = "1000">
+		<lignes>
+			<ligne>
+				<temps>0</temps>
+				<position>0101010</position>
+			</ligne>
+			<ligne>
+				<temps>100</temps>
+				<position>0101010</position>
+			</ligne>
+			<ligne>
+				<temps>200</temps>
+				<position>1010101</position>
+			</ligne>
+			<ligne>
+				<temps>300</temps>
+				<position>1010101</position>
+			</ligne>
+		</lignes>
+	</patern>
+</paterns>

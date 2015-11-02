@@ -2,22 +2,28 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-using namespace std;
+/// définit la fênetre par défaut
 class Windows
 {
 	public:
 		Windows();
-		Windows(int width, int height, string nameWindows);
+		Windows(int width, int height, std::string nameWindows);
 		~Windows();
 		void setWidth(int);
 		void setHeight(int);
-		void setTitle(string);
+		void setTitle(std::string);
+
+		//methode de lancement de la fênetre
 		virtual void runWindows() = 0;
 
 	protected:
+		//largeur
 		int width;
+		//hauteur
 		int height;
-		string title;
+		//titre
+		std::string title;
+		//fênetre courante
 		sf::RenderWindow *window;
 };
 
