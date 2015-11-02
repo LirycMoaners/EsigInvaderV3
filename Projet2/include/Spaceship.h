@@ -26,7 +26,7 @@ class Spaceship: public SpaceObject
 		///</summary>
 		void move(int);
 
-		// selectionne les images par rapport au movement
+		//Selectionne les images par rapport au movement
 		void switchFps();
 		~Spaceship();
 };
