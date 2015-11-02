@@ -2,10 +2,12 @@
 
 Bullet::Bullet() : speed(0), anim(0){}
 
-Bullet::Bullet(sf::Texture &t, sf::Vector2f pos, int spd, int dommage) : speed(spd), anim(0), dommage(dommage)
+Bullet::Bullet(sf::Texture &t, int idBullet, int nbBullets, sf::Sprite sp, int spd, int dommage,float scale) : speed(spd), anim(0), dommage(dommage)
 {
 	sprite.setTexture(t);
 	sprite.setTextureRect(sf::IntRect(anim, 0, 49, 19));
+	sprite.setScale(sf::Vector2f(scale, scale));
+	sf::Vector2f pos = sf::Vector2f(sp.getGlobalBounds().left, sp.getGlobalBounds().top + sp.getGlobalBounds().height * idBullet / (nbBullets + 1) - sprite.getGlobalBounds().height / 2);
 	sprite.setPosition(pos);
 	//enemyBullet = enemy;
 
