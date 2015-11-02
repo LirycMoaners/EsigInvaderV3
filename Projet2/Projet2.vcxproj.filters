@@ -82,6 +82,7 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\Resources.cpp">
+    <ClCompile Include="src\Hub.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -153,6 +154,7 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="include\Resources.h">
+    <ClInclude Include="include\Hub.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -170,6 +172,18 @@
       <Filter>Fichiers de ressources</Filter>
     </Image>
     <Image Include="ressources\laser.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ressources\explosion.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ressources\boss.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ressources\bonus_malus.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ressources\home.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>

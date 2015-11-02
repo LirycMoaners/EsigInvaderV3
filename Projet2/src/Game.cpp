@@ -283,19 +283,18 @@ void Game::collision()
 	{
 		spaceship.getSprite().setPosition(0, spaceship.getSprite().getPosition().y);
 	}
-	else if (spaceship.getSprite().getPosition().x + spaceship.getSprite().getTextureRect().width > window->getSize().x)
+	else if (spaceship.getSprite().getPosition().x + spaceship.getSprite().getGlobalBounds().width > window->getSize().x)
 	{
-		spaceship.getSprite().setPosition(window->getSize().x - spaceship.getSprite().getTextureRect().width, spaceship.getSprite().getPosition().y);
+		spaceship.getSprite().setPosition(window->getSize().x - spaceship.getSprite().getGlobalBounds().width, spaceship.getSprite().getPosition().y);
 	}
 	if (spaceship.getSprite().getPosition().y < 0)
 	{
 		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, 0);
 	}
-	else if (spaceship.getSprite().getPosition().y + spaceship.getSprite().getTextureRect().height > window->getSize().y)
+	else if (spaceship.getSprite().getPosition().y + spaceship.getSprite().getGlobalBounds().height > window->getSize().y)
 	{
-		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, window->getSize().y - spaceship.getSprite().getTextureRect().height);
+		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, window->getSize().y - spaceship.getSprite().getGlobalBounds().height);
 	}
-
 }
 
 Game::~Game()
