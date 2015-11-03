@@ -26,6 +26,7 @@
     <ClCompile Include="src\DataCollector.cpp" />
     <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GameHub.cpp" />
     <ClCompile Include="src\Hub.cpp" />
     <ClCompile Include="src\Keyboard.cpp" />
     <ClCompile Include="src\Img.cpp" />
@@ -53,6 +54,7 @@
     <ClInclude Include="include\DataCollector.h" />
     <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\GameHub.h" />
     <ClInclude Include="include\Hub.h" />
     <ClInclude Include="include\Keyboard.h" />
     <ClInclude Include="include\Img.h" />
@@ -99,7 +101,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

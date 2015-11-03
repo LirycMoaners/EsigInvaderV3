@@ -13,7 +13,8 @@ Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(
 	// Chargement de l'objets permettant le chargement des images
 	img = new Img();
 	this->res = res;
-	//Create Hub
+	//Création du hub
+	gameHub = new GameHub();
 
 
 	//Create graphical object for the background
@@ -153,6 +154,10 @@ void Game::runGame()
 			window->draw(boss->getSprite());
 		}
 		window->draw(getSpaceship().getSprite());
+
+		//Mise à jour du Hub
+		gameHub->updateHub(window, spaceship);
+
 		window->display();
 	}
 }

@@ -1,8 +1,8 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include <string>
 
+using namespace std;
 class Img
 {
 	// définition des textures
@@ -14,6 +14,7 @@ class Img
 		sf::Texture enemy_t;
 		sf::Texture boss_t;
 		sf::Texture home_t;
+
 	public:
 		Img();
 		sf::Texture &getSpaceship_t();

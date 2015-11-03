@@ -11,6 +11,7 @@
 #include "tinyxml2.h"
 #include "Level.h"
 #include "Resources.h"
+#include "GameHub.h"
 
 
 
@@ -35,6 +36,8 @@ class Game
 		tinyxml2::XMLDocument XMLPatern;
 		//Définit la liste de patterns du jeu
 		vector<Patern> patern;
+		//Hub du jeu pour l'affichage de la vie
+		GameHub* gameHub;
 
 		/*
 			Configuration XML 			
