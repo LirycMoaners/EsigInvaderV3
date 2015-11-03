@@ -11,8 +11,10 @@ void Boss::move(){
 
 void Boss :: move(sf::Sprite & sprite) {
 
-	if (sprite.getPosition().y != this->getSprite().getPosition().y) {
-		int delta = this->speed  * (sprite.getPosition().y - this->getSprite().getPosition().y - this->getSprite().getPosition().y/2) < 0 ? -1 : 1;
+	if ((sprite.getPosition().y + sprite.getScale().y / 2) - (this->getSprite().getPosition().y + this->getSprite().getScale().y / 2)) {
+		
+		
+		int delta = this->speed  * ((sprite.getPosition().y+ sprite.getScale().y/2) - (this->getSprite().getPosition().y  + this->getSprite().getScale().y/2)) < 0 ? -1 : 1;
 		
 		this->getSprite().move(0, delta);
 	}
