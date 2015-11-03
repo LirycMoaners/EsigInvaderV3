@@ -104,7 +104,9 @@
     <ClInclude Include="include\ConfigXml.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="include\Control.h" />
+    <ClInclude Include="include\Control.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
     <ClInclude Include="include\DataCollector.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -141,7 +143,9 @@
     <ClInclude Include="include\Resources.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="include\Rocket.h" />
+    <ClInclude Include="include\Rocket.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
     <ClInclude Include="include\SpaceObject.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
