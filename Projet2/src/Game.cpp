@@ -93,7 +93,17 @@ void Game::runGame()
 
 		if (patern.size() != 0 && curPatern < patern.size())
 		{
-			addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t()));
+			int random;
+			if (curLevel == 0)
+				random = 0;
+			else if (curLevel == 1) {
+				random = 1;
+			}
+			else {
+				random = rand() % curLevel;
+			}
+			TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
+			addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), typeEnemy));
 			curPatern += patern[curPatern].next();
 		}
 

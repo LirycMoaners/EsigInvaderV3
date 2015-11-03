@@ -27,7 +27,7 @@ Patern::Patern(tinyxml2::XMLDocument &docPat, int id) : time(0)
 	}
 }
 
-vector<Enemy*> Patern::spawn(sf::Texture &t)
+vector<Enemy*> Patern::spawn(sf::Texture &t, TypeEnemy * typeenemy)
 {
 	vector<Enemy*> e;
 	sf::Vector2f pos;
@@ -38,12 +38,12 @@ vector<Enemy*> Patern::spawn(sf::Texture &t)
 	{
 		if (l->FirstChildElement()->GetText() == to_string(time))
 		{
-
+			int randomTExture = rand() % 3;
 			position = l->FirstChildElement()->NextSiblingElement()->GetText();
 			for (int i = 0; i < 7; i++)
 			{
 				if (position.substr(i, 1) == to_string(1))
-					e.push_back(new Enemy(t, sf::Vector2f(1024, 100 * i), lvlEnemy, typeEnemy));
+					e.push_back(new Enemy(t, sf::Vector2f(1024, 100 * i), typeenemy, randomTExture));
 			}
 		}
 		l = l->NextSiblingElement();

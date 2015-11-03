@@ -4,8 +4,8 @@
 		<Enemy id="0">
 			<Life>100</Life>
 			<Dommage>10</Dommage>
-			<Speed>1</Speed>
-			<LaserSpeed>1</LaserSpeed>
+			<Speed>4</Speed>
+			<LaserSpeed>10</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
 		</Enemy>

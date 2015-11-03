@@ -1,6 +1,6 @@
 #include "..\include\Boss.h"
 
-Boss::Boss(TypeEnemy * Typenemy, sf::Texture& texture, sf::Vector2f pos) : Enemy(texture, pos, Typenemy)
+Boss::Boss(TypeEnemy * Typenemy, sf::Texture& texture, sf::Vector2f pos) : Enemy(texture, pos, Typenemy, 0)
 {
 	sprite.setPosition(sprite.getPosition().x - sprite.getGlobalBounds().width - 100, sprite.getPosition().y);
 	sprite.setTextureRect(sf::IntRect(rand() % 4 * 131, 0, 131, 189));
@@ -12,7 +12,7 @@ void Boss::move(){
 void Boss :: move(sf::Sprite & sprite) {
 
 	if (sprite.getPosition().y != this->getSprite().getPosition().y) {
-		int delta = this->speed  * (sprite.getPosition().y - this->getSprite().getPosition().y) < 0 ? -1 : 1;
+		int delta = this->speed  * (sprite.getPosition().y - this->getSprite().getPosition().y - this->getSprite().getPosition().y/2) < 0 ? -1 : 1;
 		
 		this->getSprite().move(0, delta);
 	}

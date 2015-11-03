@@ -21,7 +21,7 @@ class Patern
 		//Patern(tinyxml2::XMLDocument&, int)
 		Patern(tinyxml2::XMLDocument&, int);
 		//Alimente le hub avec les ennemis
-		vector<Enemy*> spawn(sf::Texture&);
+		vector<Enemy*> spawn(sf::Texture &t, TypeEnemy * typeenemy);
 		///<summary>
 		///retourne 0 si le niveau n'est pas terminé et 1 sinon
 		///<return>int </return>
