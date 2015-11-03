@@ -7,6 +7,7 @@
 			<Speed>1</Speed>
 			<LaserSpeed>1</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 		<Enemy id="1">
 			<Life>200</Life>
@@ -14,6 +15,7 @@
 			<Speed>2</Speed>
 			<LaserSpeed>2</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 		<Enemy id="2">
 			<Life>400</Life>
@@ -21,6 +23,7 @@
 			<Speed>3</Speed>
 			<LaserSpeed>3</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 		<Enemy id="3">
 			<Life>800</Life>
@@ -28,6 +31,7 @@
 			<Speed>4</Speed>
 			<LaserSpeed>4</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 		<Enemy id="4">
 			<Life>1600</Life>
@@ -35,6 +39,7 @@
 			<Speed>5</Speed>
 			<LaserSpeed>5</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 		<Enemy id="5">
 			<Life>3200</Life>
@@ -42,6 +47,7 @@
 			<Speed>6</Speed>
 			<LaserSpeed>6</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 		<Enemy id="6">
 			<Life>4000</Life>
@@ -49,6 +55,7 @@
 			<Speed>7</Speed>
 			<LaserSpeed>7</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 		<Enemy id="7">
 			<Life>5000</Life>
@@ -56,6 +63,7 @@
 			<Speed>8</Speed>
 			<LaserSpeed>8</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 		<Enemy id="8">
 			<Life>6000</Life>
@@ -63,6 +71,7 @@
 			<Speed>9</Speed>
 			<LaserSpeed>9</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 		<Enemy id="9">
 			<Life>7000</Life>
@@ -70,6 +79,7 @@
 			<Speed>10</Speed>
 			<LaserSpeed>10</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 		<Enemy id="10">
 			<Life>7000</Life>
@@ -77,6 +87,7 @@
 			<Speed>11</Speed>
 			<LaserSpeed>11</LaserSpeed>
 			<Rate>1</Rate>
+			<LaserQty>1</LaserQty>
 		</Enemy>
 	</Enemies>
 </Configuration>

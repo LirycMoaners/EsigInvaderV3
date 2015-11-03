@@ -7,6 +7,7 @@
 			<Speed>4</Speed>
 			<LaserSpeed>5</LaserSpeed>
 			<Rate>60</Rate>
+			<LaserQty>1</LaserQty>
 		</Boss>
 		<Boss id="1">
 			<Life>2000</Life>
@@ -14,7 +15,7 @@
 			<Speed>5</Speed>
 			<LaserSpeed>10</LaserSpeed>
 			<Rate>1</Rate>
-		
+			<LaserQty>1</LaserQty>
 		</Boss>
 		<Boss id="2">
 			<Life>3000</Life>
@@ -22,7 +23,7 @@
 			<Speed>6</Speed>
 			<LaserSpeed>15</LaserSpeed>
 			<Rate>1</Rate>
-		
+			<LaserQty>1</LaserQty>
 		</Boss>
 		<Boss id="3">
 			<Life>4000</Life>
@@ -30,7 +31,7 @@
 			<Speed>7</Speed>
 			<LaserSpeed>20</LaserSpeed>
 			<Rate>1</Rate>
-		
+			<LaserQty>1</LaserQty>
 		</Boss>
 		<Boss id="4">
 			<Life>5000</Life>
@@ -38,7 +39,7 @@
 			<Speed>8</Speed>
 			<LaserSpeed>25</LaserSpeed>
 			<Rate>1</Rate>
-		
+			<LaserQty>1</LaserQty>
 		</Boss>
 		<Boss id="5">
 			<Life>6000</Life>
@@ -46,7 +47,7 @@
 			<Speed>9</Speed>
 			<LaserSpeed>30</LaserSpeed>
 			<Rate>1</Rate>
-		
+			<LaserQty>1</LaserQty>
 		</Boss>
 		<Boss id="6">
 			<Life>7000</Life>
@@ -54,7 +55,7 @@
 			<Speed>10</Speed>
 			<LaserSpeed>35</LaserSpeed>
 			<Rate>1</Rate>
-		
+			<LaserQty>1</LaserQty>
 		</Boss>
 		<Boss id="7">
 			<Life>8000</Life>
@@ -62,7 +63,7 @@
 			<Speed>11</Speed>
 			<LaserSpeed>40</LaserSpeed>
 			<Rate>1</Rate>
-		
+			<LaserQty>1</LaserQty>
 		</Boss>
 		<Boss id="8">
 			<Life>9000</Life>
@@ -70,7 +71,7 @@
 			<Speed>12</Speed>
 			<LaserSpeed>45</LaserSpeed>
 			<Rate>1</Rate>
-		
+			<LaserQty>1</LaserQty>
 		</Boss>
 		<Boss id="9">
 			<Life>10000</Life>
@@ -78,7 +79,7 @@
 			<Speed>12</Speed>
 			<LaserSpeed>50</LaserSpeed>
 			<Rate>1</Rate>
-		
+			<LaserQty>1</LaserQty>
 		</Boss>
 		<Boss id="10">
 			<Life>25000</Life>
@@ -86,7 +87,7 @@
 			<Speed>13</Speed>
 			<LaserSpeed>100</LaserSpeed>
 			<Rate>1</Rate>
-		
+			<LaserQty>1</LaserQty>
 		</Boss>
 	</Bosses>
 </Configuration>

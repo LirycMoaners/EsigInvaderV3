@@ -2,13 +2,14 @@
 
 
 
-TypeEnemy::TypeEnemy(int life, int	dommage, int LaserSpeed, int speed, int rate)
+TypeEnemy::TypeEnemy(int life, int	dommage, int LaserSpeed, int speed, int rate, int laserQty)
 {
 	this->life = life;
 	this->dommage = dommage;
 	this->LaserSpeed = LaserSpeed;
 	this->speed = speed;
 	this->rate = rate;
+	this->laserQty = laserQty;
 }
 
 
@@ -29,4 +30,7 @@ int TypeEnemy::getDommage() {
 }
 int TypeEnemy::getLaserSpeed() {
 	return this->LaserSpeed;
+}
+int TypeEnemy::getLaserQty() {
+	return this->laserQty;
 }
