@@ -25,7 +25,7 @@ Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(
 	background.setSize(sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
 	background.setPosition(0, 0);
 	
-	spaceship = Spaceship(this->res.getImg()->getSpaceship_t());
+	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t());
 
 	// Chargement des différents partern 
 	XMLPatern.LoadFile("conf/patern.xml");
@@ -75,7 +75,7 @@ void Game::runGame()
 	quit.setCharacterSize(48);
 	quit.setColor(sf::Color(255, 255, 255, 255));
 
-	while (!endGame)
+	while (!endGame && spaceship->isAlive())
 	{
 		sf::Event event;
 		while (window->pollEvent(event))
@@ -89,7 +89,12 @@ void Game::runGame()
 
 		window->clear();
 		window->draw(background);
-		window->draw(getSpaceship().getSprite());
+
+		//Dessiner le player
+		window->draw(getSpaceship()->getSprite());
+		//Dessiner l'explosion du player si existant
+		if(getSpaceship()->getExplosionSprite().getTexture() != NULL)
+			window->draw(getSpaceship()->getExplosionSprite());
 
 		moveBackground();
 		collision();
@@ -107,7 +112,7 @@ void Game::runGame()
 				random = rand() % curLevel;
 			}
 			TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-			addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), typeEnemy));
+			addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(),this->res.getImg()->getExplosion_t(), typeEnemy));
 			curPatern += patern[curPatern].next();
 		}
 
@@ -127,8 +132,13 @@ void Game::runGame()
 			{
 				if (enemies.at(i)->getHealth() > 0)
 					addLasers(enemies.at(i)->shoot(this->res.getImg()->getLaser_t())); //Tir des ennemis
-				enemies.at(i)->move();
+
 				window->draw(enemies.at(i)->getSprite());
+				//Dessiner le sprite de l'explosion si existant
+				if (enemies.at(i)->getExplosionSprite().getTexture() != NULL)
+					window->draw(enemies.at(i)->getExplosionSprite());
+
+				enemies.at(i)->move();
 			}
 			else
 			{
@@ -141,23 +151,21 @@ void Game::runGame()
 		{
 			if (boss->isAlive())
 			{
-				if (boss->getHealth())
+				if (boss->getHealth() > 0)
 					addLasers(this->boss->shoot(this->res.getImg()->getLaser_t())); //Tir du boss
 
 				if ((curPatern == patern.size() && enemies.size() == 0))
 				{
-					this->boss->move(getSpaceship().getSprite());
+					this->boss->move(getSpaceship()->getSprite());
 					window->draw(boss->getSprite());
 				}
 			}
-			else
-				delete boss;
 		}
 
 		//Contrôle des animations
 		if (fpsCount >= fpsSwitch)
 		{
-			getSpaceship().switchFps();
+			getSpaceship()->switchFps();
 			for (int i = 0; i < getRockets().size(); i++)
 			{
 				getRockets().at(i)->switchFps();
@@ -193,7 +201,7 @@ void Game::runGame()
 	}
 }
 
-Spaceship &Game::getSpaceship()
+Spaceship *Game::getSpaceship()
 {
 	return spaceship;
 }
@@ -238,7 +246,7 @@ void Game::addBoss() {
 	//Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Texture& texture, sf::Vector2f pos)
 	TypeEnemy * type = res.getConfigXML()->getBossList().at(curLevel);
 	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
-	this->boss = new Boss(type, res.getImg()->getBoss_t(),pos);
+	this->boss = new Boss(type, res.getImg()->getBoss_t(),res.getImg()->getExplosion_t(),pos);
 }
 
 void Game::addLasers(vector<Laser*> &l)
@@ -249,9 +257,12 @@ void Game::addLasers(vector<Laser*> &l)
 
 void Game::control()
 {
-	addRockets(c->shoot(this->res.getImg()->getRocket_t(), spaceship));
-	c->move(spaceship);
-	c->runHub();
+	if (spaceship->getHealth() > 0)
+	{
+		addRockets(c->shoot(this->res.getImg()->getRocket_t(), spaceship));
+		c->move(spaceship);
+		c->runHub();
+	}
 }
 
 void Game::collision()
@@ -300,12 +311,12 @@ void Game::collision()
 			delete lasers.at(i);
 			lasers.erase(lasers.begin() + i);
 		}
-		else if (lasers.at(i)->getSprite().getPosition().x + lasers.at(i)->getSprite().getGlobalBounds().width > spaceship.getSprite().getPosition().x &&
-			lasers.at(i)->getSprite().getPosition().x < spaceship.getSprite().getPosition().x + spaceship.getSprite().getGlobalBounds().width &&
-			lasers.at(i)->getSprite().getPosition().y + lasers.at(i)->getSprite().getGlobalBounds().height > spaceship.getSprite().getPosition().y &&
-			lasers.at(i)->getSprite().getPosition().y < spaceship.getSprite().getPosition().y + spaceship.getSprite().getGlobalBounds().height)
+		else if (lasers.at(i)->getSprite().getPosition().x + lasers.at(i)->getSprite().getGlobalBounds().width > spaceship->getSprite().getPosition().x &&
+			lasers.at(i)->getSprite().getPosition().x < spaceship->getSprite().getPosition().x + spaceship->getSprite().getGlobalBounds().width &&
+			lasers.at(i)->getSprite().getPosition().y + lasers.at(i)->getSprite().getGlobalBounds().height > spaceship->getSprite().getPosition().y &&
+			lasers.at(i)->getSprite().getPosition().y < spaceship->getSprite().getPosition().y + spaceship->getSprite().getGlobalBounds().height)
 		{
-			spaceship.takeDommage(lasers.at(i)->getDommages());
+			spaceship->takeDommage(lasers.at(i)->getDommages());
 			delete lasers.at(i);
 			lasers.erase(lasers.begin() + i);
 		}
@@ -314,12 +325,13 @@ void Game::collision()
 	//Enemies collisions
 	if (popBoss)
 	{
-		if (boss->getSprite().getPosition().x + boss->getSprite().getGlobalBounds().width > spaceship.getSprite().getPosition().x &&
-			boss->getSprite().getPosition().x < spaceship.getSprite().getPosition().x + spaceship.getSprite().getGlobalBounds().width &&
-			boss->getSprite().getPosition().y + boss->getSprite().getGlobalBounds().height > spaceship.getSprite().getPosition().y &&
-			boss->getSprite().getPosition().y < spaceship.getSprite().getPosition().y + spaceship.getSprite().getGlobalBounds().height)
+		if (boss->getHealth() > 0 &&
+			boss->getSprite().getPosition().x + boss->getSprite().getGlobalBounds().width > spaceship->getSprite().getPosition().x &&
+			boss->getSprite().getPosition().x < spaceship->getSprite().getPosition().x + spaceship->getSprite().getGlobalBounds().width &&
+			boss->getSprite().getPosition().y + boss->getSprite().getGlobalBounds().height > spaceship->getSprite().getPosition().y &&
+			boss->getSprite().getPosition().y < spaceship->getSprite().getPosition().y + spaceship->getSprite().getGlobalBounds().height)
 		{
-			spaceship.takeDommage(boss->getHealth());
+			spaceship->takeDommage(boss->getHealth());
 		}
 	}
 	else
@@ -331,34 +343,34 @@ void Game::collision()
 				delete enemies.at(i);
 				enemies.erase(enemies.begin() + i);
 			}
-			else if (enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width > spaceship.getSprite().getPosition().x &&
-				enemies.at(i)->getSprite().getPosition().x < spaceship.getSprite().getPosition().x + spaceship.getSprite().getGlobalBounds().width &&
-				enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getGlobalBounds().height > spaceship.getSprite().getPosition().y &&
-				enemies.at(i)->getSprite().getPosition().y < spaceship.getSprite().getPosition().y + spaceship.getSprite().getGlobalBounds().height)
+			else if (enemies.at(i)->getHealth() > 0 &&
+				enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width > spaceship->getSprite().getPosition().x &&
+				enemies.at(i)->getSprite().getPosition().x < spaceship->getSprite().getPosition().x + spaceship->getSprite().getGlobalBounds().width &&
+				enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getGlobalBounds().height > spaceship->getSprite().getPosition().y &&
+				enemies.at(i)->getSprite().getPosition().y < spaceship->getSprite().getPosition().y + spaceship->getSprite().getGlobalBounds().height)
 			{
-				spaceship.takeDommage(enemies.at(i)->getHealth());
+				spaceship->takeDommage(enemies.at(i)->getHealth());
 				enemies.at(i)->takeDommage(enemies.at(i)->getHealth());
-				enemies.erase(enemies.begin() + i);
 			}
 		}
 	}
 
 	//Player collision with the border of the screen
-	if (spaceship.getSprite().getPosition().x < 0)
+	if (spaceship->getSprite().getPosition().x < 0)
 	{
-		spaceship.getSprite().setPosition(0, spaceship.getSprite().getPosition().y);
+		spaceship->getSprite().setPosition(0, spaceship->getSprite().getPosition().y);
 	}
-	else if (spaceship.getSprite().getPosition().x + spaceship.getSprite().getGlobalBounds().width > window->getSize().x)
+	else if (spaceship->getSprite().getPosition().x + spaceship->getSprite().getGlobalBounds().width > window->getSize().x)
 	{
-		spaceship.getSprite().setPosition(window->getSize().x - spaceship.getSprite().getGlobalBounds().width, spaceship.getSprite().getPosition().y);
+		spaceship->getSprite().setPosition(window->getSize().x - spaceship->getSprite().getGlobalBounds().width, spaceship->getSprite().getPosition().y);
 	}
-	if (spaceship.getSprite().getPosition().y < 0)
+	if (spaceship->getSprite().getPosition().y < 0)
 	{
-		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, 0);
+		spaceship->getSprite().setPosition(spaceship->getSprite().getPosition().x, 0);
 	}
-	else if (spaceship.getSprite().getPosition().y + spaceship.getSprite().getGlobalBounds().height > window->getSize().y)
+	else if (spaceship->getSprite().getPosition().y + spaceship->getSprite().getGlobalBounds().height > window->getSize().y)
 	{
-		spaceship.getSprite().setPosition(spaceship.getSprite().getPosition().x, window->getSize().y - spaceship.getSprite().getGlobalBounds().height);
+		spaceship->getSprite().setPosition(spaceship->getSprite().getPosition().x, window->getSize().y - spaceship->getSprite().getGlobalBounds().height);
 	}
 }
 
@@ -384,6 +396,7 @@ Game::~Game()
 		delete patern.at(i);
 	}*/
 	patern.~vector();
-	spaceship.~Spaceship();
+	delete boss;
+	delete spaceship;
 	c->~Control();
 }

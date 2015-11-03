@@ -10,6 +10,7 @@ Img::Img()
 	boss_t.loadFromFile("ressources/Boss.png");
 	home_t.loadFromFile("ressources/home.png");
 	button_t.loadFromFile("ressources/button.png");
+	explosion_t.loadFromFile("ressources/explosion.png");
 }
 
 sf::Texture &Img::getSpaceship_t()
@@ -27,6 +28,10 @@ sf::Texture &Img::getLaser_t()
 sf::Texture &Img::getBackground_t()
 {
 	return background_t;
+}
+sf::Texture &Img::getExplosion_t()
+{
+	return explosion_t;
 }
 sf::Texture &Img::getEnemy_t() 
 {

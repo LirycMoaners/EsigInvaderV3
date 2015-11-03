@@ -14,6 +14,7 @@ class Img
 		sf::Texture enemy_t;
 		sf::Texture boss_t;
 		sf::Texture home_t;
+		sf::Texture explosion_t;
 		sf::Texture button_t;
 
 	public:
@@ -22,6 +23,7 @@ class Img
 		sf::Texture &getRocket_t();
 		sf::Texture &getLaser_t();
 		sf::Texture &getBackground_t();
+		sf::Texture &getExplosion_t();
 		sf::Texture &getEnemy_t();
 		sf::Texture &getBoss_t();
 		sf::Texture &getHome_t();

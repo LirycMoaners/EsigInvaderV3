@@ -7,7 +7,7 @@
 class Keyboard : public Control
 {
 	private:
-		//Control ou définit l'espace entre deux tirs.
+		//Control ou définit l'espace entre deux tirs->
 		int compteurSpace;
 	public:
 		//Keyboard()
@@ -17,9 +17,9 @@ class Keyboard : public Control
 		//Methode qui permet de lancer le hub.
 		void runHub();
 		//Methode qui fait déplacer le player
-		void move(Spaceship&);
+		void move(Spaceship*);
 		//Permet au player de tirer
-		vector<Rocket*> shoot(sf::Texture&, Spaceship&);
+		vector<Rocket*> shoot(sf::Texture&, Spaceship*);
 		//Retourne true si la touche échappe est appuyée ou si le programme est arreté sinon False.
 		bool quit();
 		~Keyboard();

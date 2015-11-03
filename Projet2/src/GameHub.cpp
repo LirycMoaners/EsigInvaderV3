@@ -21,10 +21,10 @@ GameHub::GameHub()
 
 GameHub::~GameHub() {}
 
-void GameHub::updateHub(sf::RenderWindow* window, Spaceship& spaceObject)
+void GameHub::updateHub(sf::RenderWindow* window, Spaceship* spaceObject)
 {
 	//Update bar size
-	float healthScale = spaceObject.getHealth() > 0 ? ((float)spaceObject.getHealth() / 1000) : 0;
+	float healthScale = spaceObject->getHealth() > 0 ? ((float)spaceObject->getHealth() / 1000) : 0;
 	healthBar.setScale(sf::Vector2f(healthScale, 1));
 	healthBar.setFillColor(sf::Color((255 - healthScale * 255), healthScale * 255, 0));
 

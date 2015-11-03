@@ -13,7 +13,7 @@ void Enemy::switchFps()
 	anim.y++;
 }
 
-Enemy::Enemy(sf::Texture &t, sf::Vector2f pos, TypeEnemy * Typenemy, int type) : SpaceObject(t, 5, 3), compteurEnemy(1)
+Enemy::Enemy(sf::Texture &t,sf::Texture &expText, sf::Vector2f pos, TypeEnemy * Typenemy, int type) : SpaceObject(t,expText, 5, 3), compteurEnemy(1)
 {
 	if (anim.x < 2)
 		sprite.setTextureRect(sf::IntRect(anim.x * 100, anim.y, 100, 94));

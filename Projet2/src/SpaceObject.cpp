@@ -1,6 +1,6 @@
 #include "..\include\SpaceObject.h"
 
-SpaceObject::SpaceObject(sf::Texture &t,int health, int speed)
+SpaceObject::SpaceObject(sf::Texture &t,sf::Texture &expt,int health, int speed) : explosionTexture(expt)
 {
 	//Create graphical object
 	this->sprite.setTexture(t);
@@ -9,7 +9,6 @@ SpaceObject::SpaceObject(sf::Texture &t,int health, int speed)
 	this->health = health;
 	this->speed = speed;
 }
-SpaceObject::SpaceObject() {}
 
 void SpaceObject::takeDommage(int dommage) {
 	std::cout << "Object health: " << health << std::endl;
@@ -32,6 +31,7 @@ sf::Sprite &SpaceObject::getSprite()
 }
 
 int SpaceObject::getHealth() { return this->health; };
+sf::Sprite &SpaceObject::getExplosionSprite() { return this->explosionSprite; }
 int SpaceObject::getSpeed() { return this->speed; };
 
 bool SpaceObject::isExplosing()
@@ -40,20 +40,19 @@ bool SpaceObject::isExplosing()
 	{
 		//Explosion frame update limiter
 		explosionFrameSpeed = new sf::Clock();
-		explosionSprite = new sf::Sprite();
 
 		//Change objects texture to explosion texture
-		//explosionSprite->setTexture();
-		explosionSprite->setScale(sprite.getScale());
-		explosionSprite->setPosition(sprite.getPosition());
-		explosionSprite->setTextureRect(sf::IntRect(94 * explosionFrameCounter, 0, 94, 100));
+		explosionSprite.setTexture(explosionTexture);
+		explosionSprite.setScale(sprite.getScale());
+		explosionSprite.setPosition(sprite.getPosition());
+		explosionSprite.setTextureRect(sf::IntRect(94 * explosionFrameCounter, 0, 94, 100));
 		explosionFrameCounter++;
 		return true;
 	}
 	else if (explosionFrameCounter < 8 && explosionFrameSpeed->getElapsedTime().asMilliseconds() > 100)
 	{
-		explosionSprite->setTextureRect(sf::IntRect(94 * explosionFrameCounter, 0, 94, 100));
-		explosionSprite->setPosition(sprite.getPosition());
+		explosionSprite.setTextureRect(sf::IntRect(94 * explosionFrameCounter, 0, 94, 100));
+		explosionSprite.setPosition(sprite.getPosition());
 		explosionFrameSpeed->restart();
 		explosionFrameCounter++;
 		return true;

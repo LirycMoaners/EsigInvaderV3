@@ -13,5 +13,5 @@ class GameHub
 	public:
 		GameHub();
 		~GameHub();
-		void updateHub(sf::RenderWindow* window, Spaceship &spaceship);
+		void updateHub(sf::RenderWindow* window, Spaceship *spaceship);
 };

@@ -23,7 +23,7 @@ class Game
 		//Graphical object for the background
 		sf::RectangleShape background;
 		//Instance du player
-		Spaceship spaceship;
+		Spaceship* spaceship;
 		//Liste de rocket
 		vector<Rocket*> rockets;
 		//Liste d'ennemi
@@ -52,7 +52,7 @@ class Game
 		sf::RenderWindow *window;
 		Game();
 		Game(sf::RenderWindow&, Resources & res);
-		Spaceship &getSpaceship();
+		Spaceship *getSpaceship();
 		vector<Rocket*> &getRockets();
 		vector<Enemy*> &getEnemies();
 		vector<Laser*> &getLasers();
