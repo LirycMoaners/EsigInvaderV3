@@ -25,7 +25,7 @@ class Enemy : public SpaceObject
 		//Vérifie si l'ennemi est le boss
 		bool boss = false;
 	public:
-		Enemy(sf::Texture &t, sf::Vector2f pos, TypeEnemy * enemy, int type);
+		Enemy(sf::Texture &t,sf::Texture &expText, sf::Vector2f pos, TypeEnemy * enemy, int type);
 		int getDommage();
 		// selectionne les images par rapport au movement
 		void switchFps();

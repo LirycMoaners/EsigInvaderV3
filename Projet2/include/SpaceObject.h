@@ -10,7 +10,9 @@ class SpaceObject
 		sf::Sprite sprite;
 
 		//Sprite pour l'explosion du vaisseau
-		sf::Sprite* explosionSprite;
+		sf::Sprite explosionSprite;
+		//Texture pour les explosions
+		sf::Texture& explosionTexture;
 		//Vitesse d'actualisation des frames d'explosions
 		sf::Clock* explosionFrameSpeed;
 		//Frame d'explosion en cours d'affichage
@@ -23,14 +25,13 @@ class SpaceObject
 		int speed;
 		
 	public:
-		//SpaceObject()
-		SpaceObject();
 		//SpaceObject(sf::Texture &t,int,int)
-		SpaceObject(sf::Texture &t,int,int);
+		SpaceObject(sf::Texture &t,sf::Texture &expt,int,int);
 		~SpaceObject();
 
 		
 		sf::Sprite &getSprite();
+		sf::Sprite &getExplosionSprite();
 		virtual void move() {};
 
 		int getHealth();

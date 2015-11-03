@@ -23,7 +23,7 @@ vector<Rocket*> Weapon::shoot(sf::Texture &texture, sf::Sprite s)
 	vector<Rocket*> b;
 	
 	for (int i = 1; i <= rocketQty; i++)
-		b.push_back(new Rocket(texture,i,rocketQty,s, speed, dommage));
+		b.push_back(new Rocket(texture,i,rocketQty,s, speed, 5000*dommage));
 		//b.push_back(new Rocket(texture, sf::Vector2f(s.getPosition().x, s.getPosition().y + s.getTextureRect().height * i / (rocketQty + 1) - texture.getSize().y / 2), speed, dommage));
 
 	return b;
