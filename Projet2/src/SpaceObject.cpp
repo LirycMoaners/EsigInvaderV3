@@ -43,7 +43,7 @@ bool SpaceObject::isExplosing()
 		explosionSprite = new sf::Sprite();
 
 		//Change objects texture to explosion texture
-		//explosionSprite->setTexture(explosionTexture);
+		//explosionSprite->setTexture();
 		explosionSprite->setScale(sprite.getScale());
 		explosionSprite->setPosition(sprite.getPosition());
 		explosionSprite->setTextureRect(sf::IntRect(94 * explosionFrameCounter, 0, 94, 100));

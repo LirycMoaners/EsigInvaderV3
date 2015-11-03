@@ -87,6 +87,10 @@ void Game::runGame()
 			}
 		}
 
+		window->clear();
+		window->draw(background);
+		window->draw(getSpaceship().getSprite());
+
 		moveBackground();
 		collision();
 		control();
@@ -106,11 +110,41 @@ void Game::runGame()
 			endGame = true;
 		}
 
+		//Contrôle des ennemis
 		for (int i = 0; i < enemies.size(); i++)
-			addLasers(enemies.at(i)->shoot(this->res.getImg()->getLaser_t()));
-		if (popBoss) {
-			addLasers(this->boss->shoot(this->res.getImg()->getLaser_t()));
+		{
+			if (enemies.at(i)->isAlive())
+			{
+				if (enemies.at(i)->getHealth() > 0)
+					addLasers(enemies.at(i)->shoot(this->res.getImg()->getLaser_t())); //Tir des ennemis
+				enemies.at(i)->move();
+				window->draw(enemies.at(i)->getSprite());
+			}
+			else
+			{
+				delete enemies.at(i);
+				enemies.erase(enemies.begin() + i);
+			}
 		}
+		//Contrôle du boss
+		if (popBoss) 
+		{
+			if (boss->isAlive())
+			{
+				if (boss->getHealth())
+					addLasers(this->boss->shoot(this->res.getImg()->getLaser_t())); //Tir du boss
+
+				if ((curPatern == patern.size() && enemies.size() == 0))
+				{
+					this->boss->move(getSpaceship().getSprite());
+					window->draw(boss->getSprite());
+				}
+			}
+			else
+				delete boss;
+		}
+
+		//Contrôle des animations
 		if (fpsCount >= fpsSwitch)
 		{
 			getSpaceship().switchFps();
@@ -131,8 +165,6 @@ void Game::runGame()
 		else
 			fpsCount += clk.restart().asMilliseconds();
 
-		window->clear();
-		window->draw(background);
 		for (int i = 0; i < getRockets().size(); i++)
 		{
 			getRockets().at(i)->move();
@@ -143,17 +175,6 @@ void Game::runGame()
 			getLasers().at(i)->move();
 			window->draw(getLasers().at(i)->getSprite());
 		}
-		for (int i = 0; i < getEnemies().size(); i++)
-		{
-			getEnemies().at(i)->move();
-			window->draw(getEnemies().at(i)->getSprite());
-		}
-
-		if ((curPatern == patern.size() && enemies.size() == 0)) {
-			this->boss->move(getSpaceship().getSprite());
-			window->draw(boss->getSprite());
-		}
-		window->draw(getSpaceship().getSprite());
 
 		//Mise à jour du Hub
 		gameHub->updateHub(window, spaceship);
@@ -231,18 +252,32 @@ void Game::collision()
 		if (rockets[i]->getSprite().getPosition().x > window->getSize().x)
 			rockets.erase(rockets.begin() + i);
 		else
-			for (int j = 0; j < enemies.size(); j++)
+			if (popBoss)
 			{
-				if (rockets.at(i)->getSprite().getPosition().x + rockets.at(i)->getSprite().getGlobalBounds().width > enemies.at(j)->getSprite().getPosition().x &&
-					rockets.at(i)->getSprite().getPosition().x < enemies.at(j)->getSprite().getPosition().x + enemies.at(j)->getSprite().getGlobalBounds().width &&
-					rockets.at(i)->getSprite().getPosition().y + rockets.at(i)->getSprite().getGlobalBounds().height > enemies.at(j)->getSprite().getPosition().y &&
-					rockets.at(i)->getSprite().getPosition().y < enemies.at(j)->getSprite().getPosition().y + enemies.at(j)->getSprite().getGlobalBounds().height)
+				if (rockets.at(i)->getSprite().getPosition().x + rockets.at(i)->getSprite().getGlobalBounds().width > boss->getSprite().getPosition().x &&
+					rockets.at(i)->getSprite().getPosition().x < boss->getSprite().getPosition().x + boss->getSprite().getGlobalBounds().width &&
+					rockets.at(i)->getSprite().getPosition().y + rockets.at(i)->getSprite().getGlobalBounds().height > boss->getSprite().getPosition().y &&
+					rockets.at(i)->getSprite().getPosition().y < boss->getSprite().getPosition().y + boss->getSprite().getGlobalBounds().height)
 				{
-					delete enemies.at(j);
-					enemies.erase(enemies.begin() + j);
+					boss->takeDommage(rockets.at(i)->getDommages());
 					delete rockets.at(i);
 					rockets.erase(rockets.begin() + i);
-					break;
+				}
+			}
+			else
+			{
+				for (int j = 0; j < enemies.size(); j++)
+				{
+					if (rockets.at(i)->getSprite().getPosition().x + rockets.at(i)->getSprite().getGlobalBounds().width > enemies.at(j)->getSprite().getPosition().x &&
+						rockets.at(i)->getSprite().getPosition().x < enemies.at(j)->getSprite().getPosition().x + enemies.at(j)->getSprite().getGlobalBounds().width &&
+						rockets.at(i)->getSprite().getPosition().y + rockets.at(i)->getSprite().getGlobalBounds().height > enemies.at(j)->getSprite().getPosition().y &&
+						rockets.at(i)->getSprite().getPosition().y < enemies.at(j)->getSprite().getPosition().y + enemies.at(j)->getSprite().getGlobalBounds().height)
+					{
+						enemies.at(j)->takeDommage(rockets.at(i)->getDommages());
+						delete rockets.at(i);
+						rockets.erase(rockets.begin() + i);
+						break;
+					}
 				}
 			}
 	}
@@ -266,22 +301,35 @@ void Game::collision()
 		}
 	}
 
-	//
-	for (int i = 0; i < enemies.size(); i++)
+	//Enemies collisions
+	if (popBoss)
 	{
-		if (enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width < 0)
+		if (boss->getSprite().getPosition().x + boss->getSprite().getGlobalBounds().width > spaceship.getSprite().getPosition().x &&
+			boss->getSprite().getPosition().x < spaceship.getSprite().getPosition().x + spaceship.getSprite().getGlobalBounds().width &&
+			boss->getSprite().getPosition().y + boss->getSprite().getGlobalBounds().height > spaceship.getSprite().getPosition().y &&
+			boss->getSprite().getPosition().y < spaceship.getSprite().getPosition().y + spaceship.getSprite().getGlobalBounds().height)
 		{
-			delete enemies.at(i);
-			enemies.erase(enemies.begin() + i);
+			spaceship.takeDommage(boss->getHealth());
 		}
-		else if (enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width > spaceship.getSprite().getPosition().x &&
-			enemies.at(i)->getSprite().getPosition().x < spaceship.getSprite().getPosition().x + spaceship.getSprite().getGlobalBounds().width &&
-			enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getGlobalBounds().height > spaceship.getSprite().getPosition().y &&
-			enemies.at(i)->getSprite().getPosition().y < spaceship.getSprite().getPosition().y + spaceship.getSprite().getGlobalBounds().height)
+	}
+	else
+	{
+		for (int i = 0; i < enemies.size(); i++)
 		{
-			spaceship.takeDommage(enemies.at(i)->getHealth());
-			delete enemies.at(i);
-			enemies.erase(enemies.begin() + i);
+			if (enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width < 0)
+			{
+				delete enemies.at(i);
+				enemies.erase(enemies.begin() + i);
+			}
+			else if (enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width > spaceship.getSprite().getPosition().x &&
+				enemies.at(i)->getSprite().getPosition().x < spaceship.getSprite().getPosition().x + spaceship.getSprite().getGlobalBounds().width &&
+				enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getGlobalBounds().height > spaceship.getSprite().getPosition().y &&
+				enemies.at(i)->getSprite().getPosition().y < spaceship.getSprite().getPosition().y + spaceship.getSprite().getGlobalBounds().height)
+			{
+				spaceship.takeDommage(enemies.at(i)->getHealth());
+				enemies.at(i)->takeDommage(enemies.at(i)->getHealth());
+				enemies.erase(enemies.begin() + i);
+			}
 		}
 	}
 
