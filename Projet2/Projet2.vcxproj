@@ -77,6 +77,7 @@
     <Image Include="ressources\bonus_malus.png" />
     <Image Include="ressources\boss.png" />
     <Image Include="ressources\bullet.png" />
+    <Image Include="ressources\button.png" />
     <Image Include="ressources\enemy.png" />
     <Image Include="ressources\explosion.png" />
     <Image Include="ressources\home.png" />
@@ -101,7 +102,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

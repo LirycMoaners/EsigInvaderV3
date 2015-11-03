@@ -24,21 +24,13 @@ class Enemy : public SpaceObject
 		int compteurEnemy;
 		//Vérifie si l'ennemi est le boss
 		bool boss = false;
-
 	public:
-		//Enemy(float, float, sf::Texture&);
-		Enemy(sf::Texture&, sf::Vector2f);
-		//Enemy(float, float, sf::Texture&,int, int)
-		Enemy(sf::Texture&, sf::Vector2f, int, int);
-		Enemy(sf::Texture &t, sf::Vector2f pos, TypeEnemy * enemy);
+		Enemy(sf::Texture &t, sf::Vector2f pos, TypeEnemy * enemy, int type);
 		int getDommage();
 		// selectionne les images par rapport au movement
 		void switchFps();
 		//Methode de tire des lasers de l'ennemi
 		vector<Laser*> shoot(sf::Texture&);
-		//Définit le niveau d'appartenance de l'ennemi
-		void setLvl(int);
-
 		//déplace l'objet courant. 
 		void move();
 		//TODO à supprimer

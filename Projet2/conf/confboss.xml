@@ -5,15 +5,15 @@
 			<Life>1000</Life>
 			<Dommage>25</Dommage>
 			<Speed>4</Speed>
-			<LaserSpeed>5</LaserSpeed>
+			<LaserSpeed>15</LaserSpeed>
 			<Rate>60</Rate>
-			<LaserQty>1</LaserQty>
+			<LaserQty>5</LaserQty>
 		</Boss>
 		<Boss id="1">
 			<Life>2000</Life>
 			<Dommage>100</Dommage>
 			<Speed>5</Speed>
-			<LaserSpeed>10</LaserSpeed>
+			<LaserSpeed>15</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
 		</Boss>
