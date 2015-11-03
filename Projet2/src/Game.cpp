@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Game::Game() : window(), c(&Keyboard()), spaceship(Spaceship(img->getSpaceship_t())) {}
+//Game::Game() : window(), c(&Keyboard()), spaceship(Spaceship(img->getSpaceship_t())) {}
 
 Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)
 {
@@ -11,21 +11,21 @@ Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(
 	// Chargement de la texture pour les textes 
 	arial.loadFromFile("ressources/arial.ttf");
 	// Chargement de l'objets permettant le chargement des images
-	img = new Img();
+	
 	this->res = res;
 	//Création du hub
 	gameHub = new GameHub();
 
 
 	//Create graphical object for the background
-	background.setTexture(&img->getBackground_t());
+	background.setTexture(&this->res.getImg()->getBackground_t());
 	background.setTextureRect(sf::IntRect(0, 0, this->window->getSize().x, this->window->getSize().y));
 
 	//Set background aspect
 	background.setSize(sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
 	background.setPosition(0, 0);
 	
-	spaceship = Spaceship(img->getSpaceship_t());
+	spaceship = Spaceship(this->res.getImg()->getSpaceship_t());
 
 	// Chargement des différents partern 
 	XMLPatern.LoadFile("conf/patern.xml");
@@ -93,7 +93,7 @@ void Game::runGame()
 
 		if (patern.size() != 0 && curPatern < patern.size())
 		{
-			addEnemies(patern[curPatern].spawn(img->getEnemy_t()));
+			addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t()));
 			curPatern += patern[curPatern].next();
 		}
 
@@ -107,9 +107,9 @@ void Game::runGame()
 		}
 
 		for (int i = 0; i < enemies.size(); i++)
-			addLasers(enemies.at(i)->shoot(img->getLaser_t()));
+			addLasers(enemies.at(i)->shoot(this->res.getImg()->getLaser_t()));
 		if (popBoss) {
-			addLasers(this->boss->shoot(img->getLaser_t()));
+			addLasers(this->boss->shoot(this->res.getImg()->getLaser_t()));
 		}
 		if (fpsCount >= fpsSwitch)
 		{
@@ -184,7 +184,7 @@ vector<Laser*> &Game::getLasers()
 
 void Game::moveBackground()
 {
-	if (background.getTextureRect().left + background.getTextureRect().width >= img->getBackground_t().getSize().x)
+	if (background.getTextureRect().left + background.getTextureRect().width >= this->res.getImg()->getBackground_t().getSize().x)
 		background.setTextureRect(sf::IntRect(0, 0, window->getSize().x, window->getSize().y));
 	else
 		background.setTextureRect(sf::IntRect(background.getTextureRect().left + 2, 0, window->getSize().x, window->getSize().y));
@@ -207,7 +207,7 @@ void Game::addBoss() {
 	//Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Texture& texture, sf::Vector2f pos)
 	TypeEnemy * type = res.getConfigXML()->getBossList().at(curLevel);
 	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
-	this->boss = new Boss(type->getLife(), type->getDommage(), type->getLaserSpeed(), type->getSpeed(), type->getRate(), res.getImg()->getBoss_t(),pos);
+	this->boss = new Boss(type, res.getImg()->getBoss_t(),pos);
 }
 
 void Game::addLasers(vector<Laser*> &l)
@@ -218,7 +218,7 @@ void Game::addLasers(vector<Laser*> &l)
 
 void Game::control()
 {
-	addRockets(c->shoot(img->getRocket_t(), spaceship));
+	addRockets(c->shoot(this->res.getImg()->getRocket_t(), spaceship));
 	c->move(spaceship);
 	c->runHub();
 }

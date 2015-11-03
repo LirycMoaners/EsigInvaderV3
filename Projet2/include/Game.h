@@ -18,9 +18,7 @@
 class Game
 {
 	private:
-		//Donne accès aux objets graphiques du programme
-		Img *img;
-		//Police
+		
 		sf::Font arial;
 		//Graphical object for the background
 		sf::RectangleShape background;

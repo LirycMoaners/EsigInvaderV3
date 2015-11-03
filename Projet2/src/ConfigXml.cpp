@@ -79,8 +79,9 @@ void ConfigXml::loadingConfigurationTypeEnemy() {
 			int LaserSpeed = stoi(levelEnemy->FirstChildElement("LaserSpeed")->GetText());
 			int speed = stoi(levelEnemy->FirstChildElement("Speed")->GetText());
 			int rate = stoi(levelEnemy->FirstChildElement("Rate")->GetText());
+			int laserQty = stoi(levelEnemy->FirstChildElement("LaserQty")->GetText());
 			// Ajout du type d'ennemi dans la liste
-			typeList.push_back(new TypeEnemy(life, dommage, LaserSpeed, speed, rate));
+			typeList.push_back(new TypeEnemy(life, dommage, LaserSpeed, speed, rate, laserQty));
 			// Passage à la balise suivante
 			levelEnemy = levelEnemy->NextSiblingElement("Enemy");
 		}
@@ -107,9 +108,10 @@ void ConfigXml::loadingConfigurationBoss() {
 			int speedEnemyFire = stoi(levelBoss->FirstChildElement("LaserSpeed")->GetText());
 			int speed = stoi(levelBoss->FirstChildElement("Speed")->GetText());
 			int rate = stoi(levelBoss->FirstChildElement("Rate")->GetText());
+			int laserQty = stoi(levelBoss->FirstChildElement("LaserQty")->GetText());
 			// Ajout d'un nouveau boss à la liste 
 			//sf::Vector2f pos(window->getSize().x - img->getBoss_t().getSize().x, window->getSize().y / 2);
-			bossList.push_back(new TypeEnemy(life, dommage, speed, speedEnemyFire, rate));
+			bossList.push_back(new TypeEnemy(life, dommage, speed, speedEnemyFire, rate, laserQty));
 			// Passage à la balise suivante
 			levelBoss = levelBoss->NextSiblingElement("Boss");
 		}

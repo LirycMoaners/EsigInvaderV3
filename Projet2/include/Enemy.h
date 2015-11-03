@@ -3,20 +3,17 @@
 #include "SpaceObject.h"
 #include <iostream>
 #include "Laser.h"
+#include "TypeEnemy.h"
 
 class Enemy : public SpaceObject
 {
 	protected:
 		//Force de dégâts
 		int dommage;
-		//La vie de l'ennemi
-		int life;
 		//Vérifie si l'ennemi se déplace vers le bas
 		bool moveDown;
 		//Le vecteur selection d'image de texture pour faire l'animation
 		sf::Vector2i anim;
-		//TODO doublon vitesse ennemi
-		int speed = 10;
 		//Définit la quatité de lasers qu'il tire à la fois
 		int laserQty;
 		//Fréquence des lasers
@@ -33,7 +30,7 @@ class Enemy : public SpaceObject
 		Enemy(sf::Texture&, sf::Vector2f);
 		//Enemy(float, float, sf::Texture&,int, int)
 		Enemy(sf::Texture&, sf::Vector2f, int, int);
-
+		Enemy(sf::Texture &t, sf::Vector2f pos, TypeEnemy * enemy);
 		int getDommage();
 		// selectionne les images par rapport au movement
 		void switchFps();
