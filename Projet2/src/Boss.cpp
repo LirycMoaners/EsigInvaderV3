@@ -1,24 +1,28 @@
 #include "..\include\Boss.h"
 
-Boss::Boss(TypeEnemy * Typenemy, sf::Texture& texture, sf::Texture& expText, sf::Vector2f pos) : Enemy(texture,expText, pos, Typenemy, 0)
+Boss::Boss(TypeEnemy * Typenemy, sf::Texture& texture, sf::Texture& Explode, sf::Vector2f pos) : Enemy(texture, Explode,  pos, Typenemy, 0)
 {
 	sprite.setPosition(sprite.getPosition().x - sprite.getGlobalBounds().width - 100, sprite.getPosition().y);
 	sprite.setTextureRect(sf::IntRect(rand() % 4 * 131, 0, 131, 189));
 }
+
 void Boss::move(){
 	sprite.move(-speed, 0);
 }
 
 void Boss :: move(sf::Sprite & sprite) {
+	int posPlayer = sprite.getPosition().y + sprite.getGlobalBounds().height / 2;
+	int posBoss = this->getSprite().getPosition().y + this->getSprite().getGlobalBounds().height / 2;
 
-	if ((sprite.getPosition().y + sprite.getScale().y / 2) - (this->getSprite().getPosition().y + this->getSprite().getScale().y / 2)) {
-		
-		
-		int delta = this->speed  * ((sprite.getPosition().y+ sprite.getScale().y/2) - (this->getSprite().getPosition().y  + this->getSprite().getScale().y/2)) < 0 ? -1 : 1;
-		
+	
+	std::cout << "Final Pos player " << posPlayer << "Scale : " << sprite.getScale().y / 2 << std::endl;
+	std::cout << "Final Pos BOSS " << posBoss << "Scale : "<< this->getSprite().getScale().y << std::endl;
+	if (posPlayer != posBoss) {
+		int delta = this->speed  * (posPlayer -posBoss ) < 0 ? -1 : 1;
 		this->getSprite().move(0, delta);
 	}
-
+	
+	
 }
 
 void Boss::setPosition(float x, float y) {

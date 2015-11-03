@@ -396,7 +396,10 @@ Game::~Game()
 		delete patern.at(i);
 	}*/
 	patern.~vector();
-	delete boss;
+	if (boss != NULL) {
+		delete boss;
+	}
+	
 	delete spaceship;
 	c->~Control();
 }

@@ -36,12 +36,8 @@ class Game
 		vector<Patern> patern;
 		//Hub du jeu pour l'affichage de la vie
 		GameHub* gameHub;
-
-		/*
-			Configuration XML 			
-		*/
 		Resources res;
-		Boss * boss;
+		Boss * boss = NULL;
 		int curPatern;
 		int nbPaternAvailable = 0;
 		int curLevel = 0;
