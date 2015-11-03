@@ -50,7 +50,7 @@ void Bullet::switchFps()
 
 Bullet::~Bullet()
 {
-	//std::cout << "Destructeur Bullet call" << std::endl;
+	std::cout << "Destructeur Bullet call" << std::endl;
 }
 
 int Bullet::getDommages()

@@ -6,7 +6,7 @@
 			<Dommage>25</Dommage>
 			<Speed>4</Speed>
 			<LaserSpeed>15</LaserSpeed>
-			<Rate>60</Rate>
+			<Rate>10</Rate>
 			<LaserQty>5</LaserQty>
 		</Boss>
 		<Boss id="1">
