@@ -3,49 +3,22 @@
 
 Menu::Menu(int width, int height, string title, Resources &res) : Windows(width, height, title)
 {
-	arial.loadFromFile("ressources/arial.ttf");
-	sf::Vector2f buttonSize(300, 49);
-	this->res = res;
+	background.setTexture(&res.getImg()->getHome_t());
+	background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
+	background.setPosition(0, 0);
+
 	//Menu buttons
-
 	// Création du bouton Start Game
-
-	// Définition de la police
-	startText.setFont(arial);
-	// Définition de la taille
-	startText.setCharacterSize(25);
-	// Définition de la chaine de caractère
-	startText.setString("Start Game");
-	// Définition de la couleur
-	startText.setColor(sf::Color::Blue);
-	// Définition de la position
-	startText.setPosition(WINDOW_WIDTH / 2 - startText.getGlobalBounds().width / 2, 400);
 	
 	// Définition du rectangle autour du texte
-	buttonStart.setFillColor(sf::Color::Transparent);
-	buttonStart.setOutlineColor(sf::Color::Blue);
-	buttonStart.setOutlineThickness(2);
-	buttonStart.setPosition(sf::Vector2f(startText.getPosition().x - (buttonSize.x - startText.getLocalBounds().width) / 2,
-		startText.getPosition().y - (buttonSize.y - startText.getLocalBounds().height) / 3));
-	buttonStart.setSize(buttonSize);
+	buttonStart.setTexture(res.getImg()->getButton_t());
+	buttonStart.setTextureRect(sf::IntRect(0, 0, 295, 85));
+	buttonStart.setPosition(WINDOW_WIDTH / 2 - buttonStart.getGlobalBounds().width / 2, 470);
 
-	// Définition de la police
-	quitText.setFont(arial);
-	// Définition de la taille
-	quitText.setCharacterSize(25);
-	// Définition de la chaine de caractère
-	quitText.setString("Quit Game");
-	// Définition de la couleur 
-	quitText.setColor(sf::Color::Blue);
-	// Définition de la position 
-	quitText.setPosition(WINDOW_WIDTH / 2 - quitText.getGlobalBounds().width / 2, 500);
 	// Définition du rectangle autour du texte
-	buttonQuit.setFillColor(sf::Color::Transparent);
-	buttonQuit.setOutlineColor(sf::Color::Blue);
-	buttonQuit.setOutlineThickness(2);
-	buttonQuit.setPosition(sf::Vector2f(quitText.getPosition().x - (buttonSize.x - quitText.getLocalBounds().width) / 2,
-		quitText.getPosition().y - (buttonSize.y - quitText.getLocalBounds().height) / 3));
-	buttonQuit.setSize(buttonSize);
+	buttonQuit.setTexture(res.getImg()->getButton_t());
+	buttonQuit.setTextureRect(sf::IntRect(0, 85, 295, 85));
+	buttonQuit.setPosition(WINDOW_WIDTH / 2 - buttonQuit.getGlobalBounds().width / 2, 570);
 }
 
 void Menu::runWindows()
@@ -67,8 +40,7 @@ void Menu::runWindows()
 		if (mouse.mouseOver(*window, buttonStart))
 		{
 			//Change color of the button
-			startText.setColor(sf::Color::Red);
-			buttonStart.setOutlineColor(sf::Color::Red);
+			buttonStart.setTextureRect(sf::IntRect(0, 170, 295, 85));
 
 			//Button clicked
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -77,14 +49,12 @@ void Menu::runWindows()
 		else
 		{
 			//Change color of the button
-			startText.setColor(sf::Color::Blue);
-			buttonStart.setOutlineColor(sf::Color::Blue);
+			buttonStart.setTextureRect(sf::IntRect(0, 0, 295, 85));
 		}
 		if (mouse.mouseOver(*window, buttonQuit))
 		{
 			//Change color of the button
-			quitText.setColor(sf::Color::Red);
-			buttonQuit.setOutlineColor(sf::Color::Red);
+			buttonQuit.setTextureRect(sf::IntRect(0, 255, 295, 85));
 
 			//Button clicked
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -93,15 +63,13 @@ void Menu::runWindows()
 		else
 		{
 			//Change color of the button
-			quitText.setColor(sf::Color::Blue);
-			buttonQuit.setOutlineColor(sf::Color::Blue);
+			buttonQuit.setTextureRect(sf::IntRect(0, 85, 295, 85));
 		}
 		/* ---------------------------------------------- */
 
 		//Redraw the window
 		window->clear();
-		window->draw(startText);
-		window->draw(quitText);
+		window->draw(background);
 		window->draw(buttonStart);
 		window->draw(buttonQuit);
 		window->display();

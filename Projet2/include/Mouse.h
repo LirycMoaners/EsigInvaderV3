@@ -8,6 +8,6 @@ class Mouse
 		Mouse();
 		~Mouse();
 		// Détecte la souris
-		bool mouseOver(sf::RenderWindow&, sf::RectangleShape&);
+		bool mouseOver(sf::RenderWindow&, sf::Sprite&);
 };
 
