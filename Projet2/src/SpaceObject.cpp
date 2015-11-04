@@ -59,7 +59,11 @@ bool SpaceObject::isExplosing()
 	}
 	else if (explosionFrameCounter >= 8)
 	{
-		delete explosionFrameSpeed;
+		// TODO erreur lors de l'explosition du boss
+		if (explosionFrameSpeed != NULL) {
+			explosionFrameCounter = 0;
+			delete explosionFrameSpeed;
+		}
 		return false;
 	}
 }

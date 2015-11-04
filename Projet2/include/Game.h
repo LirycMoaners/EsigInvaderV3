@@ -46,7 +46,7 @@ class Game
 	public:
 		Control *c;
 		sf::RenderWindow *window;
-		Game();
+		//Game();
 		Game(sf::RenderWindow&, Resources & res);
 		Spaceship *getSpaceship();
 		vector<Rocket*> &getRockets();
@@ -55,7 +55,7 @@ class Game
 		//Lancer le jeu
 		void runGame();
 		//Charge le fichier configuration et configure le jeu
-		void loadingConfiguration();
+		void PaternGeneration();
 		//Ajoute des rockets
 		void addRockets(vector<Rocket*>&);
 		//Ajoute les lasers

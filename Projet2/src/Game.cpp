@@ -16,7 +16,6 @@ Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(
 	//Création du hub
 	gameHub = new GameHub();
 
-
 	//Create graphical object for the background
 	background.setTexture(&this->res.getImg()->getBackground_t());
 	background.setTextureRect(sf::IntRect(0, 0, this->window->getSize().x, this->window->getSize().y));
@@ -27,11 +26,17 @@ Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(
 	
 	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t());
 
+	PaternGeneration();
+	
+	
+}
+
+void Game::PaternGeneration() {
 	// Chargement des différents partern 
 	XMLPatern.LoadFile("conf/patern.xml");
 	// Récupération du noeud root
 	tinyxml2::XMLNode * node = XMLPatern.RootElement();
-	
+
 	if (XMLPatern.ErrorID() == 0) {
 		if (node != NULL) {
 			// Récupération du nombre de patern
@@ -53,13 +58,10 @@ Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(
 	}
 	else {
 		// SI une erreur on ferme le programe
-		window.close();
+		window->close();
 		std::cerr << "Failed to open the file patern.xml in conf's folder. Error ID : " << XMLPatern.ErrorID() << endl;
 	}
-	
 }
-
-
 
 
 void Game::runGame()
@@ -283,6 +285,10 @@ void Game::collision()
 					boss->takeDommage(rockets.at(i)->getDommages());
 					delete rockets.at(i);
 					rockets.erase(rockets.begin() + i);
+					// TODO LOAD NEXT LEVEL
+					if (!boss->isAlive()) {
+						curLevel += 1;
+					}
 				}
 			}
 			else

@@ -5,7 +5,7 @@ class Boss : public Enemy
 {
 	public:
 		//Boss(int life, int dommage,int LaserSpeed, int speed, int rate, sf::Texture&, sf::Vector2f)
-		Boss(TypeEnemy * Typenemy, sf::Texture&,sf::Texture&, sf::Vector2f);
+		Boss(TypeEnemy * Typenemy, sf::Texture& texture,sf::Texture& explode, sf::Vector2f pos);
 		//Boss(const Boss &);
 		~Boss();
 		//Déplace le boss
