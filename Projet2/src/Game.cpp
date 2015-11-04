@@ -49,6 +49,8 @@ void Game::PaternGeneration() {
 				}
 			} while (pattern != NULL);
 			std::cout << "NB pattern available : " << nbPaternAvailable << endl;
+			patern.clear();
+			curPatern = 0;
 			// Génération en fonction du nombre de patern disponible une liste aléatoire de patern d'ennemi
 			for (int i = 0; i < res.getConfigXML()->getLevelList().at(curLevel)->getNbPatern(); i++) {
 				int number = rand() % nbPaternAvailable + 1;
@@ -149,18 +151,32 @@ void Game::runGame()
 			}
 		}
 		//Contrôle du boss
-		if (popBoss) 
+		if (popBoss)
 		{
-			if (boss->isAlive())
+			if (boss != NULL)
 			{
-				if (boss->getHealth() > 0)
-					addLasers(this->boss->shoot(this->res.getImg()->getLaser_t())); //Tir du boss
-
-				if ((curPatern == patern.size() && enemies.size() == 0))
+				if (boss->isAlive())
 				{
-					this->boss->move(getSpaceship()->getSprite());
+					if (boss->getHealth() > 0)
+						addLasers(this->boss->shoot(this->res.getImg()->getLaser_t())); //Tir du boss
+
 					window->draw(boss->getSprite());
+
+					if (boss->getExplosionSprite().getTexture() != NULL)
+						window->draw(boss->getExplosionSprite());
+
+					this->boss->move(getSpaceship()->getSprite());
 				}
+				else
+				{
+					delete boss;
+					boss = NULL;
+					curLevel += 1;
+				}
+			}
+			else
+			{
+				PaternGeneration();
 			}
 		}
 
@@ -275,7 +291,7 @@ void Game::collision()
 		if (rockets[i]->getSprite().getPosition().x > window->getSize().x)
 			rockets.erase(rockets.begin() + i);
 		else
-			if (popBoss)
+			if (boss != NULL)
 			{
 				if (rockets.at(i)->getSprite().getPosition().x + rockets.at(i)->getSprite().getGlobalBounds().width > boss->getSprite().getPosition().x &&
 					rockets.at(i)->getSprite().getPosition().x < boss->getSprite().getPosition().x + boss->getSprite().getGlobalBounds().width &&
@@ -285,10 +301,6 @@ void Game::collision()
 					boss->takeDommage(rockets.at(i)->getDommages());
 					delete rockets.at(i);
 					rockets.erase(rockets.begin() + i);
-					// TODO LOAD NEXT LEVEL
-					if (!boss->isAlive()) {
-						curLevel += 1;
-					}
 				}
 			}
 			else
@@ -329,7 +341,7 @@ void Game::collision()
 	}
 
 	//Enemies collisions
-	if (popBoss)
+	if (boss != NULL)
 	{
 		if (boss->getHealth() > 0 &&
 			boss->getSprite().getPosition().x + boss->getSprite().getGlobalBounds().width > spaceship->getSprite().getPosition().x &&

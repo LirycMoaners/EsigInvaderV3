@@ -47,6 +47,7 @@ bool SpaceObject::isExplosing()
 		explosionSprite.setPosition(sprite.getPosition());
 		explosionSprite.setTextureRect(sf::IntRect(94 * explosionFrameCounter, 0, 94, 100));
 		explosionFrameCounter++;
+		speed = 0;
 		return true;
 	}
 	else if (explosionFrameCounter < 8 && explosionFrameSpeed->getElapsedTime().asMilliseconds() > 100)
@@ -60,10 +61,10 @@ bool SpaceObject::isExplosing()
 	else if (explosionFrameCounter >= 8)
 	{
 		// TODO erreur lors de l'explosition du boss
-		if (explosionFrameSpeed != NULL) {
-			explosionFrameCounter = 0;
-			delete explosionFrameSpeed;
-		}
+		/*if (explosionFrameSpeed != NULL) {
+			explosionFrameCounter = 0;*/
+ 			delete explosionFrameSpeed;
+		//}
 		return false;
 	}
 }
