@@ -32,7 +32,10 @@ Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(
 }
 
 void Game::PaternGeneration() {
-	// Chargement des différents partern 
+	curPatern = 0;
+	std::cout << "cur patern :" << curPatern << endl;
+	nbPaternAvailable = 0;
+ 	// Chargement des différents partern 
 	XMLPatern.LoadFile("conf/patern.xml");
 	// Récupération du noeud root
 	tinyxml2::XMLNode * node = XMLPatern.RootElement();

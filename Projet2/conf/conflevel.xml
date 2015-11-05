@@ -2,11 +2,11 @@
 <Configuration>
 	<Levels>
 		<Level id="0">
-			<NbPatern>1</NbPatern>		
+			<NbPatern>2</NbPatern>		
 			<UrlImageBackground>ressources/</UrlImageBackground>
 		</Level>
 		<Level id="1">
-			<NbPatern>20</NbPatern>
+			<NbPatern>2</NbPatern>
 			<UrlImageBackground>ressources/</UrlImageBackground>
 		</Level>
 		<Level id="2">
