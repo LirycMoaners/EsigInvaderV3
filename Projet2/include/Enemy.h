@@ -22,8 +22,8 @@ class Enemy : public SpaceObject
 		int laserSpeed;
 		//Compte le numbre d'ennemis
 		int compteurEnemy;
-		//Vérifie si l'ennemi est le boss
-		bool boss = false;
+		// Score attribuer pour l'ennemie
+		int score;
 	public:
 		Enemy(sf::Texture &t,sf::Texture &expText, sf::Vector2f pos, TypeEnemy * enemy, int type);
 		int getDommage();
@@ -33,8 +33,8 @@ class Enemy : public SpaceObject
 		vector<Laser*> shoot(sf::Texture&);
 		//déplace l'objet courant. 
 		void move();
-		//TODO à supprimer
-		bool getType();
+		
+		int getScore();
 		~Enemy();
 };
 

@@ -73,17 +73,40 @@ void ConfigXml::loadingConfigurationTypeEnemy() {
 		// Récupération de la première balise Enemy disponible;
 		tinyxml2::XMLElement * levelEnemy = nodeEnemy->FirstChildElement("Enemies")->FirstChildElement("Enemy");
 		while (levelEnemy) {
-			// Récupération et conversion des champs 
-			int life = stoi(levelEnemy->FirstChildElement("Life")->GetText());
-			int dommage = stoi(levelEnemy->FirstChildElement("Dommage")->GetText());
-			int LaserSpeed = stoi(levelEnemy->FirstChildElement("LaserSpeed")->GetText());
-			int speed = stoi(levelEnemy->FirstChildElement("Speed")->GetText());
-			int rate = stoi(levelEnemy->FirstChildElement("Rate")->GetText());
-			int laserQty = stoi(levelEnemy->FirstChildElement("LaserQty")->GetText());
-			// Ajout du type d'ennemi dans la liste
-			typeList.push_back(new TypeEnemy(life, dommage, LaserSpeed, speed, rate, laserQty));
-			// Passage à la balise suivante
-			levelEnemy = levelEnemy->NextSiblingElement("Enemy");
+			try {
+				int life = -1, dommage = -1, speedEnemyFire = -1, speed = -1, rate = -1, laserQty = -1, score = -1;
+				// Récupération de tout les champs disponible
+				if (levelEnemy->FirstChildElement("Life") != NULL)
+					life = stoi(levelEnemy->FirstChildElement("Life")->GetText());
+				if (levelEnemy->FirstChildElement("Dommage") != NULL)
+					dommage = stoi(levelEnemy->FirstChildElement("Dommage")->GetText());
+				if (levelEnemy->FirstChildElement("LaserSpeed") != NULL)
+					speedEnemyFire = stoi(levelEnemy->FirstChildElement("LaserSpeed")->GetText());
+				if (levelEnemy->FirstChildElement("Speed") != NULL)
+					speed = stoi(levelEnemy->FirstChildElement("Speed")->GetText());
+				if (levelEnemy->FirstChildElement("Rate") != NULL)
+					rate = stoi(levelEnemy->FirstChildElement("Rate")->GetText());
+				if (levelEnemy->FirstChildElement("LaserQty") != NULL)
+					laserQty = stoi(levelEnemy->FirstChildElement("LaserQty")->GetText());
+				if (levelEnemy->FirstChildElement("Score") != NULL)
+					score = stoi(levelEnemy->FirstChildElement("Score")->GetText());
+
+				if (life != -1 && dommage != -1 && speedEnemyFire != -1 && speed != -1 && rate != -1 && laserQty != -1 && score != -1)
+				{
+					// Ajout d'un nouveau boss à la liste 
+					typeList.push_back(new TypeEnemy(life, dommage, speedEnemyFire, speed , rate, laserQty, score));
+					// Passage à la balise suivante
+					levelEnemy = levelEnemy->NextSiblingElement("Enemy");
+				}
+				else {
+					std::cout << "Wrong XML for the BOSS" << endl;
+					exit(EXIT_FAILURE);
+				}
+			}
+			catch (const std::invalid_argument& ia) {
+				std::cerr << "Invalid argument: " << ia.what() << '\n';
+			}
+			
 		}
 	}
 	else {
@@ -102,18 +125,40 @@ void ConfigXml::loadingConfigurationBoss() {
 		// Positionnement de l'element à la première balise Boss disponible;
 		tinyxml2::XMLElement * levelBoss = nodeEnemy->FirstChildElement("Bosses")->FirstChildElement("Boss");
 		while (levelBoss) {
-			// Récupération de tout les champs disponible
-			int life = stoi(levelBoss->FirstChildElement("Life")->GetText());
-			int dommage = stoi(levelBoss->FirstChildElement("Dommage")->GetText());
-			int speedEnemyFire = stoi(levelBoss->FirstChildElement("LaserSpeed")->GetText());
-			int speed = stoi(levelBoss->FirstChildElement("Speed")->GetText());
-			int rate = stoi(levelBoss->FirstChildElement("Rate")->GetText());
-			int laserQty = stoi(levelBoss->FirstChildElement("LaserQty")->GetText());
-			// Ajout d'un nouveau boss à la liste 
-			//sf::Vector2f pos(window->getSize().x - img->getBoss_t().getSize().x, window->getSize().y / 2);
-			bossList.push_back(new TypeEnemy(life, dommage, speed, speedEnemyFire, rate, laserQty));
-			// Passage à la balise suivante
-			levelBoss = levelBoss->NextSiblingElement("Boss");
+			try {
+				int life = -1, dommage = -1, speedEnemyFire = -1, speed = -1, rate = -1, laserQty =-1, score = -1;
+				// Récupération de tout les champs disponible
+				if(levelBoss->FirstChildElement("Life") != NULL)
+					life = stoi(levelBoss->FirstChildElement("Life")->GetText());
+				if(levelBoss->FirstChildElement("Dommage") != NULL)
+					dommage = stoi(levelBoss->FirstChildElement("Dommage")->GetText());
+				if (levelBoss->FirstChildElement("LaserSpeed") != NULL)
+					speedEnemyFire = stoi(levelBoss->FirstChildElement("LaserSpeed")->GetText());
+				if (levelBoss->FirstChildElement("Speed") != NULL)
+					speed = stoi(levelBoss->FirstChildElement("Speed")->GetText());
+				if (levelBoss->FirstChildElement("Rate") != NULL)
+					rate = stoi(levelBoss->FirstChildElement("Rate")->GetText());
+				if (levelBoss->FirstChildElement("LaserQty") != NULL)
+					laserQty = stoi(levelBoss->FirstChildElement("LaserQty")->GetText());
+				if (levelBoss->FirstChildElement("Score") != NULL)
+					score = stoi(levelBoss->FirstChildElement("Score")->GetText());
+
+				if (life != -1 && dommage != -1 && speedEnemyFire != -1 && speed != -1 && rate != -1 && laserQty != -1 && score != -1)
+				{
+					// Ajout d'un nouveau boss à la liste 
+					bossList.push_back(new TypeEnemy(life, dommage, speedEnemyFire, speed, rate, laserQty, score));
+					// Passage à la balise suivante
+					levelBoss = levelBoss->NextSiblingElement("Boss");
+				}
+				else {
+					std::cout<<"Wrong XML for the BOSS" << endl;
+					exit(EXIT_FAILURE);
+				}
+			}
+			catch (const std::invalid_argument& ia) {
+					std::cerr << "Invalid argument: " << ia.what() << '\n';
+			}
+			
 		}
 	}
 	else {

@@ -32,6 +32,16 @@ Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(
 }
 
 void Game::PaternGeneration() {
+
+	curPatern = 0;
+	std::cout << "cur patern :" << curPatern << endl;
+	nbPaternAvailable = 0;
+	popBoss = false;
+ 	
+	std::cout << "NB bullets" << rockets.size() << endl;
+	std::cout << "NB enemies" << enemies.size() << endl;
+	std::cout << "NB lasers" << rockets.size() << endl;
+	
 	// Chargement des différents partern 
 	XMLPatern.LoadFile("conf/patern.xml");
 	// Récupération du noeud root
@@ -81,6 +91,7 @@ void Game::runGame()
 
 	while (!endGame && spaceship->isAlive())
 	{
+		std::cout << "Score : " << score << endl;
 		sf::Event event;
 		while (window->pollEvent(event))
 		{
@@ -107,16 +118,19 @@ void Game::runGame()
 		if (patern.size() != 0 && curPatern < patern.size())
 		{
 			int random;
-			if (curLevel == 0)
-				random = 0;
-			else if (curLevel == 1) {
-				random = 1;
-			}
-			else {
-				random = rand() % curLevel;
-			}
+			do {
+				
+				if (curLevel == 0)
+					random = 0;
+				else if (curLevel == 1) {
+					random = 1;
+				}
+				else {
+					random = rand() % curLevel+1;
+				}
+			} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 			TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-			addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(),this->res.getImg()->getExplosion_t(), typeEnemy));
+			addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
 			curPatern += patern[curPatern].next();
 		}
 
@@ -146,6 +160,7 @@ void Game::runGame()
 			}
 			else
 			{
+				score += enemies.at(i)->getScore();
 				delete enemies.at(i);
 				enemies.erase(enemies.begin() + i);
 			}
@@ -169,6 +184,7 @@ void Game::runGame()
 				}
 				else
 				{
+					score += boss->getScore();
 					delete boss;
 					boss = NULL;
 					curLevel += 1;

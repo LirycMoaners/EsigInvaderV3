@@ -6,9 +6,11 @@
 			<Dommage>25</Dommage>
 			<Speed>4</Speed>
 			<LaserSpeed>15</LaserSpeed>
-			<Rate>10</Rate>
+			<Rate>3</Rate>
 			<LaserQty>5</LaserQty>
+			<Score>15000</Score>
 		</Boss>
+		
 		<Boss id="1">
 			<Life>2000</Life>
 			<Dommage>100</Dommage>
@@ -16,7 +18,9 @@
 			<LaserSpeed>15</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
+			<Score>30000</Score>
 		</Boss>
+		
 		<Boss id="2">
 			<Life>3000</Life>
 			<Dommage>150</Dommage>
@@ -24,7 +28,9 @@
 			<LaserSpeed>15</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
+			<Score>60000</Score>
 		</Boss>
+		
 		<Boss id="3">
 			<Life>4000</Life>
 			<Dommage>450</Dommage>
@@ -32,7 +38,9 @@
 			<LaserSpeed>20</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
+			<Score>120000</Score>
 		</Boss>
+		
 		<Boss id="4">
 			<Life>5000</Life>
 			<Dommage>800</Dommage>
@@ -40,7 +48,9 @@
 			<LaserSpeed>25</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
+			<Score>240000</Score>
 		</Boss>
+		
 		<Boss id="5">
 			<Life>6000</Life>
 			<Dommage>1200</Dommage>
@@ -48,7 +58,9 @@
 			<LaserSpeed>30</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
+			<Score>480000</Score>
 		</Boss>
+		
 		<Boss id="6">
 			<Life>7000</Life>
 			<Dommage>2400</Dommage>
@@ -56,7 +68,9 @@
 			<LaserSpeed>35</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
+			<Score>960000</Score>
 		</Boss>
+		
 		<Boss id="7">
 			<Life>8000</Life>
 			<Dommage>4800</Dommage>
@@ -64,7 +78,9 @@
 			<LaserSpeed>40</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
+			<Score>1500000</Score>
 		</Boss>
+		
 		<Boss id="8">
 			<Life>9000</Life>
 			<Dommage>6000</Dommage>
@@ -72,7 +88,9 @@
 			<LaserSpeed>45</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
+			<Score>3000000</Score>
 		</Boss>
+		
 		<Boss id="9">
 			<Life>10000</Life>
 			<Dommage>8000</Dommage>
@@ -80,7 +98,9 @@
 			<LaserSpeed>50</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
+			<Score>9000000</Score>
 		</Boss>
+		
 		<Boss id="10">
 			<Life>25000</Life>
 			<Dommage>15000</Dommage>
@@ -88,6 +108,17 @@
 			<LaserSpeed>100</LaserSpeed>
 			<Rate>1</Rate>
 			<LaserQty>1</LaserQty>
+			<Score>18000000</Score>
+		</Boss>
+		
+		<Boss id="10">
+			<Life>100000</Life>
+			<Dommage>15000</Dommage>
+			<Speed>13</Speed>
+			<LaserSpeed>25</LaserSpeed>
+			<Rate>25</Rate>
+			<LaserQty>5</LaserQty>
+			<Score>50000000</Score>
 		</Boss>
 	</Bosses>
 </Configuration>

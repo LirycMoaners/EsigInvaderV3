@@ -13,12 +13,24 @@ Menu::Menu(int width, int height, string title, Resources &res) : Windows(width,
 	// Définition du rectangle autour du texte
 	buttonStart.setTexture(res.getImg()->getButton_t());
 	buttonStart.setTextureRect(sf::IntRect(0, 0, 295, 85));
-	buttonStart.setPosition(WINDOW_WIDTH / 2 - buttonStart.getGlobalBounds().width / 2, 470);
+	buttonStart.setPosition(WINDOW_WIDTH / 2 - buttonStart.getGlobalBounds().width / 2, 270);
+
+	// Définition du rectangle autour du texte
+	buttonEndLess.setTexture(res.getImg()->getButton_t());
+	buttonEndLess.setTextureRect(sf::IntRect(0, 85, 295, 85));
+	buttonEndLess.setPosition(WINDOW_WIDTH / 2 - buttonEndLess.getGlobalBounds().width / 2, 370);
+
+	// Définition du rectangle autour du texte
+	buttonScore.setTexture(res.getImg()->getButton_t());
+	buttonScore.setTextureRect(sf::IntRect(0, 170, 295, 85));
+	buttonScore.setPosition(WINDOW_WIDTH / 2 - buttonScore.getGlobalBounds().width / 2, 470);
 
 	// Définition du rectangle autour du texte
 	buttonQuit.setTexture(res.getImg()->getButton_t());
-	buttonQuit.setTextureRect(sf::IntRect(0, 85, 295, 85));
+	buttonQuit.setTextureRect(sf::IntRect(0, 255, 295, 85));
 	buttonQuit.setPosition(WINDOW_WIDTH / 2 - buttonQuit.getGlobalBounds().width / 2, 570);
+
+	
 }
 
 void Menu::runWindows()
@@ -51,6 +63,37 @@ void Menu::runWindows()
 			//Change color of the button
 			buttonStart.setTextureRect(sf::IntRect(0, 0, 295, 85));
 		}
+
+		if (mouse.mouseOver(*window, buttonEndLess))
+		{
+			//Change color of the button
+			buttonEndLess.setTextureRect(sf::IntRect(0, 255, 295, 85));
+
+			//Button clicked
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				Game(*window, res).runGame();
+		}
+		else
+		{
+			//Change color of the button
+			buttonEndLess.setTextureRect(sf::IntRect(0, 85, 295, 85));
+		}
+		if (mouse.mouseOver(*window, buttonScore))
+		{
+			//Change color of the button
+			buttonScore.setTextureRect(sf::IntRect(0, 255, 295, 85));
+
+			//Button clicked
+			//TODO
+		}
+		else
+		{
+			//Change color of the button
+			buttonScore.setTextureRect(sf::IntRect(0, 85, 295, 85));
+		}
+
+
+
 		if (mouse.mouseOver(*window, buttonQuit))
 		{
 			//Change color of the button
@@ -65,12 +108,21 @@ void Menu::runWindows()
 			//Change color of the button
 			buttonQuit.setTextureRect(sf::IntRect(0, 85, 295, 85));
 		}
+
+
+
+		
+
+
+
 		/* ---------------------------------------------- */
 
 		//Redraw the window
 		window->clear();
 		window->draw(background);
 		window->draw(buttonStart);
+		window->draw(buttonEndLess);
+		window->draw(buttonScore);
 		window->draw(buttonQuit);
 		window->display();
 	}
