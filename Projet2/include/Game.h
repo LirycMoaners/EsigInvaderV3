@@ -43,6 +43,7 @@ class Game
 		int curLevel = 0;
 		bool popBoss = false;
 		int score = 0;
+
 	public:
 		Control *c;
 		sf::RenderWindow *window;

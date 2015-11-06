@@ -11,6 +11,8 @@ class Spaceship: public SpaceObject
 		sf::Vector2i anim;
 		// l'arme du joueur
 		Weapon weapon;
+		//Valeur maximale de la vie du player
+		static const int HEALTH_MAX = 1500;
 
 	public:
 		//Spaceship(sf::Texture&)
@@ -23,6 +25,9 @@ class Spaceship: public SpaceObject
 		///<param int='dir'>direction de déplacement</param>
 		///</summary>
 		void move(int);
+
+		//Retourne la vie maximal du spaceship
+		int getHealthMax();
 
 		//Selectionne les images par rapport au movement
 		void switchFps();

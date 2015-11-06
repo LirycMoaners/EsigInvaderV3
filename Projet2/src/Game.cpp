@@ -27,8 +27,6 @@ Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(
 	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t());
 
 	PaternGeneration();
-	
-	
 }
 
 void Game::PaternGeneration() {
@@ -187,6 +185,7 @@ void Game::runGame()
 					score += boss->getScore();
 					delete boss;
 					boss = NULL;
+					gameHub->resetHub();
 					curLevel += 1;
 				}
 			}
@@ -229,7 +228,7 @@ void Game::runGame()
 		}
 
 		//Mise à jour du Hub
-		gameHub->updateHub(window, spaceship);
+		gameHub->updateHub(window, spaceship, boss, score);
 
 		window->display();
 	}
