@@ -26,12 +26,12 @@ Enemy::Enemy(sf::Texture &t,sf::Texture &expText, sf::Vector2f pos, TypeEnemy * 
 	this->laserQty = Typenemy->getLaserQty();
 	this->dommage = Typenemy->getDommage();
 	this->anim = sf::Vector2i(type, 0);
+	this->score = Typenemy->getScore();
 	sprite.setPosition(pos);
 }
 
-
-bool Enemy::getType() {
-	return this->boss;
+int Enemy::getScore() {
+	return score;
 }
 
 void Enemy::move()

@@ -11,7 +11,7 @@ class Menu : public Windows
 		const int WINDOW_WIDTH = 1024; //Width of the game window
 		//Définit le bouton correspondant au texte précédent
 		sf::RectangleShape background;
-		sf::Sprite buttonQuit, buttonStart;
+		sf::Sprite buttonQuit, buttonStart, buttonScore, buttonEndLess;
 		Resources res;
 	public:
 		Menu(int width, int height, string title, Resources &res);
