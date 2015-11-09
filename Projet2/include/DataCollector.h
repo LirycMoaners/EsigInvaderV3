@@ -17,7 +17,6 @@ class DataCollector : public myo::DeviceListener
 public:
 
 	DataCollector();
-	//DataCollector(int previous_value_x,int previous_value_y, Field &field);
 	~DataCollector();
 	myo::Pose getPose();
 	myo::Vector3< float > & getGyro();

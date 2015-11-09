@@ -4,6 +4,8 @@ Boss::Boss(TypeEnemy * Typenemy, sf::Texture& texture, sf::Texture& Explode, sf:
 {
 	sprite.setPosition(sprite.getPosition().x - sprite.getGlobalBounds().width - 100, sprite.getPosition().y);
 	sprite.setTextureRect(sf::IntRect(rand() % 4 * 131, 0, 131, 189));
+
+	HEALTH_MAX = Typenemy->getLife();
 }
 
 void Boss::move(){
@@ -57,3 +59,5 @@ vector<Laser*> Boss::shoot(sf::Texture &texture)
 
 	return l;
 }
+
+int Boss::getHealthMax() { return HEALTH_MAX; }

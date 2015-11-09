@@ -8,7 +8,7 @@ class Patern
 {
 	private:
 		//Permet de charger un pattern depuis le fichier xml des patterns.
-		tinyxml2::XMLElement *patern;
+		tinyxml2::XMLElement * patern;
 		//TODO supprimer certains de ces attributs
 		int typeEnemy;
 		int lvlEnemy;
