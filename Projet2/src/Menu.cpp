@@ -209,9 +209,9 @@ void Menu::drawScores(sf::RenderWindow* window, Resources &res)
 
 		//Set score values
 		if (scores[2 * i] != "")
-			scoresText[i].setString(scores[2 * i] + " .............................................................. " + scores[2 * i + 1]);
+			scoresText[i].setString(scores[2 * i] + " ............................................. " + scores[2 * i + 1] +" ................. " + scores[3 * i + 1]);
 		else
-			scoresText[i].setString("UNKNOWN .............................................................. 000000");
+			scoresText[i].setString("UNKNOWN ............................................. 000000 ................. N/A");
 		scoresText[i].setPosition((WINDOW_WIDTH - scoresText[i].getGlobalBounds().width) / 2, 200 + i * (WINDOW_HEIGHT / 15));
 		window->draw(scoresText[i]);
 	}

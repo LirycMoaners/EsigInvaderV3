@@ -18,7 +18,7 @@ class Menu : public Windows
 		sf::Text cheatText;
 		std::string cheat;
 		sf::Font arial;
-		std::string scores[20];
+		std::string scores[30];
 
 
 	public:
