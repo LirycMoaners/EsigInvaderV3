@@ -232,6 +232,9 @@ void Game::runGame()
 
 		window->display();
 	}
+
+	//After the death of player, enter is name
+	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score);
 }
 
 Spaceship *Game::getSpaceship()

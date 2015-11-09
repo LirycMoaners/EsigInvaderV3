@@ -13,6 +13,13 @@ class Menu : public Windows
 		sf::RectangleShape background;
 		sf::Sprite buttonQuit, buttonStart, buttonScore, buttonEndLess;
 		Resources res;
+		//Cheat code hidded bar
+		sf::RectangleShape cheatBar;
+		sf::Text cheatText;
+		std::string cheatString;
+		sf::Font arial;
+
+
 	public:
 		Menu(int width, int height, string title, Resources &res);
 		~Menu();
