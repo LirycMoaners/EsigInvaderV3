@@ -27,6 +27,7 @@ class Menu : public Windows
 		//Lance la fênetre de menu
 		void drawScores(sf::RenderWindow*, Resources &res);
 		void runWindows();
+		void findBestScores();
 };
 
 #endif

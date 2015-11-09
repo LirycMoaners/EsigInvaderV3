@@ -11,11 +11,7 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	// Chargement de la texture pour les textes 
 	arial.loadFromFile("ressources/arial.ttf");
 
-	// Activation des codes 
-
 	
-
-
 
 	//Definition du mode de jeu
 	this->modeGame = modeGame;
@@ -34,7 +30,11 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	background.setPosition(0, 0);
 	
 	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t());
+	
+	// Activation des codes 
 	activateCheat(cheat);
+	
+	
 	PaternGeneration();
 
 
@@ -311,6 +311,10 @@ void Game::runGame()
 
 	//After the death of player, enter is name
 	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score);
+	if(!modeGame)
+		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(),"Normal" );
+	else
+		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(), "Endless");
 }
 
 Spaceship *Game::getSpaceship()

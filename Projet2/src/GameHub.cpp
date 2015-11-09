@@ -144,3 +144,7 @@ void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, 
 		window->display();
 	}
 }
+
+std::string GameHub::getPlayerPseudo() {
+	return playerPseudo;
+}

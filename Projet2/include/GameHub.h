@@ -19,6 +19,7 @@ class GameHub
 		GameHub();
 		~GameHub();
 		void resetHub();
+		string getPlayerPseudo();
 		void setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bg, int score);
 		void updateHub(sf::RenderWindow* window, Spaceship *spaceship, Boss* boss, int score);
 };

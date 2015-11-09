@@ -168,7 +168,7 @@ void ConfigXml::loadingConfigurationBoss() {
 	}
 }
 
-void ConfigXml::CreateScore(int score, string name) {
+void ConfigXml::CreateScore(int score, string name, string mode) {
 	tinyxml2::XMLDocument xmlScore;
 	tinyxml2::XMLError error = xmlScore.LoadFile("data.db");
 	
@@ -177,21 +177,49 @@ void ConfigXml::CreateScore(int score, string name) {
 		tinyxml2::XMLElement * node = root->FirstChildElement("Scores");
 
 		tinyxml2::XMLElement * temps = xmlScore.NewElement("Score");
-		temps->SetAttribute("name", name.c_str());
-		temps->SetAttribute("score", score);
-		root->InsertEndChild(temps);
-		xmlScore.SaveFile("data.db");
+		temps->SetAttribute("user", name.c_str());
+		temps->SetAttribute("value", score);
+		temps->SetAttribute("mode", mode.c_str());
+		
+		//Find the first score smaller than the current score
+		tinyxml2::XMLNode* testedScoreNode = root->FirstChildElement("Score");
+		int value = 0;
+		do
+		{
+			//Find score values
+			try
+			{
+				value = atoi(testedScoreNode->FirstChildElement("value")->GetText());
+			}
+			catch (...) { std::cout << "Error in the XML score file!" << std::endl; break; }
+
+			//Take the next score if the tested score is higher than the current player score
+			if (value < score)
+				break;
+			else
+				testedScoreNode = testedScoreNode->NextSiblingElement("Score");
+
+		} while (testedScoreNode);
+
+		if (testedScoreNode == root->FirstChildElement("Score"))
+			root->InsertFirstChild(temps);
+		else if (testedScoreNode)
+			root->InsertAfterChild(testedScoreNode, temps);
+		else
+			root->InsertEndChild(temps);
+		xmlScore.SaveFile("conf/data.db");
 	}
 	else {
 		if (error == tinyxml2::XMLError::XML_ERROR_FILE_NOT_FOUND) {
 			tinyxml2::XMLElement * result = xmlScore.NewElement("Scores");
 			tinyxml2::XMLElement * temps = xmlScore.NewElement("Score");
-			temps->SetAttribute("name", name.c_str());
-			temps->SetAttribute("score", score);
+			temps->SetAttribute("user", name.c_str());
+			temps->SetAttribute("value", score);
+			temps->SetAttribute("mode", mode.c_str());
 			result->InsertEndChild(temps);
 
 			xmlScore.InsertEndChild(result);
-			xmlScore.SaveFile("data.db");
+			xmlScore.SaveFile("conf/data.db");
 		}
 	}
 }

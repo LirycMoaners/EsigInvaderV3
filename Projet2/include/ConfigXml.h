@@ -11,7 +11,7 @@ class ConfigXml
 public:
 	ConfigXml();
 	void loadingConfiguration();
-	void CreateScore(int score, string name);
+	void CreateScore(int score, string name,string mode);
 	~ConfigXml();
 
 	vector<Level*> getLevelList();
