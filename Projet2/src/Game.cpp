@@ -164,12 +164,13 @@ void Game::runGame()
 					compteurPatern = 0;
 					popBoss = true;
 				}
-				patern.clear();
+				curPatern =0;
+				//patern.clear();
 			}
 		}
 		
 
-		if ((curPatern == patern.size() && enemies.size() == 0) && !popBoss) {
+		if ((curPatern == patern.size() && enemies.size() == 0) && !popBoss && !modeGame) {
 			addBoss();
 			popBoss = true;
 		}
