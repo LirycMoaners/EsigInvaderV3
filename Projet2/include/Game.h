@@ -12,8 +12,7 @@
 #include "Level.h"
 #include "Resources.h"
 #include "GameHub.h"
-
-
+#include "Bonus.h"
 
 class Game
 {
@@ -30,6 +29,8 @@ class Game
 		vector<Enemy*> enemies;
 		//Liste de lasers
 		vector<Laser*> lasers;
+		//Liste des bonus
+		vector<Bonus*> bonus;
 		//Fichier xml contenant les patterns
 		tinyxml2::XMLDocument XMLPatern;
 		//Définit la liste de patterns du jeu
@@ -43,16 +44,18 @@ class Game
 		int curLevel = 0;
 		bool popBoss = false;
 		int score = 0;
-
+		bool modeGame = false; // modeGame = false Normal ModeGame = true EndlessMode
+		int compteurPatern = 0;
 	public:
 		Control *c;
 		sf::RenderWindow *window;
 		//Game();
-		Game(sf::RenderWindow&, Resources & res);
+		Game(sf::RenderWindow&, Resources & res, bool modeGame, string cheat);
 		Spaceship *getSpaceship();
 		vector<Rocket*> &getRockets();
 		vector<Enemy*> &getEnemies();
 		vector<Laser*> &getLasers();
+		vector<Bonus*> &getBonus();
 		//Lancer le jeu
 		void runGame();
 		//Charge le fichier configuration et configure le jeu
@@ -65,6 +68,10 @@ class Game
 		void addEnemies(vector<Enemy*>&);
 		//Ajoute le boss de la partie
 		void addBoss();
+		void addBoss(TypeEnemy * type);
+
+		// Activation de cheat
+		void activateCheat(string cheat);
 		//Instacie l'environnement du player
 		void control();
 		//Gère le mouvement du background

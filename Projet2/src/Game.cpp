@@ -4,14 +4,23 @@ using namespace std;
 
 //Game::Game() : window(), c(&Keyboard()), spaceship(Spaceship(img->getSpaceship_t())) {}
 
-Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)
+Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)
 {
 	if (c->getStatus() == false)
 		c = new Keyboard();
 	// Chargement de la texture pour les textes 
 	arial.loadFromFile("ressources/arial.ttf");
-	// Chargement de l'objets permettant le chargement des images
+
+	// Activation des codes 
+
 	
+
+
+
+	//Definition du mode de jeu
+	this->modeGame = modeGame;
+
+	// Chargement de l'objets permettant le chargement des images
 	this->res = res;
 	//Création du hub
 	gameHub = new GameHub();
@@ -25,8 +34,24 @@ Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(
 	background.setPosition(0, 0);
 	
 	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t());
-
+	activateCheat(cheat);
 	PaternGeneration();
+
+
+}
+
+void Game::activateCheat(string cheat) {
+	if (cheat == "grave") {
+		spaceship->getWeapon().setLvl(5);
+		curLevel = 11;
+		spaceship->setHealth(150000);
+	}
+	else if (cheat == "mylittlepony") {
+
+	}
+	else if (cheat == "") {
+
+	}
 }
 
 void Game::PaternGeneration() {
@@ -59,11 +84,19 @@ void Game::PaternGeneration() {
 			std::cout << "NB pattern available : " << nbPaternAvailable << endl;
 			patern.clear();
 			curPatern = 0;
-			// Génération en fonction du nombre de patern disponible une liste aléatoire de patern d'ennemi
-			for (int i = 0; i < res.getConfigXML()->getLevelList().at(curLevel)->getNbPatern(); i++) {
+			if (!modeGame) {
+				// Génération en fonction du nombre de patern disponible une liste aléatoire de patern d'ennemi
+				for (int i = 0; i < res.getConfigXML()->getLevelList().at(curLevel)->getNbPatern(); i++) {
+					int number = rand() % nbPaternAvailable + 1;
+					patern.push_back(Patern(XMLPatern, number));
+				}
+			}
+			else {
+				patern.clear();
 				int number = rand() % nbPaternAvailable + 1;
 				patern.push_back(Patern(XMLPatern, number));
 			}
+			
 		}
 	}
 	else {
@@ -112,27 +145,57 @@ void Game::runGame()
 		moveBackground();
 		collision();
 		control();
+		if (!modeGame) {
+			if (patern.size() != 0 && curPatern < patern.size())
+			{
+				int random;
+				do {
 
-		if (patern.size() != 0 && curPatern < patern.size())
-		{
-			int random;
-			do {
-				
-				if (curLevel == 0)
-					random = 0;
-				else if (curLevel == 1) {
-					random = 1;
-				}
-				else {
-					random = rand() % curLevel+1;
-				}
-			} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
-			TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-			addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
-			curPatern += patern[curPatern].next();
+					if (curLevel == 0)
+						random = 0;
+					else if (curLevel == 1) {
+						random = 1;
+					}
+					else {
+						random = rand() % curLevel + 1;
+					}
+				} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
+				TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
+				addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
+				curPatern += patern[curPatern].next();
+			}
 		}
+		else {
+			if (patern.size() != 0 && curPatern < patern.size()) {
+				if (enemies.empty()) {
+					PaternGeneration();
+					curPatern = 0;
+					int random;
+					do {
+						random = rand() % this->res.getConfigXML()->getTypeEnemyList().size();
+					} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
+					TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
+					addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
+					compteurPatern += 1;
+					curPatern += 1;
+				}
+			}
+			else {
+				if (compteurPatern == 10) {
+					int random;
+					random = rand() % this->res.getConfigXML()->getBossList().size();
+					TypeEnemy * type = this->res.getConfigXML()->getBossList().at(random);
+					addBoss(type);
+					compteurPatern = 0;
+					popBoss = true;
+				}
+				curPatern =0;
+				//patern.clear();
+			}
+		}
+		
 
-		if ((curPatern == patern.size() && enemies.size() == 0) && !popBoss) {
+		if ((curPatern == patern.size() && enemies.size() == 0) && !popBoss && !modeGame) {
 			addBoss();
 			popBoss = true;
 		}
@@ -159,6 +222,11 @@ void Game::runGame()
 			else
 			{
 				score += enemies.at(i)->getScore();
+				if (rand() % 5 == 0)
+				{
+					sf::Vector2f pos = sf::Vector2f(enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width / 2, enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getGlobalBounds().height / 2);
+					bonus.push_back(new Bonus(res.getImg()->getBonus_t(), pos));
+				}
 				delete enemies.at(i);
 				enemies.erase(enemies.begin() + i);
 			}
@@ -211,6 +279,10 @@ void Game::runGame()
 			{
 				getLasers().at(i)->switchFps();
 			}
+			for (int i = 0; i < bonus.size(); i++)
+			{
+				getBonus().at(i)->switchFps();
+			}
 			fpsCount = 0;
 		}
 		else
@@ -225,6 +297,11 @@ void Game::runGame()
 		{
 			getLasers().at(i)->move();
 			window->draw(getLasers().at(i)->getSprite());
+		}
+		for (int i = 0; i < bonus.size(); i++)
+		{
+			getBonus().at(i)->move();
+			window->draw(getBonus().at(i)->getSprite());
 		}
 
 		//Mise à jour du Hub
@@ -257,6 +334,10 @@ vector<Laser*> &Game::getLasers()
 	return lasers;
 }
 
+vector<Bonus*> &Game::getBonus(){
+	return bonus;
+}
+
 void Game::moveBackground()
 {
 	if (background.getTextureRect().left + background.getTextureRect().width >= this->res.getImg()->getBackground_t().getSize().x)
@@ -283,6 +364,13 @@ void Game::addBoss() {
 	TypeEnemy * type = res.getConfigXML()->getBossList().at(curLevel);
 	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
 	this->boss = new Boss(type, res.getImg()->getBoss_t(),res.getImg()->getExplosion_t(),pos);
+}
+
+void Game::addBoss(TypeEnemy * type){
+
+	//Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Texture& texture, sf::Vector2f pos)
+	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
+	this->boss = new Boss(type, res.getImg()->getBoss_t(), res.getImg()->getExplosion_t(), pos);
 }
 
 void Game::addLasers(vector<Laser*> &l)
@@ -355,6 +443,25 @@ void Game::collision()
 			spaceship->takeDommage(lasers.at(i)->getDommages());
 			delete lasers.at(i);
 			lasers.erase(lasers.begin() + i);
+		}
+	}
+
+	//Bonus collision
+	for (int i = 0; i < bonus.size(); i++)
+	{
+		if (bonus.at(i)->getSprite().getPosition().x + bonus.at(i)->getSprite().getGlobalBounds().width < 0)
+		{
+			delete bonus.at(i);
+			bonus.erase(bonus.begin() + i);
+		}
+		else if (bonus.at(i)->getSprite().getPosition().x + bonus.at(i)->getSprite().getGlobalBounds().width > spaceship->getSprite().getPosition().x &&
+			bonus.at(i)->getSprite().getPosition().x < spaceship->getSprite().getPosition().x + spaceship->getSprite().getGlobalBounds().width &&
+			bonus.at(i)->getSprite().getPosition().y + bonus.at(i)->getSprite().getGlobalBounds().height > spaceship->getSprite().getPosition().y &&
+			bonus.at(i)->getSprite().getPosition().y < spaceship->getSprite().getPosition().y + spaceship->getSprite().getGlobalBounds().height)
+		{
+			spaceship->getWeapon().setLvl(spaceship->getWeapon().getLvl() + bonus.at(i)->getEffect());
+			delete bonus.at(i);
+			bonus.erase(bonus.begin() + i);
 		}
 	}
 

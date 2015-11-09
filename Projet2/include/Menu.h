@@ -18,6 +18,7 @@ class Menu : public Windows
 		sf::Text cheatText;
 		std::string cheatString;
 		sf::Font arial;
+		std::string cheat;
 
 
 	public:

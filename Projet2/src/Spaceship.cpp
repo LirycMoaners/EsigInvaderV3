@@ -14,6 +14,10 @@ Weapon &Spaceship::getWeapon()
 	return weapon;
 }
 
+
+void Spaceship::setHealth(int health) {
+	this->health += health;
+}
 void Spaceship::move(int dir)
 {
 	switch (dir)
