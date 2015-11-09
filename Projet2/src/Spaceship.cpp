@@ -1,6 +1,6 @@
 #include "../include/spaceship.h"
 
-Spaceship::Spaceship(sf::Texture &t, sf::Texture &expt) : anim(0,0), weapon(Weapon()),SpaceObject(t,expt,HEALTH_MAX,5)
+Spaceship::Spaceship(sf::Texture &t, sf::Texture &expt) : anim(0,0), weapon(Weapon()),SpaceObject(t,expt,HEALTH_MAX = 1500,5)
 {
 	sprite.setTexture(t);
 	sprite.setTextureRect(sf::IntRect(anim.x, anim.y, 100, 94));
@@ -15,8 +15,15 @@ Weapon &Spaceship::getWeapon()
 }
 
 
-void Spaceship::setHealth(int health) {
-	this->health += health;
+void Spaceship::setHealth(int health, bool changeMax) 
+{
+	if (changeMax)
+		HEALTH_MAX = health;
+
+	if((this->health + health) < HEALTH_MAX)
+		this->health += health;
+	else
+		this->health = HEALTH_MAX;
 }
 void Spaceship::move(int dir)
 {

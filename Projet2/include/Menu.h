@@ -16,9 +16,8 @@ class Menu : public Windows
 		//Cheat code hidded bar
 		sf::RectangleShape cheatBar;
 		sf::Text cheatText;
-		std::string cheatString;
-		sf::Font arial;
 		std::string cheat;
+		sf::Font arial;
 
 
 	public:

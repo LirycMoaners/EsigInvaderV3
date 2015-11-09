@@ -44,7 +44,7 @@ void Game::activateCheat(string cheat) {
 	if (cheat == "grave") {
 		spaceship->getWeapon().setLvl(5);
 		curLevel = 11;
-		spaceship->setHealth(150000);
+		spaceship->setHealth(150000, true);
 	}
 	else if (cheat == "mylittlepony") {
 
@@ -122,7 +122,6 @@ void Game::runGame()
 
 	while (!endGame && spaceship->isAlive())
 	{
-		std::cout << "Score : " << score << endl;
 		sf::Event event;
 		while (window->pollEvent(event))
 		{

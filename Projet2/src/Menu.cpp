@@ -41,7 +41,7 @@ Menu::Menu(int width, int height, string title, Resources &res) : Windows(width,
 	cheatText.setFont(arial);
 	cheatText.setPosition(cheatBar.getPosition());
 	cheatText.setColor(sf::Color::Transparent);
-	cheatString = "";
+	cheat = "";
 }
 
 void Menu::runWindows()
@@ -64,10 +64,10 @@ void Menu::runWindows()
 				for (int i = 0; i < 26; i++)
 				{
 					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i)))
-						cheatString += ('a' + i);	//Add the character to the player name
+						cheat += ('a' + i);	//Add the character to the player name
 				}
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace) && cheatString.size() > 0)
-					cheatString.resize(cheatString.size() - 1); //Remove the last letter
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace) && cheat.size() > 0)
+					cheat.resize(cheat.size() - 1); //Remove the last letter
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab))
 				{
 					//Check if the cheatBar is currently displayed or not
@@ -76,7 +76,7 @@ void Menu::runWindows()
 						cheatBar.setFillColor(sf::Color::Black);
 						cheatBar.setOutlineColor(sf::Color::Green);
 						cheatText.setColor(sf::Color::White);
-						cheatString.clear();
+						cheat.clear();
 					}
 					else
 					{
@@ -92,16 +92,7 @@ void Menu::runWindows()
 					cheatText.setColor(sf::Color::Transparent);
 
 					//Set instruction to execute after the player press enter on the console tab
-<<<<<<< HEAD
-					std::cout << "Cheat entered: " << cheatString << std::endl;
-=======
-					cheat = cheatString.substr(2, cheatString.size());
 					std::cout << "Cheat entered: " << cheat << std::endl;
->>>>>>> ec7c71cadac382472815bc4e76f223796fbbc844
-
-					std::transform(cheat.begin(), cheat.end(), cheat.begin(), ::tolower);
-
-
 				}
 			}
 		}
@@ -175,7 +166,7 @@ void Menu::runWindows()
 		window->draw(buttonEndLess);
 		window->draw(buttonScore);
 		window->draw(buttonQuit);
-		cheatText.setString("> " + cheatString);
+		cheatText.setString("> " + cheat);
 		window->draw(cheatBar);
 		window->draw(cheatText);
 		window->display();

@@ -91,7 +91,7 @@ void GameHub::updateHub(sf::RenderWindow* window, Spaceship* spaceObject, Boss* 
 
 void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, int score)
 {
-	while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return))
+	while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
 	{
 		//Clear the window
 		window->clear();
@@ -117,8 +117,12 @@ void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, 
 		sf::Event event;
 		while (window->pollEvent(event))
 		{
+			if (event.type == sf::Event::Closed)
+				window->close();
+
 			if (event.type == sf::Event::KeyPressed)
 			{
+
 				for (int i = 0; i < 26; i++)
 				{
 					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i)))

@@ -12,7 +12,7 @@ class Spaceship: public SpaceObject
 		// l'arme du joueur
 		Weapon weapon;
 		//Valeur maximale de la vie du player
-		static const int HEALTH_MAX = 1500;
+		int HEALTH_MAX = 1500;
 
 	public:
 		//Spaceship(sf::Texture&)
@@ -27,7 +27,7 @@ class Spaceship: public SpaceObject
 		void move(int);
 
 
-		void setHealth(int life);
+		void setHealth(int life, bool changeMax);
 		//Retourne la vie maximal du spaceship
 		int getHealthMax();
 
