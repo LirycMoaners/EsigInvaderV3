@@ -142,22 +142,18 @@ void Game::runGame()
 		}
 		else {
 			if (patern.size() != 0 && curPatern < patern.size()) {
-				int random;
-				do {
-
-					if (curLevel == 0)
-						random = 0;
-					else if (curLevel == 1) {
-						random = 1;
-					}
-					else {
-						random = rand() % curLevel + 1;
-					}
-				} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
-				TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-				addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
-				curPatern += patern[curPatern].next();
-				compteurPatern += 1;
+				if (enemies.empty()) {
+					PaternGeneration();
+					curPatern = 0;
+					int random;
+					do {
+						random = rand() % this->res.getConfigXML()->getTypeEnemyList().size();
+					} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
+					TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
+					addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
+					compteurPatern += 1;
+					curPatern += 1;
+				}
 			}
 			else {
 				if (compteurPatern == 10) {
@@ -165,12 +161,11 @@ void Game::runGame()
 					random = rand() % this->res.getConfigXML()->getBossList().size();
 					TypeEnemy * type = this->res.getConfigXML()->getBossList().at(random);
 					addBoss(type);
+					compteurPatern = 0;
+					popBoss = true;
 				}
-				else {
-					PaternGeneration();
-				}
+				patern.clear();
 			}
-			
 		}
 		
 
