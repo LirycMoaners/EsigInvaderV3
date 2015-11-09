@@ -168,6 +168,34 @@ void ConfigXml::loadingConfigurationBoss() {
 	}
 }
 
+void ConfigXml::CreateScore(int score, string name) {
+	tinyxml2::XMLDocument xmlScore;
+	tinyxml2::XMLError error = xmlScore.LoadFile("data.db");
+	
+	if (error == tinyxml2::XMLError::XML_SUCCESS) {
+		tinyxml2::XMLNode * root = xmlScore.RootElement();
+		tinyxml2::XMLElement * node = root->FirstChildElement("Scores");
+
+		tinyxml2::XMLElement * temps = xmlScore.NewElement("Score");
+		temps->SetAttribute("name", name.c_str());
+		temps->SetAttribute("score", score);
+		root->InsertEndChild(temps);
+		xmlScore.SaveFile("data.db");
+	}
+	else {
+		if (error == tinyxml2::XMLError::XML_ERROR_FILE_NOT_FOUND) {
+			tinyxml2::XMLElement * result = xmlScore.NewElement("Scores");
+			tinyxml2::XMLElement * temps = xmlScore.NewElement("Score");
+			temps->SetAttribute("name", name.c_str());
+			temps->SetAttribute("score", score);
+			result->InsertEndChild(temps);
+
+			xmlScore.InsertEndChild(result);
+			xmlScore.SaveFile("data.db");
+		}
+	}
+}
+
 void ConfigXml::loadingConfiguration() {
 	loadingConfigurationLevel();
 	loadingConfigurationTypeEnemy();
