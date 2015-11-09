@@ -27,7 +27,7 @@ class Spaceship: public SpaceObject
 		void move(int);
 
 
-		void setHealth(int life, bool changeMax);
+		void setHealth(int life, bool changeMax = false);
 		//Retourne la vie maximal du spaceship
 		int getHealthMax();
 

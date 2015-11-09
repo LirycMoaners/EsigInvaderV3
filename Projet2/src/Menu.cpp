@@ -133,7 +133,8 @@ void Menu::runWindows()
 			buttonScore.setTextureRect(sf::IntRect(0, 510, 295, 85));
 
 			//Button clicked
-			//TODO
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				drawScores(window,res);
 		}
 		else
 		{
@@ -173,6 +174,52 @@ void Menu::runWindows()
 	}
 
 	window->close();
+}
+
+void Menu::drawScores(sf::RenderWindow* window, Resources &res)
+{
+	//Clear the current window content
+	window->clear();
+
+	//Background texture
+	sf::RectangleShape background;
+	background.setTexture(&res.getImg()->getBackground_t());
+	background.setTextureRect(sf::IntRect(0, 0, window->getSize().x, window->getSize().y));
+	background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
+	background.setPosition(0, 0);
+	window->draw(background);
+
+	//Draw best scores
+	sf::Text Title;
+	sf::Text scoresText[10];
+
+	//Get scores from XMLFile
+	//findBestScores(); // <-- A définir
+
+	Title.setFont(arial);
+	Title.setCharacterSize(50);
+	Title.setString("High Scores");
+	Title.setPosition((window->getSize().x - Title.getGlobalBounds().width) / 2, 100);
+	window->draw(Title);
+
+	for (int i = 0; i < sizeof(scoresText) / sizeof(scoresText[0]); i++)
+	{
+		scoresText[i].setFont(arial);
+		scoresText[i].setCharacterSize(20);
+
+		//Set score values
+		if (scores[2 * i] != "")
+			scoresText[i].setString(scores[2 * i] + " .............................................................. " + scores[2 * i + 1]);
+		else
+			scoresText[i].setString("UNKNOWN .............................................................. 000000");
+		scoresText[i].setPosition((WINDOW_WIDTH - scoresText[i].getGlobalBounds().width) / 2, 200 + i * (WINDOW_HEIGHT / 15));
+		window->draw(scoresText[i]);
+	}
+
+	//Show windows graphical components
+	window->display();
+
+	while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Escape));
 }
 
 Menu::~Menu() {}

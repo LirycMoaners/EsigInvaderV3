@@ -18,12 +18,14 @@ class Menu : public Windows
 		sf::Text cheatText;
 		std::string cheat;
 		sf::Font arial;
+		std::string scores[20];
 
 
 	public:
 		Menu(int width, int height, string title, Resources &res);
 		~Menu();
 		//Lance la fênetre de menu
+		void drawScores(sf::RenderWindow*, Resources &res);
 		void runWindows();
 };
 
