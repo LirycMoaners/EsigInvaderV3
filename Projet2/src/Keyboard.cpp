@@ -35,6 +35,7 @@ vector<Rocket*> Keyboard::shoot(sf::Texture &texture, Spaceship *s)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
+		std::cout << "FIRE" << endl;
 		if (compteurSpace == 60 / s->getWeapon().getRate()) 
 		{
 			vector<Rocket*> bu = s->getWeapon().shoot(texture, s->getSprite());

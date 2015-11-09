@@ -254,6 +254,7 @@ void Game::runGame()
 					boss = NULL;
 					gameHub->resetHub();
 					curLevel += 1;
+					this->spaceship->setHealth(500, false);
 				}
 			}
 			else
@@ -512,7 +513,7 @@ void Game::collision()
 	}
 	if (spaceship->getSprite().getPosition().y < 0)
 	{
-		spaceship->getSprite().setPosition(spaceship->getSprite().getPosition().x, 0);
+		spaceship->getSprite().setPosition(spaceship->getSprite().getPosition().x, 0);   
 	}
 	else if (spaceship->getSprite().getPosition().y + spaceship->getSprite().getGlobalBounds().height > window->getSize().y)
 	{

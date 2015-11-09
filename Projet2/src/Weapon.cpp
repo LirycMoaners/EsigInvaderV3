@@ -39,13 +39,14 @@ int Weapon::getLvl() {
 
 void Weapon::setLvl(int lvl)
 {
+	std::cout << "level : " << level << endl << "level param :" << lvl << endl;
 	if (lvl < 1)
 		level = 1;
 	else if (lvl > 5)
 		level = 5;
 	else
 		level = lvl;
-
+	std::cout << "level : " << level << endl << "level param :" << lvl << endl;
 	switch (level)
 	{
 		//default:
