@@ -208,8 +208,8 @@ void Menu::drawScores(sf::RenderWindow* window, Resources &res)
 		scoresText[i].setCharacterSize(20);
 
 		//Set score values
-		if (scores[2 * i] != "")
-			scoresText[i].setString(scores[2 * i] + " ............................................. " + scores[2 * i + 1] +" ................. " + scores[2 * i + 2]);
+		if (scores[3 * i] != "")
+			scoresText[i].setString(scores[3 * i] + " ............................................. " + scores[3 * i + 1] +" ................. " + scores[3 * i + 2]);
 		else
 			scoresText[i].setString("UNKNOWN ............................................. 000000 ................. N/A");
 		scoresText[i].setPosition((WINDOW_WIDTH - scoresText[i].getGlobalBounds().width) / 2, 200 + i * (WINDOW_HEIGHT / 15));
@@ -223,22 +223,27 @@ void Menu::drawScores(sf::RenderWindow* window, Resources &res)
 }
 
 void Menu::findBestScores() {
+
 	tinyxml2::XMLDocument scoreDoc;
 	tinyxml2::XMLError error = scoreDoc.LoadFile("conf/data.db");
 	int compteur = 0;
-	if (error == tinyxml2::XML_SUCCESS) {
+
+	if (error == tinyxml2::XML_SUCCESS) 
+	{
 		tinyxml2::XMLElement * elemt;
 		tinyxml2::XMLElement * node = scoreDoc.RootElement();
-		do {
-			elemt = node->FirstChildElement("Score");
-			if (elemt != NULL) {
-				scores[2 * compteur + 0] = elemt->Attribute("user");
-				scores[2 * compteur + 1] = elemt->Attribute("value");
-				scores[2 * compteur + 2] = elemt->Attribute("mode");
+		elemt = node->FirstChildElement("Score");
+		do 
+		{
+			if (elemt != NULL) 
+			{
+				scores[3 * compteur + 0] = elemt->Attribute("user");
+				scores[3 * compteur + 1] = elemt->Attribute("value");
+				scores[3 * compteur + 2] = elemt->Attribute("mode");
 				elemt = elemt->NextSiblingElement("Score");
 				compteur += 1;
 			}
-		} while (compteur != 10 || elemt ==NULL );
+		} while (compteur != 10 && elemt != NULL);
 	}
 }
 
