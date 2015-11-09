@@ -172,11 +172,16 @@ void ConfigXml::CreateScore(int score, string name, string mode) {
 	tinyxml2::XMLDocument xmlScore;
 	tinyxml2::XMLError error = xmlScore.LoadFile("conf/data.db");
 	
+	if (name == "") {
+		name = "UNKNOWN";
+	}
+
 	if (error == tinyxml2::XMLError::XML_SUCCESS) {
 		tinyxml2::XMLNode * root = xmlScore.RootElement();
 		//tinyxml2::XMLElement * node = root->FirstChildElement("Scores");
 
 		tinyxml2::XMLElement * temps = xmlScore.NewElement("Score");
+		
 		temps->SetAttribute("user", name.c_str());
 		temps->SetAttribute("value", score);
 		temps->SetAttribute("mode", mode.c_str());
