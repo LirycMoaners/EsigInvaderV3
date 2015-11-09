@@ -45,7 +45,7 @@ class Game
 		bool popBoss = false;
 		int score = 0;
 		bool modeGame = false; // modeGame = false Normal ModeGame = true EndlessMode
-
+		int compteurPatern = 0;
 	public:
 		Control *c;
 		sf::RenderWindow *window;
@@ -68,6 +68,8 @@ class Game
 		void addEnemies(vector<Enemy*>&);
 		//Ajoute le boss de la partie
 		void addBoss();
+		void addBoss(TypeEnemy * type);
+
 		//Instacie l'environnement du player
 		void control();
 		//Gère le mouvement du background

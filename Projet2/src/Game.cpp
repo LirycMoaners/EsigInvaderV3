@@ -59,11 +59,19 @@ void Game::PaternGeneration() {
 			std::cout << "NB pattern available : " << nbPaternAvailable << endl;
 			patern.clear();
 			curPatern = 0;
-			// Génération en fonction du nombre de patern disponible une liste aléatoire de patern d'ennemi
-			for (int i = 0; i < res.getConfigXML()->getLevelList().at(curLevel)->getNbPatern(); i++) {
+			if (!modeGame) {
+				// Génération en fonction du nombre de patern disponible une liste aléatoire de patern d'ennemi
+				for (int i = 0; i < res.getConfigXML()->getLevelList().at(curLevel)->getNbPatern(); i++) {
+					int number = rand() % nbPaternAvailable + 1;
+					patern.push_back(Patern(XMLPatern, number));
+				}
+			}
+			else {
+				patern.clear();
 				int number = rand() % nbPaternAvailable + 1;
 				patern.push_back(Patern(XMLPatern, number));
 			}
+			
 		}
 	}
 	else {
@@ -133,22 +141,36 @@ void Game::runGame()
 			}
 		}
 		else {
-			int random;
-			do {
+			if (patern.size() != 0 && curPatern < patern.size()) {
+				int random;
+				do {
 
-				if (curLevel == 0)
-					random = 0;
-				else if (curLevel == 1) {
-					random = 1;
+					if (curLevel == 0)
+						random = 0;
+					else if (curLevel == 1) {
+						random = 1;
+					}
+					else {
+						random = rand() % curLevel + 1;
+					}
+				} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
+				TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
+				addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
+				curPatern += patern[curPatern].next();
+				compteurPatern += 1;
+			}
+			else {
+				if (compteurPatern == 10) {
+					int random;
+					random = rand() % this->res.getConfigXML()->getBossList().size();
+					TypeEnemy * type = this->res.getConfigXML()->getBossList().at(random);
+					addBoss(type);
 				}
 				else {
-					random = rand() % curLevel + 1;
+					PaternGeneration();
 				}
-			} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
-			TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-			addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
-			curPatern += patern[curPatern].next();
-			PaternGeneration();
+			}
+			
 		}
 		
 
@@ -321,6 +343,13 @@ void Game::addBoss() {
 	TypeEnemy * type = res.getConfigXML()->getBossList().at(curLevel);
 	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
 	this->boss = new Boss(type, res.getImg()->getBoss_t(),res.getImg()->getExplosion_t(),pos);
+}
+
+void Game::addBoss(TypeEnemy * type){
+
+	//Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Texture& texture, sf::Vector2f pos)
+	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
+	this->boss = new Boss(type, res.getImg()->getBoss_t(), res.getImg()->getExplosion_t(), pos);
 }
 
 void Game::addLasers(vector<Laser*> &l)
