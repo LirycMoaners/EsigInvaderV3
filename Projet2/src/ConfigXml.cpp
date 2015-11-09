@@ -170,11 +170,11 @@ void ConfigXml::loadingConfigurationBoss() {
 
 void ConfigXml::CreateScore(int score, string name, string mode) {
 	tinyxml2::XMLDocument xmlScore;
-	tinyxml2::XMLError error = xmlScore.LoadFile("data.db");
+	tinyxml2::XMLError error = xmlScore.LoadFile("conf/data.db");
 	
 	if (error == tinyxml2::XMLError::XML_SUCCESS) {
 		tinyxml2::XMLNode * root = xmlScore.RootElement();
-		tinyxml2::XMLElement * node = root->FirstChildElement("Scores");
+		//tinyxml2::XMLElement * node = root->FirstChildElement("Scores");
 
 		tinyxml2::XMLElement * temps = xmlScore.NewElement("Score");
 		temps->SetAttribute("user", name.c_str());
@@ -182,14 +182,14 @@ void ConfigXml::CreateScore(int score, string name, string mode) {
 		temps->SetAttribute("mode", mode.c_str());
 		
 		//Find the first score smaller than the current score
-		tinyxml2::XMLNode* testedScoreNode = root->FirstChildElement("Score");
+		tinyxml2::XMLElement* testedScoreNode = root->FirstChildElement("Score");
 		int value = 0;
 		do
 		{
 			//Find score values
 			try
 			{
-				value = atoi(testedScoreNode->FirstChildElement("value")->GetText());
+				value = atoi(testedScoreNode->Attribute("value"));
 			}
 			catch (...) { std::cout << "Error in the XML score file!" << std::endl; break; }
 
@@ -209,7 +209,7 @@ void ConfigXml::CreateScore(int score, string name, string mode) {
 			root->InsertEndChild(temps);
 		xmlScore.SaveFile("conf/data.db");
 	}
-	else {
+	else  {
 		if (error == tinyxml2::XMLError::XML_ERROR_FILE_NOT_FOUND) {
 			tinyxml2::XMLElement * result = xmlScore.NewElement("Scores");
 			tinyxml2::XMLElement * temps = xmlScore.NewElement("Score");
@@ -221,6 +221,7 @@ void ConfigXml::CreateScore(int score, string name, string mode) {
 			xmlScore.InsertEndChild(result);
 			xmlScore.SaveFile("conf/data.db");
 		}
+
 	}
 }
 
