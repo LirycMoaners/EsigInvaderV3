@@ -16,6 +16,7 @@ class Img
 		sf::Texture home_t;
 		sf::Texture explosion_t;
 		sf::Texture button_t;
+		sf::Texture bonus_t;
 
 	public:
 		Img();
@@ -28,6 +29,7 @@ class Img
 		sf::Texture &getBoss_t();
 		sf::Texture &getHome_t();
 		sf::Texture &getButton_t();
+		sf::Texture &getBonus_t();
 		void setBoss_t(string name);
 		~Img();
 };

@@ -11,6 +11,7 @@ Img::Img()
 	home_t.loadFromFile("ressources/home.png");
 	button_t.loadFromFile("ressources/button.png");
 	explosion_t.loadFromFile("ressources/explosion.png");
+	bonus_t.loadFromFile("ressources/bonus_malus.png");
 }
 
 sf::Texture &Img::getSpaceship_t()
@@ -51,6 +52,11 @@ sf::Texture &Img::getHome_t()
 sf::Texture &Img::getButton_t()
 {
 	return button_t;
+}
+
+sf::Texture &Img::getBonus_t()
+{
+	return bonus_t;
 }
 
 void Img::setBoss_t(string name) {
