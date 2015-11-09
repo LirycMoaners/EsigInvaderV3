@@ -88,3 +88,55 @@ void GameHub::updateHub(sf::RenderWindow* window, Spaceship* spaceObject, Boss* 
 	window->draw(bossHealthBarOutline);
 	window->draw(bossHealthBar);
 }
+
+void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, int score)
+{
+	while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return))
+	{
+		//Clear the window
+		window->clear();
+
+		//Background texture
+		sf::RectangleShape background;
+		background.setTexture(&bgTexture);
+		background.setTextureRect(sf::IntRect(0, 0, window->getSize().x, window->getSize().y));
+		background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
+		background.setPosition(0, 0);
+		window->draw(background);
+
+		//Draw window title & player pseudo
+		sf::Text title, pseudoTxt;
+
+		title.setFont(arial);
+		title.setCharacterSize(50);
+		title.setString("Your score is " + std::to_string(score) + "!\n Player Name:");
+		title.setPosition((window->getSize().x - title.getGlobalBounds().width) / 2, window->getSize().y / 2);
+		window->draw(title);
+
+		//Keyboard control to add characters to the player name
+		sf::Event event;
+		while (window->pollEvent(event))
+		{
+			if (event.type == sf::Event::KeyPressed)
+			{
+				for (int i = 0; i < 26; i++)
+				{
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i)))
+						playerPseudo += ('A' + i);	//Add the character to the player name
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace) && playerPseudo.size() > 0)
+					playerPseudo.resize(playerPseudo.size() - 1); //Remove the last letter
+			}
+		}
+
+		//Display the player name
+		pseudoTxt.setFont(arial);
+		pseudoTxt.setCharacterSize(40);
+		pseudoTxt.setString(playerPseudo);
+		pseudoTxt.setPosition((window->getSize().x - pseudoTxt.getGlobalBounds().width) / 2, window->getSize().y / 2 + 120);
+		window->draw(pseudoTxt);
+
+		//Show windows graphical components
+		window->display();
+	}
+}

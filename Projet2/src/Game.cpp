@@ -4,14 +4,14 @@ using namespace std;
 
 //Game::Game() : window(), c(&Keyboard()), spaceship(Spaceship(img->getSpaceship_t())) {}
 
-Game::Game(sf::RenderWindow &window,Resources & res) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)
+Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)
 {
 	if (c->getStatus() == false)
 		c = new Keyboard();
 	// Chargement de la texture pour les textes 
 	arial.loadFromFile("ressources/arial.ttf");
 	// Chargement de l'objets permettant le chargement des images
-	
+	this->modeGame = modeGame;
 	this->res = res;
 	//Création du hub
 	gameHub = new GameHub();
@@ -112,25 +112,45 @@ void Game::runGame()
 		moveBackground();
 		collision();
 		control();
+		if (!modeGame) {
+			if (patern.size() != 0 && curPatern < patern.size())
+			{
+				int random;
+				do {
 
-		if (patern.size() != 0 && curPatern < patern.size())
-		{
+					if (curLevel == 0)
+						random = 0;
+					else if (curLevel == 1) {
+						random = 1;
+					}
+					else {
+						random = rand() % curLevel + 1;
+					}
+				} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
+				TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
+				addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
+				curPatern += patern[curPatern].next();
+			}
+		}
+		else {
 			int random;
 			do {
-				
+
 				if (curLevel == 0)
 					random = 0;
 				else if (curLevel == 1) {
 					random = 1;
 				}
 				else {
-					random = rand() % curLevel+1;
+					random = rand() % curLevel + 1;
 				}
 			} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 			TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
 			addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
 			curPatern += patern[curPatern].next();
+			PaternGeneration();
 		}
+		
 
 		if ((curPatern == patern.size() && enemies.size() == 0) && !popBoss) {
 			addBoss();
@@ -246,6 +266,9 @@ void Game::runGame()
 
 		window->display();
 	}
+
+	//After the death of player, enter is name
+	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score);
 }
 
 Spaceship *Game::getSpaceship()

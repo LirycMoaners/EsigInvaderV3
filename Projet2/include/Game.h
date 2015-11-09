@@ -44,12 +44,13 @@ class Game
 		int curLevel = 0;
 		bool popBoss = false;
 		int score = 0;
+		bool modeGame = false; // modeGame = false Normal ModeGame = true EndlessMode
 
 	public:
 		Control *c;
 		sf::RenderWindow *window;
 		//Game();
-		Game(sf::RenderWindow&, Resources & res);
+		Game(sf::RenderWindow&, Resources & res, bool modeGame);
 		Spaceship *getSpaceship();
 		vector<Rocket*> &getRockets();
 		vector<Enemy*> &getEnemies();
