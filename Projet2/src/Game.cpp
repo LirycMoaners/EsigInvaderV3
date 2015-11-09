@@ -159,6 +159,11 @@ void Game::runGame()
 			else
 			{
 				score += enemies.at(i)->getScore();
+				if (rand() % 5 == 0)
+				{
+					sf::Vector2f pos = sf::Vector2f(enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width / 2, enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getGlobalBounds().height / 2);
+					bonus.push_back(new Bonus(res.getImg()->getBonus_t(), pos));
+				}
 				delete enemies.at(i);
 				enemies.erase(enemies.begin() + i);
 			}
@@ -211,6 +216,10 @@ void Game::runGame()
 			{
 				getLasers().at(i)->switchFps();
 			}
+			for (int i = 0; i < bonus.size(); i++)
+			{
+				getBonus().at(i)->switchFps();
+			}
 			fpsCount = 0;
 		}
 		else
@@ -225,6 +234,11 @@ void Game::runGame()
 		{
 			getLasers().at(i)->move();
 			window->draw(getLasers().at(i)->getSprite());
+		}
+		for (int i = 0; i < bonus.size(); i++)
+		{
+			getBonus().at(i)->move();
+			window->draw(getBonus().at(i)->getSprite());
 		}
 
 		//Mise à jour du Hub
@@ -252,6 +266,10 @@ vector<Enemy*> &Game::getEnemies()
 vector<Laser*> &Game::getLasers()
 {
 	return lasers;
+}
+
+vector<Bonus*> &Game::getBonus(){
+	return bonus;
 }
 
 void Game::moveBackground()
@@ -352,6 +370,25 @@ void Game::collision()
 			spaceship->takeDommage(lasers.at(i)->getDommages());
 			delete lasers.at(i);
 			lasers.erase(lasers.begin() + i);
+		}
+	}
+
+	//Bonus collision
+	for (int i = 0; i < bonus.size(); i++)
+	{
+		if (bonus.at(i)->getSprite().getPosition().x + bonus.at(i)->getSprite().getGlobalBounds().width < 0)
+		{
+			delete bonus.at(i);
+			bonus.erase(bonus.begin() + i);
+		}
+		else if (bonus.at(i)->getSprite().getPosition().x + bonus.at(i)->getSprite().getGlobalBounds().width > spaceship->getSprite().getPosition().x &&
+			bonus.at(i)->getSprite().getPosition().x < spaceship->getSprite().getPosition().x + spaceship->getSprite().getGlobalBounds().width &&
+			bonus.at(i)->getSprite().getPosition().y + bonus.at(i)->getSprite().getGlobalBounds().height > spaceship->getSprite().getPosition().y &&
+			bonus.at(i)->getSprite().getPosition().y < spaceship->getSprite().getPosition().y + spaceship->getSprite().getGlobalBounds().height)
+		{
+			spaceship->getWeapon().setLvl(spaceship->getWeapon().getLvl() + bonus.at(i)->getEffect());
+			delete bonus.at(i);
+			bonus.erase(bonus.begin() + i);
 		}
 	}
 

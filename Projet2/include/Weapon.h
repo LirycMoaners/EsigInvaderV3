@@ -4,8 +4,6 @@
 #include "Rocket.h"
 #include "Img.h"
 
-
-
 class Weapon
 {
 	private:
@@ -28,11 +26,8 @@ class Weapon
 		//Weapon(int, bool enemy = false)
 		Weapon(int, bool enemy = false);
 		int getRate();
-
-		///<summary>
+		int getLvl();
 		///Permet au propriétaire de l'arme de tirer. 
-		///<paramref sf::Texture='texture' sf::Sprite='sprite'>forme, texture</paramref>
-		///</summary>
 		vector<Rocket*> shoot(sf::Texture&, sf::Sprite);
 		//définit le niveau
 		void setLvl(int);

@@ -63,7 +63,7 @@ void GameHub::updateHub(sf::RenderWindow* window, Spaceship* spaceObject, Boss* 
 	//Display boss health bar if boss spawned
 	if (boss != NULL)
 	{
-		if (bossHealthText.getColor == sf::Color::Transparent)
+		if (bossHealthText.getColor() == sf::Color::Transparent)
 		{
 			//Toggle visibility of the boss health bar
 			bossHealthBarOutline.setOutlineColor(outlineColor);

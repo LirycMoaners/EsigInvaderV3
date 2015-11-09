@@ -12,8 +12,7 @@
 #include "Level.h"
 #include "Resources.h"
 #include "GameHub.h"
-
-
+#include "Bonus.h"
 
 class Game
 {
@@ -30,6 +29,8 @@ class Game
 		vector<Enemy*> enemies;
 		//Liste de lasers
 		vector<Laser*> lasers;
+		//Liste des bonus
+		vector<Bonus*> bonus;
 		//Fichier xml contenant les patterns
 		tinyxml2::XMLDocument XMLPatern;
 		//Définit la liste de patterns du jeu
@@ -53,6 +54,7 @@ class Game
 		vector<Rocket*> &getRockets();
 		vector<Enemy*> &getEnemies();
 		vector<Laser*> &getLasers();
+		vector<Bonus*> &getBonus();
 		//Lancer le jeu
 		void runGame();
 		//Charge le fichier configuration et configure le jeu

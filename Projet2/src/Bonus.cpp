@@ -1,10 +1,18 @@
 #include "..\include\Bonus.h"
 
-Bonus::Bonus(sf::Texture t, sf::Vector2f pos) : anim(0), speed(10)
+Bonus::Bonus(sf::Texture &t, sf::Vector2f pos) : anim(0), speed(2)
 {
-	effect = rand() % 1;
+	effect = rand() % 2;
 	if (effect == 0)
 		effect = -1;
+
+	sprite.setTexture(t);
+	if (effect == 1)
+		sprite.setTextureRect(sf::IntRect(0,0,30,30));
+	else
+		sprite.setTextureRect(sf::IntRect(0,30,30,30));
+
+	sprite.setPosition(pos.x - sprite.getGlobalBounds().width / 2, pos.y - sprite.getGlobalBounds().height / 2);
 }
 
 int Bonus::getEffect(){
