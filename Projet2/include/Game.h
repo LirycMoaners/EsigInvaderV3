@@ -50,7 +50,7 @@ class Game
 		Control *c;
 		sf::RenderWindow *window;
 		//Game();
-		Game(sf::RenderWindow&, Resources & res, bool modeGame);
+		Game(sf::RenderWindow&, Resources & res, bool modeGame, string cheat);
 		Spaceship *getSpaceship();
 		vector<Rocket*> &getRockets();
 		vector<Enemy*> &getEnemies();
@@ -70,6 +70,8 @@ class Game
 		void addBoss();
 		void addBoss(TypeEnemy * type);
 
+		// Activation de cheat
+		void activateCheat(string cheat);
 		//Instacie l'environnement du player
 		void control();
 		//Gère le mouvement du background

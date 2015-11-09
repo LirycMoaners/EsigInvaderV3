@@ -4,14 +4,23 @@ using namespace std;
 
 //Game::Game() : window(), c(&Keyboard()), spaceship(Spaceship(img->getSpaceship_t())) {}
 
-Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)
+Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)
 {
 	if (c->getStatus() == false)
 		c = new Keyboard();
 	// Chargement de la texture pour les textes 
 	arial.loadFromFile("ressources/arial.ttf");
-	// Chargement de l'objets permettant le chargement des images
+
+	// Activation des codes 
+
+	
+
+
+
+	//Definition du mode de jeu
 	this->modeGame = modeGame;
+
+	// Chargement de l'objets permettant le chargement des images
 	this->res = res;
 	//Création du hub
 	gameHub = new GameHub();
@@ -25,8 +34,24 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame) : c(new Armb
 	background.setPosition(0, 0);
 	
 	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t());
-
+	activateCheat(cheat);
 	PaternGeneration();
+
+
+}
+
+void Game::activateCheat(string cheat) {
+	if (cheat == "grave") {
+		spaceship->getWeapon().setLvl(5);
+		curLevel = 11;
+		spaceship->setHealth(150000);
+	}
+	else if (cheat == "mylittlepony") {
+
+	}
+	else if (cheat == "") {
+
+	}
 }
 
 void Game::PaternGeneration() {

@@ -92,8 +92,11 @@ void Menu::runWindows()
 					cheatText.setColor(sf::Color::Transparent);
 
 					//Set instruction to execute after the player press enter on the console tab
-					std::string cheat = cheatString.substr(2, cheatString.size());
+					cheat = cheatString.substr(2, cheatString.size());
 					std::cout << "Cheat entered: " << cheat << std::endl;
+
+					std::transform(cheat.begin(), cheat.end(), cheat.begin(), ::tolower);
+
 
 				}
 			}
@@ -107,7 +110,7 @@ void Menu::runWindows()
 
 			//Button clicked
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				Game(*window,res,false).runGame();
+				Game(*window,res,false, cheat).runGame();
 		}
 		else
 		{
@@ -122,7 +125,7 @@ void Menu::runWindows()
 
 			//Button clicked
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				Game(*window, res,true).runGame();
+				Game(*window, res,true, "").runGame();
 		}
 		else
 		{
