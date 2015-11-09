@@ -56,7 +56,7 @@ void Menu::runWindows()
 
 			//Button clicked
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				Game(*window,res).runGame();
+				Game(*window,res,false).runGame();
 		}
 		else
 		{
@@ -71,7 +71,7 @@ void Menu::runWindows()
 
 			//Button clicked
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				Game(*window, res).runGame();
+				Game(*window, res,true).runGame();
 		}
 		else
 		{
