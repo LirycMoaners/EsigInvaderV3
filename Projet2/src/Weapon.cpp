@@ -48,7 +48,7 @@ void Weapon::setLvl(int lvl)
 
 	switch (level)
 	{
-		default:
+		//default:
 		case 1:
 			rocketQty = 1;
 			rate = 3;
