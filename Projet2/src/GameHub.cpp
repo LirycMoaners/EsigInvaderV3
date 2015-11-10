@@ -142,6 +142,8 @@ void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, 
 
 		//Show windows graphical components
 		window->display();
+
+		c->runHub();
 	}
 }
 
