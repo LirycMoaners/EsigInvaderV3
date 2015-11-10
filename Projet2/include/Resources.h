@@ -1,5 +1,6 @@
 #pragma once
 #include "ConfigXml.h"
+#include "SFML/Audio.hpp"
 #include "Img.h"
 class Resources
 {
@@ -9,6 +10,7 @@ public:
 
 	ConfigXml * getConfigXML();
 	Img * getImg();
+
 private : 
 	ConfigXml * xmldata;
 	Img * img;

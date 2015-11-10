@@ -89,9 +89,9 @@ void GameHub::updateHub(sf::RenderWindow* window, Spaceship* spaceObject, Boss* 
 	window->draw(bossHealthBar);
 }
 
-void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, int score)
+void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, int score, Control* c)
 {
-	while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+	while (!c->quit())
 	{
 		//Clear the window
 		window->clear();

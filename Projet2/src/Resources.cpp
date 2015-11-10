@@ -6,7 +6,6 @@ Resources::Resources()
 {
 	xmldata = new ConfigXml();
 	img = new Img();
-
 }
 ConfigXml * Resources::getConfigXML() {
 	return xmldata;
@@ -15,7 +14,6 @@ ConfigXml * Resources::getConfigXML() {
 Img * Resources::getImg() {
 	return img;
 }
-
 
 Resources::~Resources()
 {

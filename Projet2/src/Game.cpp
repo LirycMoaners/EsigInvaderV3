@@ -48,7 +48,8 @@ void Game::activateCheat(string cheat) {
 		res.getImg()->setSpaceship_t("ressources/grave.png");
 	}
 	else if (cheat == "mylittlepony") {
-
+		pony = true;
+		this->res.getImg()->setEnemy_t("ressources/ponysprite.png");
 	}
 	else if (cheat == "reset"){
 
@@ -164,7 +165,7 @@ void Game::runGame()
 					}
 				} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 				TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-				addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
+				addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy, pony));
 				curPatern += patern[curPatern].next();
 			}
 		}
@@ -178,7 +179,7 @@ void Game::runGame()
 						random = rand() % this->res.getConfigXML()->getTypeEnemyList().size();
 					} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 					TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-					addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
+					addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy, pony));
 					compteurPatern += 1;
 					curPatern += 1;
 				}
@@ -315,7 +316,7 @@ void Game::runGame()
 	}
 
 	//After the death of player, enter is name
-	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score);
+	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score,c);
 	if(!modeGame)
 		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(),"Normal" );
 	else

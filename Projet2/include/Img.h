@@ -31,6 +31,7 @@ class Img
 		sf::Texture &getButton_t();
 		sf::Texture &getBonus_t();
 		void setBoss_t(string name);
+		void setEnemy_t(string name);
 		void setSpaceship_t(string name);
 		~Img();
 };
