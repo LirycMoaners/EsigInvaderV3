@@ -37,7 +37,10 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	
 	PaternGeneration();
 
-
+	//Génération de la musique de fond
+	music.setBuffer(res.getMusicSnd(1));
+	music.setLoop(true);
+	music.play();
 }
 
 void Game::activateCheat(string cheat) {

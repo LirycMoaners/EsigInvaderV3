@@ -10,11 +10,13 @@ public:
 
 	ConfigXml * getConfigXML();
 	sf::SoundBuffer& getExplosionSnd();
+	sf::SoundBuffer& getMusicSnd(int);
 	Img * getImg();
 
 	private : 
 		ConfigXml * xmldata;
 		Img * img;
 		sf::SoundBuffer explosion_snd;
+		sf::SoundBuffer menu_music, game_music;
 };
 

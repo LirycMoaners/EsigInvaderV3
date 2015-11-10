@@ -42,6 +42,11 @@ Menu::Menu(int width, int height, string title, Resources &res) : Windows(width,
 	cheatText.setPosition(cheatBar.getPosition());
 	cheatText.setColor(sf::Color::Transparent);
 	cheat = "";
+
+	//Génération de la musique de fond
+	music.setBuffer(res.getMusicSnd(0));
+	music.setLoop(true);
+	music.play();
 }
 
 void Menu::runWindows()
