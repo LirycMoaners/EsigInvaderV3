@@ -45,10 +45,14 @@ void Game::activateCheat(string cheat) {
 		spaceship->getWeapon().setLvl(5);
 		curLevel = 11;
 		spaceship->setHealth(150000, true);
+		res.getImg()->setSpaceship_t("ressources/grave.png");
 	}
 	else if (cheat == "mylittlepony") {
 		pony = true;
 		this->res.getImg()->setEnemy_t("ressources/ponysprite.png");
+	}
+	else if (cheat == "reset"){
+
 	}
 	else if (cheat == "") {
 
@@ -222,7 +226,7 @@ void Game::runGame()
 			else
 			{
 				score += enemies.at(i)->getScore();
-				if (rand() % 5 == 0)
+				if (rand() % 10 == 0)
 				{
 					sf::Vector2f pos = sf::Vector2f(enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width / 2, enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getGlobalBounds().height / 2);
 					bonus.push_back(new Bonus(res.getImg()->getBonus_t(), pos));

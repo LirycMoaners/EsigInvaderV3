@@ -3,6 +3,7 @@
 
 Keyboard::Keyboard() : compteurSpace(1) {}
 
+//Obselete and useless
 bool Keyboard::getStatus() {
 	return false;
 }
