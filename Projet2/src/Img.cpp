@@ -62,7 +62,9 @@ sf::Texture &Img::getBonus_t()
 void Img::setBoss_t(string name) {
 	boss_t.loadFromFile(name.c_str());
 }
-
+void Img::setEnemy_t(string name) {
+	enemy_t.loadFromFile(name.c_str());
+}
 void Img::setSpaceship_t(string name) {
 	spaceship_t.loadFromFile(name.c_str());
 }

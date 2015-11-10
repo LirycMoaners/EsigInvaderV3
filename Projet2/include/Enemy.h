@@ -24,8 +24,11 @@ class Enemy : public SpaceObject
 		int compteurEnemy;
 		// Score attribuer pour l'ennemie
 		int score;
+
+		//CheatCode
+		bool pony = false;
 	public:
-		Enemy(sf::Texture &t,sf::Texture &expText, sf::Vector2f pos, TypeEnemy * enemy, int type);
+		Enemy(sf::Texture &t,sf::Texture &expText, sf::Vector2f pos, TypeEnemy * enemy, int type, bool pony);
 		int getDommage();
 		// selectionne les images par rapport au movement
 		void switchFps();

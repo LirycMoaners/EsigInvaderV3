@@ -46,6 +46,7 @@ class Game
 		int score = 0;
 		bool modeGame = false; // modeGame = false Normal ModeGame = true EndlessMode
 		int compteurPatern = 0;
+		bool pony = false;
 	public:
 		Control *c;
 		sf::RenderWindow *window;

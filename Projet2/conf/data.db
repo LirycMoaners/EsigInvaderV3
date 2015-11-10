@@ -1,6 +1,33 @@
 <Scores>
+<<<<<<< HEAD
+    <Score user="QQSDSDQ" value="1870000000" mode="Normal"/>
+    <Score user="QSDQSQQ" value="700" mode="Normal"/>
+    <Score user="UNKNOWN" value="2100" mode="Normal"/>
+    <Score user="UNKNOWN" value="1800" mode="Normal"/>
+    <Score user="UNKNOWN" value="800" mode="Normal"/>
+    <Score user="UNKNOWN" value="0" mode="Endless"/>
+    <Score user="UNKNOWN" value="700" mode="Normal"/>
+    <Score user="UNKNOWN" value="500" mode="Normal"/>
+    <Score user="UNKNOWN" value="700" mode="Normal"/>
+    <Score user="CCXBBLBKLDLDLS" value="500" mode="Normal"/>
+    <Score user="UNKNOWN" value="0" mode="Endless"/>
+=======
+    <Score user="UNKNOWN" value="218600" mode="Normal"/>
+    <Score user="UNKNOWN" value="150000" mode="Normal"/>
+    <Score user="UNKNOWN" value="177000" mode="Normal"/>
+    <Score user="UNKNOWN" value="176500" mode="Normal"/>
     <Score user="TOTO" value="750" mode="Normal"/>
+    <Score user="UNKNOWN" value="75000" mode="Normal"/>
+    <Score user="UNKNOWN" value="850" mode="Normal"/>
+    <Score user="UNKNOWN" value="120000" mode="Normal"/>
     <Score user="TEST" value="750" mode="Normal"/>
     <Score user="PAOLFLI" value="750" mode="Normal"/>
     <Score user="DDDDDDD" value="750" mode="Normal"/>
+    <Score user="UNKNOWN" value="0" mode="Endless"/>
+    <Score user="UNKNOWN" value="700" mode="Normal"/>
+    <Score user="UNKNOWN" value="0" mode="Normal"/>
+    <Score user="UNKNOWN" value="0" mode="Normal"/>
+    <Score user="UNKNOWN" value="0" mode="Normal"/>
+    <Score user="UNKNOWN" value="0" mode="Normal"/>
+>>>>>>> 15955d18be34311fcf8897e1fa4cd2fdd4baab7c
 </Scores>
