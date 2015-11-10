@@ -69,13 +69,13 @@ void Armband::runHub() {
 	this->hub->run(1000 / 60);
 }
 
-vector<Rocket*> Armband::shoot(sf::Texture&texture, Spaceship&s) {
+vector<Rocket*> Armband::shoot(sf::Texture&texture, Spaceship *s) {
 	vector<Rocket*> r;
 	if (this->collector->getPose() == myo::Pose::fist)
 	{
-		if (60 / compteurSpace == s.getWeapon().getRate())
+		if (60 / compteurSpace == s->getWeapon().getRate())
 		{
-			r = s.getWeapon().shoot(texture, s.getSprite());
+			r = s->getWeapon().shoot(texture, s->getSprite());
 			compteurSpace = 1;
 			return r;
 		}
@@ -90,7 +90,7 @@ vector<Rocket*> Armband::shoot(sf::Texture&texture, Spaceship&s) {
 }
 
 
-void Armband::move(Spaceship &s)
+void Armband::move(Spaceship *s)
 {
 	myo::Quaternion< float > orient = this->collector->getOrient();
 
@@ -105,17 +105,17 @@ void Armband::move(Spaceship &s)
 	if (orient.z() > pos_z + capDetect || orient.z() < pos_z - capDetect || orient.y() > pos_y + capDetect || orient.y() < pos_y - capDetect)
 	{
 		if (orient.z() > pos_z + capDetect)
-			s.move(3);
+			s->move(3);
 		else if (orient.z() < pos_z - capDetect)
-			s.move(4);
+			s->move(4);
 
 		if (orient.y() > pos_y + capDetect)
-			s.move(1);
+			s->move(1);
 		else if (orient.y() < pos_y - capDetect)
-			s.move(2);
+			s->move(2);
 	}
 	else
-		s.move(0);
+		s->move(0);
 }
 
 bool Armband::quit()

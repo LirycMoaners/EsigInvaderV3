@@ -28,46 +28,57 @@ vector<Rocket*> Weapon::shoot(sf::Texture &texture, sf::Sprite s)
 
 	return b;
 }
+
 int Weapon::getDommage() {
 	return this->dommage;
 }
 
+int Weapon::getLvl() {
+	return this->level;
+}
 
 void Weapon::setLvl(int lvl)
 {
-	level = lvl;
-
+	std::cout << "level : " << level << endl << "level param :" << lvl << endl;
+	if (lvl < 1)
+		level = 1;
+	else if (lvl > 5)
+		level = 5;
+	else
+		level = lvl;
+	std::cout << "level : " << level << endl << "level param :" << lvl << endl;
 	switch (level)
 	{
+		//default:
 		case 1:
 			rocketQty = 1;
 			rate = 3;
 			speed = 10;
-			dommage = 50;
+			dommage = 250;
 			break;
 		case 2:
 			rocketQty = 2;
 			rate = 3;
 			speed = 12;
-			dommage = 100;
+			dommage = 500;
 			break;
 		case 3:
 			rocketQty = 2;
 			rate = 5;
 			speed = 14;
-			dommage = 200;
+			dommage = 750;
 			break;
 		case 4:
 			rocketQty = 4;
 			rate = 5;
 			speed = 16;
-			dommage = 400;
+			dommage = 1000;
 			break;
 		case 5:
 			rocketQty = 5;
 			rate = 6;
 			speed = 20;
-			dommage = 500;
+			dommage = 1500;
 			break;
 	}
 }

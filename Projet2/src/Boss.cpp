@@ -1,28 +1,26 @@
 #include "..\include\Boss.h"
 
-Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Texture& texture, sf::Vector2f pos) : Enemy(texture, pos)
+Boss::Boss(TypeEnemy * Typenemy, sf::Texture& texture, sf::Texture& Explode, sf::Vector2f pos) : Enemy(texture, Explode,  pos, Typenemy, 0)
 {
-	this->health = life;
-	this->dommage = dommage;
-	this->boss = true;
-	this->laserSpeed = LaserSpeed;
-	this->speed = speed;
-	this->rate = rate;
-
+	sprite.setPosition(sprite.getPosition().x - sprite.getGlobalBounds().width - 100, sprite.getPosition().y);
 	sprite.setTextureRect(sf::IntRect(rand() % 4 * 131, 0, 131, 189));
+
+	HEALTH_MAX = Typenemy->getLife();
 }
+
 void Boss::move(){
 	sprite.move(-speed, 0);
 }
 
 void Boss :: move(sf::Sprite & sprite) {
-
-	if (sprite.getPosition().y != this->getSprite().getPosition().y) {
-		int delta = this->speed  * (sprite.getPosition().y - this->getSprite().getPosition().y) < 0 ? -1 : 1;
-		
+	int posPlayer = sprite.getPosition().y + sprite.getGlobalBounds().height / 2;
+	int posBoss = this->getSprite().getPosition().y + this->getSprite().getGlobalBounds().height / 2;
+	if (posPlayer != posBoss) {
+		int delta = this->speed  * (posPlayer -posBoss ) < 0 ? -1 : 1;
 		this->getSprite().move(0, delta);
 	}
-
+	
+	
 }
 
 void Boss::setPosition(float x, float y) {
@@ -61,3 +59,5 @@ vector<Laser*> Boss::shoot(sf::Texture &texture)
 
 	return l;
 }
+
+int Boss::getHealthMax() { return HEALTH_MAX; }

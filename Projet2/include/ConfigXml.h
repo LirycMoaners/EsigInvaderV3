@@ -11,6 +11,7 @@ class ConfigXml
 public:
 	ConfigXml();
 	void loadingConfiguration();
+	void CreateScore(int score, string name,string mode);
 	~ConfigXml();
 
 	vector<Level*> getLevelList();
@@ -21,6 +22,7 @@ private :
 	void loadingConfigurationLevel();
 	void loadingConfigurationTypeEnemy();
 	void loadingConfigurationBoss();
+
 	vector<Level*> levelList;
 	vector<TypeEnemy*> typeList;
 	vector<TypeEnemy*> bossList;

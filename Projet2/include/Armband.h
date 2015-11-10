@@ -29,8 +29,8 @@ private:
 public:
 	Armband();
 	void runHub();
-	void move(Spaceship&);
-	vector<Rocket*> shoot(sf::Texture&, Spaceship&);
+	void move(Spaceship*);
+	vector<Rocket*> shoot(sf::Texture&, Spaceship*);
 	string exec(const char*);
 	~Armband();
 	bool getStatus();

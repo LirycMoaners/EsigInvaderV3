@@ -27,6 +27,19 @@
 				<temps>0</temps>
 				<position>1111111</position>
 			</ligne>
+			<ligne>
+				<temps>100</temps>
+				<position>1011101</position>
+			</ligne>
+			<ligne>
+				<temps>200</temps>
+				<position>1111111</position>
+			</ligne>
+			
+			<ligne>
+				<temps>400</temps>
+				<position>1011101</position>
+			</ligne>
 		</lignes>
 	</patern>
 	<patern id = "3" typeEnemy = "3" lvlEnemy = "3" duree = "1000">
@@ -49,7 +62,7 @@
 			</ligne>
 		</lignes>
 	</patern>
-	<patern id = "4" typeEnemy = "3" lvlEnemy = "3" duree = "3600">
+	<!--<patern id = "4" typeEnemy = "3" lvlEnemy = "3" duree = "3600">
 		<lignes>
 			<ligne>
 				<temps>0</temps>
@@ -184,6 +197,6 @@
 				<position>11111111</position>
 			</ligne>
 		</lignes>
-	</patern>
+	</patern>-->
 	
 </paterns>

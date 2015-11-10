@@ -8,7 +8,7 @@ class Patern
 {
 	private:
 		//Permet de charger un pattern depuis le fichier xml des patterns.
-		tinyxml2::XMLElement *patern;
+		tinyxml2::XMLElement * patern;
 		//TODO supprimer certains de ces attributs
 		int typeEnemy;
 		int lvlEnemy;
@@ -21,7 +21,7 @@ class Patern
 		//Patern(tinyxml2::XMLDocument&, int)
 		Patern(tinyxml2::XMLDocument&, int);
 		//Alimente le hub avec les ennemis
-		vector<Enemy*> spawn(sf::Texture&);
+		vector<Enemy*> spawn(sf::Texture &t,sf::Texture &expt, TypeEnemy * typeenemy);
 		///<summary>
 		///retourne 0 si le niveau n'est pas terminé et 1 sinon
 		///<return>int </return>

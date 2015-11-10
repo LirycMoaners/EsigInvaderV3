@@ -5,7 +5,7 @@ Mouse::Mouse()
 {
 }
 
-bool Mouse::mouseOver(sf::RenderWindow &window, sf::RectangleShape &button)
+bool Mouse::mouseOver(sf::RenderWindow &window, sf::Sprite &button)
 {
 	if (sf::Mouse::getPosition(window).x > button.getGlobalBounds().left &&
 		sf::Mouse::getPosition(window).x < button.getGlobalBounds().left + button.getGlobalBounds().width &&

@@ -9,18 +9,25 @@ class Menu : public Windows
 	private:
 		const int WINDOW_HEIGHT = 700; //Height of the game window
 		const int WINDOW_WIDTH = 1024; //Width of the game window
-		//La police du texte
-		sf::Font arial;
-		//Définit le texte affiché sur l'écran en fonction du contexte quitter ou commencer
-		sf::Text startText, quitText;
 		//Définit le bouton correspondant au texte précédent
-		sf::RectangleShape buttonQuit, buttonStart;
+		sf::RectangleShape background;
+		sf::Sprite buttonQuit, buttonStart, buttonScore, buttonEndLess;
 		Resources res;
+		//Cheat code hidded bar
+		sf::RectangleShape cheatBar;
+		sf::Text cheatText;
+		std::string cheat;
+		sf::Font arial;
+		std::string scores[30];
+
+
 	public:
 		Menu(int width, int height, string title, Resources &res);
 		~Menu();
 		//Lance la fênetre de menu
+		void drawScores(sf::RenderWindow*, Resources &res);
 		void runWindows();
+		void findBestScores();
 };
 
 #endif

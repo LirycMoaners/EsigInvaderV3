@@ -11,54 +11,55 @@
 #include "tinyxml2.h"
 #include "Level.h"
 #include "Resources.h"
-
-
+#include "GameHub.h"
+#include "Bonus.h"
 
 class Game
 {
 	private:
-		//Donne accès aux objets graphiques du programme
-		Img *img;
-		//Police
+		
 		sf::Font arial;
 		//Graphical object for the background
 		sf::RectangleShape background;
 		//Instance du player
-		Spaceship spaceship;
+		Spaceship* spaceship;
 		//Liste de rocket
 		vector<Rocket*> rockets;
 		//Liste d'ennemi
 		vector<Enemy*> enemies;
 		//Liste de lasers
 		vector<Laser*> lasers;
+		//Liste des bonus
+		vector<Bonus*> bonus;
 		//Fichier xml contenant les patterns
 		tinyxml2::XMLDocument XMLPatern;
 		//Définit la liste de patterns du jeu
 		vector<Patern> patern;
-
-		/*
-			Configuration XML 			
-		*/
+		//Hub du jeu pour l'affichage de la vie
+		GameHub* gameHub;
 		Resources res;
-		Boss * boss;
+		Boss * boss = NULL;
 		int curPatern;
 		int nbPaternAvailable = 0;
 		int curLevel = 0;
 		bool popBoss = false;
-
+		int score = 0;
+		bool modeGame = false; // modeGame = false Normal ModeGame = true EndlessMode
+		int compteurPatern = 0;
 	public:
 		Control *c;
 		sf::RenderWindow *window;
-		Game();
-		Game(sf::RenderWindow&, Resources & res);
-		Spaceship &getSpaceship();
+		//Game();
+		Game(sf::RenderWindow&, Resources & res, bool modeGame, string cheat);
+		Spaceship *getSpaceship();
 		vector<Rocket*> &getRockets();
 		vector<Enemy*> &getEnemies();
 		vector<Laser*> &getLasers();
+		vector<Bonus*> &getBonus();
 		//Lancer le jeu
 		void runGame();
 		//Charge le fichier configuration et configure le jeu
-		void loadingConfiguration();
+		void PaternGeneration();
 		//Ajoute des rockets
 		void addRockets(vector<Rocket*>&);
 		//Ajoute les lasers
@@ -67,6 +68,10 @@ class Game
 		void addEnemies(vector<Enemy*>&);
 		//Ajoute le boss de la partie
 		void addBoss();
+		void addBoss(TypeEnemy * type);
+
+		// Activation de cheat
+		void activateCheat(string cheat);
 		//Instacie l'environnement du player
 		void control();
 		//Gère le mouvement du background

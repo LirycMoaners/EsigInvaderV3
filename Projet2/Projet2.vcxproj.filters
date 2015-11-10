@@ -36,9 +36,6 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Hub.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="src\Keyboard.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -87,6 +84,12 @@
     <ClCompile Include="src\Windows.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameHub.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bonus.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Armband.h">
@@ -101,7 +104,9 @@
     <ClInclude Include="include\ConfigXml.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="include\Control.h" />
+    <ClInclude Include="include\Control.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
     <ClInclude Include="include\DataCollector.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -109,9 +114,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="include\Game.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Hub.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="include\Keyboard.h">
@@ -138,7 +140,9 @@
     <ClInclude Include="include\Resources.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="include\Rocket.h" />
+    <ClInclude Include="include\Rocket.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
     <ClInclude Include="include\SpaceObject.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -155,6 +159,12 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="include\Windows.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameHub.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Bonus.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -184,6 +194,9 @@
       <Filter>Fichiers de ressources</Filter>
     </Image>
     <Image Include="ressources\spaceship.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ressources\button.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>
