@@ -125,7 +125,7 @@ void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, 
 
 				for (int i = 0; i < 26; i++)
 				{
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i)))
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i)) && playerPseudo.size() < 7)
 						playerPseudo += ('A' + i);	//Add the character to the player name
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace) && playerPseudo.size() > 0)
