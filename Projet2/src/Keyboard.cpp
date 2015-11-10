@@ -3,7 +3,7 @@
 
 Keyboard::Keyboard() : compteurSpace(1) {}
 
-[System.Obsolete("Useless")]
+//Obselete and useless
 bool Keyboard::getStatus() {
 	return false;
 }

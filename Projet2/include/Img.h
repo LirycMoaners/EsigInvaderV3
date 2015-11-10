@@ -23,6 +23,6 @@ class Img
 		sf::Texture &getEnemy_t();
 		sf::Texture &getBoss_t();
 		sf::Texture &getHome_t();
-		void setBoss_t(string name);
+		void setBoss_t(std::string name);
 		~Img();
 };
