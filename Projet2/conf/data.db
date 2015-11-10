@@ -1,6 +1,8 @@
 <Scores>
+    <Score user="ROLAND" value="20100" mode="Normal"/>
     <Score user="" value="19050" mode="Normal"/>
     <Score user="QQSDQSDQQSDSDQ" value="1200" mode="Normal"/>
     <Score user="" value="17700" mode="Normal"/>
     <Score user="SQSDQSDQDQSDS" value="1000" mode="Normal"/>
+    <Score user="UNKNOWN" value="0" mode="Endless"/>
 </Scores>
