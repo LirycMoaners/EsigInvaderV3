@@ -1,6 +1,7 @@
 #pragma once
 #include "Spaceship.h"
 #include "Boss.h"
+#include "Control.h"
 
 class GameHub
 {
@@ -20,6 +21,6 @@ class GameHub
 		~GameHub();
 		void resetHub();
 		string getPlayerPseudo();
-		void setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bg, int score);
+		void setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bg, int score, Control* c);
 		void updateHub(sf::RenderWindow* window, Spaceship *spaceship, Boss* boss, int score);
 };

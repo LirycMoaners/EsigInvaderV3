@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 #include <iostream>
 
 //Objet parent à tous les objets
@@ -17,6 +18,8 @@ class SpaceObject
 		sf::Clock* explosionFrameSpeed;
 		//Frame d'explosion en cours d'affichage
 		int explosionFrameCounter = 0;
+		//Son de l'explosion
+		sf::Sound explosionSound;
 
 		//la vie de la l'objet
 		int health;
@@ -26,7 +29,7 @@ class SpaceObject
 		
 	public:
 		//SpaceObject(sf::Texture &t,int,int)
-		SpaceObject(sf::Texture &t,sf::Texture &expt,int,int);
+		SpaceObject(sf::Texture &t,sf::Texture &expt,sf::SoundBuffer& expBuffer,int,int);
 		~SpaceObject();
 
 		

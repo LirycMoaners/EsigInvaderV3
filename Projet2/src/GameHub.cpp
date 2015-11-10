@@ -89,9 +89,9 @@ void GameHub::updateHub(sf::RenderWindow* window, Spaceship* spaceObject, Boss* 
 	window->draw(bossHealthBar);
 }
 
-void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, int score)
+void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, int score, Control* c)
 {
-	while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+	while (!c->quit())
 	{
 		//Clear the window
 		window->clear();
@@ -125,7 +125,7 @@ void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, 
 
 				for (int i = 0; i < 26; i++)
 				{
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i)))
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i)) && playerPseudo.size() < 7)
 						playerPseudo += ('A' + i);	//Add the character to the player name
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace) && playerPseudo.size() > 0)
@@ -142,6 +142,8 @@ void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, 
 
 		//Show windows graphical components
 		window->display();
+
+		c->runHub();
 	}
 }
 

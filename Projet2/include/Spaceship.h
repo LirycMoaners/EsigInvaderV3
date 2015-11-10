@@ -16,7 +16,7 @@ class Spaceship: public SpaceObject
 
 	public:
 		//Spaceship(sf::Texture&)
-		Spaceship(sf::Texture&,sf::Texture&);
+		Spaceship(sf::Texture&,sf::Texture&, sf::SoundBuffer&);
 
 		Weapon &getWeapon();
 

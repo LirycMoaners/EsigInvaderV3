@@ -4,21 +4,23 @@ void Enemy::switchFps()
 {
 	if (anim.y > 3)
 		anim.y = 0;
-
-	if (anim.x < 2)
+	if (!pony) {
+		if (anim.x < 2)
+			sprite.setTextureRect(sf::IntRect(100 * anim.x, 94 * anim.y, 100, 94));
+		else
+			sprite.setTextureRect(sf::IntRect(86 + 57 * anim.x, 94 * anim.y, 57, 94));
+	}
+	else {
 		sprite.setTextureRect(sf::IntRect(100 * anim.x, 94 * anim.y, 100, 94));
-	else
-		sprite.setTextureRect(sf::IntRect(86 + 57 * anim.x, 94 * anim.y, 57, 94));
+	}
+	
 
 	anim.y++;
 }
 
-Enemy::Enemy(sf::Texture &t,sf::Texture &expText, sf::Vector2f pos, TypeEnemy * Typenemy, int type) : SpaceObject(t,expText, 5, 3), compteurEnemy(1)
+Enemy::Enemy(sf::Texture &t, sf::Texture &expText,sf::SoundBuffer& expBuffer, sf::Vector2f pos, TypeEnemy * Typenemy, int type, bool pony) : SpaceObject(t, expText,expBuffer, 5, 3), compteurEnemy(1)
 {
-	if (anim.x < 2)
-		sprite.setTextureRect(sf::IntRect(anim.x * 100, anim.y, 100, 94));
-	else
-		sprite.setTextureRect(sf::IntRect(86 + anim.x * 57, anim.y, 57, 94));
+	this->pony = pony;
 	this->health = Typenemy->getLife();
 	this->rate = Typenemy->getRate();
 	this->speed = Typenemy->getSpeed();
@@ -26,6 +28,19 @@ Enemy::Enemy(sf::Texture &t,sf::Texture &expText, sf::Vector2f pos, TypeEnemy * 
 	this->laserQty = Typenemy->getLaserQty();
 	this->dommage = Typenemy->getDommage();
 	this->anim = sf::Vector2i(type, 0);
+	std::cout << "Value pony" <<pony <<endl;
+	if (!pony) {
+		if (anim.x < 2)
+			sprite.setTextureRect(sf::IntRect(anim.x * 100, anim.y, 100, 94));
+		else
+			sprite.setTextureRect(sf::IntRect(86 + anim.x * 57, anim.y, 57, 94));
+	}
+	else {
+		sprite.setTextureRect(sf::IntRect(anim.x * 100, anim.y, 100, 94));
+	}
+
+
+
 	this->score = Typenemy->getScore();
 	sprite.setPosition(pos);
 }

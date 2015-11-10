@@ -43,4 +43,5 @@ void Bonus::switchFps()
 
 Bonus::~Bonus()
 {
+	std::cout << "Bonus destructor" << std::endl;
 }

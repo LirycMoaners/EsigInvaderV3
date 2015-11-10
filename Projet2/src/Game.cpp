@@ -29,7 +29,7 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	background.setSize(sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
 	background.setPosition(0, 0);
 	
-	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t());
+	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t(),this->res.getExplosionSnd());
 	
 	// Activation des codes 
 	activateCheat(cheat);
@@ -45,8 +45,13 @@ void Game::activateCheat(string cheat) {
 		spaceship->getWeapon().setLvl(5);
 		curLevel = 11;
 		spaceship->setHealth(150000, true);
+		res.getImg()->setSpaceship_t("ressources/grave.png");
 	}
 	else if (cheat == "mylittlepony") {
+		pony = true;
+		this->res.getImg()->setEnemy_t("ressources/ponysprite.png");
+	}
+	else if (cheat == "reset"){
 
 	}
 	else if (cheat == "") {
@@ -160,7 +165,7 @@ void Game::runGame()
 					}
 				} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 				TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-				addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
+				addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(),res.getExplosionSnd(), typeEnemy, pony));
 				curPatern += patern[curPatern].next();
 			}
 		}
@@ -174,7 +179,7 @@ void Game::runGame()
 						random = rand() % this->res.getConfigXML()->getTypeEnemyList().size();
 					} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 					TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-					addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy));
+					addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(),res.getExplosionSnd(), typeEnemy, pony));
 					compteurPatern += 1;
 					curPatern += 1;
 				}
@@ -221,7 +226,7 @@ void Game::runGame()
 			else
 			{
 				score += enemies.at(i)->getScore();
-				if (rand() % 5 == 0)
+				if (rand() % 10 == 0)
 				{
 					sf::Vector2f pos = sf::Vector2f(enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width / 2, enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getGlobalBounds().height / 2);
 					bonus.push_back(new Bonus(res.getImg()->getBonus_t(), pos));
@@ -311,7 +316,7 @@ void Game::runGame()
 	}
 
 	//After the death of player, enter is name
-	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score);
+	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score,c);
 	if(!modeGame)
 		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(),"Normal" );
 	else
@@ -367,14 +372,14 @@ void Game::addBoss() {
 	//Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Texture& texture, sf::Vector2f pos)
 	TypeEnemy * type = res.getConfigXML()->getBossList().at(curLevel);
 	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
-	this->boss = new Boss(type, res.getImg()->getBoss_t(),res.getImg()->getExplosion_t(),pos);
+	this->boss = new Boss(type, res.getImg()->getBoss_t(),res.getImg()->getExplosion_t(),res.getExplosionSnd(),pos);
 }
 
 void Game::addBoss(TypeEnemy * type){
 
 	//Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Texture& texture, sf::Vector2f pos)
 	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
-	this->boss = new Boss(type, res.getImg()->getBoss_t(), res.getImg()->getExplosion_t(), pos);
+	this->boss = new Boss(type, res.getImg()->getBoss_t(), res.getImg()->getExplosion_t(),res.getExplosionSnd(), pos);
 }
 
 void Game::addLasers(vector<Laser*> &l)
