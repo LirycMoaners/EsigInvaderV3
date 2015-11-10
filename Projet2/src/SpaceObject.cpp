@@ -1,6 +1,6 @@
 #include "..\include\SpaceObject.h"
 
-SpaceObject::SpaceObject(sf::Texture &t,sf::Texture &expt,int health, int speed) : explosionTexture(expt)
+SpaceObject::SpaceObject(sf::Texture &t, sf::Texture &expt, sf::SoundBuffer& expBuffer, int health, int speed) : explosionTexture(expt)
 {
 	//Create graphical object
 	this->sprite.setTexture(t);
@@ -8,6 +8,9 @@ SpaceObject::SpaceObject(sf::Texture &t,sf::Texture &expt,int health, int speed)
 	//Set properties values
 	this->health = health;
 	this->speed = speed;
+
+	//Set the explosion sound buffer
+	this->explosionSound.setBuffer(expBuffer);
 }
 
 void SpaceObject::takeDommage(int dommage) {
@@ -40,6 +43,7 @@ bool SpaceObject::isExplosing()
 	{
 		//Explosion frame update limiter
 		explosionFrameSpeed = new sf::Clock();
+		explosionSound.play();
 
 		//Change objects texture to explosion texture
 		explosionSprite.setTexture(explosionTexture);

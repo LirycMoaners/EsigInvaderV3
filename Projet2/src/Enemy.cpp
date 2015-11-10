@@ -18,7 +18,7 @@ void Enemy::switchFps()
 	anim.y++;
 }
 
-Enemy::Enemy(sf::Texture &t,sf::Texture &expText, sf::Vector2f pos, TypeEnemy * Typenemy, int type, bool pony) : SpaceObject(t,expText, 5, 3), compteurEnemy(1)
+Enemy::Enemy(sf::Texture &t, sf::Texture &expText,sf::SoundBuffer& expBuffer, sf::Vector2f pos, TypeEnemy * Typenemy, int type, bool pony) : SpaceObject(t, expText,expBuffer, 5, 3), compteurEnemy(1)
 {
 	this->pony = pony;
 	this->health = Typenemy->getLife();

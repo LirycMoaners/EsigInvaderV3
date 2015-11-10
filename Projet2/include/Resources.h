@@ -9,10 +9,12 @@ public:
 	~Resources();
 
 	ConfigXml * getConfigXML();
+	sf::SoundBuffer& getExplosionSnd();
 	Img * getImg();
 
-private : 
-	ConfigXml * xmldata;
-	Img * img;
+	private : 
+		ConfigXml * xmldata;
+		Img * img;
+		sf::SoundBuffer explosion_snd;
 };
 
