@@ -29,7 +29,7 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	background.setSize(sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
 	background.setPosition(0, 0);
 	
-	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t());
+	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t(),this->res.getExplosionSnd());
 	
 	// Activation des codes 
 	activateCheat(cheat);
@@ -165,7 +165,7 @@ void Game::runGame()
 					}
 				} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 				TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-				addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy, pony));
+				addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(),res.getExplosionSnd(), typeEnemy, pony));
 				curPatern += patern[curPatern].next();
 			}
 		}
@@ -179,7 +179,7 @@ void Game::runGame()
 						random = rand() % this->res.getConfigXML()->getTypeEnemyList().size();
 					} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 					TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-					addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(), typeEnemy, pony));
+					addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(),res.getExplosionSnd(), typeEnemy, pony));
 					compteurPatern += 1;
 					curPatern += 1;
 				}
@@ -372,14 +372,14 @@ void Game::addBoss() {
 	//Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Texture& texture, sf::Vector2f pos)
 	TypeEnemy * type = res.getConfigXML()->getBossList().at(curLevel);
 	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
-	this->boss = new Boss(type, res.getImg()->getBoss_t(),res.getImg()->getExplosion_t(),pos);
+	this->boss = new Boss(type, res.getImg()->getBoss_t(),res.getImg()->getExplosion_t(),res.getExplosionSnd(),pos);
 }
 
 void Game::addBoss(TypeEnemy * type){
 
 	//Boss::Boss(int life, int dommage, int LaserSpeed, int speed,int rate, sf::Texture& texture, sf::Vector2f pos)
 	sf::Vector2f pos(window->getSize().x, window->getSize().y / 2);
-	this->boss = new Boss(type, res.getImg()->getBoss_t(), res.getImg()->getExplosion_t(), pos);
+	this->boss = new Boss(type, res.getImg()->getBoss_t(), res.getImg()->getExplosion_t(),res.getExplosionSnd(), pos);
 }
 
 void Game::addLasers(vector<Laser*> &l)
