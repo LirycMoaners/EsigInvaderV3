@@ -192,6 +192,7 @@ void Menu::drawScores(sf::RenderWindow* window, Resources &res)
 	//Draw best scores
 	sf::Text Title;
 	sf::Text scoresText[10];
+	const int stringLength = 83;
 
 	//Get scores from XMLFile
 	findBestScores(); // <-- A définir
@@ -209,7 +210,17 @@ void Menu::drawScores(sf::RenderWindow* window, Resources &res)
 
 		//Set score values
 		if (scores[3 * i] != "")
-			scoresText[i].setString(scores[3 * i] + " ............................................. " + scores[3 * i + 1] +" ................. " + scores[3 * i + 2]);
+		{
+			//Create tabulation
+			string tab;
+			int k = 0;
+			while (scores[3 * i].size() + scores[3 * i + 1].size() + scores[3 * i + 2].size() + k < (stringLength - 22))
+			{
+				tab += '.';
+				k++;
+			}				
+			scoresText[i].setString(scores[3 * i] + " "+ tab +" "+ scores[3 * i + 1] + " ................. " + scores[3 * i + 2]);
+		}			
 		else
 			scoresText[i].setString("UNKNOWN ............................................. 000000 ................. N/A");
 		scoresText[i].setPosition((WINDOW_WIDTH - scoresText[i].getGlobalBounds().width) / 2, 200 + i * (WINDOW_HEIGHT / 15));
