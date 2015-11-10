@@ -270,6 +270,7 @@ void Menu::findBestScores() {
 void Menu::resetCheat()
 {
 	res.getImg()->setSpaceship_t("ressources/spaceship.png");
+	res.getImg()->setEnemy_t("ressources/enemy.png");
 }
 
 Menu::~Menu() {}
