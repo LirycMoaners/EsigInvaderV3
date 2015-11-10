@@ -1,6 +1,6 @@
 #include "..\include\Boss.h"
 
-Boss::Boss(TypeEnemy * Typenemy, sf::Texture& texture, sf::Texture& Explode, sf::Vector2f pos) : Enemy(texture, Explode,  pos, Typenemy, 0)
+Boss::Boss(TypeEnemy * Typenemy, sf::Texture& texture, sf::Texture& Explode, sf::Vector2f pos) : Enemy(texture, Explode,  pos, Typenemy, 0, false)
 {
 	sprite.setPosition(sprite.getPosition().x - sprite.getGlobalBounds().width - 100, sprite.getPosition().y);
 	sprite.setTextureRect(sf::IntRect(rand() % 4 * 131, 0, 131, 189));
