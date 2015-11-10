@@ -312,7 +312,7 @@ void Game::runGame()
 	}
 
 	//After the death of player, enter is name
-	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score);
+	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score,c);
 	if(!modeGame)
 		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(),"Normal" );
 	else
