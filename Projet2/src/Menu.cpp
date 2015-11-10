@@ -105,7 +105,11 @@ void Menu::runWindows()
 
 			//Button clicked
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				Game(*window,res,false, cheat).runGame();
+			{
+				Game(*window, res, false, cheat).runGame();
+				cheat = "";
+				resetCheat();
+			}
 		}
 		else
 		{
@@ -256,6 +260,11 @@ void Menu::findBestScores() {
 			}
 		} while (compteur != 10 && elemt != NULL);
 	}
+}
+
+void Menu::resetCheat()
+{
+	res.getImg()->setSpaceship_t("ressources/spaceship.png");
 }
 
 Menu::~Menu() {}

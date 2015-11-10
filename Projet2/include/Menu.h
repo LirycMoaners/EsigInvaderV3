@@ -28,6 +28,7 @@ class Menu : public Windows
 		void drawScores(sf::RenderWindow*, Resources &res);
 		void runWindows();
 		void findBestScores();
+		void resetCheat();
 };
 
 #endif

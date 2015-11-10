@@ -50,6 +50,9 @@ void Game::activateCheat(string cheat) {
 	else if (cheat == "mylittlepony") {
 
 	}
+	else if (cheat == "reset"){
+
+	}
 	else if (cheat == "") {
 
 	}
