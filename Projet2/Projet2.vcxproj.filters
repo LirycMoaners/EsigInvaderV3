@@ -199,6 +199,9 @@
     <Image Include="ressources\button.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="ressources\grave.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="ressources\patern.xml" />

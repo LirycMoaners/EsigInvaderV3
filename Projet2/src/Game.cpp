@@ -221,7 +221,7 @@ void Game::runGame()
 			else
 			{
 				score += enemies.at(i)->getScore();
-				if (rand() % 5 == 0)
+				if (rand() % 10 == 0)
 				{
 					sf::Vector2f pos = sf::Vector2f(enemies.at(i)->getSprite().getPosition().x + enemies.at(i)->getSprite().getGlobalBounds().width / 2, enemies.at(i)->getSprite().getPosition().y + enemies.at(i)->getSprite().getGlobalBounds().height / 2);
 					bonus.push_back(new Bonus(res.getImg()->getBonus_t(), pos));
