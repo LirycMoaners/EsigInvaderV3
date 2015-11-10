@@ -79,14 +79,14 @@ vector<Rocket*> Armband::shoot(sf::Texture&texture, Spaceship *s) {
 			compteurSpace = 1;
 			return r;
 		}
-		else
-		{
+		else if (compteurSpace < 60)
 			compteurSpace++;
-			return r;
+		else {
+			compteurSpace = 1;
 		}
 	}
-	else
-		return r;
+
+	return r;
 }
 
 
