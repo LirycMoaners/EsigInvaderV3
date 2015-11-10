@@ -45,6 +45,7 @@ void Game::activateCheat(string cheat) {
 		spaceship->getWeapon().setLvl(5);
 		curLevel = 11;
 		spaceship->setHealth(150000, true);
+		res.getImg()->setSpaceship_t("ressources/grave.png");
 	}
 	else if (cheat == "mylittlepony") {
 

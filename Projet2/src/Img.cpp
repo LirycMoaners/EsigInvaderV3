@@ -63,4 +63,8 @@ void Img::setBoss_t(string name) {
 	boss_t.loadFromFile(name.c_str());
 }
 
+void Img::setSpaceship_t(string name) {
+	spaceship_t.loadFromFile(name.c_str());
+}
+
 Img::~Img() {}
