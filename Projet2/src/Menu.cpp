@@ -111,9 +111,11 @@ void Menu::runWindows()
 			//Button clicked
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
+				music.stop();
 				Game(*window, res, false, cheat).runGame();
-				cheat = "";
 				resetCheat();
+				cheat = "";
+				music.play();
 			}
 		}
 		else
@@ -129,7 +131,13 @@ void Menu::runWindows()
 
 			//Button clicked
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				Game(*window, res,true, "").runGame();
+			{
+				music.stop();
+				Game(*window, res, true, "").runGame();
+				cheat = "";
+				resetCheat();
+				music.play();
+			}
 		}
 		else
 		{

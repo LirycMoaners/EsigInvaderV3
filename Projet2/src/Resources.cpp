@@ -7,8 +7,8 @@ Resources::Resources()
 	xmldata = new ConfigXml();
 	img = new Img();
 	explosion_snd.loadFromFile("ressources/snd/explosion.wav");
-	game_music.loadFromFile("ressources/snd/explosion.wav");
-	menu_music.loadFromFile("ressources/snd/explosion.wav");
+	game_music.loadFromFile("ressources/snd/sound_game.wav");
+	menu_music.loadFromFile("ressources/snd/sound_home.wav");
 }
 ConfigXml * Resources::getConfigXML() {
 	return xmldata;
