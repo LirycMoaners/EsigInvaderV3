@@ -1,16 +1,18 @@
 #include "../include/weapon.h"
 
 using namespace std;
-Weapon::Weapon(bool enemy)
+Weapon::Weapon(sf::SoundBuffer& wpSnd,bool enemy)
 {
 	setLvl(1);
 	enemyWeapon = enemy; //Weapon owner by an enemy or not
+	gunSound.setBuffer(wpSnd);
 }
 
-Weapon::Weapon(int lvl,bool enemy)
+Weapon::Weapon(sf::SoundBuffer& wpSnd,int lvl,bool enemy)
 {
 	setLvl(lvl);
 	enemyWeapon = enemy; //Weapon owner by an enemy or not 
+	gunSound.setBuffer(wpSnd);
 }
 
 int Weapon::getRate()
@@ -20,6 +22,7 @@ int Weapon::getRate()
 
 vector<Rocket*> Weapon::shoot(sf::Texture &texture, sf::Sprite s)
 {
+	gunSound.play();
 	vector<Rocket*> b;
 	
 	for (int i = 1; i <= rocketQty; i++)

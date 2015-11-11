@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "SFML/Audio.hpp"
 #include "Rocket.h"
 #include "Img.h"
 
@@ -19,12 +20,14 @@ class Weapon
 		bool enemyWeapon;
 		//Définit la force de dégât de l'arme
 		int dommage;
+		//Son à jouer lors du tir
+		sf::Sound gunSound;
 
 	public:
 		//Weapon(bool enemy = false)
-		Weapon(bool enemy = false);
+		Weapon(sf::SoundBuffer& wpSnd, bool enemy = false);
 		//Weapon(int, bool enemy = false)
-		Weapon(int, bool enemy = false);
+		Weapon(sf::SoundBuffer& wpSnd,int, bool enemy = false);
 		int getRate();
 		int getLvl();
 		///Permet au propriétaire de l'arme de tirer. 

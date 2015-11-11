@@ -31,6 +31,8 @@ class Game
 		vector<Laser*> lasers;
 		//Musique de fond
 		sf::Sound music;
+		//Son du laser des enemies
+		sf::Sound laserSnd;
 		//Liste des bonus
 		vector<Bonus*> bonus;
 		//Fichier xml contenant les patterns

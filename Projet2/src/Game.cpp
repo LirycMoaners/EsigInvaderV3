@@ -29,7 +29,7 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	background.setSize(sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
 	background.setPosition(0, 0);
 	
-	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t(),this->res.getExplosionSnd());
+	spaceship = new Spaceship(this->res.getImg()->getSpaceship_t(), this->res.getImg()->getExplosion_t(),this->res.getExplosionSnd(), this->res.getMissileSnd());
 	
 	// Activation des codes 
 	activateCheat(cheat);
@@ -41,6 +41,9 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	music.setBuffer(res.getMusicSnd(1));
 	music.setLoop(true);
 	music.play();
+
+	//Chargement du son du laser
+	laserSnd.setBuffer(res.getLaserSnd());
 }
 
 void Game::activateCheat(string cheat) {
@@ -387,6 +390,9 @@ void Game::addBoss(TypeEnemy * type){
 
 void Game::addLasers(vector<Laser*> &l)
 {
+	if (laserSnd.getStatus() != laserSnd.Playing)
+		laserSnd.play();
+
 	for (int i = 0; i < l.size(); i++)
 		this->lasers.push_back(l[i]);
 }
