@@ -173,7 +173,15 @@ void ConfigXml::loadingConfigurationOptions() {
 	xmloption.LoadFile("conf/option.xml");
 	if (xmloption.ErrorID() == 0) {
 		tinyxml2::XMLElement * root = xmloption.RootElement();
-
+		tinyxml2::XMLElement * elemt = root->FirstChildElement("resolution");
+		std::string reso = elemt->GetText();
+		elemt = root->FirstChildElement("SoundBackground");
+		bool soundBack = stoi(elemt->GetText());
+		elemt = root->FirstChildElement("SoundPlayer");
+		bool soundPlayer = stoi(elemt->GetText());
+		elemt = root->FirstChildElement("SoundEnemy");
+		bool soundEnemy = stoi(elemt->GetText());
+		this->setting = new Settings(reso, soundEnemy, soundPlayer, soundBack);
 	}
 	else {
 		std::cout << "Error searching configuration" << std::endl;
