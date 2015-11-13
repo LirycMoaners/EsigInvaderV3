@@ -2,12 +2,14 @@
 
 using namespace std;
 
-Settings::Settings(std::string reso, bool enemySound, bool playerSound, bool backgroundSound)
+Settings::Settings(std::string reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound)
 {
 	this->resolution = reso;
 	this->SoundBackground = backgroundSound;
 	this->SoundEnemy = enemySound;
 	this->SoundPlayer = playerSound;
+	this->SoundVolume = volumeSound;
+	this->MusicVolume = volumeMusic;
 }
 
 
@@ -42,4 +44,18 @@ bool Settings::getSoundPlayer() {
 }
 void Settings::setSoundPlayer(bool player) {
 	this->SoundPlayer = player;
+}
+
+int Settings::getVolumeMusic() {
+	return this->volumeMusic;
+}
+int Settings::getVolumeSound() {
+	return this->volumeSound;
+}
+
+void Settings::setVolumeMusic(int volume) {
+	this->volumeMusic = volume;
+}
+void Settings::setVolumeSound(int volume) {
+	this->volumeSound = volume;
 }

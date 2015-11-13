@@ -13,6 +13,7 @@ public:
 	ConfigXml();
 	void loadingConfiguration();
 	void CreateScore(int score, std::string name,std::string mode);
+	void setSetting(Settings *s);
 	~ConfigXml();
 
 	std::vector<Level*> getLevelList();

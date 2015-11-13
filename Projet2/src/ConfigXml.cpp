@@ -170,25 +170,60 @@ void ConfigXml::loadingConfigurationBoss() {
 
 void ConfigXml::loadingConfigurationOptions() {
 	tinyxml2::XMLDocument xmloption;
-	xmloption.LoadFile("conf/option.xml");
+	xmloption.LoadFile("conf/options.xml");
 	if (xmloption.ErrorID() == 0) {
-		tinyxml2::XMLElement * root = xmloption.RootElement();
-		tinyxml2::XMLElement * elemt = root->FirstChildElement("resolution");
-		std::string reso = elemt->GetText();
-		elemt = root->FirstChildElement("SoundBackground");
-		bool soundBack = stoi(elemt->GetText());
-		elemt = root->FirstChildElement("SoundPlayer");
-		bool soundPlayer = stoi(elemt->GetText());
-		elemt = root->FirstChildElement("SoundEnemy");
-		bool soundEnemy = stoi(elemt->GetText());
-		this->setting = new Settings(reso, soundEnemy, soundPlayer, soundBack);
+		try {
+			tinyxml2::XMLElement * root = xmloption.RootElement();
+			tinyxml2::XMLElement * elemt = root->FirstChildElement("resolution");
+			std::string reso = elemt->GetText();
+			elemt = root->FirstChildElement("SoundBackground");
+			bool soundBack = stoi(elemt->GetText());
+			elemt = root->FirstChildElement("SoundPlayer");
+			bool soundPlayer = stoi(elemt->GetText());
+			elemt = root->FirstChildElement("SoundEnemy");
+			bool soundEnemy = stoi(elemt->GetText());
+			elemt = root->FirstChildElement("VolumeMusic");
+			int volumeMusic = stoi(elemt->GetText());
+			elemt = root->FirstChildElement("VolumeSound");
+			int volumeSound = stoi(elemt->GetText());
+			this->setting = new Settings(reso, soundEnemy, soundPlayer, soundBack, volumeMusic, volumeSound);
+		}
+		catch (const std::invalid_argument& ia) {
+			std::cerr << "Invalid argument: " << ia.what() << '\n';
+		}
 	}
 	else {
 		std::cout << "Error searching configuration" << std::endl;
-		std::cerr << "Failed to open the file option.xml in conf's folder. Error ID : " << xmloption.ErrorID() << endl;
+		std::cerr << "Failed to open the file options.xml in conf's folder. Error ID : " << xmloption.ErrorID() << endl;
 		exit(EXIT_FAILURE);
 	}
 }
+
+void ConfigXml::setSetting(Settings * s) {
+	tinyxml2::XMLDocument xmloption;
+	tinyxml2::XMLError error = xmloption.LoadFile("conf/options.xml");
+	if (error == tinyxml2::XML_SUCCESS) {
+		tinyxml2::XMLElement * root = xmloption.RootElement();
+		tinyxml2::XMLElement * elemt = root->FirstChildElement("resolution");
+		elemt->SetText(s->getResolution().c_str());
+		elemt = root->FirstChildElement("SoundBackground");
+		elemt->SetText(s->getSoundBackground());
+		elemt = root->FirstChildElement("SoundPlayer");
+		elemt->SetText(s->getSoundPlayer());
+		elemt = root->FirstChildElement("SoundEnemy");
+		elemt->SetText(s->getSoundEnemy());
+		elemt = root->FirstChildElement("VolumeMusic");
+		elemt->SetText(s->getVolumeMusic());
+		elemt = root->FirstChildElement("VolumeSound");
+		elemt->SetText(s->getVolumeSound());
+
+	}
+	else {
+		std::cout << "Impossible to save the setting" << std::endl;
+		std::cerr << "Fail to open the file options.xml in the conf's folder Error ID : " << xmloption.ErrorID() << std::endl;
+	}
+}
+
 
 void ConfigXml::CreateScore(int score, string name, string mode) {
 	tinyxml2::XMLDocument xmlScore;
