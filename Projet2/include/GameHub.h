@@ -2,7 +2,7 @@
 #include "Spaceship.h"
 #include "Boss.h"
 #include "Control.h"
-
+#include <string>
 class GameHub
 {
 	private:
@@ -20,7 +20,7 @@ class GameHub
 		GameHub();
 		~GameHub();
 		void resetHub();
-		string getPlayerPseudo();
+		std::string getPlayerPseudo();
 		void setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bg, int score, Control* c);
 		void updateHub(sf::RenderWindow* window, Spaceship *spaceship, Boss* boss, int score);
 };

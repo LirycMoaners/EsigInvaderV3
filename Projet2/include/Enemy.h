@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML\Graphics.hpp>
-#include "SpaceObject.h"
+#include <vector>
 #include <iostream>
+#include "SpaceObject.h"
 #include "Laser.h"
 #include "TypeEnemy.h"
 
@@ -33,7 +34,7 @@ class Enemy : public SpaceObject
 		// selectionne les images par rapport au movement
 		void switchFps();
 		//Methode de tire des lasers de l'ennemi
-		vector<Laser*> shoot(sf::Texture&);
+		std::vector<Laser*> shoot(sf::Texture&);
 		//déplace l'objet courant. 
 		void move();
 		

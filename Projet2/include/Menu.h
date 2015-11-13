@@ -23,7 +23,7 @@ class Menu : public Windows
 
 
 	public:
-		Menu(int width, int height, string title, Resources &res);
+		Menu(int width, int height, std::string title, Resources &res);
 		~Menu();
 		//Lance la fênetre de menu
 		void drawScores(sf::RenderWindow*, Resources &res);

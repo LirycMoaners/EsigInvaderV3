@@ -1,7 +1,7 @@
 #include "Menu.h"
 #include "Mouse.h"
 
-Menu::Menu(int width, int height, string title, Resources &res) : Windows(width, height, title)
+Menu::Menu(int width, int height, std::string title, Resources &res) : Windows(width, height, title)
 {
 	background.setTexture(&res.getImg()->getHome_t());
 	background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
@@ -229,7 +229,7 @@ void Menu::drawScores(sf::RenderWindow* window, Resources &res)
 		if (scores[3 * i] != "")
 		{
 			//Create tabulation
-			string tab;
+			std::string tab;
 			int k = 0;
 			while (scores[3 * i].size() + scores[3 * i + 1].size() + scores[3 * i + 2].size() + k < (stringLength - 22))
 			{

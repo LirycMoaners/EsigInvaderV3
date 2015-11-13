@@ -1,5 +1,5 @@
 #include "..\include\Armband.h"
-
+using namespace std;
 Armband::Armband() {
 	compteurSpace = 1;
 	string value = exec("tasklist /FI \"imagename eq Myo Connect.exe\" /svc");
@@ -20,8 +20,9 @@ Armband::Armband() {
 
 			// If waitForMyo() returned a null pointer, we failed to find a Myo, so exit with an error message.
 			if (!myo) {
-				throw std::runtime_error("Unable to find a Myo!");
 				this->status = false;
+				throw std::runtime_error("Unable to find a Myo!");
+				
 			}
 			else {
 				// We've found a Myo.
@@ -100,7 +101,7 @@ void Armband::move(Spaceship *s)
 		pos_z = orient.z();
 	}
 
-	float capDetect = 0.08;
+	double capDetect = 0.08;
 
 	if (orient.z() > pos_z + capDetect || orient.z() < pos_z - capDetect || orient.y() > pos_y + capDetect || orient.y() < pos_y - capDetect)
 	{

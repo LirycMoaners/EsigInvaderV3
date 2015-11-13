@@ -6,25 +6,28 @@
 #include "Level.h"
 #include "TypeEnemy.h"
 #include "Boss.h"
+#include "Settings.h"
 class ConfigXml
 {
 public:
 	ConfigXml();
 	void loadingConfiguration();
-	void CreateScore(int score, string name,string mode);
+	void CreateScore(int score, std::string name,std::string mode);
 	~ConfigXml();
 
-	vector<Level*> getLevelList();
-	vector<TypeEnemy*> getTypeEnemyList();
-	vector<TypeEnemy*> getBossList();
+	std::vector<Level*> getLevelList();
+	std::vector<TypeEnemy*> getTypeEnemyList();
+	std::vector<TypeEnemy*> getBossList();
 
 private : 
 	void loadingConfigurationLevel();
 	void loadingConfigurationTypeEnemy();
 	void loadingConfigurationBoss();
+	void loadingConfigurationOptions();
 
-	vector<Level*> levelList;
-	vector<TypeEnemy*> typeList;
-	vector<TypeEnemy*> bossList;
+	Settings * setting;
+	std::vector<Level*> levelList;
+	std::vector<TypeEnemy*> typeList;
+	std::vector<TypeEnemy*> bossList;
 };
 

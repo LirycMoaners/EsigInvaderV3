@@ -1,5 +1,6 @@
 #include "..\include\Enemy.h"
 
+using namespace std;
 void Enemy::switchFps()
 {
 	if (anim.y > 3)
@@ -28,7 +29,6 @@ Enemy::Enemy(sf::Texture &t, sf::Texture &expText,sf::SoundBuffer& expBuffer, sf
 	this->laserQty = Typenemy->getLaserQty();
 	this->dommage = Typenemy->getDommage();
 	this->anim = sf::Vector2i(type, 0);
-	std::cout << "Value pony" <<pony <<endl;
 	if (!pony) {
 		if (anim.x < 2)
 			sprite.setTextureRect(sf::IntRect(anim.x * 100, anim.y, 100, 94));

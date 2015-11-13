@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include "Armband.h"
 #include "Keyboard.h"
 #include "Spaceship.h"
@@ -14,6 +15,7 @@
 #include "GameHub.h"
 #include "Bonus.h"
 
+
 class Game
 {
 	private:
@@ -24,21 +26,21 @@ class Game
 		//Instance du player
 		Spaceship* spaceship;
 		//Liste de rocket
-		vector<Rocket*> rockets;
+		std::vector<Rocket*> rockets;
 		//Liste d'ennemi
-		vector<Enemy*> enemies;
+		std::vector<Enemy*> enemies;
 		//Liste de lasers
-		vector<Laser*> lasers;
+		std::vector<Laser*> lasers;
 		//Musique de fond
 		sf::Sound music;
 		//Son du laser des enemies
 		sf::Sound laserSnd;
 		//Liste des bonus
-		vector<Bonus*> bonus;
+		std::vector<Bonus*> bonus;
 		//Fichier xml contenant les patterns
 		tinyxml2::XMLDocument XMLPatern;
 		//Définit la liste de patterns du jeu
-		vector<Patern> patern;
+		std::vector<Patern> patern;
 		//Hub du jeu pour l'affichage de la vie
 		GameHub* gameHub;
 		Resources res;
@@ -55,28 +57,28 @@ class Game
 		Control *c;
 		sf::RenderWindow *window;
 		//Game();
-		Game(sf::RenderWindow&, Resources & res, bool modeGame, string cheat);
+		Game(sf::RenderWindow&, Resources & res, bool modeGame, std::string cheat);
 		Spaceship *getSpaceship();
-		vector<Rocket*> &getRockets();
-		vector<Enemy*> &getEnemies();
-		vector<Laser*> &getLasers();
-		vector<Bonus*> &getBonus();
+		std::vector<Rocket*> &getRockets();
+		std::vector<Enemy*> &getEnemies();
+		std::vector<Laser*> &getLasers();
+		std::vector<Bonus*> &getBonus();
 		//Lancer le jeu
 		void runGame();
 		//Charge le fichier configuration et configure le jeu
 		void PaternGeneration();
 		//Ajoute des rockets
-		void addRockets(vector<Rocket*>&);
+		void addRockets(std::vector<Rocket*>&);
 		//Ajoute les lasers
-		void addLasers(vector<Laser*>&);
+		void addLasers(std::vector<Laser*>&);
 		//Ajoute des ennemis
-		void addEnemies(vector<Enemy*>&);
+		void addEnemies(std::vector<Enemy*>&);
 		//Ajoute le boss de la partie
 		void addBoss();
 		void addBoss(TypeEnemy * type);
 
 		// Activation de cheat
-		void activateCheat(string cheat);
+		void activateCheat(std::string cheat);
 		//Instacie l'environnement du player
 		void control();
 		//Gère le mouvement du background

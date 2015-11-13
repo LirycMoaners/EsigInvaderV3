@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include "SFML/Audio.hpp"
 #include "Rocket.h"
 #include "Img.h"
@@ -27,11 +28,11 @@ class Weapon
 		//Weapon(bool enemy = false)
 		Weapon(sf::SoundBuffer& wpSnd, bool enemy = false);
 		//Weapon(int, bool enemy = false)
-		Weapon(sf::SoundBuffer& wpSnd,int, bool enemy = false);
+		Weapon(sf::SoundBuffer& wpSnd,int value, bool enemy = false);
 		int getRate();
 		int getLvl();
 		///Permet au propriétaire de l'arme de tirer. 
-		vector<Rocket*> shoot(sf::Texture&, sf::Sprite);
+		std::vector<Rocket*> shoot(sf::Texture& texture, sf::Sprite sprite);
 		//définit le niveau
 		void setLvl(int);
 		int getDommage();

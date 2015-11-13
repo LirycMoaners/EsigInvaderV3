@@ -11,8 +11,6 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	// Chargement de la texture pour les textes 
 	arial.loadFromFile("ressources/arial.ttf");
 
-	
-
 	//Definition du mode de jeu
 	this->modeGame = modeGame;
 
@@ -47,6 +45,7 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 }
 
 void Game::activateCheat(string cheat) {
+	// Active les modes de triche
 	if (cheat == "grave") {
 		spaceship->getWeapon().setLvl(5);
 		curLevel = 11;
@@ -57,10 +56,23 @@ void Game::activateCheat(string cheat) {
 		pony = true;
 		this->res.getImg()->setEnemy_t("ressources/ponysprite.png");
 	}
+	else if (cheat == "minion") {
+		pony = true;
+		this->res.getImg()->setEnemy_t("ressources/minionsprite.png");
+	}
 	else if (cheat == "reset"){
 
 	}
-	else if (cheat == "") {
+	else if (cheat == "uparme") {
+
+	}
+	else if (cheat == "uplife") {
+
+	}
+	else if (cheat == "uplevel") {
+
+	}
+	else if (cheat == "setScore") {
 
 	}
 }
@@ -155,6 +167,7 @@ void Game::runGame()
 		moveBackground();
 		collision();
 		control();
+		// Mode de jeu Standard
 		if (!modeGame) {
 			if (patern.size() != 0 && curPatern < patern.size())
 			{
@@ -175,14 +188,24 @@ void Game::runGame()
 				curPatern += patern[curPatern].next();
 			}
 		}
+		// Mode de jeu Endless
 		else {
 			if (patern.size() != 0 && curPatern < patern.size()) {
 				if (enemies.empty()) {
 					PaternGeneration();
+
+					// On génère un enemi aléatoire
 					curPatern = 0;
 					int random;
 					do {
-						random = rand() % this->res.getConfigXML()->getTypeEnemyList().size();
+						if (curLevel == 0)
+							random = 0;
+						else if (curLevel == 1) {
+							random = 1;
+						}
+						else {
+							random = rand() % curLevel + 1;
+						}
 					} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 					TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
 					addEnemies(patern[curPatern].spawn(this->res.getImg()->getEnemy_t(), this->res.getImg()->getExplosion_t(),res.getExplosionSnd(), typeEnemy, pony));
@@ -192,15 +215,25 @@ void Game::runGame()
 			}
 			else {
 				if (compteurPatern == 10) {
+
+					// On génère un nombre aléatoire pour faire pop un boss
 					int random;
+					if (curLevel == 0)
+						random = 0;
+					else if (curLevel == 1) {
+						random = 1;
+					}
+					else {
+						random = rand() % curLevel + 1;
+					}
 					random = rand() % this->res.getConfigXML()->getBossList().size();
 					TypeEnemy * type = this->res.getConfigXML()->getBossList().at(random);
 					addBoss(type);
 					compteurPatern = 0;
 					popBoss = true;
+					curLevel += 1;
 				}
 				curPatern =0;
-				//patern.clear();
 			}
 		}
 		

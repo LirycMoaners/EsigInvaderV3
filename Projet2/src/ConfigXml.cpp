@@ -1,5 +1,5 @@
 #include "..\include\ConfigXml.h"
-
+using namespace std;
 
 
 ConfigXml::ConfigXml()
@@ -164,6 +164,20 @@ void ConfigXml::loadingConfigurationBoss() {
 	else {
 		std::cout << "Error searching enemies" << std::endl;
 		std::cerr << "Failed to open the file confboss.xml in conf's folder. Error ID : " << xmlboss.ErrorID() << endl;
+		exit(EXIT_FAILURE);
+	}
+}
+
+void ConfigXml::loadingConfigurationOptions() {
+	tinyxml2::XMLDocument xmloption;
+	xmloption.LoadFile("conf/option.xml");
+	if (xmloption.ErrorID() == 0) {
+		tinyxml2::XMLElement * root = xmloption.RootElement();
+
+	}
+	else {
+		std::cout << "Error searching configuration" << std::endl;
+		std::cerr << "Failed to open the file option.xml in conf's folder. Error ID : " << xmloption.ErrorID() << endl;
 		exit(EXIT_FAILURE);
 	}
 }

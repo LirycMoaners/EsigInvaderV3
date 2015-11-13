@@ -1,5 +1,5 @@
 #include "..\include\Img.h"
-
+using namespace std;
 Img::Img()
 {
 	background_t.loadFromFile("ressources/background.jpg");

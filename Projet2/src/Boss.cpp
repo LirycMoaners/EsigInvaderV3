@@ -1,4 +1,6 @@
 #include "..\include\Boss.h"
+using namespace std;
+
 
 Boss::Boss(TypeEnemy * Typenemy, sf::Texture& texture, sf::Texture& Explode, sf::SoundBuffer& expBuffer, sf::Vector2f pos) : Enemy(texture, Explode,expBuffer,  pos, Typenemy, 0, false)
 {

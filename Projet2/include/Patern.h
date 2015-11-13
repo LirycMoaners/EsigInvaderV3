@@ -2,6 +2,7 @@
 
 #include "tinyxml2.h"
 #include "Enemy.h"
+#include <vector>
 
 
 class Patern
@@ -21,11 +22,7 @@ class Patern
 		//Patern(tinyxml2::XMLDocument&, int)
 		Patern(tinyxml2::XMLDocument&, int);
 		//Alimente le hub avec les ennemis
-		vector<Enemy*> spawn(sf::Texture &t,sf::Texture &expt,sf::SoundBuffer& expBuffer, TypeEnemy * typeenemy, bool pony);
-		///<summary>
-		///retourne 0 si le niveau n'est pas terminé et 1 sinon
-		///<return>int </return>
-		///</summary>
+		std::vector<Enemy*> spawn(sf::Texture &t, sf::Texture &expt, sf::SoundBuffer& expBuffer, TypeEnemy * typeenemy, bool pony);
 		int next();
 		~Patern();
 };

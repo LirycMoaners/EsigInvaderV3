@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemy.h"
+#include <vector>
 
 class Boss : public Enemy
 {
@@ -19,6 +20,6 @@ class Boss : public Enemy
 		//Retourne à vie max du boss
 		int getHealthMax();
 		//Permet de tirer
-		vector<Laser*> shoot(sf::Texture &texture);
+		std::vector<Laser*> shoot(sf::Texture &texture);
 };
 

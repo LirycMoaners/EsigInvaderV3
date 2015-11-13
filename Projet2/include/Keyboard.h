@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Spaceship.h"
 #include "Control.h"
+#include <vector>
 
 class Keyboard : public Control
 {
@@ -19,7 +20,7 @@ class Keyboard : public Control
 		//Methode qui fait déplacer le player
 		void move(Spaceship*);
 		//Permet au player de tirer
-		vector<Rocket*> shoot(sf::Texture&, Spaceship*);
+		std::vector<Rocket*> shoot(sf::Texture&, Spaceship*);
 		//Retourne true si la touche échappe est appuyée ou si le programme est arreté sinon False.
 		bool quit();
 		~Keyboard();

@@ -38,6 +38,7 @@
     <ClCompile Include="src\Patern.cpp" />
     <ClCompile Include="src\Resources.cpp" />
     <ClCompile Include="src\Rocket.cpp" />
+    <ClCompile Include="src\Settings.cpp" />
     <ClCompile Include="src\SpaceObject.cpp" />
     <ClCompile Include="src\Spaceship.cpp" />
     <ClCompile Include="src\tinyxml2.cpp" />
@@ -65,6 +66,7 @@
     <ClInclude Include="include\Patern.h" />
     <ClInclude Include="include\Resources.h" />
     <ClInclude Include="include\Rocket.h" />
+    <ClInclude Include="include\Settings.h" />
     <ClInclude Include="include\SpaceObject.h" />
     <ClInclude Include="include\Spaceship.h" />
     <ClInclude Include="include\tinyxml2.h" />

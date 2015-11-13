@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <string>
 #include <fstream>
+#include <vector>
 #include <time.h>
 #include <direct.h>
 #include "myo/myo.hpp"
@@ -30,8 +31,8 @@ public:
 	Armband();
 	void runHub();
 	void move(Spaceship*);
-	vector<Rocket*> shoot(sf::Texture&, Spaceship*);
-	string exec(const char*);
+	std::vector<Rocket*> shoot(sf::Texture&, Spaceship*);
+	std::string exec(const char*);
 	~Armband();
 	bool getStatus();
 	bool quit();
