@@ -1,33 +1,34 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "SFML/Graphics.hpp"
 
 class Settings
 {
-public:
-	Settings(std::string reso, bool enemySound,bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound);
-	~Settings();
+	public:
+		Settings(int reso, bool enemySound,bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound);
+		~Settings();
 
-	bool getSoundEnemy();
-	bool getSoundPlayer();
-	bool getSoundBackground();
-	int getVolumeMusic();
-	int getVolumeSound();
-	void setSoundEnemy(bool);
-	void setSoundPlayer(bool);
-	void setSoundBackground(bool);
-	void setVolumeMusic(int);
-	void setVolumeSound(int);
+		bool getSoundEnemy();
+		bool getSoundPlayer();
+		bool getSoundBackground();
+		bool isFullscreen();
+		int getVolumeMusic();
+		int getVolumeSound();
 
-	std::string getResolution();
-	void setResolution(std::string reso);
+		sf::Vector2u getCurrentResolution();
+		std::vector<sf::Vector2u> &getResolutions();
+		int getResolutionInt();
+		void changeSettings(int reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound);
 
-private : 
-	std::string resolution;
-	bool SoundEnemy = true;
-	bool SoundPlayer = true;
-	bool SoundBackground = true;
-	int volumeMusic;
-	int volumeSound;
+	private : 
+		int resolution;
+		std::vector<sf::Vector2u> resolutions = {sf::Vector2u(1024,700), sf::Vector2u(1024,768), sf::Vector2u(1280,960), sf::Vector2u(1920,1080)};
+		bool SoundEnemy = true;
+		bool SoundPlayer = true;
+		bool SoundBackground = true;
+		bool fullscreen = false;
+		int volumeMusic;
+		int volumeSound;
 };
 

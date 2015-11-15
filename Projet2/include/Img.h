@@ -12,9 +12,11 @@ class Img
 		sf::Texture enemy_t;
 		sf::Texture boss_t;
 		sf::Texture home_t;
+		sf::Texture settingIco_t;
 		sf::Texture explosion_t;
 		sf::Texture button_t;
 		sf::Texture bonus_t;
+		sf::Texture button_arrow_t;
 
 	public:
 		Img();
@@ -27,6 +29,8 @@ class Img
 		sf::Texture &getBoss_t();
 		sf::Texture &getHome_t();
 		sf::Texture &getButton_t();
+		sf::Texture &getSettingIco();
+		sf::Texture &getButtonArrow_t();
 		sf::Texture &getBonus_t();
 		void setBoss_t(std::string name);
 		void setEnemy_t(std::string name);

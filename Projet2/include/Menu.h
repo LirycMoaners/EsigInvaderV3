@@ -7,12 +7,20 @@
 class Menu : public Windows
 {
 	private:
-		const int WINDOW_HEIGHT = 700; //Height of the game window
-		const int WINDOW_WIDTH = 1024; //Width of the game window
+		int WINDOW_HEIGHT = 700; //Height of the game window
+		int WINDOW_WIDTH = 1024; //Width of the game window
+
 		//Définit le bouton correspondant au texte précédent
 		sf::RectangleShape background;
 		sf::Sprite buttonQuit, buttonStart, buttonScore, buttonEndLess;
+		sf::Sprite buttonSetting;
 		Resources res;
+
+		//Ajout des bouttons pour l'interface de settings
+		int screenResolution, soundVolume, musicVolume;
+		sf::Sprite musicVolumeButton, soundVolumeButton, resolutionButton, applyButton, cancelButton, fullscreenButton;
+		sf::Text resolutionText, resolutionTitle, soundVolumeText, soundVolumeTitle, musicVolumeText, musicVolumeTitle,fullscreenText;
+
 		//Cheat code hidded bar
 		sf::RectangleShape cheatBar;
 		sf::Text cheatText;
@@ -20,6 +28,7 @@ class Menu : public Windows
 		sf::Font arial;
 		std::string scores[30];
 		sf::Sound music;
+		bool isOptionMenu;
 
 
 	public:
@@ -27,7 +36,9 @@ class Menu : public Windows
 		~Menu();
 		//Lance la fênetre de menu
 		void drawScores(sf::RenderWindow*, Resources &res);
+		void drawMainMenu();
 		void runWindows();
+		void switchMenus();
 		void findBestScores();
 		void resetCheat();
 };

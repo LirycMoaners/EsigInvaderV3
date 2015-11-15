@@ -151,7 +151,7 @@ void Game::runGame()
 			if (event.type == sf::Event::Closed)
 			{
 				endGame = true;
-				window->close();
+				music.stop();
 			}
 		}
 
@@ -357,7 +357,7 @@ void Game::runGame()
 	//After the death of player, enter is name
 	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score,c);
 	if(!modeGame)
-		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(),"Normal" );
+		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(),"Normal");
 	else
 		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(), "Endless");
 }
@@ -423,7 +423,7 @@ void Game::addBoss(TypeEnemy * type){
 
 void Game::addLasers(vector<Laser*> &l)
 {
-	if (laserSnd.getStatus() != laserSnd.Playing)
+	if (laserSnd.getStatus() != laserSnd.Playing && l.size()>0)
 		laserSnd.play();
 
 	for (int i = 0; i < l.size(); i++)

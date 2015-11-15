@@ -9,26 +9,27 @@
 #include "Settings.h"
 class ConfigXml
 {
-public:
-	ConfigXml();
-	void loadingConfiguration();
-	void CreateScore(int score, std::string name,std::string mode);
-	void setSetting(Settings *s);
-	~ConfigXml();
+	public:
+		ConfigXml();
+		void loadingConfiguration();
+		void CreateScore(int score, std::string name,std::string mode);
+		//void setSetting(Settings *s);
+		~ConfigXml();
 
-	std::vector<Level*> getLevelList();
-	std::vector<TypeEnemy*> getTypeEnemyList();
-	std::vector<TypeEnemy*> getBossList();
+		std::vector<Level*> getLevelList();
+		std::vector<TypeEnemy*> getTypeEnemyList();
+		std::vector<TypeEnemy*> getBossList();
+		Settings* getSettings();
 
-private : 
-	void loadingConfigurationLevel();
-	void loadingConfigurationTypeEnemy();
-	void loadingConfigurationBoss();
-	void loadingConfigurationOptions();
+	private : 
+		void loadingConfigurationLevel();
+		void loadingConfigurationTypeEnemy();
+		void loadingConfigurationBoss();
+		//void loadingConfigurationOptions();
 
-	Settings * setting;
-	std::vector<Level*> levelList;
-	std::vector<TypeEnemy*> typeList;
-	std::vector<TypeEnemy*> bossList;
+		Settings * setting;
+		std::vector<Level*> levelList;
+		std::vector<TypeEnemy*> typeList;
+		std::vector<TypeEnemy*> bossList;
 };
 

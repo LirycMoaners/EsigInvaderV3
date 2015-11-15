@@ -2,48 +2,43 @@
 
 using namespace std;
 
-Settings::Settings(std::string reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound)
+Settings::Settings(int reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound)
 {
 	this->resolution = reso;
 	this->SoundBackground = backgroundSound;
 	this->SoundEnemy = enemySound;
 	this->SoundPlayer = playerSound;
-	this->SoundVolume = volumeSound;
-	this->MusicVolume = volumeMusic;
+	this->volumeSound = volumeSound;
+	this->volumeMusic = volumeMusic;
 }
-
 
 Settings::~Settings()
 {
 
 }
 
-string Settings::getResolution() {
-	return this->resolution;
+sf::Vector2u Settings::getCurrentResolution() {
+	return this->resolutions[resolution];
 }
-void Settings::setResolution(string reso) {
-	this->resolution = reso;
+
+std::vector<sf::Vector2u> &Settings::getResolutions() {
+	return this->resolutions;
+}
+int Settings::getResolutionInt()
+{
+	return this->resolution;
 }
 
 bool Settings::getSoundBackground() {
-	return this->setSoundBackground;
-}
-void Settings::setSoundBackground(bool back) {
-	this->setSoundBackground = back;
+	return this->SoundBackground;
 }
 
 bool Settings::getSoundEnemy() {
 	return this->SoundEnemy;
 }
-void Settings::setSoundEnemy(bool enemy) {
-	this->SoundEnemy = enemy;
-}
 
 bool Settings::getSoundPlayer() {
 	return this->SoundPlayer;
-}
-void Settings::setSoundPlayer(bool player) {
-	this->SoundPlayer = player;
 }
 
 int Settings::getVolumeMusic() {
@@ -52,10 +47,15 @@ int Settings::getVolumeMusic() {
 int Settings::getVolumeSound() {
 	return this->volumeSound;
 }
-
-void Settings::setVolumeMusic(int volume) {
-	this->volumeMusic = volume;
+bool Settings::isFullscreen() {
+	return this->fullscreen;
 }
-void Settings::setVolumeSound(int volume) {
-	this->volumeSound = volume;
+void Settings::changeSettings(int reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound)
+{
+	this->resolution = reso;
+	this->SoundBackground = backgroundSound;
+	this->SoundEnemy = enemySound;
+	this->SoundPlayer = playerSound;
+	this->volumeSound = volumeSound;
+	this->volumeMusic = volumeMusic;
 }

@@ -9,5 +9,6 @@ class Mouse
 		~Mouse();
 		// Détecte la souris
 		bool mouseOver(sf::RenderWindow&, sf::Sprite&);
+		int mouseOver(sf::RenderWindow&, sf::Sprite&, int size);
 };
 

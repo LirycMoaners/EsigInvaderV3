@@ -5,6 +5,9 @@ using namespace std;
 ConfigXml::ConfigXml()
 {
 	loadingConfiguration();
+
+	//Paramètrage par défaut
+	setting = new Settings(0,true, true, true, 50, 100);
 }
 
 vector<Level*> ConfigXml::getLevelList() {
@@ -15,6 +18,9 @@ vector<TypeEnemy*> ConfigXml::getTypeEnemyList() {
 }
 vector<TypeEnemy *> ConfigXml::getBossList() {
 	return bossList;
+}
+Settings* ConfigXml::getSettings() {
+	return setting;
 }
 
 
@@ -34,6 +40,7 @@ ConfigXml::~ConfigXml()
 		delete typeList.at(i);
 
 	}
+	delete setting;
 }
 
 void ConfigXml::loadingConfigurationLevel() {
@@ -168,7 +175,7 @@ void ConfigXml::loadingConfigurationBoss() {
 	}
 }
 
-void ConfigXml::loadingConfigurationOptions() {
+/*void ConfigXml::loadingConfigurationOptions() {
 	tinyxml2::XMLDocument xmloption;
 	xmloption.LoadFile("conf/options.xml");
 	if (xmloption.ErrorID() == 0) {
@@ -222,7 +229,7 @@ void ConfigXml::setSetting(Settings * s) {
 		std::cout << "Impossible to save the setting" << std::endl;
 		std::cerr << "Fail to open the file options.xml in the conf's folder Error ID : " << xmloption.ErrorID() << std::endl;
 	}
-}
+}*/
 
 
 void ConfigXml::CreateScore(int score, string name, string mode) {

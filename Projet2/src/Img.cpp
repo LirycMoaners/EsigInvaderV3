@@ -12,6 +12,8 @@ Img::Img()
 	button_t.loadFromFile("ressources/button.png");
 	explosion_t.loadFromFile("ressources/explosion.png");
 	bonus_t.loadFromFile("ressources/bonus_malus.png");
+	button_arrow_t.loadFromFile("ressources/buttonOption.png");
+	settingIco_t.loadFromFile("ressources/settingIcons.png");
 }
 
 sf::Texture &Img::getSpaceship_t()
@@ -54,6 +56,15 @@ sf::Texture &Img::getButton_t()
 	return button_t;
 }
 
+sf::Texture &Img::getButtonArrow_t()
+{
+	return button_arrow_t;
+}
+
+sf::Texture &Img::getSettingIco()
+{
+	return settingIco_t;
+}
 sf::Texture &Img::getBonus_t()
 {
 	return bonus_t;
