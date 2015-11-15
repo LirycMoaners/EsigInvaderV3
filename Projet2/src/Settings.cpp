@@ -8,8 +8,8 @@ Settings::Settings(std::string reso, bool enemySound, bool playerSound, bool bac
 	this->SoundBackground = backgroundSound;
 	this->SoundEnemy = enemySound;
 	this->SoundPlayer = playerSound;
-	this->SoundVolume = volumeSound;
-	this->MusicVolume = volumeMusic;
+	this->volumeSound = volumeSound;
+	this->volumeMusic = volumeMusic;
 }
 
 
@@ -26,10 +26,10 @@ void Settings::setResolution(string reso) {
 }
 
 bool Settings::getSoundBackground() {
-	return this->setSoundBackground;
+	return this->SoundBackground;
 }
 void Settings::setSoundBackground(bool back) {
-	this->setSoundBackground = back;
+	this->SoundBackground = back;
 }
 
 bool Settings::getSoundEnemy() {
