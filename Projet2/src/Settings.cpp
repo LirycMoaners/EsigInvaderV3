@@ -31,6 +31,12 @@ int Settings::getResolutionInt()
 
 bool Settings::getSoundBackground() {
 	return this->SoundBackground;
+<<<<<<< HEAD
+=======
+}
+void Settings::setSoundBackground(bool back) {
+	this->SoundBackground = back;
+>>>>>>> f6090961ec722e1aa79ed75843b5aff50bde9604
 }
 
 bool Settings::getSoundEnemy() {
