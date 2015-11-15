@@ -113,7 +113,7 @@ void Menu::drawMainMenu()
 	fullscreenButton.setTexture(res.getImg()->getSettingIco());
 	fullscreenButton.setScale(sf::Vector2f(0.6, 0.6));
 	fullscreenButton.setTextureRect(sf::IntRect(120, 0, 60, 60));
-	fullscreenButton.setPosition(fullscreenText.getPosition().x + fullscreenText.getGlobalBounds().width, fullscreenText.getPosition().y - fullscreenButton.getGlobalBounds().height / 2);
+	fullscreenButton.setPosition(fullscreenText.getPosition().x + fullscreenText.getGlobalBounds().width + 10, fullscreenText.getPosition().y - (fullscreenButton.getGlobalBounds().height - fullscreenText.getGlobalBounds().height - 10) / 2);
 
 	cancelButton.setTexture(res.getImg()->getButtonArrow_t());
 	cancelButton.setScale(sf::Vector2f(0.6, 0.6));
@@ -335,6 +335,12 @@ void Menu::runWindows()
 						screenResolution -= 1;
 				}
 
+				if (mouse.mouseOver(*window, fullscreenButton))
+				{
+					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+						fullscreen = !fullscreen;
+				}
+
 				if (mouse.mouseOver(*window, applyButton))
 				{
 					applyButton.setTextureRect(sf::IntRect(0, 340, 395, 85));
@@ -343,7 +349,7 @@ void Menu::runWindows()
 					{
 						//Apply settings
 						Settings* settings = res.getConfigXML()->getSettings();
-						settings->changeSettings(screenResolution,true,true,true,musicVolume,soundVolume);
+						settings->changeSettings(screenResolution,true,true,true,musicVolume,soundVolume,fullscreen);
 						sf::Uint32 style = settings->isFullscreen() ? sf::Style::Fullscreen : sf::Style::Close;
 						WINDOW_HEIGHT = settings->getCurrentResolution().y;
 						WINDOW_WIDTH = settings->getCurrentResolution().x;
@@ -366,6 +372,7 @@ void Menu::runWindows()
 				else
 					cancelButton.setTextureRect(sf::IntRect(0, 425, 395, 85));
 			}
+
 			//Get setting informations
 			musicVolumeText.setString(std::to_string(musicVolume) + " %");
 			musicVolumeText.setPosition(musicVolumeButton.getPosition().x + musicVolumeButton.getGlobalBounds().width / 2 - musicVolumeText.getGlobalBounds().width / 2, musicVolumeButton.getPosition().y + musicVolumeButton.getGlobalBounds().height / 2 - 8 - musicVolumeText.getGlobalBounds().height / 2);
@@ -373,6 +380,7 @@ void Menu::runWindows()
 			soundVolumeText.setPosition(soundVolumeButton.getPosition().x + soundVolumeButton.getGlobalBounds().width / 2 - soundVolumeText.getGlobalBounds().width / 2, soundVolumeButton.getPosition().y + soundVolumeButton.getGlobalBounds().height / 2 - 8 - soundVolumeText.getGlobalBounds().height / 2);
 			resolutionText.setString(std::to_string(res.getConfigXML()->getSettings()->getResolutions().at(screenResolution).x) + " x " + std::to_string(res.getConfigXML()->getSettings()->getResolutions().at(screenResolution).y));
 			resolutionText.setPosition(resolutionButton.getPosition().x + resolutionButton.getGlobalBounds().width / 2 - resolutionText.getGlobalBounds().width / 2, resolutionButton.getPosition().y + resolutionButton.getGlobalBounds().height / 2 - 8 - resolutionText.getGlobalBounds().height / 2);
+			fullscreenButton.setTextureRect(sf::IntRect(fullscreen ? 180 : 120, 0, 60, 60));
 
 			//Redraw the window
 			window->clear();
@@ -380,16 +388,16 @@ void Menu::runWindows()
 			window->draw(musicVolumeButton);
 			window->draw(soundVolumeButton);
 			window->draw(resolutionButton);
-			window->draw(resolutionText);
-			window->draw(resolutionTitle);
-			window->draw(soundVolumeText);
-			window->draw(soundVolumeTitle);
-			window->draw(musicVolumeText);
-			window->draw(musicVolumeTitle);
+			window->draw(fullscreenButton);
 			window->draw(cancelButton);
 			window->draw(applyButton);
-			window->draw(fullscreenButton);
+			window->draw(resolutionTitle);
+			window->draw(musicVolumeTitle);
+			window->draw(soundVolumeTitle);
 			window->draw(fullscreenText);
+			window->draw(soundVolumeText);
+			window->draw(musicVolumeText);
+			window->draw(resolutionText);
 		}
 
 		window->display();
@@ -408,6 +416,7 @@ void Menu::switchMenus()
 
 		//Get setting values
 		soundVolume = res.getConfigXML()->getSettings()->getVolumeSound();
+		fullscreen = res.getConfigXML()->getSettings()->isFullscreen();
 		musicVolume = res.getConfigXML()->getSettings()->getVolumeMusic();
 		screenResolution = res.getConfigXML()->getSettings()->getResolutionInt();
 	}

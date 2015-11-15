@@ -18,6 +18,7 @@ class Menu : public Windows
 
 		//Ajout des bouttons pour l'interface de settings
 		int screenResolution, soundVolume, musicVolume;
+		bool fullscreen;
 		sf::Sprite musicVolumeButton, soundVolumeButton, resolutionButton, applyButton, cancelButton, fullscreenButton;
 		sf::Text resolutionText, resolutionTitle, soundVolumeText, soundVolumeTitle, musicVolumeText, musicVolumeTitle,fullscreenText;
 

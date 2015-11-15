@@ -7,7 +7,7 @@ ConfigXml::ConfigXml()
 	loadingConfiguration();
 
 	//Paramètrage par défaut
-	setting = new Settings(0,true, true, true, 50, 100);
+	setting = new Settings(0,true, true, true, 50, 100,false);
 }
 
 vector<Level*> ConfigXml::getLevelList() {

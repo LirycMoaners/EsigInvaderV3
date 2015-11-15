@@ -21,7 +21,7 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 
 	//Create graphical object for the background
 	background.setTexture(&this->res.getImg()->getBackground_t());
-	background.setTextureRect(sf::IntRect(0, 0, this->window->getSize().x, this->window->getSize().y));
+	background.setTextureRect(sf::IntRect(0, 0, this->window->getSize().x < 8192 ? this->window->getSize().x : 8192, this->window->getSize().y < 768 ? this->window->getSize().y : 768));
 
 	//Set background aspect
 	background.setSize(sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
@@ -391,7 +391,7 @@ void Game::moveBackground()
 	if (background.getTextureRect().left + background.getTextureRect().width >= this->res.getImg()->getBackground_t().getSize().x)
 		background.setTextureRect(sf::IntRect(0, 0, window->getSize().x, window->getSize().y));
 	else
-		background.setTextureRect(sf::IntRect(background.getTextureRect().left + 2, 0, window->getSize().x, window->getSize().y));
+		background.setTextureRect(sf::IntRect(background.getTextureRect().left + 2, 0, this->window->getSize().x < 8192 ? this->window->getSize().x : 8192, this->window->getSize().y < 768 ? this->window->getSize().y : 768));
 }
 
 void Game::addRockets(vector<Rocket*> &r)

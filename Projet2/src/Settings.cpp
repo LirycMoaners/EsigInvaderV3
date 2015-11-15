@@ -2,14 +2,9 @@
 
 using namespace std;
 
-Settings::Settings(int reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound)
+Settings::Settings(int reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound, bool fullscreen)
 {
-	this->resolution = reso;
-	this->SoundBackground = backgroundSound;
-	this->SoundEnemy = enemySound;
-	this->SoundPlayer = playerSound;
-	this->volumeSound = volumeSound;
-	this->volumeMusic = volumeMusic;
+	changeSettings(reso, enemySound, playerSound, backgroundSound, volumeMusic, volumeSound, fullscreen);
 }
 
 Settings::~Settings()
@@ -31,12 +26,6 @@ int Settings::getResolutionInt()
 
 bool Settings::getSoundBackground() {
 	return this->SoundBackground;
-<<<<<<< HEAD
-=======
-}
-void Settings::setSoundBackground(bool back) {
-	this->SoundBackground = back;
->>>>>>> f6090961ec722e1aa79ed75843b5aff50bde9604
 }
 
 bool Settings::getSoundEnemy() {
@@ -56,7 +45,7 @@ int Settings::getVolumeSound() {
 bool Settings::isFullscreen() {
 	return this->fullscreen;
 }
-void Settings::changeSettings(int reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound)
+void Settings::changeSettings(int reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound, bool fullscreen)
 {
 	this->resolution = reso;
 	this->SoundBackground = backgroundSound;
@@ -64,4 +53,5 @@ void Settings::changeSettings(int reso, bool enemySound, bool playerSound, bool 
 	this->SoundPlayer = playerSound;
 	this->volumeSound = volumeSound;
 	this->volumeMusic = volumeMusic;
+	this->fullscreen = fullscreen;
 }

@@ -6,7 +6,7 @@
 class Settings
 {
 	public:
-		Settings(int reso, bool enemySound,bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound);
+		Settings(int reso, bool enemySound,bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound, bool fullscreen);
 		~Settings();
 
 		bool getSoundEnemy();
@@ -19,7 +19,7 @@ class Settings
 		sf::Vector2u getCurrentResolution();
 		std::vector<sf::Vector2u> &getResolutions();
 		int getResolutionInt();
-		void changeSettings(int reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound);
+		void changeSettings(int reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound, bool fullscreen);
 
 	private : 
 		int resolution;
