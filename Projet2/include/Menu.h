@@ -26,7 +26,6 @@ class Menu : public Windows
 		sf::RectangleShape cheatBar;
 		sf::Text cheatText;
 		std::string cheat;
-		sf::Font arial;
 		std::string scores[30];
 		sf::Sound music;
 		bool isOptionMenu;

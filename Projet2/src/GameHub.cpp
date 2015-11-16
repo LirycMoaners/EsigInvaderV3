@@ -1,10 +1,9 @@
 #include "..\include\GameHub.h"
 
-GameHub::GameHub()
+GameHub::GameHub(Resources &res)
 {
 	//Create healthbar
-	arial.loadFromFile("ressources/arial.ttf");
-	healthText.setFont(arial);
+	healthText.setFont(res.getArialFont());
 	healthText.setCharacterSize(HUB_HEIGHT - 2);
 	healthText.setString("Health:");
 	healthText.setColor(outlineColor);
@@ -19,7 +18,7 @@ GameHub::GameHub()
 	healthBar.setSize(sf::Vector2f(204, HUB_HEIGHT - 4));
 
 	//Draw score text
-	scoreText.setFont(arial);
+	scoreText.setFont(res.getArialFont());
 	scoreText.setCharacterSize(HUB_HEIGHT - 2);
 	scoreText.setString("0");
 	scoreText.setColor(outlineColor);
@@ -33,7 +32,7 @@ GameHub::GameHub()
 	bossHealthBar.setFillColor(sf::Color::Green);
 	bossHealthBar.setPosition(bossHealthBarOutline.getPosition());
 	bossHealthBar.setSize(sf::Vector2f(204, HUB_HEIGHT - 4));
-	bossHealthText.setFont(arial);
+	bossHealthText.setFont(res.getArialFont());
 	bossHealthText.setCharacterSize(HUB_HEIGHT - 2);
 	bossHealthText.setString("BOSS:");
 	bossHealthText.setColor(outlineColor);
@@ -89,7 +88,7 @@ void GameHub::updateHub(sf::RenderWindow* window, Spaceship* spaceObject, Boss* 
 	window->draw(bossHealthBar);
 }
 
-void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, int score, Control* c)
+void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, int score, Control* c, Resources &res)
 {
 	while (!c->quit() && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return))
 	{
@@ -107,7 +106,7 @@ void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, 
 		//Draw window title & player pseudo
 		sf::Text title, pseudoTxt;
 
-		title.setFont(arial);
+		title.setFont(res.getArialFont());
 		title.setCharacterSize(50);
 		title.setString("Your score is " + std::to_string(score) + "!\n Player Name:");
 		title.setPosition((window->getSize().x - title.getGlobalBounds().width) / 2, window->getSize().y / 2);
@@ -134,7 +133,7 @@ void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, 
 		}
 
 		//Display the player name
-		pseudoTxt.setFont(arial);
+		pseudoTxt.setFont(res.getArialFont());
 		pseudoTxt.setCharacterSize(40);
 		pseudoTxt.setString(playerPseudo);
 		pseudoTxt.setPosition((window->getSize().x - pseudoTxt.getGlobalBounds().width) / 2, window->getSize().y / 2 + 120);

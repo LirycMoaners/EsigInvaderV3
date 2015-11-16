@@ -19,8 +19,7 @@
 class Game
 {
 	private:
-		
-		sf::Font arial;
+
 		//Graphical object for the background
 		sf::RectangleShape background;
 		//Instance du player

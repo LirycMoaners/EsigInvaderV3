@@ -3,6 +3,7 @@
 #include "Boss.h"
 #include "Control.h"
 #include <string>
+#include "Resources.h"
 class GameHub
 {
 	private:
@@ -13,14 +14,13 @@ class GameHub
 		sf::Text bossHealthText;
 		sf::RectangleShape bossHealthBarOutline, bossHealthBar;
 		sf::Color outlineColor = sf::Color(107, 111, 107, 255);
-		sf::Font arial;
 		std::string playerPseudo;
 
 	public:
-		GameHub();
+		GameHub(Resources& res);
 		~GameHub();
 		void resetHub();
 		std::string getPlayerPseudo();
-		void setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bg, int score, Control* c);
+		void setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bg, int score, Control* c, Resources &res);
 		void updateHub(sf::RenderWindow* window, Spaceship *spaceship, Boss* boss, int score);
 };

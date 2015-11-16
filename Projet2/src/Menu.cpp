@@ -9,6 +9,7 @@ Menu::Menu(int width, int height, std::string title, Resources &res) : Windows(w
 
 	//Génération de la musique de fond
 	music.setBuffer(res.getMusicSnd(0));
+	music.setVolume(res.getConfigXML()->getSettings()->getVolumeMusic());
 	music.setLoop(true);
 	music.play();
 }
@@ -23,22 +24,22 @@ void Menu::drawMainMenu()
 	// Définition du rectangle autour du texte
 	buttonStart.setTexture(res.getImg()->getButton_t());
 	buttonStart.setTextureRect(sf::IntRect(0, 0, 295, 85));
-	buttonStart.setPosition(WINDOW_WIDTH / 3 - buttonStart.getGlobalBounds().width / 2, 470);
+	buttonStart.setPosition(WINDOW_WIDTH / 3 - buttonStart.getGlobalBounds().width / 2, WINDOW_HEIGHT - 230);
 
 	// Définition du rectangle autour du texte
 	buttonEndLess.setTexture(res.getImg()->getButton_t());
 	buttonEndLess.setTextureRect(sf::IntRect(0, 85, 295, 85));
-	buttonEndLess.setPosition(WINDOW_WIDTH / 3 - buttonEndLess.getGlobalBounds().width / 2, 570);
+	buttonEndLess.setPosition(WINDOW_WIDTH / 3 - buttonEndLess.getGlobalBounds().width / 2, WINDOW_HEIGHT - 130);
 
 	// Définition du rectangle autour du texte
 	buttonScore.setTexture(res.getImg()->getButton_t());
 	buttonScore.setTextureRect(sf::IntRect(0, 170, 295, 85));
-	buttonScore.setPosition(WINDOW_WIDTH * 2 / 3 - buttonScore.getGlobalBounds().width / 2, 470);
+	buttonScore.setPosition(WINDOW_WIDTH * 2 / 3 - buttonScore.getGlobalBounds().width / 2, WINDOW_HEIGHT - 230);
 
 	// Définition du rectangle autour du texte
 	buttonQuit.setTexture(res.getImg()->getButton_t());
 	buttonQuit.setTextureRect(sf::IntRect(0, 255, 295, 85));
-	buttonQuit.setPosition(WINDOW_WIDTH * 2 / 3 - buttonQuit.getGlobalBounds().width / 2, 570);
+	buttonQuit.setPosition(WINDOW_WIDTH * 2 / 3 - buttonQuit.getGlobalBounds().width / 2, WINDOW_HEIGHT - 130);
 
 	buttonSetting.setTexture(res.getImg()->getSettingIco());
 	buttonSetting.setScale(sf::Vector2f(0.8, 0.8));
@@ -51,9 +52,8 @@ void Menu::drawMainMenu()
 	cheatBar.setSize(sf::Vector2f(width - 2, 20));
 	cheatBar.setOutlineThickness(1);
 	cheatBar.setPosition(sf::Vector2f(1, height - 21));
-	arial.loadFromFile("ressources/arial.ttf");
 	cheatText.setCharacterSize(15);
-	cheatText.setFont(arial);
+	cheatText.setFont(res.getArialFont());
 	cheatText.setPosition(cheatBar.getPosition());
 	cheatText.setColor(sf::Color::Transparent);
 	cheat = "";
@@ -62,54 +62,54 @@ void Menu::drawMainMenu()
 	soundVolumeButton.setTexture(res.getImg()->getButtonArrow_t());
 	soundVolumeButton.setScale(sf::Vector2f(0.8, 0.8));
 	soundVolumeButton.setTextureRect(sf::IntRect(0, 0, 395, 85));
-	soundVolumeButton.setPosition(WINDOW_WIDTH / 2 - soundVolumeButton.getGlobalBounds().width / 2, 250);
+	soundVolumeButton.setPosition(WINDOW_WIDTH / 2 - soundVolumeButton.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 - 100);
 
 	musicVolumeButton.setTexture(res.getImg()->getButtonArrow_t());
 	musicVolumeButton.setScale(sf::Vector2f(0.8, 0.8));
 	musicVolumeButton.setTextureRect(sf::IntRect(0, 0, 395, 85));
-	musicVolumeButton.setPosition(WINDOW_WIDTH / 2 - musicVolumeButton.getGlobalBounds().width / 2, 350);
+	musicVolumeButton.setPosition(WINDOW_WIDTH / 2 - musicVolumeButton.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2);
 
 	resolutionButton.setTexture(res.getImg()->getButtonArrow_t());
 	resolutionButton.setScale(sf::Vector2f(0.8, 0.8));
 	resolutionButton.setTextureRect(sf::IntRect(0, 0, 395, 85));
-	resolutionButton.setPosition(WINDOW_WIDTH / 2 - resolutionButton.getGlobalBounds().width / 2, 450);
+	resolutionButton.setPosition(WINDOW_WIDTH / 2 - resolutionButton.getGlobalBounds().width / 2, WINDOW_HEIGHT / 2 + 100);
 
 	//Settings texts
-	resolutionTitle.setFont(arial);
+	resolutionTitle.setFont(res.getArialFont());
 	resolutionTitle.setCharacterSize(18);
 	resolutionTitle.setString("Resolution:");
 	resolutionTitle.setColor(sf::Color::Red);
 	resolutionTitle.setPosition(resolutionButton.getPosition().x, resolutionButton.getPosition().y - resolutionTitle.getGlobalBounds().height - 7);
-	resolutionText.setFont(arial);
+	resolutionText.setFont(res.getArialFont());
 	resolutionText.setCharacterSize(25);
 	resolutionText.setColor(sf::Color::White);
 	resolutionText.setPosition(resolutionButton.getPosition().x + resolutionButton.getGlobalBounds().width / 2 - resolutionText.getGlobalBounds().width / 2, resolutionButton.getPosition().y + resolutionButton.getGlobalBounds().height / 2 - 8 - resolutionText.getGlobalBounds().height / 2);
 
-	soundVolumeTitle.setFont(arial);
+	soundVolumeTitle.setFont(res.getArialFont());
 	soundVolumeTitle.setCharacterSize(18);
 	soundVolumeTitle.setString("Volume:");
 	soundVolumeTitle.setColor(sf::Color::Red);
 	soundVolumeTitle.setPosition(soundVolumeButton.getPosition().x, soundVolumeButton.getPosition().y - soundVolumeTitle.getGlobalBounds().height - 7);
-	soundVolumeText.setFont(arial);
+	soundVolumeText.setFont(res.getArialFont());
 	soundVolumeText.setCharacterSize(25);
 	soundVolumeText.setColor(sf::Color::White);
 	soundVolumeText.setPosition(soundVolumeButton.getPosition().x + soundVolumeButton.getGlobalBounds().width / 2 - soundVolumeText.getGlobalBounds().width / 2, soundVolumeButton.getPosition().y + soundVolumeButton.getGlobalBounds().height / 2 - 8 - soundVolumeText.getGlobalBounds().height / 2);
 
-	musicVolumeTitle.setFont(arial);
+	musicVolumeTitle.setFont(res.getArialFont());
 	musicVolumeTitle.setCharacterSize(18);
 	musicVolumeTitle.setString("Musique:");
 	musicVolumeTitle.setColor(sf::Color::Red);
 	musicVolumeTitle.setPosition(musicVolumeButton.getPosition().x, musicVolumeButton.getPosition().y - musicVolumeTitle.getGlobalBounds().height - 7);
-	musicVolumeText.setFont(arial);
+	musicVolumeText.setFont(res.getArialFont());
 	musicVolumeText.setCharacterSize(25);
 	musicVolumeText.setColor(sf::Color::White);
 	musicVolumeText.setPosition(musicVolumeButton.getPosition().x + musicVolumeButton.getGlobalBounds().width / 2 - musicVolumeText.getGlobalBounds().width / 2, musicVolumeButton.getPosition().y + musicVolumeButton.getGlobalBounds().height / 2 - 8 - musicVolumeText.getGlobalBounds().height / 2);
 
-	fullscreenText.setFont(arial);
+	fullscreenText.setFont(res.getArialFont());
 	fullscreenText.setCharacterSize(18);
 	fullscreenText.setString("Plein écran:");
 	fullscreenText.setColor(sf::Color::Red);
-	fullscreenText.setPosition(resolutionButton.getPosition().x, 550);
+	fullscreenText.setPosition(resolutionButton.getPosition().x, WINDOW_HEIGHT / 2 + 200);
 	fullscreenButton.setTexture(res.getImg()->getSettingIco());
 	fullscreenButton.setScale(sf::Vector2f(0.6, 0.6));
 	fullscreenButton.setTextureRect(sf::IntRect(120, 0, 60, 60));
@@ -262,7 +262,9 @@ void Menu::runWindows()
 
 					//Button clicked
 					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+					{
 						switchMenus();
+					}
 				}
 				else
 					buttonSetting.setTextureRect(sf::IntRect(0, 0, 60, 60));
@@ -276,10 +278,10 @@ void Menu::runWindows()
 			window->draw(buttonEndLess);
 			window->draw(buttonScore);
 			window->draw(buttonQuit);
+			window->draw(buttonSetting);
 			cheatText.setString("> " + cheat);
 			window->draw(cheatBar);
 			window->draw(cheatText);
-			window->draw(buttonSetting);
 		}
 		//Gestion des évenements du menu d'options
 		else
@@ -391,18 +393,16 @@ void Menu::runWindows()
 			window->draw(fullscreenButton);
 			window->draw(cancelButton);
 			window->draw(applyButton);
-			window->draw(resolutionTitle);
-			window->draw(musicVolumeTitle);
-			window->draw(soundVolumeTitle);
-			window->draw(fullscreenText);
 			window->draw(soundVolumeText);
 			window->draw(musicVolumeText);
 			window->draw(resolutionText);
+			window->draw(fullscreenText);
+			window->draw(resolutionTitle);
+			window->draw(musicVolumeTitle);
+			window->draw(soundVolumeTitle);
 		}
-
 		window->display();
 	}
-
 	window->close();
 }
 
@@ -430,7 +430,7 @@ void Menu::drawScores(sf::RenderWindow* window, Resources &res)
 	//Background texture
 	sf::RectangleShape background;
 	background.setTexture(&res.getImg()->getBackground_t());
-	background.setTextureRect(sf::IntRect(0, 0, window->getSize().x, window->getSize().y));
+	background.setTextureRect(sf::IntRect(0, 0, this->window->getSize().x < 8192 ? this->window->getSize().x : 8192, this->window->getSize().y < 768 ? this->window->getSize().y : 768));
 	background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
 	background.setPosition(0, 0);
 	window->draw(background);
@@ -443,7 +443,7 @@ void Menu::drawScores(sf::RenderWindow* window, Resources &res)
 	//Get scores from XMLFile
 	findBestScores(); // <-- A définir
 
-	Title.setFont(arial);
+	Title.setFont(res.getArialFont());
 	Title.setCharacterSize(50);
 	Title.setString("High Scores");
 	Title.setPosition((window->getSize().x - Title.getGlobalBounds().width) / 2, 100);
@@ -451,7 +451,7 @@ void Menu::drawScores(sf::RenderWindow* window, Resources &res)
 
 	for (int i = 0; i < sizeof(scoresText) / sizeof(scoresText[0]); i++)
 	{
-		scoresText[i].setFont(arial);
+		scoresText[i].setFont(res.getArialFont());
 		scoresText[i].setCharacterSize(20);
 
 		//Set score values

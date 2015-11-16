@@ -8,8 +8,6 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 {
 	if (c->getStatus() == false)
 		c = new Keyboard();
-	// Chargement de la texture pour les textes 
-	arial.loadFromFile("ressources/arial.ttf");
 
 	//Definition du mode de jeu
 	this->modeGame = modeGame;
@@ -17,7 +15,7 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	// Chargement de l'objets permettant le chargement des images
 	this->res = res;
 	//Création du hub
-	gameHub = new GameHub();
+	gameHub = new GameHub(res);
 
 	//Create graphical object for the background
 	background.setTexture(&this->res.getImg()->getBackground_t());
@@ -136,12 +134,6 @@ void Game::runGame()
 	int fpsCount = 0;
 	int fpsSwitch = 200;
 	bool endGame = false;
-
-	sf::Text quit;
-	quit.setString("Quit");
-	quit.setFont(arial);
-	quit.setCharacterSize(48);
-	quit.setColor(sf::Color(255, 255, 255, 255));
 
 	while (!endGame && spaceship->isAlive())
 	{
@@ -355,7 +347,7 @@ void Game::runGame()
 	}
 
 	//After the death of player, enter is name
-	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score,c);
+	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score,c,res);
 	if(!modeGame)
 		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(),"Normal");
 	else
