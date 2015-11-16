@@ -3,7 +3,6 @@
 using namespace std;
 
 //Game::Game() : window(), c(&Keyboard()), spaceship(Spaceship(img->getSpaceship_t())) {}
-
 Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)
 {
 	if (c->getStatus() == false)
@@ -134,7 +133,6 @@ void Game::runGame()
 	int fpsCount = 0;
 	int fpsSwitch = 200;
 	bool endGame = false;
-
 	while (!endGame && spaceship->isAlive())
 	{
 		sf::Event event;
@@ -345,7 +343,6 @@ void Game::runGame()
 
 		window->display();
 	}
-
 	//After the death of player, enter is name
 	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score,c,res);
 	if(!modeGame)
@@ -431,9 +428,9 @@ void Game::control()
 		c->runHub();
 	}
 }
-
 void Game::collision()
 {
+	
 	//Collision between player rockets and enemies
 	for (int i = 0; i < rockets.size(); i++)
 	{
@@ -577,10 +574,6 @@ Game::~Game()
 		delete enemies.at(i);
 	}
 	enemies.~vector();
-	/*for (int i = 0; i < patern.size(); i++)
-	{
-		delete patern.at(i);
-	}*/
 	patern.~vector();
 	if (boss != NULL) {
 		delete boss;
