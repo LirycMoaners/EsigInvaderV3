@@ -4,6 +4,7 @@
 #include "Control.h"
 #include <string>
 #include "Resources.h"
+
 class GameHub
 {
 	private:
@@ -17,7 +18,7 @@ class GameHub
 		std::string playerPseudo;
 
 	public:
-		GameHub(Resources& res);
+		GameHub(Resources& res, int width);
 		~GameHub();
 		void resetHub();
 		std::string getPlayerPseudo();

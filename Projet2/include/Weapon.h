@@ -1,10 +1,10 @@
 #pragma once
-
 #include <iostream>
 #include <vector>
 #include "SFML/Audio.hpp"
 #include "Rocket.h"
 #include "Img.h"
+#include "Resources.h"
 
 class Weapon
 {
@@ -26,9 +26,9 @@ class Weapon
 
 	public:
 		//Weapon(bool enemy = false)
-		Weapon(sf::SoundBuffer& wpSnd, bool enemy = false);
+		Weapon(Resources &res, bool enemy = false);
 		//Weapon(int, bool enemy = false)
-		Weapon(sf::SoundBuffer& wpSnd,int value, bool enemy = false);
+		Weapon(Resources &res, int value, bool enemy = false);
 		int getRate();
 		int getLvl();
 		///Permet au propriétaire de l'arme de tirer. 

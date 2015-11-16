@@ -2,7 +2,7 @@
 using namespace std;
 
 
-Boss::Boss(TypeEnemy * Typenemy, sf::Texture& texture, sf::Texture& Explode, sf::SoundBuffer& expBuffer, sf::Vector2f pos) : Enemy(texture, Explode,expBuffer,  pos, Typenemy, 0, false)
+Boss::Boss(TypeEnemy * Typenemy, Resources &res, sf::Vector2f pos) : Enemy(res.getImg()->getBoss_t(),res,  pos, Typenemy, 0, false)
 {
 	sprite.setPosition(sprite.getPosition().x - sprite.getGlobalBounds().width - 100, sprite.getPosition().y);
 	sprite.setTextureRect(sf::IntRect(rand() % 4 * 131, 0, 131, 189));

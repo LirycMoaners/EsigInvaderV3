@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Weapon.h"
 #include "SpaceObject.h"
 
@@ -16,7 +15,7 @@ class Spaceship: public SpaceObject
 
 	public:
 		//Spaceship(sf::Texture&)
-		Spaceship(sf::Texture&,sf::Texture&, sf::SoundBuffer&, sf::SoundBuffer&);
+		Spaceship(Resources &res);
 
 		Weapon &getWeapon();
 

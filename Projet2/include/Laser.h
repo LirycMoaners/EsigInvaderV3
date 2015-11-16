@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Bullet.h"
 
 class Laser : public Bullet

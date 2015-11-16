@@ -1,6 +1,6 @@
 #include "..\include\SpaceObject.h"
 
-SpaceObject::SpaceObject(sf::Texture &t, sf::Texture &expt, sf::SoundBuffer& expBuffer, int health, int speed) : explosionTexture(expt)
+SpaceObject::SpaceObject(sf::Texture &t, Resources &res, int health, int speed) : explosionTexture(res.getImg()->getExplosion_t())
 {
 	//Create graphical object
 	this->sprite.setTexture(t);
@@ -10,7 +10,8 @@ SpaceObject::SpaceObject(sf::Texture &t, sf::Texture &expt, sf::SoundBuffer& exp
 	this->speed = speed;
 
 	//Set the explosion sound buffer
-	this->explosionSound.setBuffer(expBuffer);
+	this->explosionSound.setBuffer(res.getExplosionSnd());
+	this->explosionSound.setVolume(res.getConfigXML()->getSettings()->getVolumeSound());
 }
 
 void SpaceObject::takeDommage(int dommage) {

@@ -1,18 +1,20 @@
 #include "../include/weapon.h"
 
 using namespace std;
-Weapon::Weapon(sf::SoundBuffer& wpSnd,bool enemy)
+Weapon::Weapon(Resources &res,bool enemy)
 {
 	setLvl(1);
 	enemyWeapon = enemy; //Weapon owner by an enemy or not
-	gunSound.setBuffer(wpSnd);
+	gunSound.setBuffer(res.getMissileSnd());
+	gunSound.setVolume(res.getConfigXML()->getSettings()->getVolumeSound());
 }
 
-Weapon::Weapon(sf::SoundBuffer& wpSnd,int lvl,bool enemy)
+Weapon::Weapon(Resources &res, int lvl,bool enemy)
 {
 	setLvl(lvl);
 	enemyWeapon = enemy; //Weapon owner by an enemy or not 
-	gunSound.setBuffer(wpSnd);
+	gunSound.setBuffer(res.getMissileSnd());
+	gunSound.setVolume(res.getConfigXML()->getSettings()->getVolumeSound());
 }
 
 int Weapon::getRate()

@@ -1,9 +1,7 @@
 #pragma once
-
 #include "tinyxml2.h"
 #include "Enemy.h"
 #include <vector>
-
 
 class Patern
 {
@@ -22,7 +20,7 @@ class Patern
 		//Patern(tinyxml2::XMLDocument&, int)
 		Patern(tinyxml2::XMLDocument&, int);
 		//Alimente le hub avec les ennemis
-		std::vector<Enemy*> spawn(sf::Texture &t, sf::Texture &expt, sf::SoundBuffer& expBuffer, TypeEnemy * typeenemy, bool pony);
+		std::vector<Enemy*> spawn(Resources &res, TypeEnemy * typeenemy, bool pony);
 		int next();
 		~Patern();
 };

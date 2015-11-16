@@ -1,6 +1,4 @@
 #include "..\include\ConfigXml.h"
-using namespace std;
-
 
 ConfigXml::ConfigXml()
 {

@@ -2,6 +2,7 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include <iostream>
+#include "Resources.h"
 
 //Objet parent à tous les objets
 class SpaceObject
@@ -29,7 +30,7 @@ class SpaceObject
 		
 	public:
 		//SpaceObject(sf::Texture &t,int,int)
-		SpaceObject(sf::Texture &t,sf::Texture &expt,sf::SoundBuffer& expBuffer,int,int);
+		SpaceObject(sf::Texture &t,Resources &res,int,int);
 		~SpaceObject();
 
 		

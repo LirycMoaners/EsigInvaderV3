@@ -1,5 +1,4 @@
-#ifndef MENU_H_INCLUDED
-#define MENU_H_INCLUDED
+#pragma once
 #include "Game.h"
 #include "Windows.h"
 #include "Resources.h"
@@ -42,5 +41,3 @@ class Menu : public Windows
 		void findBestScores();
 		void resetCheat();
 };
-
-#endif

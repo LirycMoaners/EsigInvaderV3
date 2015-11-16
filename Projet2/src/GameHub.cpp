@@ -1,6 +1,6 @@
 #include "..\include\GameHub.h"
 
-GameHub::GameHub(Resources &res)
+GameHub::GameHub(Resources &res, int width)
 {
 	//Create healthbar
 	healthText.setFont(res.getArialFont());
@@ -28,7 +28,7 @@ GameHub::GameHub(Resources &res)
 	bossHealthBarOutline.setOutlineThickness(2);
 	bossHealthBarOutline.setOutlineColor(outlineColor);
 	bossHealthBarOutline.setSize(sf::Vector2f(204, HUB_HEIGHT - 4));
-	bossHealthBarOutline.setPosition(1000 - bossHealthBarOutline.getGlobalBounds().width - 4, 4);
+	bossHealthBarOutline.setPosition(width - bossHealthBarOutline.getGlobalBounds().width - 4, 4);
 	bossHealthBar.setFillColor(sf::Color::Green);
 	bossHealthBar.setPosition(bossHealthBarOutline.getPosition());
 	bossHealthBar.setSize(sf::Vector2f(204, HUB_HEIGHT - 4));
@@ -76,7 +76,7 @@ void GameHub::updateHub(sf::RenderWindow* window, Spaceship* spaceObject, Boss* 
 
 	//Draw score
 	scoreText.setString("Score: "+std::to_string(score));
-	scoreText.setPosition(490 - scoreText.getGlobalBounds().width / 2, 0);
+	scoreText.setPosition(window->getSize().x / 2  - scoreText.getGlobalBounds().width / 2, 0);
 
 	//Draw component in the windows
 	window->draw(healthText);
@@ -98,8 +98,7 @@ void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, 
 		//Background texture
 		sf::RectangleShape background;
 		background.setTexture(&bgTexture);
-		background.setTextureRect(sf::IntRect(0, 0, window->getSize().x, window->getSize().y));
-		background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
+		background.setTextureRect(sf::IntRect(0, 0, window->getSize().x < 8192 ? window->getSize().x : 8192, window->getSize().y < 768 ? window->getSize().y : 768));
 		background.setPosition(0, 0);
 		window->draw(background);
 

@@ -29,7 +29,7 @@ class Enemy : public SpaceObject
 		//CheatCode
 		bool pony = false;
 	public:
-		Enemy(sf::Texture &t,sf::Texture &expText,sf::SoundBuffer& expBuffer, sf::Vector2f pos, TypeEnemy * enemy, int type, bool pony);
+		Enemy(sf::Texture &t,Resources &res, sf::Vector2f pos, TypeEnemy * enemy, int type, bool pony);
 		int getDommage();
 		// selectionne les images par rapport au movement
 		void switchFps();

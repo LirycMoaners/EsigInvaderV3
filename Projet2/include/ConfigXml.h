@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 #include "Level.h"
-#include "TypeEnemy.h"
-#include "Boss.h"
 #include "Settings.h"
+using namespace std;
+
 class ConfigXml
 {
 	public:

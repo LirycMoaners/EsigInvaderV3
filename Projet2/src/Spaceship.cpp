@@ -1,8 +1,7 @@
 #include "../include/spaceship.h"
 
-Spaceship::Spaceship(sf::Texture &t, sf::Texture &expt, sf::SoundBuffer& expBuffer, sf::SoundBuffer& wp) : anim(0,0), weapon(Weapon(wp)),SpaceObject(t,expt,expBuffer,HEALTH_MAX = 1500,5)
+Spaceship::Spaceship(Resources &res) : anim(0,0), weapon(Weapon(res)),SpaceObject(res.getImg()->getSpaceship_t(),res,HEALTH_MAX = 1500,5)
 {
-	sprite.setTexture(t);
 	sprite.setTextureRect(sf::IntRect(anim.x, anim.y, 100, 94));
 	sprite.setScale(sf::Vector2f(0.6, 0.6));
 	sprite.setPosition(100, 100);

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 #include "Spaceship.h"
 #include "Control.h"
