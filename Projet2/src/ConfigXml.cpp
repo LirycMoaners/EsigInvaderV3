@@ -235,7 +235,6 @@ void ConfigXml::setSetting(Settings * s) {
 	}
 }
 
-
 void ConfigXml::CreateScore(int score, string name, string mode) {
 	tinyxml2::XMLDocument xmlScore;
 	tinyxml2::XMLError error = xmlScore.LoadFile("conf/data.db");
