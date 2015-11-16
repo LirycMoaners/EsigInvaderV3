@@ -8,6 +8,8 @@ ConfigXml::ConfigXml()
 
 	//Paramètrage par défaut
 	setting = new Settings(0,true, true, true, 50, 100,false);
+
+	loadingConfigurationOptions();
 }
 
 vector<Level*> ConfigXml::getLevelList() {
@@ -204,7 +206,6 @@ void ConfigXml::loadingConfigurationOptions() {
 	else {
 		std::cout << "Error searching configuration" << std::endl;
 		std::cerr << "Failed to open the file options.xml in conf's folder. Error ID : " << xmloption.ErrorID() << endl;
-		exit(EXIT_FAILURE);
 	}
 }
 
