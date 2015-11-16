@@ -20,12 +20,13 @@ class ConfigXml
 		std::vector<TypeEnemy*> getTypeEnemyList();
 		std::vector<TypeEnemy*> getBossList();
 		Settings* getSettings();
+		void setSetting(Settings * s);
 
 	private : 
 		void loadingConfigurationLevel();
 		void loadingConfigurationTypeEnemy();
 		void loadingConfigurationBoss();
-		//void loadingConfigurationOptions();
+		void loadingConfigurationOptions();
 
 		Settings * setting;
 		std::vector<Level*> levelList;

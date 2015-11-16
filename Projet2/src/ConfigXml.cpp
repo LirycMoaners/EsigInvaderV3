@@ -175,14 +175,14 @@ void ConfigXml::loadingConfigurationBoss() {
 	}
 }
 
-/*void ConfigXml::loadingConfigurationOptions() {
+void ConfigXml::loadingConfigurationOptions() {
 	tinyxml2::XMLDocument xmloption;
 	xmloption.LoadFile("conf/options.xml");
 	if (xmloption.ErrorID() == 0) {
 		try {
 			tinyxml2::XMLElement * root = xmloption.RootElement();
 			tinyxml2::XMLElement * elemt = root->FirstChildElement("resolution");
-			std::string reso = elemt->GetText();
+			int reso = stoi(elemt->GetText());
 			elemt = root->FirstChildElement("SoundBackground");
 			bool soundBack = stoi(elemt->GetText());
 			elemt = root->FirstChildElement("SoundPlayer");
@@ -193,7 +193,9 @@ void ConfigXml::loadingConfigurationBoss() {
 			int volumeMusic = stoi(elemt->GetText());
 			elemt = root->FirstChildElement("VolumeSound");
 			int volumeSound = stoi(elemt->GetText());
-			this->setting = new Settings(reso, soundEnemy, soundPlayer, soundBack, volumeMusic, volumeSound);
+			elemt = root->FirstChildElement("fullScreen");
+			bool fullscreen = stoi(elemt->GetText());
+			this->setting = new Settings(reso, soundEnemy, soundPlayer, soundBack, volumeMusic, volumeSound,fullscreen);
 		}
 		catch (const std::invalid_argument& ia) {
 			std::cerr << "Invalid argument: " << ia.what() << '\n';
@@ -212,24 +214,25 @@ void ConfigXml::setSetting(Settings * s) {
 	if (error == tinyxml2::XML_SUCCESS) {
 		tinyxml2::XMLElement * root = xmloption.RootElement();
 		tinyxml2::XMLElement * elemt = root->FirstChildElement("resolution");
-		elemt->SetText(s->getResolution().c_str());
+		elemt->SetText(s->getResolutionInt());
 		elemt = root->FirstChildElement("SoundBackground");
-		elemt->SetText(s->getSoundBackground());
+		elemt->SetText(s->getSoundBackground() ? 1 : 0);
 		elemt = root->FirstChildElement("SoundPlayer");
-		elemt->SetText(s->getSoundPlayer());
+		elemt->SetText(s->getSoundPlayer() ? 1 : 0);
 		elemt = root->FirstChildElement("SoundEnemy");
-		elemt->SetText(s->getSoundEnemy());
+		elemt->SetText(s->getSoundEnemy() ? 1 : 0);
 		elemt = root->FirstChildElement("VolumeMusic");
 		elemt->SetText(s->getVolumeMusic());
 		elemt = root->FirstChildElement("VolumeSound");
 		elemt->SetText(s->getVolumeSound());
-
+		elemt = root->FirstChildElement("fullScreen");
+		elemt->SetText(s->isFullscreen() ? 1 : 0);
 	}
 	else {
 		std::cout << "Impossible to save the setting" << std::endl;
 		std::cerr << "Fail to open the file options.xml in the conf's folder Error ID : " << xmloption.ErrorID() << std::endl;
 	}
-}*/
+}
 
 
 void ConfigXml::CreateScore(int score, string name, string mode) {
