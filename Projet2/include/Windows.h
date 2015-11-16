@@ -9,7 +9,7 @@ class Windows
 		//Windows()
 		Windows();
 		//Windows(int width, int height, std::string nameWindows)
-		Windows(int width, int height, std::string nameWindows);
+		Windows(int width, int height, bool fullscreen, std::string nameWindows);
 		~Windows();
 		void setWidth(int);
 		void setHeight(int);

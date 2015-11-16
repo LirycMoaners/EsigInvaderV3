@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Configuration>
-    <resolution>2</resolution>
+    <resolution>3</resolution>
     <SoundBackground>1</SoundBackground>
     <SoundPlayer>1</SoundPlayer>
     <SoundEnemy>1</SoundEnemy>

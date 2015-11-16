@@ -3,14 +3,15 @@
 
 using namespace std;
 
-Windows::Windows(int width, int height, string nameWindows)
+Windows::Windows(int width, int height, bool fullscreen, string nameWindows)
 {
 	this->setWidth(width);
 	this->setHeight(height);
 	this->setTitle(nameWindows);
 	this->window = new sf::RenderWindow();
 	sf::VideoMode video(width, height);
-	this->window->create(video, nameWindows, sf::Style::Close);
+	sf::Uint16 style = fullscreen ? sf::Style::Fullscreen : sf::Style::Close;
+	this->window->create(video, nameWindows, style);
 	this->window->setFramerateLimit(60);
 }
 

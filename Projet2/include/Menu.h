@@ -6,8 +6,8 @@
 class Menu : public Windows
 {
 	private:
-		int WINDOW_HEIGHT = 700; //Height of the game window
-		int WINDOW_WIDTH = 1024; //Width of the game window
+		int WINDOW_HEIGHT; //Height of the game window
+		int WINDOW_WIDTH; //Width of the game window
 
 		//Définit le bouton correspondant au texte précédent
 		sf::RectangleShape background;
@@ -31,7 +31,7 @@ class Menu : public Windows
 
 
 	public:
-		Menu(int width, int height, std::string title, Resources &res);
+		Menu(std::string title, Resources &res);
 		~Menu();
 		//Lance la fênetre de menu
 		void drawScores(sf::RenderWindow*, Resources &res);

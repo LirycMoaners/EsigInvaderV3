@@ -8,7 +8,7 @@ int main()
 	srand(time(NULL));
 	// Création de la fenetre
 	Resources res = Resources();
-	Menu *menu = new Menu(1024,700,"EsigInvader",res);
+	Menu *menu = new Menu("EsigInvader",res);
 	menu->runWindows();
 
 	return 0;

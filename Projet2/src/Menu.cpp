@@ -1,9 +1,11 @@
 #include "Menu.h"
 #include "Mouse.h"
 
-Menu::Menu(int width, int height, std::string title, Resources &res) : Windows(width, height, title)
+Menu::Menu(std::string title, Resources &res) : Windows(res.getConfigXML()->getSettings()->getCurrentResolution().x, res.getConfigXML()->getSettings()->getCurrentResolution().y,res.getConfigXML()->getSettings()->isFullscreen(), title)
 {
-	//Création du menu de paramètres
+	//Setup of the window parameters
+	WINDOW_WIDTH = res.getConfigXML()->getSettings()->getCurrentResolution().x;
+	WINDOW_HEIGHT = res.getConfigXML()->getSettings()->getCurrentResolution().y;
 	isOptionMenu = false;
 	drawMainMenu();
 
@@ -352,7 +354,7 @@ void Menu::runWindows()
 						//Apply settings
 						Settings* settings = res.getConfigXML()->getSettings();
 						settings->changeSettings(screenResolution, true, true, true, musicVolume, soundVolume, fullscreen);
-						sf::Uint32 style = settings->isFullscreen() ? sf::Style::Fullscreen : sf::Style::Close;
+						sf::Uint16 style = settings->isFullscreen() ? sf::Style::Fullscreen : sf::Style::Close;
 						WINDOW_HEIGHT = settings->getCurrentResolution().y;
 						WINDOW_WIDTH = settings->getCurrentResolution().x;
 						window->create(sf::VideoMode(settings->getCurrentResolution().x, settings->getCurrentResolution().y), title, style);
