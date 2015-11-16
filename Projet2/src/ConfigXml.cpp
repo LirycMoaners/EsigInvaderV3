@@ -69,7 +69,6 @@ void ConfigXml::loadingConfigurationLevel() {
 		exit(EXIT_FAILURE);
 	}
 }
-
 void ConfigXml::loadingConfigurationTypeEnemy() {
 	// Chargement de la configuration des ennemies
 	tinyxml2::XMLDocument xmlEnemy;

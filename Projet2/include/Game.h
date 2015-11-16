@@ -27,6 +27,7 @@ class Game
 		std::vector<Rocket*> rockets;
 		//Liste d'ennemi
 		std::vector<Enemy*> enemies;
+
 		//Liste de lasers
 		std::vector<Laser*> lasers;
 		//Musique de fond

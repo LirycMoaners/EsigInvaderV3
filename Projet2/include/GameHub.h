@@ -16,7 +16,6 @@ class GameHub
 		sf::RectangleShape bossHealthBarOutline, bossHealthBar;
 		sf::Color outlineColor = sf::Color(107, 111, 107, 255);
 		std::string playerPseudo;
-
 	public:
 		GameHub(Resources& res, int width);
 		~GameHub();
