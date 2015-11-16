@@ -306,7 +306,7 @@ void Menu::runWindows()
 					if (musicVolume > 0)
 						musicVolume -= 1;
 				}
-				
+
 				/* Change style of buttons */
 				val = mouse.mouseOver(*window, soundVolumeButton, 50);
 				soundVolumeButton.setTextureRect(sf::IntRect(0, val * 85, 395, 85));
@@ -321,7 +321,7 @@ void Menu::runWindows()
 					if (soundVolume > 0)
 						soundVolume -= 1;
 				}
-				
+
 				/* Change style of buttons */
 				val = mouse.mouseOver(*window, resolutionButton, 50);
 				resolutionButton.setTextureRect(sf::IntRect(0, val * 85, 395, 85));
@@ -351,12 +351,15 @@ void Menu::runWindows()
 					{
 						//Apply settings
 						Settings* settings = res.getConfigXML()->getSettings();
-						settings->changeSettings(screenResolution,true,true,true,musicVolume,soundVolume,fullscreen);
+						settings->changeSettings(screenResolution, true, true, true, musicVolume, soundVolume, fullscreen);
 						sf::Uint32 style = settings->isFullscreen() ? sf::Style::Fullscreen : sf::Style::Close;
 						WINDOW_HEIGHT = settings->getCurrentResolution().y;
 						WINDOW_WIDTH = settings->getCurrentResolution().x;
 						window->create(sf::VideoMode(settings->getCurrentResolution().x, settings->getCurrentResolution().y), title, style);
 						window->setFramerateLimit(60);
+						music.setVolume(settings->getVolumeMusic());
+						//Save settings into XML File
+						res.getConfigXML()->setSetting(settings);
 						drawMainMenu();
 						switchMenus();
 					}
@@ -464,9 +467,9 @@ void Menu::drawScores(sf::RenderWindow* window, Resources &res)
 			{
 				tab += '.';
 				k++;
-			}				
-			scoresText[i].setString(scores[3 * i] + " "+ tab +" "+ scores[3 * i + 1] + " ................. " + scores[3 * i + 2]);
-		}			
+			}
+			scoresText[i].setString(scores[3 * i] + " " + tab + " " + scores[3 * i + 1] + " ................. " + scores[3 * i + 2]);
+		}
 		else
 			scoresText[i].setString("UNKNOWN ............................................. 000000 ................. N/A");
 		scoresText[i].setPosition((WINDOW_WIDTH - scoresText[i].getGlobalBounds().width) / 2, 200 + i * (WINDOW_HEIGHT / 15));
@@ -485,14 +488,14 @@ void Menu::findBestScores() {
 	tinyxml2::XMLError error = scoreDoc.LoadFile("conf/data.db");
 	int compteur = 0;
 
-	if (error == tinyxml2::XML_SUCCESS) 
+	if (error == tinyxml2::XML_SUCCESS)
 	{
 		tinyxml2::XMLElement * elemt;
 		tinyxml2::XMLElement * node = scoreDoc.RootElement();
 		elemt = node->FirstChildElement("Score");
-		do 
+		do
 		{
-			if (elemt != NULL) 
+			if (elemt != NULL)
 			{
 				scores[3 * compteur + 0] = elemt->Attribute("user");
 				scores[3 * compteur + 1] = elemt->Attribute("value");

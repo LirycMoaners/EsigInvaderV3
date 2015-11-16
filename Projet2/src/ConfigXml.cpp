@@ -7,7 +7,7 @@ ConfigXml::ConfigXml()
 	loadingConfiguration();
 
 	//Paramètrage par défaut
-	setting = new Settings(0,true, true, true, 50, 100,false);
+	setting = new Settings(0, true, true, true, 50, 100, false);
 
 	loadingConfigurationOptions();
 }
@@ -103,7 +103,7 @@ void ConfigXml::loadingConfigurationTypeEnemy() {
 				if (life != -1 && dommage != -1 && speedEnemyFire != -1 && speed != -1 && rate != -1 && laserQty != -1 && score != -1)
 				{
 					// Ajout d'un nouveau boss à la liste 
-					typeList.push_back(new TypeEnemy(life, dommage, speedEnemyFire, speed , rate, laserQty, score));
+					typeList.push_back(new TypeEnemy(life, dommage, speedEnemyFire, speed, rate, laserQty, score));
 					// Passage à la balise suivante
 					levelEnemy = levelEnemy->NextSiblingElement("Enemy");
 				}
@@ -115,7 +115,7 @@ void ConfigXml::loadingConfigurationTypeEnemy() {
 			catch (const std::invalid_argument& ia) {
 				std::cerr << "Invalid argument: " << ia.what() << '\n';
 			}
-			
+
 		}
 	}
 	else {
@@ -135,11 +135,11 @@ void ConfigXml::loadingConfigurationBoss() {
 		tinyxml2::XMLElement * levelBoss = nodeEnemy->FirstChildElement("Bosses")->FirstChildElement("Boss");
 		while (levelBoss) {
 			try {
-				int life = -1, dommage = -1, speedEnemyFire = -1, speed = -1, rate = -1, laserQty =-1, score = -1;
+				int life = -1, dommage = -1, speedEnemyFire = -1, speed = -1, rate = -1, laserQty = -1, score = -1;
 				// Récupération de tout les champs disponible
-				if(levelBoss->FirstChildElement("Life") != NULL)
+				if (levelBoss->FirstChildElement("Life") != NULL)
 					life = stoi(levelBoss->FirstChildElement("Life")->GetText());
-				if(levelBoss->FirstChildElement("Dommage") != NULL)
+				if (levelBoss->FirstChildElement("Dommage") != NULL)
 					dommage = stoi(levelBoss->FirstChildElement("Dommage")->GetText());
 				if (levelBoss->FirstChildElement("LaserSpeed") != NULL)
 					speedEnemyFire = stoi(levelBoss->FirstChildElement("LaserSpeed")->GetText());
@@ -160,14 +160,14 @@ void ConfigXml::loadingConfigurationBoss() {
 					levelBoss = levelBoss->NextSiblingElement("Boss");
 				}
 				else {
-					std::cout<<"Wrong XML for the BOSS" << endl;
+					std::cout << "Wrong XML for the BOSS" << endl;
 					exit(EXIT_FAILURE);
 				}
 			}
 			catch (const std::invalid_argument& ia) {
-					std::cerr << "Invalid argument: " << ia.what() << '\n';
+				std::cerr << "Invalid argument: " << ia.what() << '\n';
 			}
-			
+
 		}
 	}
 	else {
@@ -197,7 +197,7 @@ void ConfigXml::loadingConfigurationOptions() {
 			int volumeSound = stoi(elemt->GetText());
 			elemt = root->FirstChildElement("fullScreen");
 			bool fullscreen = stoi(elemt->GetText());
-			this->setting = new Settings(reso, soundEnemy, soundPlayer, soundBack, volumeMusic, volumeSound,fullscreen);
+			this->setting->changeSettings(reso, soundEnemy, soundPlayer, soundBack, volumeMusic, volumeSound, fullscreen);
 		}
 		catch (const std::invalid_argument& ia) {
 			std::cerr << "Invalid argument: " << ia.what() << '\n';
@@ -229,16 +229,48 @@ void ConfigXml::setSetting(Settings * s) {
 		elemt = root->FirstChildElement("fullScreen");
 		elemt->SetText(s->isFullscreen() ? 1 : 0);
 	}
-	else {
+	else
+	{
+		//Create the setting file
+		tinyxml2::XMLNode * root = xmloption.NewElement("settings");
+		xmloption.InsertFirstChild(root);
+		tinyxml2::XMLElement * resoElemt = xmloption.NewElement("resolution");
+		resoElemt->SetText(s->getResolutionInt());
+		root->InsertFirstChild(resoElemt);
+		tinyxml2::XMLElement * sndBgElemt = xmloption.NewElement("SoundBackground");
+		sndBgElemt->SetText(s->getSoundBackground() ? 1 : 0);
+		root->InsertFirstChild(sndBgElemt);
+		tinyxml2::XMLElement * sndPlayerElemt = xmloption.NewElement("SoundPlayer");
+		sndPlayerElemt->SetText(s->getSoundPlayer() ? 1 : 0);
+		root->InsertFirstChild(sndPlayerElemt);
+		tinyxml2::XMLElement * sndEnemyElemt = xmloption.NewElement("SoundEnemy");
+		sndEnemyElemt->SetText(s->getSoundEnemy() ? 1 : 0);
+		root->InsertFirstChild(sndEnemyElemt);
+		tinyxml2::XMLElement * sndVolumeElemt = xmloption.NewElement("VolumeSound");
+		sndVolumeElemt->SetText(s->getVolumeSound());
+		root->InsertFirstChild(sndVolumeElemt);
+		tinyxml2::XMLElement * musicVolumeElemt = xmloption.NewElement("VolumeMusic");
+		musicVolumeElemt->SetText(s->getVolumeMusic());
+		root->InsertFirstChild(musicVolumeElemt);
+		tinyxml2::XMLElement * fullscreenElemt = xmloption.NewElement("fullScreen");
+		fullscreenElemt->SetText(s->isFullscreen() ? 1 : 0);
+		root->InsertFirstChild(fullscreenElemt);
+	}
+
+	//Save the changments into XML File
+	tinyxml2::XMLError wrError = xmloption.SaveFile("conf/options.xml");
+	if (wrError != NULL)
+	{
 		std::cout << "Impossible to save the setting" << std::endl;
 		std::cerr << "Fail to open the file options.xml in the conf's folder Error ID : " << xmloption.ErrorID() << std::endl;
 	}
 }
 
+
 void ConfigXml::CreateScore(int score, string name, string mode) {
 	tinyxml2::XMLDocument xmlScore;
 	tinyxml2::XMLError error = xmlScore.LoadFile("conf/data.db");
-	
+
 	if (name == "") {
 		name = "UNKNOWN";
 	}
@@ -248,11 +280,11 @@ void ConfigXml::CreateScore(int score, string name, string mode) {
 		//tinyxml2::XMLElement * node = root->FirstChildElement("Scores");
 
 		tinyxml2::XMLElement * temps = xmlScore.NewElement("Score");
-		
+
 		temps->SetAttribute("user", name.c_str());
 		temps->SetAttribute("value", score);
 		temps->SetAttribute("mode", mode.c_str());
-		
+
 		//Find the first score smaller than the current score
 		tinyxml2::XMLElement* testedScoreNode = root->FirstChildElement("Score");
 		int value = 0;
@@ -281,7 +313,7 @@ void ConfigXml::CreateScore(int score, string name, string mode) {
 			root->InsertEndChild(temps);
 		xmlScore.SaveFile("conf/data.db");
 	}
-	else  {
+	else {
 		if (error == tinyxml2::XMLError::XML_ERROR_FILE_NOT_FOUND) {
 			tinyxml2::XMLElement * result = xmlScore.NewElement("Scores");
 			tinyxml2::XMLElement * temps = xmlScore.NewElement("Score");
