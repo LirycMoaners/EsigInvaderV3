@@ -44,4 +44,5 @@ sf::SoundBuffer& Resources::getMusicSnd(int i)
 
 Resources::~Resources()
 {
+
 }

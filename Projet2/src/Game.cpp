@@ -3,14 +3,14 @@
 using namespace std;
 
 //Game::Game() : window(), c(&Keyboard()), spaceship(Spaceship(img->getSpaceship_t())) {}
-Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)
+Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, list<string>& cheatList) : c(new Armband()), window(&window), rockets(NULL), curPatern(0)
 {
 	if (c->getStatus() == false)
 		c = new Keyboard();
 
 	//Definition du mode de jeu
 	this->modeGame = modeGame;
-
+	this->cheatList = cheatList;
 	// Chargement de l'objets permettant le chargement des images
 	this->res = res;
 	//Création du hub
@@ -27,7 +27,7 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	spaceship = new Spaceship(res);
 	
 	// Activation des codes 
-	activateCheat(cheat);
+	activateCheat();
 	
 	
 	PaternGeneration();
@@ -43,36 +43,48 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, string cheat
 	laserSnd.setVolume(res.getConfigXML()->getSettings()->getVolumeSound());
 }
 
-void Game::activateCheat(string cheat) {
+void Game::activateCheat() {
+	list<string>::iterator it;
+	
 	// Active les modes de triche
-	if (cheat == "grave") {
-		spaceship->getWeapon().setLvl(5);
-		curLevel = 11;
-		spaceship->setHealth(150000, true);
-		res.getImg()->setSpaceship_t("ressources/grave.png");
-	}
-	else if (cheat == "mylittlepony") {
-		pony = true;
-		this->res.getImg()->setEnemy_t("ressources/ponysprite.png");
-	}
-	else if (cheat == "minion") {
-		pony = true;
-		this->res.getImg()->setEnemy_t("ressources/minionsprite.png");
-	}
-	else if (cheat == "reset"){
+	for (it = cheatList.begin(); it != cheatList.end(); it++) {
+		string cheat = (*it);
+		cout << "Print cheat : " << cheat << endl;
+		if (cheat == "grave") {
+			spaceship->getWeapon().setLvl(5);
+			curLevel = 11;
+			spaceship->setHealth(150000, true);
+			res.getImg()->setSpaceship_t("ressources/grave.png");
+		}
+		else if (cheat == "mylittlepony") {
+			pony = true;
+			this->res.getImg()->setEnemy_t("ressources/ponysprite.png");
+		}
+		else if (cheat == "minion") {
+			pony = true;
+			this->res.getImg()->setEnemy_t("ressources/minionsprite.png");
+		}
+		else if (cheat.find("uparme") != -1) {
+			string substring = cheat.substr(cheat.find("uparme") + 1, cheat.size());
+			try {
+				cout << "Substring : " << substring << endl;
+				int level = stoi(substring);
+				spaceship->getWeapon().setLvl(spaceship->getWeapon().getLvl() + 1);
 
-	}
-	else if (cheat == "uparme") {
+			}
+			catch (const std::exception& e) {
+				cerr << "Invalid Cheat" << endl;
+			}
+		}
+		else if (cheat == "uplife") {
+			//spaceship->setHealth();
+		}
+		else if (cheat == "uplevel") {
 
-	}
-	else if (cheat == "uplife") {
+		}
+		else if (cheat == "setScore") {
 
-	}
-	else if (cheat == "uplevel") {
-
-	}
-	else if (cheat == "setScore") {
-
+		}
 	}
 }
 

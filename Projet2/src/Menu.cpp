@@ -64,7 +64,7 @@ void Menu::drawMainMenu()
 	cheatText.setFont(res.getArialFont());
 	cheatText.setPosition(cheatBar.getPosition());
 	cheatText.setColor(sf::Color::Transparent);
-	cheat = "";
+	cheatList.clear();
 
 	//Settings buttons
 	soundVolumeButton.setTexture(res.getImg()->getButtonArrow_t());
@@ -136,7 +136,7 @@ void Menu::drawMainMenu()
 void Menu::runWindows()
 {
 	Mouse mouse;
-
+	string cheat = "";
 	while (window->isOpen())
 	{
 		sf::Event event;
@@ -153,10 +153,14 @@ void Menu::runWindows()
 				//Cheat bar control
 				if (event.type == sf::Event::KeyPressed)
 				{
+					
 					for (int i = 0; i < 26; i++)
 					{
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i)))
-							cheat += ('a' + i);	//Add the character to the player name
+						
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i))) {
+								cheat += ('a' + i);	//Add the character to the player name
+								cout << "In progress :: " << cheat << endl;	
+						}
 					}
 					if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace) && cheat.size() > 0)
 						cheat.resize(cheat.size() - 1); //Remove the last letter
@@ -185,6 +189,7 @@ void Menu::runWindows()
 
 						//Set instruction to execute after the player press enter on the console tab
 						std::cout << "Cheat entered: " << cheat << std::endl;
+						cheatList.push_back(cheat);
 					}
 				}
 
@@ -199,9 +204,9 @@ void Menu::runWindows()
 					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 					{
 						music.stop();
-						Game(*window, res, false, cheat).runGame();
+						Game(*window, res, false, cheatList).runGame();
 						resetCheat();
-						cheat = "";
+						cheatList.clear();
 						music.play();
 					}
 				}
@@ -220,8 +225,9 @@ void Menu::runWindows()
 					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 					{
 						music.stop();
-						Game(*window, res, true, "").runGame();
-						cheat = "";
+						cheatList.clear();
+						Game(*window, res, true, cheatList).runGame();
+						cheatList.clear();
 						resetCheat();
 						music.play();
 					}

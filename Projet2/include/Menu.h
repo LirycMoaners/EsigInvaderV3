@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+#include <list>
 #include "Game.h"
 #include "Windows.h"
 #include "Resources.h"
@@ -24,7 +26,7 @@ class Menu : public Windows
 		//Cheat code hidded bar
 		sf::RectangleShape cheatBar;
 		sf::Text cheatText;
-		std::string cheat;
+		std::list<std::string> cheatList;
 		std::string scores[30];
 		sf::Sound music;
 		bool isOptionMenu;

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <list>
 #include "Armband.h"
 #include "Keyboard.h"
 #include "Spaceship.h"
@@ -27,7 +28,7 @@ class Game
 		std::vector<Rocket*> rockets;
 		//Liste d'ennemi
 		std::vector<Enemy*> enemies;
-
+		std::list<std::string> cheatList;
 		//Liste de lasers
 		std::vector<Laser*> lasers;
 		//Musique de fond
@@ -56,7 +57,7 @@ class Game
 		Control *c;
 		sf::RenderWindow *window;
 		//Game();
-		Game(sf::RenderWindow&, Resources & res, bool modeGame, std::string cheat);
+		Game(sf::RenderWindow&, Resources & res, bool modeGame, std::list<std::string> & cheats);
 		Spaceship *getSpaceship();
 		std::vector<Rocket*> &getRockets();
 		std::vector<Enemy*> &getEnemies();
@@ -77,7 +78,7 @@ class Game
 		void addBoss(TypeEnemy * type);
 
 		// Activation de cheat
-		void activateCheat(std::string cheat);
+		void activateCheat();
 		//Instacie l'environnement du player
 		void control();
 		//Gère le mouvement du background
