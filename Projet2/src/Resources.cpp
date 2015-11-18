@@ -1,8 +1,11 @@
 #include "..\include\Resources.h"
 
+Resources::Resources() {
+
+}
 
 
-Resources::Resources()
+void Resources::loadResources()
 {
 	xmldata = new ConfigXml();
 	img = new Img();

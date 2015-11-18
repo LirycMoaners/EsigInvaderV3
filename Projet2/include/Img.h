@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML\Graphics.hpp"
 #include <string>
+#include <iostream>
 class Img
 {
 	// définition des textures
@@ -17,6 +18,8 @@ class Img
 		sf::Texture button_t;
 		sf::Texture bonus_t;
 		sf::Texture button_arrow_t;
+		sf::Texture about_t;
+		sf::Texture authors_t;
 
 	public:
 		Img();
@@ -32,6 +35,8 @@ class Img
 		sf::Texture &getSettingIco();
 		sf::Texture &getButtonArrow_t();
 		sf::Texture &getBonus_t();
+		sf::Texture &getAuthors_t();
+		sf::Texture &getAbout_t();
 		void setBoss_t(std::string name);
 		void setEnemy_t(std::string name);
 		void setSpaceship_t(std::string name);

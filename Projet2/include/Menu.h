@@ -12,7 +12,7 @@ class Menu : public Windows
 		//Définit le bouton correspondant au texte précédent
 		sf::RectangleShape background;
 		sf::Sprite buttonQuit, buttonStart, buttonScore, buttonEndLess;
-		sf::Sprite buttonSetting;
+		sf::Sprite buttonSetting, buttonAbout;
 		Resources res;
 
 		//Ajout des bouttons pour l'interface de settings
@@ -31,7 +31,7 @@ class Menu : public Windows
 
 
 	public:
-		Menu(std::string title, Resources &res);
+		Menu(std::string title, Resources res);
 		~Menu();
 		//Lance la fênetre de menu
 		void drawScores(sf::RenderWindow*, Resources &res);

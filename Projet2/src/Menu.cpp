@@ -1,13 +1,15 @@
 #include "Menu.h"
 #include "Mouse.h"
 
-Menu::Menu(std::string title, Resources &res) : Windows(res.getConfigXML()->getSettings()->getCurrentResolution().x, res.getConfigXML()->getSettings()->getCurrentResolution().y,res.getConfigXML()->getSettings()->isFullscreen(), title)
+Menu::Menu(std::string title, Resources res) : Windows(res.getConfigXML()->getSettings()->getCurrentResolution().x, res.getConfigXML()->getSettings()->getCurrentResolution().y,res.getConfigXML()->getSettings()->isFullscreen(), title)
 {
 	//Setup of the window parameters
 	WINDOW_WIDTH = res.getConfigXML()->getSettings()->getCurrentResolution().x;
 	WINDOW_HEIGHT = res.getConfigXML()->getSettings()->getCurrentResolution().y;
 	isOptionMenu = false;
+	this->res = res;
 	drawMainMenu();
+	
 
 	//Génération de la musique de fond
 	music.setBuffer(res.getMusicSnd(0));
@@ -47,6 +49,10 @@ void Menu::drawMainMenu()
 	buttonSetting.setScale(sf::Vector2f(0.8, 0.8));
 	buttonSetting.setTextureRect(sf::IntRect(0, 0, 60, 60));
 	buttonSetting.setPosition(WINDOW_WIDTH - buttonSetting.getGlobalBounds().width, WINDOW_HEIGHT - buttonSetting.getGlobalBounds().height);
+
+	buttonAbout.setTexture(res.getImg()->getAbout_t());
+	buttonAbout.setScale(sf::Vector2f(0.8, 0.8));
+	//buttonAbout.setTexture(sf::IntRect(0,0,))
 
 	//Create the cheat bar an hide it
 	cheatBar.setOutlineColor(sf::Color::Transparent);

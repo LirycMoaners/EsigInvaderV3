@@ -2,12 +2,12 @@
 
 ConfigXml::ConfigXml()
 {
-	loadingConfiguration();
-
 	//Paramètrage par défaut
 	setting = new Settings(0, true, true, true, 50, 100, false);
-
 	loadingConfigurationOptions();
+
+
+	loadingConfiguration();
 }
 
 vector<Level*> ConfigXml::getLevelList() {
@@ -30,20 +30,17 @@ ConfigXml::~ConfigXml()
 		delete levelList.at(i);
 
 	}
-
 	for (int i = 0; i< bossList.size(); i++) {
 		delete bossList.at(i);
-
 	}
-
 	for (int i = 0; i< typeList.size(); i++) {
 		delete typeList.at(i);
-
 	}
 	delete setting;
 }
 
 void ConfigXml::loadingConfigurationLevel() {
+	cout << "Loading Level Configuration" << endl;
 	tinyxml2::XMLDocument xmlLevel;
 	// Chargement de la configuration des niveaux
 	xmlLevel.LoadFile("conf/conflevel.xml");
@@ -68,8 +65,10 @@ void ConfigXml::loadingConfigurationLevel() {
 		std::cerr << "Failed to open the file conflevel.xml in conf's folder. Error ID : " << xmlLevel.ErrorID() << endl;
 		exit(EXIT_FAILURE);
 	}
+	cout << "End Loading Level Configuration" << endl;
 }
 void ConfigXml::loadingConfigurationTypeEnemy() {
+	cout << "Loading Enemy Configuration " << endl;
 	// Chargement de la configuration des ennemies
 	tinyxml2::XMLDocument xmlEnemy;
 	xmlEnemy.LoadFile("conf/confenemy.xml");
@@ -120,8 +119,11 @@ void ConfigXml::loadingConfigurationTypeEnemy() {
 		std::cerr << "Failed to open the file confenemy.xml in conf's folder. Error ID : " << xmlEnemy.ErrorID() << endl;
 		exit(EXIT_FAILURE);
 	}
+
+	cout << "End Loading Enemy Configuration " << endl;
 }
 void ConfigXml::loadingConfigurationBoss() {
+	cout << "Loading Boss Configuration " << endl;
 	// Chargement de la configuration des boss 
 	tinyxml2::XMLDocument xmlboss;
 	xmlboss.LoadFile("conf/confboss.xml");
@@ -172,9 +174,11 @@ void ConfigXml::loadingConfigurationBoss() {
 		std::cerr << "Failed to open the file confboss.xml in conf's folder. Error ID : " << xmlboss.ErrorID() << endl;
 		exit(EXIT_FAILURE);
 	}
+	cout << "End Loading Boss Configuration " << endl;
 }
 
 void ConfigXml::loadingConfigurationOptions() {
+	cout << "Loading Options Configuration " << endl;
 	tinyxml2::XMLDocument xmloption;
 	xmloption.LoadFile("conf/options.xml");
 	if (xmloption.ErrorID() == 0) {
@@ -204,6 +208,7 @@ void ConfigXml::loadingConfigurationOptions() {
 		std::cout << "Error searching configuration" << std::endl;
 		std::cerr << "Failed to open the file options.xml in conf's folder. Error ID : " << xmloption.ErrorID() << endl;
 	}
+	cout << "End Loading Options Configuration " << endl;
 }
 
 void ConfigXml::setSetting(Settings * s) {

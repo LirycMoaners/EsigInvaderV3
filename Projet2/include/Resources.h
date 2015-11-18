@@ -10,6 +10,7 @@ class Resources
 		~Resources();
 
 		ConfigXml * getConfigXML();
+		void loadResources();
 		sf::SoundBuffer& getExplosionSnd();
 		sf::SoundBuffer& getMusicSnd(int);
 		sf::SoundBuffer& getLaserSnd();
