@@ -28,7 +28,7 @@ Img::Img()
 	cout << "Loading settingIcons" << endl;
 	settingIco_t.loadFromFile("ressources/settingIcons.png");
 	cout << "Loading about" << endl;
-	about_t.loadFromFile("ressources/about.png");
+	about_t.loadFromFile("ressources/interrogationTexture.png");
 	cout << "Loading authors" << endl;
 	authors_t.loadFromFile("ressources/authors.png");
 }

@@ -52,7 +52,8 @@ void Menu::drawMainMenu()
 
 	buttonAbout.setTexture(res.getImg()->getAbout_t());
 	buttonAbout.setScale(sf::Vector2f(0.8, 0.8));
-	//buttonAbout.setTexture(sf::IntRect(0,0,))
+	buttonAbout.setTextureRect(sf::IntRect(0, 0, 60, 60));
+	buttonAbout.setPosition(WINDOW_WIDTH - buttonSetting.getGlobalBounds().width - buttonAbout.getGlobalBounds().width, buttonSetting.getGlobalBounds().height);
 
 	//Create the cheat bar an hide it
 	cheatBar.setOutlineColor(sf::Color::Transparent);
@@ -156,7 +157,6 @@ void Menu::runWindows()
 					
 					for (int i = 0; i < 26; i++)
 					{
-						
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i))) {
 								cheat += ('a' + i);	//Add the character to the player name
 								cout << "In progress :: " << cheat << endl;	
