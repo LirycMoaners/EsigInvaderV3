@@ -4,7 +4,7 @@
     <SoundBackground>1</SoundBackground>
     <SoundPlayer>1</SoundPlayer>
     <SoundEnemy>1</SoundEnemy>
-    <VolumeMusic>20</VolumeMusic>
-    <VolumeSound>10</VolumeSound>
+    <VolumeMusic>75</VolumeMusic>
+    <VolumeSound>55</VolumeSound>
     <fullScreen>0</fullScreen>
 </Configuration>

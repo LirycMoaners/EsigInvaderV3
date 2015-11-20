@@ -9,11 +9,18 @@ void Resources::loadResources()
 {
 	xmldata = new ConfigXml();
 	img = new Img();
+	cout << "Loading Music" << endl;
+	cout << "Explosion music" << endl;
 	explosion_snd.loadFromFile("ressources/snd/explosion.wav");
+	cout << "Sound Game" << endl;
 	game_music.loadFromFile("ressources/snd/sound_game.wav");
+	cout << "Sound Home" << endl;
 	menu_music.loadFromFile("ressources/snd/sound_home.wav");
+	cout << "Sound Laser" << endl;
 	laser_snd.loadFromFile("ressources/snd/laser.wav");
+	cout << "Sound Missile" << endl;
 	missile_snd.loadFromFile("ressources/snd/missile.wav");
+	cout << "Loading Police" << endl;
 	arial.loadFromFile("ressources/arial.ttf");
 }
 ConfigXml * Resources::getConfigXML() {
