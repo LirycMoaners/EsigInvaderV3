@@ -153,12 +153,14 @@ void Menu::runWindows()
 				//Cheat bar control
 				if (event.type == sf::Event::KeyPressed)
 				{
-					
-					for (int i = 0; i < 26; i++)
+					for (int i = 0; i < 36; i++)
 					{
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(i))) {
-								cheat += ('a' + i);	//Add the character to the player name
-								cout << "In progress :: " << cheat << endl;	
+							if (i >= 0 && i < 26 && cheat.size() < 100)
+								cheat += 'a' + i;
+							else if (i >= 26 && i < 36 && cheat.size() < 100)
+								cheat += '0' + (i - 26);
+							cout << "In progress :: " << cheat << endl;	
 						}
 					}
 					if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace) && cheat.size() > 0)

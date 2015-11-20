@@ -27,7 +27,7 @@ Patern::Patern(tinyxml2::XMLDocument &docPat, int id) : time(0)
 	}
 }
 
-vector<Enemy*> Patern::spawn(Resources &res, TypeEnemy * typeenemy, bool pony, int displayEnemies,int height)
+vector<Enemy*> Patern::spawn(Resources &res, TypeEnemy * typeenemy, bool pony, int displayEnemies,int height, int width)
 {
 	vector<Enemy*> e;
 	sf::Vector2f pos;
