@@ -4,16 +4,15 @@
 Menu::Menu(std::string title, Resources res) : Windows(res.getConfigXML()->getSettings()->getCurrentResolution().x, res.getConfigXML()->getSettings()->getCurrentResolution().y,res.getConfigXML()->getSettings()->isFullscreen(), title)
 {
 	//Setup of the window parameters
-	WINDOW_WIDTH = res.getConfigXML()->getSettings()->getCurrentResolution().x;
-	WINDOW_HEIGHT = res.getConfigXML()->getSettings()->getCurrentResolution().y;
-	isOptionMenu = false;
 	this->res = res;
+	WINDOW_WIDTH = this->res.getConfigXML()->getSettings()->getCurrentResolution().x;
+	WINDOW_HEIGHT = this->res.getConfigXML()->getSettings()->getCurrentResolution().y;
+	isOptionMenu = false;
 	drawMainMenu();
-	
 
 	//Génération de la musique de fond
-	music.setBuffer(res.getMusicSnd(0));
-	music.setVolume(res.getConfigXML()->getSettings()->getVolumeMusic());
+	music.setBuffer(this->res.getMusicSnd(0));
+	music.setVolume(this->res.getConfigXML()->getSettings()->getVolumeMusic());
 	music.setLoop(true);
 	music.play();
 }

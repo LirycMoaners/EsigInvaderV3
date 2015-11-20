@@ -20,7 +20,7 @@ class Patern
 		//Patern(tinyxml2::XMLDocument&, int)
 		Patern(tinyxml2::XMLDocument&, int);
 		//Alimente le hub avec les ennemis
-		std::vector<Enemy*> spawn(Resources &res, TypeEnemy * typeenemy, bool pony);
+		std::vector<Enemy*> spawn(Resources &res, TypeEnemy * typeenemy, bool pony, int displayEnemies, int height);
 		int next();
 		~Patern();
 };
