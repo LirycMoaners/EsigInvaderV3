@@ -4,6 +4,7 @@ using namespace std;
 
 Settings::Settings(int reso, bool enemySound, bool playerSound, bool backgroundSound, int volumeMusic, int volumeSound, bool fullscreen)
 {
+	resolutions = { sf::Vector2u(1024, 700), sf::Vector2u(1024, 768), sf::Vector2u(1280, 960), sf::Vector2u(1920, 1080) };
 	changeSettings(reso, enemySound, playerSound, backgroundSound, volumeMusic, volumeSound, fullscreen);
 }
 

@@ -23,7 +23,7 @@ class Settings
 
 	private : 
 		int resolution;
-		std::vector<sf::Vector2u> resolutions = {sf::Vector2u(1024,700), sf::Vector2u(1024,768), sf::Vector2u(1280,960), sf::Vector2u(1920,1080)};
+		std::vector<sf::Vector2u> resolutions;
 		bool SoundEnemy = true;
 		bool SoundPlayer = true;
 		bool SoundBackground = true;
