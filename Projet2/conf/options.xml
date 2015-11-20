@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Configuration>
-    <resolution>0</resolution>
+    <resolution>2</resolution>
     <SoundBackground>1</SoundBackground>
     <SoundPlayer>1</SoundPlayer>
     <SoundEnemy>1</SoundEnemy>
     <VolumeMusic>75</VolumeMusic>
-    <VolumeSound>55</VolumeSound>
+    <VolumeSound>0</VolumeSound>
     <fullScreen>0</fullScreen>
 </Configuration>
