@@ -1,5 +1,4 @@
 #include "../include/Game.h"
-
 using namespace std;
 
 //Game::Game() : window(), c(&Keyboard()), spaceship(Spaceship(img->getSpaceship_t())) {}
@@ -14,7 +13,7 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, list<string>
 	// Chargement de l'objets permettant le chargement des images
 	this->res = res;
 	//Création du hub
-	gameHub = new GameHub(res, window.getSize().x);
+	gameHub = new GameHub(this->res, window.getSize().x);
 
 	//Create graphical object for the background
 	background.setTexture(&this->res.getImg()->getBackground_t());
@@ -24,7 +23,7 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, list<string>
 	background.setSize(sf::Vector2f(this->window->getSize().x, this->window->getSize().y));
 	background.setPosition(0, 0);
 	
-	spaceship = new Spaceship(res);
+	spaceship = new Spaceship(this->res);
 	
 	// Activation des codes 
 	activateCheat();
@@ -33,14 +32,14 @@ Game::Game(sf::RenderWindow &window,Resources & res, bool modeGame, list<string>
 	PaternGeneration();
 
 	//Génération de la musique de fond
-	music.setBuffer(res.getMusicSnd(1));
+	music.setBuffer(this->res.getMusicSnd(1));
 	music.setLoop(true);
-	music.setVolume(res.getConfigXML()->getSettings()->getVolumeMusic());
+	music.setVolume(this->res.getConfigXML()->getSettings()->getVolumeMusic());
 	music.play();
 
 	//Chargement du son du laser
-	laserSnd.setBuffer(res.getLaserSnd());
-	laserSnd.setVolume(res.getConfigXML()->getSettings()->getVolumeSound());
+	laserSnd.setBuffer(this->res.getLaserSnd());
+	laserSnd.setVolume(this->res.getConfigXML()->getSettings()->getVolumeSound());
 }
 
 void Game::activateCheat() {
@@ -188,7 +187,9 @@ void Game::runGame()
 					}
 				} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 				TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-				addEnemies(patern[curPatern].spawn(res, typeEnemy, pony));
+				int displayEnemy = (int)(window->getSize().y / 100);
+				int delta = ((int)window->getSize().y - (displayEnemy-1) * 100) / (displayEnemy-1);
+				addEnemies(patern[curPatern].spawn(res, typeEnemy, pony, displayEnemy, delta, window->getSize().x));
 				curPatern += patern[curPatern].next();
 			}
 		}
@@ -212,7 +213,9 @@ void Game::runGame()
 						}
 					} while (random > this->res.getConfigXML()->getTypeEnemyList().size());
 					TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
-					addEnemies(patern[curPatern].spawn(res, typeEnemy, pony));
+					int displayEnemy = (int)(window->getSize().y / 100);
+					int delta = ((int)window->getSize().y - (displayEnemy - 1) * 100) / (displayEnemy - 1);
+					addEnemies(patern[curPatern].spawn(res, typeEnemy, pony, displayEnemy, delta, window->getSize().x));
 					compteurPatern += 1;
 					curPatern += 1;
 				}
@@ -358,7 +361,7 @@ void Game::runGame()
 		window->display();
 	}
 	//After the death of player, enter is name
-	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score,c,res);
+	gameHub->setPlayerPseudo(window,score,c,res);
 	if(!modeGame)
 		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(),"Normal");
 	else
