@@ -42,10 +42,9 @@ vector<Enemy*> Patern::spawn(Resources &res, TypeEnemy * typeenemy, bool pony, i
 			position = l->FirstChildElement()->NextSiblingElement()->GetText();
 			for (int i = 0; i < displayEnemies; i++)
 			{
-				std::cout << "Print i:" << i << std::endl;
 				int k = i % 7;
 				if (position.substr(k, 1) == to_string(1))
-					e.push_back(new Enemy(res.getImg()->getEnemy_t(),res, sf::Vector2f(1024, 100 * i + height), typeenemy, randomTExture, pony));
+					e.push_back(new Enemy(res.getImg()->getEnemy_t(),res, sf::Vector2f(width, 100 * i + height), typeenemy, randomTExture, pony));
 			}
 		}
 		l = l->NextSiblingElement();
