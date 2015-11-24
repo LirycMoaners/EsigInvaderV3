@@ -88,7 +88,7 @@ void GameHub::updateHub(sf::RenderWindow* window, Spaceship* spaceObject, Boss* 
 	window->draw(bossHealthBar);
 }
 
-void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, int score, Control* c, Resources &res)
+void GameHub::setPlayerPseudo(sf::RenderWindow* window, int score, Control* c, Resources &res)
 {
 	while (!c->quit() && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return))
 	{
@@ -97,7 +97,8 @@ void GameHub::setPlayerPseudo(sf::RenderWindow* window, sf::Texture& bgTexture, 
 
 		//Background texture
 		sf::RectangleShape background;
-		background.setTexture(&bgTexture);
+		background.setTexture(&res.getImg()->getBackground_t());
+		background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
 		background.setTextureRect(sf::IntRect(0, 0, window->getSize().x < 8192 ? window->getSize().x : 8192, window->getSize().y < 768 ? window->getSize().y : 768));
 		background.setPosition(0, 0);
 		window->draw(background);

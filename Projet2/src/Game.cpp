@@ -1,5 +1,4 @@
 #include "../include/Game.h"
-
 using namespace std;
 
 //Game::Game() : window(), c(&Keyboard()), spaceship(Spaceship(img->getSpaceship_t())) {}
@@ -190,7 +189,7 @@ void Game::runGame()
 				TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
 				int displayEnemy = (int)(window->getSize().y / 100);
 				int delta = ((int)window->getSize().y - (displayEnemy-1) * 100) / (displayEnemy-1);
-				addEnemies(patern[curPatern].spawn(res, typeEnemy, pony, displayEnemy, delta));
+				addEnemies(patern[curPatern].spawn(res, typeEnemy, pony, displayEnemy, delta, window->getSize().x));
 				curPatern += patern[curPatern].next();
 			}
 		}
@@ -216,7 +215,7 @@ void Game::runGame()
 					TypeEnemy * typeEnemy = this->res.getConfigXML()->getTypeEnemyList().at(random);
 					int displayEnemy = (int)(window->getSize().y / 100);
 					int delta = ((int)window->getSize().y - (displayEnemy - 1) * 100) / (displayEnemy - 1);
-					addEnemies(patern[curPatern].spawn(res, typeEnemy, pony, displayEnemy, delta));
+					addEnemies(patern[curPatern].spawn(res, typeEnemy, pony, displayEnemy, delta, window->getSize().x));
 					compteurPatern += 1;
 					curPatern += 1;
 				}
@@ -362,7 +361,7 @@ void Game::runGame()
 		window->display();
 	}
 	//After the death of player, enter is name
-	gameHub->setPlayerPseudo(window, res.getImg()->getBackground_t(),score,c,res);
+	gameHub->setPlayerPseudo(window,score,c,res);
 	if(!modeGame)
 		this->res.getConfigXML()->CreateScore(this->score, gameHub->getPlayerPseudo(),"Normal");
 	else
