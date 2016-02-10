@@ -106,14 +106,14 @@ void Armband::move(Spaceship *s)
 	if (orient.z() > pos_z + capDetect || orient.z() < pos_z - capDetect || orient.y() > pos_y + capDetect || orient.y() < pos_y - capDetect)
 	{
 		if (orient.z() > pos_z + capDetect)
-			s->move(4);
-		else if (orient.z() < pos_z - capDetect)
 			s->move(3);
+		else if (orient.z() < pos_z - capDetect)
+			s->move(4);
 
 		if (orient.y() > pos_y + capDetect)
-			s->move(2);
-		else if (orient.y() < pos_y - capDetect)
 			s->move(1);
+		else if (orient.y() < pos_y - capDetect)
+			s->move(2);
 	}
 	else
 		s->move(0);
